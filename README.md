@@ -49,7 +49,7 @@ It is designed for wide usage where you will be able to use the SDK to create yo
           self.cameraView.exitReading()
        }
        ```
-      ####Important!
+      **Important!**
       _Exit reading is obligatory in order to free camera resources_
 4. Add any other UI styles changes you need.
 

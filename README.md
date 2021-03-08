@@ -49,8 +49,9 @@ It is designed for wide usage where you will be able to use the SDK to create yo
           self.cameraView.exitReading()
        }
        ```
-      **Important!**
-      _Exit reading is obligatory in order to free camera resources_
+      **Important!** Exit reading is obligatory in order to free camera resources
+      
+        *Notice: you can omit using lifecycle hooks and attach actions to any other user events.*
 4. Add any other UI styles changes you need.
 
 **Demo App**

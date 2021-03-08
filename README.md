@@ -30,11 +30,10 @@ It is designed for wide usage where you will be able to use the SDK to create yo
 3. Reference `UIView` as `@IBOutlet` inside `UIViewController`
     - Start the reading by calling `startReading` of `UIView` inside `UIViewController`
        ```
-       Usage: startReading
+       Example Usage: startReading
        Params: readingLength (seconds)
        Callback: hr (float), hrv (float), bpm (float). Callaback is called every two seconds.
  
-       Example:
        public override func viewWillAppear(_ animated: Bool) {
           self.cameraView.startReading(readingLength: 60) { (hr, hrv, bpm) -> () in
              print(hr, hrv, bpm)
@@ -43,8 +42,8 @@ It is designed for wide usage where you will be able to use the SDK to create yo
        ```
     - Exit the reading by calling `exitReading` of `UIView` inside `UIViewController`
        ```
-       Usage: exitReading
-       Example:
+       Example Usage: exitReading
+
        public override func viewWillDisappear(_ animated: Bool) {
           self.cameraView.exitReading()
        }

@@ -22,12 +22,14 @@ It is designed for wide usage where you will be able to use the SDK to create yo
     - Add `Privacy - Camera Usage Description` with the description best feeds your needs:
       ex: "Camera feed is used for tracking your biomarkers"
 2. Create a `Storyboard`
-    - Add `UIViewController`
-    - Add `UIView`
+    - Add `UIViewController` 
+         - Specify your custom `UIViewController` class
+     - Add `UIView`
         - Specify `Custom Class` inside `identity inspector`
         - Set `Class` to `SprenCameraView`
         - Set `Module` to `spren`
-3. Reference `UIView` as `@IBOutlet` inside `UIViewController`
+4. `import spren` in your `UIViewController` class
+5. Reference `UIView` as `@IBOutlet` inside `UIViewController`
     - Start the reading by calling `startReading` of `UIView` inside `UIViewController`
        ```
        Example Usage: startReading

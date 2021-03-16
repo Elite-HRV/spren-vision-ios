@@ -23,7 +23,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .binaryTarget(
             name: "Spren",
-            url: "https://github.com/Elite-HRV/spren-ios-sdk/releases/download/1.0.3/Spren.xcframework.zip",
+            url: "https://api.codemagic.io/artifacts/990f066f-add1-48b6-9365-bad2a679ea1e/faa14a16-bb89-4aca-9c6a-cbce851033a8/Spren_iOS_7_artifacts.zip",
             checksum: "3a1f5175dc926d3ea1f718454d7d0c1e26288a111281c8d0ac2df552f4a4bf56"
         ),
     ]

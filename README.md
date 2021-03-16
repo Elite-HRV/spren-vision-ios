@@ -12,52 +12,51 @@ It is designed for wide usage where you will be able to use the SDK to create yo
 ---
 
 - Install `Spren SDK` with `Xcode`
-    + Open `File` &#8594; `Swift Packages` &#8594; `Add Package Dependency`
-    + Put `https://github.com/Elite-HRV/spren-ios-package` in the searchbar
-    + Use the `latest` version defaulted to you
+   + Open `File` &#8594; `Swift Packages` &#8594; `Add Package Dependency`
+   + Put `https://github.com/Elite-HRV/spren-ios-package` in the searchbar
+   + Use the `latest` version defaulted to you
 
-**Usage**
+The `UI/UX` aren't comprised in `SDK`, therefore there are many ways how to use the `SDK`.
+We've built few use cases in order you to get wider imagination of the way how `SDK` can leverage your business needs.
+
+**Usage** `ARKit`
 ---
-1. Info.plist
+Source code example can be found here - https://github.com/Elite-HRV/eliteapp
+You fill find references to this repository items below:
+
+Here are the main highlights:
+
+- [Info.plist](https://www.google.com/CameraController)
     - Add `Privacy - Camera Usage Description` with the description best feeds your needs:
       ex: "Camera feed is used for tracking your biomarkers"
-2. Create a `Storyboard`
-    - Add `UIViewController` 
-         - Specify your custom `UIViewController` class
-     - Add `UIView`
-        - Specify `Custom Class` inside `identity inspector`
-        - Set `Class` to `SprenCameraView`
-        - Set `Module` to `spren`
-4. `import spren` in your `UIViewController` class
-5. Reference `UIView` as `@IBOutlet` inside `UIViewController`
-    - Start the reading by calling `startReading` of `UIView` inside `UIViewController`
-       ```
-       Example Usage: startReading
-       Params: readingLength (seconds)
-       Callback: hr (float), hrv (float), bpm (float). Callaback is called every two seconds.
- 
-       public override func viewWillAppear(_ animated: Bool) {
-          self.cameraView.startReading(readingLength: 60) { (hr, hrv, bpm) -> () in
-             print(hr, hrv, bpm)
-          }
-       }
-       ```
-    - Exit the reading by calling `exitReading` of `UIView` inside `UIViewController`
-       ```
-       Example Usage: exitReading
+- Add your custom [UIViewController](https://www.google.com/CameraController).
+    - [Import]() and [initiate]() `Spren` library
+- Add animations using `ARKit` by implementing [ARSCNViewDelegate]()
+- Implement [ARSessionDelegate]()
+    - Implement [session(_ session: ARSession, didUpdate frame: ARFrame)]()
+    - Send captured frames to `Spren` using [spren.capture(pixelBuffer: frame.capturedImage)]()
+- Implement [SprenDelegate]()
+    - Reference delegate [spren.delegate = self]()
+    - [Receive]() biometric data
+    - Reflect biometric data on the screen
 
-       public override func viewWillDisappear(_ animated: Bool) {
-          self.cameraView.exitReading()
-       }
-       ```
-      **Important!** Exit reading is obligatory in order to free camera resources
-      
-        *Notice: you can omit using lifecycle hooks and attach actions to any other user events.*
-4. Add any other UI styles changes you need.
-
-**Demo App**
+**Usage** `AVFoundation`
 ---
-The `UI/UX` flows aren't comprised in `SDK`, therefore there are many ways how to use the `SDK`.
-We've built few demo `UI/UX` flows in order you to get wider imagination of the way how `SDK` can leverage your business needs.
+Source code example can be found here - https://github.com/Elite-HRV/eliteapp/tree/project/elite-scanner
+You fill find references to this repository items below:
 
-You can find the app here - https://github.com/Elite-HRV/spren-ios-demo
+Here are the main highlights:
+
+- [Info.plist](https://www.google.com/CameraController)
+    - Add `Privacy - Camera Usage Description` with the description best feeds your needs:
+        ex: "Camera feed is used for tracking your biomarkers"
+- Add your custom [UIViewController](https://www.google.com/CameraController).
+    - [Import]() and [initiate]() `Spren` library
+    - [Setup and initiating]() front camera
+    - Set camera `frame per second` [FPS](https://www.google.com/CameraController) value to 30.
+- Implement [AVCaptureVideoDataOutputSampleBufferDelegate]()
+    - Send captured frames to `Spren` using [spren.capture(sampleBuffer: sampleBuffer)]() method
+- Implement [SprenDelegate]()
+    - Reference delegate [spren.delegate = self]()
+    - [Receive]() biometric data
+    - Reflect biometric data on the screen

@@ -21,23 +21,23 @@ We've built few use cases in order you to get wider imagination of the way how `
 
 **Usage** `ARKit`
 ---
-Source code example can be found here - https://github.com/Elite-HRV/eliteapp
+Source code example can be found here - https://github.com/Elite-HRV/spren-ios-demo
 You fill find references to this repository items below:
 
 Here are the main highlights:
 
-- [Info.plist](https://www.google.com/CameraController)
+- [Info.plist](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Info.plist)
     - Add `Privacy - Camera Usage Description` with the description best feeds your needs:
       ex: "Camera feed is used for tracking your biomarkers"
-- Add your custom [UIViewController](https://www.google.com/CameraController).
-    - [Import]() and [initiate]() `Spren` library
-- Add animations using `ARKit` by implementing [ARSCNViewDelegate]()
-- Implement [ARSessionDelegate]()
-    - Implement [session(_ session: ARSession, didUpdate frame: ARFrame)]()
-    - Send captured frames to `Spren` using [spren.capture(pixelBuffer: frame.capturedImage)]()
-- Implement [SprenDelegate]()
-    - Reference delegate [spren.delegate = self]()
-    - [Receive]() biometric data
+- Add your custom [UIViewController](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Views/AR/ARViewController.swift).
+    - [Import](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Views/AR/ARViewController.swift#L11) and [initiate](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Views/AR/ARViewController.swift#L16) `Spren` library
+- Add animations using `ARKit` by implementing [ARSCNViewDelegate](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Views/AR/ARViewController.swift#L13)
+- Implement [ARSessionDelegate](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Views/AR/ARViewController.swift#L13)
+    - Implement [session(_ session: ARSession, didUpdate frame: ARFrame)](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Views/AR/ARViewController.swift#L134)
+    - Send captured frames to `Spren` using [spren.capture(pixelBuffer: frame.capturedImage)](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Views/AR/ARViewController.swift#L135)
+- Implement [SprenDelegate](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Views/EHRCustomGraphView%2BSprenDelegate.swift#L11)
+    - Reference delegate [spren.delegate = self](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Views/EHRCustomGraphView.swift#L39)
+    - [Receive](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Views/EHRCustomGraphView%2BSprenDelegate.swift#L12-#L20) biometric data
     - Reflect biometric data on the screen
 
 **Usage** `AVFoundation`

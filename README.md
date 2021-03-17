@@ -1,7 +1,7 @@
 ![Spren logo](spren.svg)
 
 
-[![Github All Releases](https://img.shields.io/github/downloads/Elite-HRV/react-native-check-app-install/total.svg)]()
+[![Github All Releases](https://img.shields.io/github/downloads/Elite-HRV/spren-ios-sdk/total.svg)]()
 
 The `Spren SDK` is offering our customers a set of tools for measuring and analyzing stress, recovery and other markers of wellbeing.
 

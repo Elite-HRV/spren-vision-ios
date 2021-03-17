@@ -13,7 +13,7 @@ It is designed for wide usage where you will be able to use the SDK to create yo
 
 - Install `Spren SDK` with `Xcode`
    + Open `File` &#8594; `Swift Packages` &#8594; `Add Package Dependency`
-   + Put `https://github.com/Elite-HRV/spren-ios-package` in the searchbar
+   + Put `https://github.com/Elite-HRV/spren-ios-sdk` in the searchbar
    + Use the `latest` version defaulted to you
 
 The `UI/UX` aren't comprised in `SDK`, therefore there are many ways how to use the `SDK`.

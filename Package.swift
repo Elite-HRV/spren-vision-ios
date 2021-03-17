@@ -23,8 +23,8 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .binaryTarget(
             name: "Spren",
-            url: "https://api.codemagic.io/artifacts/990f066f-add1-48b6-9365-bad2a679ea1e/faa14a16-bb89-4aca-9c6a-cbce851033a8/Spren_iOS_7_artifacts.zip",
-            checksum: "3a1f5175dc926d3ea1f718454d7d0c1e26288a111281c8d0ac2df552f4a4bf56"
+            url: "https://api.codemagic.io/artifacts/e9af9a91-fcd6-4d8d-bf10-fb035e213bb1/c7baf7d1-ab90-49e7-a5ae-16a596f2a396/Spren_iOS_8_artifacts.zip",
+            checksum: "030b5c323b15a30625405d7b307ad2b09879e555742cee00baa90a32da418b23"
         ),
     ]
 )

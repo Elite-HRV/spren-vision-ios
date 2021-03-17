@@ -56,7 +56,7 @@ Here are the main highlights:
     - Set camera `frame per second` [FPS](https://github.com/Elite-HRV/spren-ios-demo/blob/f4ce21578d28307db7b0504cb393f876142a014e/Shared/CameraController.swift#L13) value to 30.
 - Implement [AVCaptureVideoDataOutputSampleBufferDelegate](https://github.com/Elite-HRV/spren-ios-demo/blob/f4ce21578d28307db7b0504cb393f876142a014e/Shared/CameraController%2BAVCaptureVideoDataOutputSampleBufferDelegate.swift#L10)
     - Send captured frames to `Spren` using [spren.capture(sampleBuffer: sampleBuffer)](https://github.com/Elite-HRV/spren-ios-demo/blob/f4ce21578d28307db7b0504cb393f876142a014e/Shared/CameraController%2BAVCaptureVideoDataOutputSampleBufferDelegate.swift#L12) method
-- Implement [SprenDelegate](https://github.com/Elite-HRV/spren-ios-demo/blob/f4ce21578d28307db7b0504cb393f876142a014e/Shared/CameraController%2BSprenDelegate.swift)
+- Implement [SprenDelegate](https://github.com/Elite-HRV/spren-ios-demo/blob/f4ce21578d28307db7b0504cb393f876142a014e/Shared/CameraController%2BSprenDelegate.swift#L10)
     - Reference delegate [spren.delegate = self](https://github.com/Elite-HRV/spren-ios-demo/blob/f4ce21578d28307db7b0504cb393f876142a014e/Shared/CameraController.swift#L27)
     - [Receive](https://github.com/Elite-HRV/spren-ios-demo/blob/AVFoundation/Shared/CameraController%2BSprenDelegate.swift#L11-#L19) biometric data
     - Reflect biometric data on the screen

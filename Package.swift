@@ -17,7 +17,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "Spren",
-            path: "Framework/Spren.xcframework.zip"
+            path: "Framework/Spren.xcframework"
         ),
     ]
 )

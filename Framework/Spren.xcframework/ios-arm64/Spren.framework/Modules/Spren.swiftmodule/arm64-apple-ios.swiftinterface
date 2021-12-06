@@ -1,0 +1,85 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
+// swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Spren
+import AVFoundation
+import CoreImage
+import CoreMedia
+import CoreVideo
+import Foundation
+import Logging
+@_exported import Spren
+import SprenPrivate
+import Swift
+import UIKit
+import _Concurrency
+import zlib
+public struct Format {
+  public let fps: Swift.Double
+  public let size: Swift.Int32
+  public let format: AVFoundation.AVCaptureDevice.Format
+  public init(fps: Swift.Double, size: Swift.Int32, format: AVFoundation.AVCaptureDevice.Format)
+}
+public enum Compliance {
+  case brightness
+  case lensCovering
+  public static func == (a: Spren.Compliance, b: Spren.Compliance) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct Compliances {
+  public let name: Spren.Compliance
+  public let isCompliant: Swift.Bool
+}
+public struct CompressionLevel : Swift.RawRepresentable {
+  public let rawValue: Swift.Int32
+  public static let noCompression: Spren.CompressionLevel
+  public static let bestSpeed: Spren.CompressionLevel
+  public static let bestCompression: Spren.CompressionLevel
+  public static let defaultCompression: Spren.CompressionLevel
+  public init(rawValue: Swift.Int32)
+  public init(_ rawValue: Swift.Int32)
+  public typealias RawValue = Swift.Int32
+}
+public struct GzipError : Swift.Error {
+  public enum Kind : Swift.Equatable {
+    case stream
+    case data
+    case memory
+    case buffer
+    case version
+    case unknown(code: Swift.Int)
+    public static func == (a: Spren.GzipError.Kind, b: Spren.GzipError.Kind) -> Swift.Bool
+  }
+  public let kind: Spren.GzipError.Kind
+  public let message: Swift.String
+  public var localizedDescription: Swift.String {
+    get
+  }
+}
+extension Foundation.Data {
+  public var isGzipped: Swift.Bool {
+    get
+  }
+  public func gzipped(level: Spren.CompressionLevel = .defaultCompression) throws -> Foundation.Data
+  public func gunzipped() throws -> Foundation.Data
+}
+@_hasMissingDesignatedInitializers public class Spren {
+  public static var delegate: Spren.SprenDelegate?
+  public static func process(frame: Spren.SprenFrame)
+  public static func startReading()
+  public static func cameraConfiguration(videoDevice: AVFoundation.AVCaptureDevice)
+  @objc deinit
+}
+public protocol SprenDelegate {
+  func isCameraFeedCompliant(compliances: [Spren.Compliances])
+  func cameraFormat(format: AVFoundation.AVCaptureDevice.Format?)
+}
+public class SprenFrame {
+  final public let sampleBuffer: CoreMedia.CMSampleBuffer
+  public init(sampleBuffer: CoreMedia.CMSampleBuffer, orientation: Swift.Int)
+  @objc deinit
+}
+extension Spren.Compliance : Swift.Equatable {}
+extension Spren.Compliance : Swift.Hashable {}

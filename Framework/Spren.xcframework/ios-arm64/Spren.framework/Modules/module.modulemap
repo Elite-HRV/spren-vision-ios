@@ -1,0 +1,11 @@
+framework module Spren {
+  umbrella header "Spren.h"
+
+  export *
+  module * { export * }
+}
+
+module Spren.Swift {
+    header "Spren-Swift.h"
+    requires objc
+}

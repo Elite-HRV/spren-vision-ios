@@ -4,20 +4,25 @@
 import PackageDescription
 
 let package = Package(
-    name: "Spren",
+    name: "SprenPackage",
     platforms: [
         .iOS(.v11)
     ],
     products: [
         .library(
+            name: "SprenKit",
+            targets: ["SprenKit"]),
+        .library(
             name: "Spren",
             targets: ["Spren"]),
     ],
-    dependencies: [],
     targets: [
+        .target(
+            name: "SprenKit",
+            path: "Sources"),
         .binaryTarget(
             name: "Spren",
             path: "Framework/Spren.xcframework"
-        ),
+        )
     ]
 )

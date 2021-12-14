@@ -6,7 +6,6 @@ import CoreImage
 import CoreMedia
 import CoreVideo
 import Foundation
-import Logging
 @_exported import Spren
 import SprenPrivate
 import Swift

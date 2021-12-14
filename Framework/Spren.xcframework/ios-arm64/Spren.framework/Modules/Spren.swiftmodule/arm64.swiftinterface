@@ -48,39 +48,6 @@ public struct Compliances {
   public let name: Spren.Compliance
   public let isCompliant: Swift.Bool
 }
-public struct CompressionLevel : Swift.RawRepresentable {
-  public let rawValue: Swift.Int32
-  public static let noCompression: Spren.CompressionLevel
-  public static let bestSpeed: Spren.CompressionLevel
-  public static let bestCompression: Spren.CompressionLevel
-  public static let defaultCompression: Spren.CompressionLevel
-  public init(rawValue: Swift.Int32)
-  public init(_ rawValue: Swift.Int32)
-  public typealias RawValue = Swift.Int32
-}
-public struct GzipError : Swift.Error {
-  public enum Kind : Swift.Equatable {
-    case stream
-    case data
-    case memory
-    case buffer
-    case version
-    case unknown(code: Swift.Int)
-    public static func == (a: Spren.GzipError.Kind, b: Spren.GzipError.Kind) -> Swift.Bool
-  }
-  public let kind: Spren.GzipError.Kind
-  public let message: Swift.String
-  public var localizedDescription: Swift.String {
-    get
-  }
-}
-extension Data {
-  public var isGzipped: Swift.Bool {
-    get
-  }
-  public func gzipped(level: Spren.CompressionLevel = .defaultCompression) throws -> Foundation.Data
-  public func gunzipped() throws -> Foundation.Data
-}
 @_hasMissingDesignatedInitializers public class Spren {
   public static var delegate: Spren.SprenDelegate?
   public static func process(frame: Spren.SprenFrame)

@@ -4,12 +4,6 @@ Apple clang version 12.0.5 (clang-1205.0.22.11)
 iPhoneOS14.5.sdk
 /Users/builder/Library/Developer/Xcode/DerivedData/Spren-dxcchzbmnrpaoydbgtgkogciisdd/Build/Intermediates.noindex/ArchiveIntermediates/Spren/IntermediateBuildFilesPath/Spren.build/Release-iphoneos/Spren.build/DerivedSources/Spren_vers.c
 /Users/builder/clone/Spren
-+[SprenUtil getTestString]
-__OBJC_$_CLASS_METHODS_SprenUtil
-__OBJC_METACLASS_RO_$_SprenUtil
-__OBJC_CLASS_RO_$_SprenUtil
-/Users/builder/clone/Spren/Spren/Utilities/SprenUtil.mm
-Spren/Utilities/SprenUtil.mm
 _$sSo17CMSampleBufferRefaMa
 _$sSo19UIDeviceOrientationVMa
 ___swift_memcpy24_4

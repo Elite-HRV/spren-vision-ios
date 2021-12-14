@@ -7,7 +7,6 @@ import CoreMedia
 import CoreVideo
 import Foundation
 @_exported import Spren
-import SprenPrivate
 import Swift
 import UIKit
 import zlib

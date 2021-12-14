@@ -19,6 +19,25 @@ public struct Format {
   public let format: AVFoundation.AVCaptureDevice.Format
   public init(fps: Swift.Double, size: Swift.Int32, format: AVFoundation.AVCaptureDevice.Format)
 }
+public struct FormatIE {
+  public let fps: Swift.Double
+  public let iso: Swift.Float?
+  public let exposure: CoreMedia.CMTime?
+  public let format: AVFoundation.AVCaptureDevice.Format
+  public init(fps: Swift.Double, iso: Swift.Float?, exposure: CoreMedia.CMTime?, format: AVFoundation.AVCaptureDevice.Format)
+}
+public enum SprenState {
+  case preview
+  case started
+  case finished
+  case cancelled
+  case error
+  public static func == (a: Spren.SprenState, b: Spren.SprenState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public enum Compliance {
   case brightness
   case lensCovering
@@ -68,7 +87,7 @@ extension Foundation.Data {
 @_hasMissingDesignatedInitializers public class Spren {
   public static var delegate: Spren.SprenDelegate?
   public static func process(frame: Spren.SprenFrame)
-  public static func startReading()
+  public static func processFrameDrop(frame: Spren.SprenFrame)
   public static func cameraConfiguration(videoDevice: AVFoundation.AVCaptureDevice)
   @objc deinit
 }
@@ -76,10 +95,21 @@ public protocol SprenDelegate {
   func isCameraFeedCompliant(compliances: [Spren.Compliances])
   func cameraFormat(format: AVFoundation.AVCaptureDevice.Format?)
 }
+extension Spren.Spren {
+  public static func autoStart(_ autoStart: Swift.Bool)
+  public static func setReadingDuration(duration: Swift.Int) throws
+  public static func setOnProgressUpdate(onProgressUpdate: @escaping (_ progress: Swift.Int) -> Swift.Void)
+  public static func setOnStateChanged(onStateChange: @escaping (_ state: Spren.SprenState, _ error: Swift.Error?) -> Swift.Void)
+  public static func setOnStart(onStart: @escaping (@escaping (() -> Swift.Void)) -> Swift.Void)
+  public static func startReading()
+  public static func cancelReading()
+}
 public class SprenFrame {
   final public let sampleBuffer: CoreMedia.CMSampleBuffer
   public init(sampleBuffer: CoreMedia.CMSampleBuffer, orientation: Swift.Int)
   @objc deinit
 }
+extension Spren.SprenState : Swift.Equatable {}
+extension Spren.SprenState : Swift.Hashable {}
 extension Spren.Compliance : Swift.Equatable {}
 extension Spren.Compliance : Swift.Hashable {}

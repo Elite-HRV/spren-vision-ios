@@ -1,12 +1,11 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
-// swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Spren
+// swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SprenVision
 import AVFoundation
 import CoreImage
 import CoreMedia
 import CoreVideo
 import Foundation
-@_exported import Spren
 import Swift
 import UIKit
 import zlib
@@ -29,7 +28,7 @@ public enum SprenState {
   case finished
   case cancelled
   case error
-  public static func == (a: Spren.SprenState, b: Spren.SprenState) -> Swift.Bool
+  public static func == (a: SprenVision.SprenState, b: SprenVision.SprenState) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
@@ -38,32 +37,32 @@ public enum SprenState {
 public enum Compliance {
   case brightness
   case lensCovering
-  public static func == (a: Spren.Compliance, b: Spren.Compliance) -> Swift.Bool
+  public static func == (a: SprenVision.Compliance, b: SprenVision.Compliance) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
 }
 public struct Compliances {
-  public let name: Spren.Compliance
+  public let name: SprenVision.Compliance
   public let isCompliant: Swift.Bool
 }
 @_hasMissingDesignatedInitializers public class Spren {
-  public static var delegate: Spren.SprenDelegate?
-  public static func process(frame: Spren.SprenFrame)
-  public static func processFrameDrop(frame: Spren.SprenFrame)
+  public static var delegate: SprenVision.SprenDelegate?
+  public static func process(frame: SprenVision.SprenFrame)
+  public static func processFrameDrop(frame: SprenVision.SprenFrame)
   public static func cameraConfiguration(videoDevice: AVFoundation.AVCaptureDevice)
   @objc deinit
 }
 public protocol SprenDelegate {
-  func isCameraFeedCompliant(compliances: [Spren.Compliances])
+  func isCameraFeedCompliant(compliances: [SprenVision.Compliances])
   func cameraFormat(format: AVFoundation.AVCaptureDevice.Format?)
 }
 extension Spren {
   public static func autoStart(_ autoStart: Swift.Bool)
   public static func setReadingDuration(duration: Swift.Int) throws
   public static func setOnProgressUpdate(onProgressUpdate: @escaping (Swift.Int) -> Swift.Void)
-  public static func setOnStateChanged(onStateChange: @escaping (Spren.SprenState, Swift.Error?) -> Swift.Void)
+  public static func setOnStateChanged(onStateChange: @escaping (SprenVision.SprenState, Swift.Error?) -> Swift.Void)
   public static func setOnStart(onStart: @escaping (@escaping (() -> Swift.Void)) -> Swift.Void)
   public static func startReading()
   public static func cancelReading()
@@ -73,7 +72,7 @@ public class SprenFrame {
   public init(sampleBuffer: CoreMedia.CMSampleBuffer, orientation: Swift.Int)
   @objc deinit
 }
-extension Spren.SprenState : Swift.Equatable {}
-extension Spren.SprenState : Swift.Hashable {}
-extension Spren.Compliance : Swift.Equatable {}
-extension Spren.Compliance : Swift.Hashable {}
+extension SprenVision.SprenState : Swift.Equatable {}
+extension SprenVision.SprenState : Swift.Hashable {}
+extension SprenVision.Compliance : Swift.Equatable {}
+extension SprenVision.Compliance : Swift.Hashable {}

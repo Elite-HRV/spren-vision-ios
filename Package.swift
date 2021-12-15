@@ -13,16 +13,16 @@ let package = Package(
             name: "SprenKit",
             targets: ["SprenKit"]),
         .library(
-            name: "Spren",
-            targets: ["Spren"]),
+            name: "SprenVision",
+            targets: ["SprenVision"]),
     ],
     targets: [
         .target(
             name: "SprenKit",
             path: "Sources"),
         .binaryTarget(
-            name: "Spren",
-            path: "Framework/Spren.xcframework"
+            name: "SprenVision",
+            path: "Framework/SprenVision.xcframework"
         )
     ]
 )

@@ -1,5 +1,5 @@
 import XCTest
-@testable import Spren
+@testable import SprenVision
 
 final class SprenTests: XCTestCase {
     func testExample() {

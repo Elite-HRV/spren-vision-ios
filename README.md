@@ -17,8 +17,7 @@ It is designed for wide usage where you will be able to use the SDK to create yo
    + Use the `latest` version defaulted to you
 
 
-
-- [Info.plist](https://github.com/Elite-HRV/spren-ios-demo/blob/05a48441a9003d113555b3267268e37ea12436e5/EHRV/Info.plist)
+ Info.plist
     - Add `Privacy - Camera Usage Description` with the description best feeds your needs:
       ex: "Camera feed is used for tracking your biomarkers"
 

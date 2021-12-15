@@ -7,10 +7,8 @@ The `Spren SDK` is offering our customers a set of tools for measuring and analy
 
 It is designed for wide usage where you will be able to use the SDK to create your custom cutting edge applications.
 
-
 **Installation**
 ---
-
 - Install `Spren SDK` with `Xcode`
    + Open `File` &#8594; `Swift Packages` &#8594; `Add Package Dependency`
    + Put `https://github.com/Elite-HRV/spren-ios-sdk` in the searchbar

@@ -9,30 +9,14 @@ import Foundation
 import AVFoundation
 import SprenVision
 
-class SprenCaptureDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, SprenDelegate {
+class SprenCaptureDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
 
-    override init() {
-        super.init()
-        Spren.delegate = self
-//        guard let videoDevice = self.getVideoDevice() else { return }
-//        Spren.cameraConfiguration(videoDevice: videoDevice)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            Spren.setOnStateChanged(onStateChange: self.onStageChanged)
-            Spren.setOnProgressUpdate(onProgressUpdate: self.onProgressUpdate)
-            Spren.setOnStart(onStart: self.onStart)
-            try? Spren.setReadingDuration(duration: 90)
-            //self.onStart()
-//                Spren.startReading()
-            Spren.autoStart(true)
-        }
-    }
-
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {        
         Spren.process(frame: SprenFrame(sampleBuffer: sampleBuffer, orientation: connection.videoOrientation.rawValue))
     }
 
     func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        Spren.processFrameDrop(frame: SprenFrame(sampleBuffer: sampleBuffer, orientation: connection.videoOrientation.rawValue))
+        Spren.frameDropped()
     }
 
 //    func setCameraConfig (callback: @escaping () -> Void) {
@@ -66,29 +50,29 @@ class SprenCaptureDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferDelega
 //        }
 //    }
 
-    public func onStart(completion callback: @escaping (() -> Void)) -> Void {
-        print("onStart")
-//        self.setCameraConfig(callback: callback)
-    }
-
-    public func onStageChanged(state: SprenState, error: Error?) {
-        print("onStageChanged", state, error)
-    }
-    
-    public func onProgressUpdate(progress: Int) {
-        print("onProgressUpdate", progress)
-    }
+//    public func onStart(completion callback: @escaping (() -> Void)) -> Void {
+//        print("onStart")
+////        self.setCameraConfig(callback: callback)
+//    }
+//
+//    public func onStageChanged(state: SprenState, error: Error?) {
+//        print("onStageChanged", state, error)
+//    }
+//
+//    public func onProgressUpdate(progress: Int) {
+//        print("onProgressUpdate", progress)
+//    }
 
 //    func getVideoDevice() -> AVCaptureDevice? {
 //        return .default(.builtInWideAngleCamera, for: .video, position: .back)
 //    }
 
-    func isCameraFeedCompliant(compliances: [Compliances]) {
-        for compliance in compliances {
-            debugPrint("compliance:", compliance.name, "isCompliant:", compliance.isCompliant)
-//            debugPrint("is brightness:", compliance.name == Compliance.brightness)
-        }
-    }
+//    func isCameraFeedCompliant(compliances: [Compliances]) {
+//        for compliance in compliances {
+//            debugPrint("compliance:", compliance.name, "isCompliant:", compliance.isCompliant)
+////            debugPrint("is brightness:", compliance.name == Compliance.brightness)
+//        }
+//    }
 
 //    func cameraFormat(format: AVCaptureDevice.Format?) {
 //        guard let videoDevice = self.getVideoDevice() else { return }

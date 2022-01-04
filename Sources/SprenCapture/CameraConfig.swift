@@ -17,8 +17,7 @@ struct CameraConfig {
         let dims = CMVideoFormatDescriptionGetDimensions(format.formatDescription)
         let cond1 = resHeight == dims.height && resWidth == dims.width
         let cond2 = format.videoSupportedFrameRateRanges.contains { $0.maxFrameRate >= Float64(frameRate) }
-        // let cond3 = format.supportedColorSpaces.contains(.P3_D65)
-        return cond1 && cond2 // && cond3
+        return cond1 && cond2
     }
 
     static let videoOrientation: AVCaptureVideoOrientation = .portrait

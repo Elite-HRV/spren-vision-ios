@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SprenPackage",
     platforms: [
-        .iOS(.v11)
+        .iOS(.v14)
     ],
     products: [
         .library(

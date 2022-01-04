@@ -7,26 +7,34 @@
 
 import Foundation
 import AVFoundation
+import SprenVision
 
 open class SprenCapture {
+    
     public let session = AVCaptureSession()
+    
     private let videoOutput = AVCaptureVideoDataOutput()
     private let sprenCaptureDelegate = SprenCaptureDelegate()
     
-    public init() {
-        do {
-            try configure()
-        } catch let error {
-            print(error.localizedDescription)
-        }
+    public init() throws {
+        try configure()
+    }
+    
+    public func start() {
+        session.startRunning()
+    }
+
+    public func stop() {
+        session.stopRunning()
     }
     
     private func configure() throws {
         guard let videoDevice = getVideoDevice() else {
-            throw SprenError.noCameraDetected
+            throw SprenCaptureError.noCameraDetected
         }
-        try? configureVideoDevice(videoDevice)
-        try? configureSession(with: videoDevice)
+        try configureVideoDevice(videoDevice)
+        try configureSession(with: videoDevice)
+        configureVideoOutput(videoOutput)
     }
     
     private func getVideoDevice() -> AVCaptureDevice? {
@@ -35,12 +43,12 @@ open class SprenCapture {
     
     private func configureVideoDevice(_ device: AVCaptureDevice) throws {
         guard let format = device.formats.first(where: CameraConfig.filter) else {
-            throw SprenError.noCameraFormatDetected
+            throw SprenCaptureError.noCameraFormatDetected
         }
-        try? device.lockForConfiguration()
+        try device.lockForConfiguration()
         device.activeFormat = format
         device.activeVideoMinFrameDuration = CMTime(value: 1, timescale: Int32(CameraConfig.frameRate))
-        configureVideoDeviceAutoFeatures(with: device)
+//        configureVideoDeviceAutoFeatures(with: device)
 //        let poi = CGPoint(x: 0.5, y: 0.5)
 //        device.focusPointOfInterest = poi
 //        device.exposurePointOfInterest = poi
@@ -49,10 +57,10 @@ open class SprenCapture {
     
     private func configureSession(with videoDevice: AVCaptureDevice) throws {
         guard let videoInput = try? AVCaptureDeviceInput(device: videoDevice) else {
-            throw SprenError.deviceInputConfigurationError
+            throw SprenCaptureError.deviceInputConfigurationError
         }
         if !session.canAddInput(videoInput) || !session.canAddOutput(videoOutput) {
-            throw SprenError.sessionInputOutputConfigurationError
+            throw SprenCaptureError.sessionInputOutputConfigurationError
         }
             
         session.beginConfiguration()
@@ -71,23 +79,23 @@ open class SprenCapture {
         videoOutput.videoSettings = [String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_32BGRA]
     }
     
-    private func configureVideoDeviceAutoFeatures(with device: AVCaptureDevice) {
-        if device.isWhiteBalanceModeSupported(.autoWhiteBalance) {
-            device.whiteBalanceMode = AVCaptureDevice.WhiteBalanceMode.autoWhiteBalance
-        } else if device.isWhiteBalanceModeSupported(.locked) {
-            device.whiteBalanceMode = AVCaptureDevice.WhiteBalanceMode.locked
-        }
-
-        if device.isFocusModeSupported(.autoFocus) {
-            device.focusMode = AVCaptureDevice.FocusMode.autoFocus
-        } else if device.isFocusModeSupported(.locked) {
-            device.focusMode = AVCaptureDevice.FocusMode.locked
-        }
-
-        if device.isExposureModeSupported(.autoExpose) {
-            device.exposureMode = AVCaptureDevice.ExposureMode.autoExpose
-        } else if device.isExposureModeSupported(.locked) {
-            device.exposureMode = AVCaptureDevice.ExposureMode.locked
-        }
-    }
+//    private func configureVideoDeviceAutoFeatures(with device: AVCaptureDevice) {
+//        if device.isWhiteBalanceModeSupported(.autoWhiteBalance) {
+//            device.whiteBalanceMode = AVCaptureDevice.WhiteBalanceMode.autoWhiteBalance
+//        } else if device.isWhiteBalanceModeSupported(.locked) {
+//            device.whiteBalanceMode = AVCaptureDevice.WhiteBalanceMode.locked
+//        }
+//
+//        if device.isFocusModeSupported(.autoFocus) {
+//            device.focusMode = AVCaptureDevice.FocusMode.autoFocus
+//        } else if device.isFocusModeSupported(.locked) {
+//            device.focusMode = AVCaptureDevice.FocusMode.locked
+//        }
+//
+//        if device.isExposureModeSupported(.autoExpose) {
+//            device.exposureMode = AVCaptureDevice.ExposureMode.autoExpose
+//        } else if device.isExposureModeSupported(.locked) {
+//            device.exposureMode = AVCaptureDevice.ExposureMode.locked
+//        }
+//    }
 }

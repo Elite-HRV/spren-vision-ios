@@ -13,6 +13,7 @@ open class SprenCapture {
     
     public let session = AVCaptureSession()
     
+    private let videoDevice: AVCaptureDevice? = .default(.builtInWideAngleCamera, for: .video, position: .back)
     private let videoOutput = AVCaptureVideoDataOutput()
     private let sprenCaptureDelegate = SprenCaptureDelegate()
     
@@ -28,20 +29,32 @@ open class SprenCapture {
         session.stopRunning()
     }
     
-    private func configure() throws {
-        guard let videoDevice = getVideoDevice() else {
+    public func toggleTorch() throws -> AVCaptureDevice.TorchMode {
+        guard let device = self.videoDevice else {
             throw SprenCaptureError.noCameraDetected
         }
-        try configureVideoDevice(videoDevice)
+        
+        try device.lockForConfiguration()
+        if device.torchMode == .on {
+            device.torchMode = .off
+        } else {
+            try device.setTorchModeOn(level: 1.0)
+        }
+        device.unlockForConfiguration()
+        
+        return device.torchMode
+    }
+    
+    private func configure() throws {
+        guard let videoDevice = self.videoDevice else {
+            throw SprenCaptureError.noCameraDetected
+        }
+        try configure(videoDevice: videoDevice)
         try configureSession(with: videoDevice)
-        configureVideoOutput(videoOutput)
+        configure(videoOutput: videoOutput)
     }
     
-    private func getVideoDevice() -> AVCaptureDevice? {
-        return .default(.builtInWideAngleCamera, for: .video, position: .back)
-    }
-    
-    private func configureVideoDevice(_ device: AVCaptureDevice) throws {
+    private func configure(videoDevice device: AVCaptureDevice) throws {
         guard let format = device.formats.first(where: CameraConfig.filter) else {
             throw SprenCaptureError.noCameraFormatDetected
         }
@@ -71,7 +84,7 @@ open class SprenCapture {
         session.startRunning()
     }
     
-    private func configureVideoOutput(_ output: AVCaptureVideoDataOutput) {
+    private func configure(videoOutput output: AVCaptureVideoDataOutput) {
         if let connection = output.connection(with: .video) {
             connection.videoOrientation = CameraConfig.videoOrientation
         }

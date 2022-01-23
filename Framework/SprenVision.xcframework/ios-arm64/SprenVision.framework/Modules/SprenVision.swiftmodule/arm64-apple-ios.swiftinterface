@@ -1,13 +1,15 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
+// swift-compiler-version: Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
 // swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SprenVision
 import AVFoundation
+import CommonCrypto
 import CoreImage
 import CoreMedia
 import CoreVideo
 import Foundation
 import Swift
 import UIKit
+import _Concurrency
 import zlib
 public struct Format {
   public let fps: Swift.Double
@@ -22,8 +24,71 @@ public struct FormatIE {
   public let format: AVFoundation.AVCaptureDevice.Format
   public init(fps: Swift.Double, iso: Swift.Float?, exposure: CoreMedia.CMTime?, format: AVFoundation.AVCaptureDevice.Format)
 }
+@_hasMissingDesignatedInitializers public class ComplianceCheck {
+  public enum Name {
+    case frameDrop
+    case brightness
+    case lensCoverage
+    public static func == (a: SprenVision.ComplianceCheck.Name, b: SprenVision.ComplianceCheck.Name) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum Action {
+    case increase
+    case decrease
+    public static func == (a: SprenVision.ComplianceCheck.Action, b: SprenVision.ComplianceCheck.Action) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  @objc deinit
+}
+public enum SprenComplianceError : Swift.Error {
+  case frameDropHigh
+  case brightnessLow
+  case brightnessHigh
+  case lensCoverage
+  public static func == (a: SprenVision.SprenComplianceError, b: SprenVision.SprenComplianceError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class Spren {
+  public static var autoStart: Swift.Bool
+  public var readingDurationSeconds: Swift.Double {
+    get
+  }
+  public static func process(frame: SprenVision.SprenFrame)
+  public static func frameDropped()
+  public static func getReadingData() -> Swift.String?
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Test {
+  public static func testOrigBrightness(_ frame: CoreMedia.CMSampleBuffer)
+  public static func testNewBrightness(_ frame: CoreMedia.CMSampleBuffer)
+  public static func testOrigLensCoverage(_ frame: CoreMedia.CMSampleBuffer)
+  public static func testNewLensCoverage(_ frame: CoreMedia.CMSampleBuffer)
+  public static func testOrigRGB(_ frame: CoreMedia.CMSampleBuffer)
+  public static func testNewRGB(_ frame: CoreMedia.CMSampleBuffer)
+  public static func testMode()
+  public static func getJsonString() -> Swift.String?
+  public static func testFinished()
+  @objc deinit
+}
+extension SprenVision.Spren {
+  public static func setReadingDuration(duration: Swift.Int)
+  public static func setOnPrereadingComplianceCheck(onPrereadingComplianceCheck: @escaping (SprenVision.ComplianceCheck.Name, Swift.Bool, SprenVision.ComplianceCheck.Action?) -> Swift.Void)
+  public static func setOnStart(onStart: @escaping () -> Swift.Void)
+  public static func setOnProgressUpdate(onProgressUpdate: @escaping (_ progress: Swift.Double) -> Swift.Void)
+  public static func setOnStateChange(onStateChange: @escaping (_ state: SprenVision.SprenState, _ error: Swift.Error?) -> Swift.Void)
+  public static func startReading()
+  public static func cancelReading()
+}
 public enum SprenState {
-  case preview
   case started
   case finished
   case cancelled
@@ -34,45 +99,16 @@ public enum SprenState {
     get
   }
 }
-public enum Compliance {
-  case brightness
-  case lensCovering
-  public static func == (a: SprenVision.Compliance, b: SprenVision.Compliance) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
-}
-public struct Compliances {
-  public let name: SprenVision.Compliance
-  public let isCompliant: Swift.Bool
-}
-@_hasMissingDesignatedInitializers public class Spren {
-  public static var delegate: SprenVision.SprenDelegate?
-  public static func process(frame: SprenVision.SprenFrame)
-  public static func processFrameDrop(frame: SprenVision.SprenFrame)
-  public static func cameraConfiguration(videoDevice: AVFoundation.AVCaptureDevice)
-  @objc deinit
-}
-public protocol SprenDelegate {
-  func isCameraFeedCompliant(compliances: [SprenVision.Compliances])
-  func cameraFormat(format: AVFoundation.AVCaptureDevice.Format?)
-}
-extension Spren {
-  public static func autoStart(_ autoStart: Swift.Bool)
-  public static func setReadingDuration(duration: Swift.Int) throws
-  public static func setOnProgressUpdate(onProgressUpdate: @escaping (Swift.Int) -> Swift.Void)
-  public static func setOnStateChanged(onStateChange: @escaping (SprenVision.SprenState, Swift.Error?) -> Swift.Void)
-  public static func setOnStart(onStart: @escaping (@escaping (() -> Swift.Void)) -> Swift.Void)
-  public static func startReading()
-  public static func cancelReading()
-}
 public class SprenFrame {
   final public let sampleBuffer: CoreMedia.CMSampleBuffer
   public init(sampleBuffer: CoreMedia.CMSampleBuffer, orientation: Swift.Int)
   @objc deinit
 }
+extension SprenVision.ComplianceCheck.Name : Swift.Equatable {}
+extension SprenVision.ComplianceCheck.Name : Swift.Hashable {}
+extension SprenVision.ComplianceCheck.Action : Swift.Equatable {}
+extension SprenVision.ComplianceCheck.Action : Swift.Hashable {}
+extension SprenVision.SprenComplianceError : Swift.Equatable {}
+extension SprenVision.SprenComplianceError : Swift.Hashable {}
 extension SprenVision.SprenState : Swift.Equatable {}
 extension SprenVision.SprenState : Swift.Hashable {}
-extension SprenVision.Compliance : Swift.Equatable {}
-extension SprenVision.Compliance : Swift.Hashable {}

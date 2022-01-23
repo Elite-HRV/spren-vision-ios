@@ -19,7 +19,9 @@ let package = Package(
     targets: [
         .target(
             name: "SprenKit",
-            path: "Sources"),
+            dependencies: ["SprenVision"],
+            path: "Sources"
+        ),
         .binaryTarget(
             name: "SprenVision",
             path: "Framework/SprenVision.xcframework"

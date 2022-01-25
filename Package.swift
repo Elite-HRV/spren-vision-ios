@@ -4,21 +4,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "SprenPackage",
+    name: "SprenKit",
     platforms: [
         .iOS(.v14)
     ],
     products: [
         .library(
-            name: "SprenKit",
-            targets: ["SprenKit"]),
+            name: "SprenCapture",
+            targets: ["SprenCapture"]),
         .library(
             name: "SprenVision",
             targets: ["SprenVision"]),
     ],
     targets: [
         .target(
-            name: "SprenKit",
+            name: "SprenCapture",
             dependencies: ["SprenVision"],
             path: "Sources"
         ),

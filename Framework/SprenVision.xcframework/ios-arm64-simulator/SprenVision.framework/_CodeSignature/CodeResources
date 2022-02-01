@@ -14,31 +14,31 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		2rL9pytMoKW/f5VmZ0guGh+e20g=
+		DXNc9y5R2LdbwFCj7TUnCIPl1b8=
 		</data>
-		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios.swiftdoc</key>
+		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		Tcu7UfEWr6ggDnbn0/OFKdnKVsY=
+		N2wBEwDzlLgzkloPohUnH7ZqCjI=
 		</data>
-		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios.swiftinterface</key>
+		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		NL6RU2L1hd3FYGFBLvGhQr4Hfow=
+		gVnySavm0dvlQNXeOhzJZ8ruYKg=
 		</data>
-		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios.swiftmodule</key>
+		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		ljqCSSVIpnegWl0hixUuQg0qIRA=
+		OGGp6YwdLaqokl5GFkV1wBiFv18=
 		</data>
 		<key>Modules/SprenVision.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		Tcu7UfEWr6ggDnbn0/OFKdnKVsY=
+		N2wBEwDzlLgzkloPohUnH7ZqCjI=
 		</data>
 		<key>Modules/SprenVision.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		NL6RU2L1hd3FYGFBLvGhQr4Hfow=
+		gVnySavm0dvlQNXeOhzJZ8ruYKg=
 		</data>
 		<key>Modules/SprenVision.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		ljqCSSVIpnegWl0hixUuQg0qIRA=
+		OGGp6YwdLaqokl5GFkV1wBiFv18=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -61,46 +61,46 @@
 			WW16lYx9nQmSLc6WbcT/Gcfc7lPUzmlLQPNXKZB6JWg=
 			</data>
 		</dict>
-		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios.swiftdoc</key>
+		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			OtaH3eYrgz8Yt+yX9MI5o1jgHsoqBet4mcsNNfvbCfA=
+			5SzDWBFgwlv6wQ7S/WKBhpRdsoJeggGmBOAT+aukJGQ=
 			</data>
 		</dict>
-		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios.swiftinterface</key>
+		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/p4IQQ1gTASxzSkKwkB8Ju1C1pKbxO100vm2if0uASw=
+			+ZdzF2qGrKF5S5KJH6QASVgNfpUFvfa8j6B/++dPGs0=
 			</data>
 		</dict>
-		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios.swiftmodule</key>
+		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3x9VVBHd/wQ4CEkgXhDoGxEqHbEhLzw6C96Pj+cSkT4=
+			e+iRhFa2ZTFlsGJtGOTCmeXOInXdF+cs/sw339odXVc=
 			</data>
 		</dict>
 		<key>Modules/SprenVision.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			OtaH3eYrgz8Yt+yX9MI5o1jgHsoqBet4mcsNNfvbCfA=
+			5SzDWBFgwlv6wQ7S/WKBhpRdsoJeggGmBOAT+aukJGQ=
 			</data>
 		</dict>
 		<key>Modules/SprenVision.swiftmodule/arm64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/p4IQQ1gTASxzSkKwkB8Ju1C1pKbxO100vm2if0uASw=
+			+ZdzF2qGrKF5S5KJH6QASVgNfpUFvfa8j6B/++dPGs0=
 			</data>
 		</dict>
 		<key>Modules/SprenVision.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3x9VVBHd/wQ4CEkgXhDoGxEqHbEhLzw6C96Pj+cSkT4=
+			e+iRhFa2ZTFlsGJtGOTCmeXOInXdF+cs/sw339odXVc=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

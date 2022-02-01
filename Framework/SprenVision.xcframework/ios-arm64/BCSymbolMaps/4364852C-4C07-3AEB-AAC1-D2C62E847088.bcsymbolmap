@@ -2,8 +2,8 @@ BCSymbolMap Version: 2.0
 Apple clang version 13.0.0 (clang-1300.0.29.30)
 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk
 iPhoneOS15.2.sdk
-/Users/nick/Library/Developer/Xcode/DerivedData/Spren-bljeyadjhimhusehmzrwnqceoibf/Build/Intermediates.noindex/ArchiveIntermediates/Spren/IntermediateBuildFilesPath/Spren.build/Release-iphoneos/Spren.build/DerivedSources/SprenVision_vers.c
-/Users/nick/dev/spren-ios-framework/Spren
+/Users/keithcarolus/Library/Developer/Xcode/DerivedData/Spren-colkoxdqgcewyxarqiyrehwxvpcy/Build/Intermediates.noindex/ArchiveIntermediates/Spren/IntermediateBuildFilesPath/Spren.build/Release-iphoneos/Spren.build/DerivedSources/SprenVision_vers.c
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren
 __swift_FORCE_LOAD_$_swiftCompatibilityConcurrency
 _$sSo19UIDeviceOrientationVMa
 _$sSo17CMSampleBufferRefaMa
@@ -206,7 +206,7 @@ ___swift_reflection_version
 -private-discriminator _18301139F225D7D47AD1FD952FB5D107
 <swift-imported-modules>
 Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Utilities/Spren/DeviceIdentifier.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Utilities/Spren/DeviceIdentifier.swift
 $sSo19UIDeviceOrientationVMa
 <compiler-generated>
 $sSo6CGSizeVwst
@@ -264,10 +264,10 @@ $sSo6CMTimeawet
 __swift_noop_void_return
 __swift_memcpy24_4
 -private-discriminator _A67DA5359F250CCE895DC13B52D8D79E
-/Users/nick/dev/spren-ios-framework/Spren/Spren/API/HTTPClient/HTTPClient+headers.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/API/HTTPClient/HTTPClient+headers.swift
 -private-discriminator _27B131EFA9EF959D51299BBE4A89CD43
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Utilities/Spren/SDKSignal.swift
-/Users/nick/dev/spren-ios-framework/Spren/Spren/IntRGBSignal.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Utilities/Spren/SDKSignal.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/IntRGBSignal.swift
 _$s11SprenVision6FormatVwCP
 _$s11SprenVision6FormatVwxx
 _$s11SprenVision6FormatVwcp
@@ -297,7 +297,7 @@ _symbolic _____ 11SprenVision8FormatIEV
 _symbolic SfSg
 _symbolic _____Sg So6CMTimea
 _$s11SprenVision8FormatIEVMF
-/Users/nick/dev/spren-ios-framework/Spren/Spren/CaptureFormat/Format.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/CaptureFormat/Format.swift
 $s11SprenVision8FormatIEVMa
 $s11SprenVision8FormatIEVwst
 $s11SprenVision8FormatIEVwet
@@ -392,7 +392,7 @@ _$s11SprenVision15ComplianceCheckC4name13checkInterval04lastD00F0A2C4NameO_S2dSb
 _$s11SprenVision15ComplianceCheckC06timeToD00E3NowSbSd_tFTq
 _$s11SprenVision15ComplianceCheckC3run7timeNow5frameySd_So17CMSampleBufferRefatFTq
 -private-discriminator _3FDE5461A8A1831CA1A4C034E3D70A6B
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Finger/Compliance/ComplianceCheck.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Finger/Compliance/ComplianceCheck.swift
 $s11SprenVision15ComplianceCheckC6ActionOMa
 $s11SprenVision15ComplianceCheckC6ActionOwui
 $s11SprenVision15ComplianceCheckC6ActionOwup
@@ -447,7 +447,7 @@ _$s11SprenVision12LensCoverageCMn
 _symbolic _____XMT 11SprenVision12LensCoverageC
 _$s11SprenVision0A0C8instanceACvpZ
 -private-discriminator _3E64AA64C400D1881051AD67843067F0
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Spren+FrameTick.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Spren+FrameTick.swift
 $s11SprenVision0A0C5first33_3E64AA64C400D1881051AD67843067F0LL13frameReceivedSbSd_tFSb_AA15ComplianceCheckC6ActionOSgtSo17CMSampleBufferRefacAA12LensCoverageCmcfu3_Sb_AKtAMcfu4_TA
 $s11SprenVision0A0C5first33_3E64AA64C400D1881051AD67843067F0LL13frameReceivedSbSd_tFSb_AA15ComplianceCheckC6ActionOSgtSo17CMSampleBufferRefacAA12LensCoverageCmcfu3_Sb_AKtAMcfu4_
 objectdestroy.5
@@ -517,8 +517,8 @@ $ss22_ContiguousArrayBufferV5count7storageAByxGSi_s01_aB7StorageCyxGtcfC11SprenV
 $ss22_ContiguousArrayBufferV18_initStorageHeader5count8capacityySi_SitF11SprenVision15ComplianceCheckC4NameO_AHt_Tg5
 firstFrameTime.set
 firstFrameTime.get
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Finger/Compliance/ComplianceChecks/LensSignal.swift
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Utilities/Extensions/CMSampleBuffer.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Finger/Compliance/ComplianceChecks/LensSignal.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Utilities/Extensions/CMSampleBuffer.swift
 _$s11SprenVision11ReadingDataVwCP
 _$s11SprenVision11ReadingDataVwxx
 _$s11SprenVision11ReadingDataVwcp
@@ -608,7 +608,7 @@ _symbolic _____y_____G s23_ContiguousArrayStorageC s12StaticStringV
 _$ss23_ContiguousArrayStorageCys12StaticStringVGMD
 _$s11SprenVision11ReadingDataVN
 _$s11SprenVision11ReadingDataV10CodingKeysON
-/Users/nick/dev/spren-ios-framework/Spren/Spren/ReadingData.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/ReadingData.swift
 $s11SprenVision11ReadingDataV10CodingKeysOAEs23CustomStringConvertibleAAWl
 $s11SprenVision11ReadingDataV10CodingKeysOs0E3KeyAAs23CustomStringConvertiblePWb
 $s11SprenVision11ReadingDataV10CodingKeysOAEs28CustomDebugStringConvertibleAAWl
@@ -713,7 +713,7 @@ _$s11SprenVision16Float32RGBSignalV10CodingKeysOs0E3KeyAAMcMK
 _$s11SprenVision16Float32RGBSignalV10CodingKeysOs0E3KeyAAMc
 _$s11SprenVision16Float32RGBSignalV10CodingKeysON
 -private-discriminator _5EBCA1A35BA7A872C93AC9032B90DBCB
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Float32RGBSignal.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Float32RGBSignal.swift
 $s11SprenVision16Float32RGBSignalV10CodingKeysOAEs23CustomStringConvertibleAAWl
 $s11SprenVision16Float32RGBSignalV10CodingKeysOs0E3KeyAAs23CustomStringConvertiblePWb
 $s11SprenVision16Float32RGBSignalV10CodingKeysOAEs28CustomDebugStringConvertibleAAWl
@@ -735,14 +735,14 @@ $sSfs20TextOutputStreamablessAAP5write2toyqd__z_ts0aB6StreamRd__lFTWs26DefaultSt
 $s11SprenVision16Float32RGBSignalVMa
 $s11SprenVision16Float32RGBSignalVwst
 $s11SprenVision16Float32RGBSignalVwet
-/Users/nick/dev/spren-ios-framework/Spren/Spren/CaptureFormat/Spren+CameraFormat.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/CaptureFormat/Spren+CameraFormat.swift
 _$s11SprenVision6LoggerVMa
 _$s11SprenVision6LoggerVMn
 _$s11SprenVision6LoggerVMf
 _symbolic _____ 11SprenVision6LoggerV
 _$s11SprenVision6LoggerVMF
 _$s11SprenVision6LoggerVN
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Utilities/Spren/Logger.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Utilities/Spren/Logger.swift
 $s11SprenVision6LoggerVMa
 _$s11SprenVision10ObfuscatorC4salt_WZ
 _$s11SprenVision10ObfuscatorC10SIGNAL_KEY_WZ
@@ -774,7 +774,7 @@ _$ss23_ContiguousArrayStorageCyyXlGMD
 _$s11SprenVision10ObfuscatorC4saltACSayyXlG_tcfCTq
 _$s11SprenVision10ObfuscatorCN
 -private-discriminator _B7F96483B5F14D4F0E2A352A0045643C
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Utilities/Encryption/Obfuscator.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Utilities/Encryption/Obfuscator.swift
 _swift_stdlib_malloc_size
 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/swift/shims/LibcShims.h
 $sSays5UInt8VGSayxGSTsWl
@@ -868,7 +868,7 @@ _$s11SprenVision9GzipErrorV4KindOSQAAMc
 _$s11SprenVision9GzipErrorVN
 _$s11SprenVision9GzipErrorV4KindON
 -private-discriminator _B9F9CD92B1EE6EB7F9BAE066B368E76F
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Utilities/Extensions/Data+Gzip.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Utilities/Extensions/Data+Gzip.swift
 $s11SprenVision9GzipErrorV4KindOMa
 $s11SprenVision9GzipErrorV4KindOwui
 $s11SprenVision9GzipErrorV4KindOwup
@@ -967,7 +967,7 @@ _$s11SprenVision13ConfigurationC11accessToken10identifierACSS_SStcfCTq
 _$s11SprenVision13ConfigurationCN
 _OBJC_CLASS_$__TtC11SprenVision13Configuration
 -private-discriminator _0CAB1B2AC460027E8DCC267A81D88BF9
-/Users/nick/dev/spren-ios-framework/Spren/Spren/API/Configuration/Configuration.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/API/Configuration/Configuration.swift
 $s11SprenVision13ConfigurationCMa
 $s11SprenVision13ConfigurationCfETo
 $ss25_unimplementedInitializer9className04initD04file4line6columns5NeverOs12StaticStringV_A2JS2utFySRys5UInt8VGXEfU0_
@@ -993,7 +993,7 @@ _$s11SprenVision12RuntimeErrorVs0D0AAMc
 _$s11SprenVision10BrightnessCACycfCTq
 _$s11SprenVision10BrightnessCN
 -private-discriminator _131F1220778DA7AADBE64F5A68D60774
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Finger/Compliance/ComplianceChecks/Brightness.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Finger/Compliance/ComplianceChecks/Brightness.swift
 $s11SprenVision12RuntimeErrorVACs0D0AAWl
 getRGB
 Swift runtime failure: Division results in an overflow
@@ -1041,7 +1041,7 @@ _$s11SprenVision0A15ComplianceErrorOWV
 _$s11SprenVision0A15ComplianceErrorOMf
 _symbolic _____ 11SprenVision0A15ComplianceErrorO
 _$s11SprenVision0A15ComplianceErrorOMF
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Finger/Compliance/SprenComplianceError.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Finger/Compliance/SprenComplianceError.swift
 $s11SprenVision0A15ComplianceErrorOMa
 $s11SprenVision0A15ComplianceErrorOwui
 $s11SprenVision0A15ComplianceErrorOwup
@@ -1051,7 +1051,7 @@ $s11SprenVision0A15ComplianceErrorOwet
 $s11SprenVision0A15ComplianceErrorOACSQAAWl
 $s11SprenVision0A15ComplianceErrorOSHAASQWb
 -private-discriminator _4C6035C49CDD5714AA001D86CD4A15B5
-/Users/nick/dev/spren-ios-framework/Spren/Spren/API/HTTPClient/HTTPClient+types.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/API/HTTPClient/HTTPClient+types.swift
 _$s11SprenVision9FrameDropCfD
 _$sS2iSzsWl
 _$s11SprenVision9FrameDropCMm
@@ -1065,7 +1065,7 @@ _$s11SprenVision9FrameDropCAA23ComplianceCheckProviderAAWP
 _$sS2iSzsWL
 _$s11SprenVision9FrameDropCACycfCTq
 _$s11SprenVision9FrameDropCN
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Finger/Compliance/ComplianceChecks/FrameDrop.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Finger/Compliance/ComplianceChecks/FrameDrop.swift
 $sS2iSzsWl
 $s11SprenVision9FrameDropCMa
 frameDropCompliant
@@ -1074,7 +1074,7 @@ numFrames.get
 $sSis23CustomStringConvertiblessAAP11descriptionSSvgTW
 numFramesDropped.get
 -private-discriminator _4647DD364170CFB92AC03F4701FC7D8B
-/Users/nick/dev/spren-ios-framework/Spren/Spren/API/Configuration/Configuration+default.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/API/Configuration/Configuration+default.swift
 _$s11SprenVision0A0C9autoStartSbvMZ.resume.0
 _$s11SprenVision0A0CXMTSbIetMAyYl_TC
 _$s11SprenVision0A0C22readingDurationSecondsSdvpACTK
@@ -1179,7 +1179,7 @@ _$s11SprenVision0A0C11stateChange2to20externalStateMessage5erroryAA08InternalG0O
 _$s11SprenVision0A0C12startReadingyyFTq
 _$s11SprenVision0A0C13getJSONStringSSSgyFTq
 -private-discriminator _F3BF9CF743F9EA23D58A75A10D5416E7
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Spren.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Spren.swift
 $s11SprenVision0A0CMa
 $s11SprenVision11ReadingDataVACSEAAWl
 convertTime
@@ -1324,7 +1324,7 @@ _$s11SprenVision24DeviceOrientationManagerC06handleD19ChangedNotificationyy10Fou
 _$s11SprenVision24DeviceOrientationManagerCN
 _OBJC_CLASS_$__TtC11SprenVision24DeviceOrientationManager
 -private-discriminator _8A1985A76A27E0C1C700A5777BB4446C
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Frame/Orientation/DeviceOrientationManager.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Frame/Orientation/DeviceOrientationManager.swift
 $s11SprenVision24DeviceOrientationManagerCMa
 handleOrientationChangedNotification
 orientation.set
@@ -1363,7 +1363,7 @@ _$s11SprenVision16FrameOrientationOSQAAMc
 _$s11SprenVision0A5FrameC18orientationManagerAA017DeviceOrientationE0CvpZ
 _$s11SprenVision16FrameOrientationON
 -private-discriminator _2DABCDB5912F25A9B398CE492530146A
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Frame/Orientation/FrameOrientation.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Frame/Orientation/FrameOrientation.swift
 fromAVCaptureVideoOrientation
 $s11SprenVision0A5FrameC18orientationManagerAA017DeviceOrientationE0Cvau
 Spren/Frame/SprenFrame.swift
@@ -1381,10 +1381,10 @@ $s11SprenVision16FrameOrientationOwup
 $s11SprenVision16FrameOrientationOwug
 $s11SprenVision16FrameOrientationOwst
 $s11SprenVision16FrameOrientationOwet
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Utilities/Extensions/CVPixelBuffer.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Utilities/Extensions/CVPixelBuffer.swift
 -private-discriminator _A23B5A7860C785A2EE7580F84D940F23
-/Users/nick/dev/spren-ios-framework/Spren/Spren/API/HTTPClient/HTTPClient+request.swift
-/Users/nick/dev/spren-ios-framework/Spren/Spren/API/HTTPClient/HTTPClient+methods.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/API/HTTPClient/HTTPClient+request.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/API/HTTPClient/HTTPClient+methods.swift
 _$s11SprenVision12RuntimeErrorVwCP
 _$s11SprenVision12RuntimeErrorVwxx
 _$s11SprenVision12RuntimeErrorVwcp
@@ -1403,7 +1403,7 @@ _$s11SprenVision12RuntimeErrorVMf
 _symbolic _____ 11SprenVision12RuntimeErrorV
 _$s11SprenVision12RuntimeErrorVMF
 _$s11SprenVision12RuntimeErrorVs0D0AAMcMK
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Utilities/Spren/RuntimeError.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Utilities/Spren/RuntimeError.swift
 $s11SprenVision12RuntimeErrorVMa
 $s11SprenVision12RuntimeErrorVwst
 $s11SprenVision12RuntimeErrorVwet
@@ -1426,7 +1426,7 @@ _$sypWOb
 ___swift_destroy_boxed_opaque_existential_0
 _$s10Foundation4DataVACSTAAWL
 _$sS2SSysWL
-/Users/nick/dev/spren-ios-framework/Spren/Spren/API/HTTPClient/UserAgent.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/API/HTTPClient/UserAgent.swift
 __swift_destroy_boxed_opaque_existential_0
 $sypWOb
 $sS2SSysWl
@@ -1473,7 +1473,7 @@ _$ss23_ContiguousArrayStorageCySbGMD
 _$s11SprenVision12LensCoverageCACycfCTq
 _$s11SprenVision12LensCoverageCN
 -private-discriminator _4F1751766FDE7949ADA9D05B192C3EFC
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Finger/Compliance/ComplianceChecks/LensCoverage.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Finger/Compliance/ComplianceChecks/LensCoverage.swift
 isCompliantSignal
 filter
 $ss15ContiguousArrayV6appendyyxnFSb_Tg5
@@ -1561,7 +1561,7 @@ _$sSo15CIContextOptiona_yptMD
 _symbolic _____ySSSo8NSObjectCG s18_DictionaryStorageC
 _$ss18_DictionaryStorageCySSSo8NSObjectCGMD
 _$s11SprenVision4TestCACycfCTq
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Testing/Test.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Testing/Test.swift
 $sSo15CIContextOptiona_yptWOc
 $s11SprenVision4TestCMa
 $ss17_NativeDictionaryV7_insert2at3key5valueys10_HashTableV6BucketV_xnq_ntFSo15CIContextOptiona_ypTg5
@@ -1622,7 +1622,7 @@ testNewBrightness
 centerLineRGBMean
 Spren/FrameProcessor.swift
 -private-discriminator _66DAE851935FC8D4415CF4B4101C197C
-/Users/nick/dev/spren-ios-framework/Spren/Spren/API/Configuration/Configuration+DeviceIdentifier.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/API/Configuration/Configuration+DeviceIdentifier.swift
 _$s11SprenVision14FrameProcessorC8instance33_76643E3B560C3B949E6397E2D0382597LL_WZ
 _$s11SprenVision14FrameProcessorCACyc33_76643E3B560C3B949E6397E2D0382597Llfc
 _$ss17_dictionaryUpCastySDyq0_q1_GSDyxq_GSHRzSHR0_r2_lFSS_So8NSObjectCSSypTg5
@@ -1666,7 +1666,7 @@ _symbolic _____y_____G s23_ContiguousArrayStorageC 11SprenVision16Float32RGBSign
 _$ss23_ContiguousArrayStorageCy11SprenVision16Float32RGBSignalVGMD
 _$s11SprenVision14FrameProcessorCN
 -private-discriminator _76643E3B560C3B949E6397E2D0382597
-/Users/nick/dev/spren-ios-framework/Spren/Spren/FrameProcessor.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/FrameProcessor.swift
 $sSo15CIContextOptionaABSHSCWl
 $sSS3key_yp5valuetSgWOh
 $sSo8NSObjectCMa
@@ -1740,7 +1740,7 @@ $ss22_ContiguousArrayBufferV19firstElementAddressSpyxGvgSo15CIContextOptiona_ypt
 $ss22_ContiguousArrayBufferV5count7storageAByxGSi_s01_aB7StorageCyxGtcfCSo15CIContextOptiona_ypt_Tg5
 $ss22_ContiguousArrayBufferV18_initStorageHeader5count8capacityySi_SitFSo15CIContextOptiona_ypt_Tg5
 $s11SprenVision14FrameProcessorC8instance33_76643E3B560C3B949E6397E2D0382597LL_WZ
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Spren+PublicConfig.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Spren+PublicConfig.swift
 cancelReading
 startReading
 setOnStateChange
@@ -1767,9 +1767,9 @@ _symbolic So12NSURLSessionC
 _$s11SprenVision10HTTPClientCMF
 _$s11SprenVision10HTTPClientCACycfCTq
 _$s11SprenVision10HTTPClientCN
-/Users/nick/dev/spren-ios-framework/Spren/Spren/API/HTTPClient/HTTPClient.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/API/HTTPClient/HTTPClient.swift
 $s11SprenVision10HTTPClientCMa
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Utilities/Encryption/Encryption.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Utilities/Encryption/Encryption.swift
 $ss5Int32VSLsSL2geoiySbx_xtFZTW
 _$s11SprenVision0A5StateOSQAASQ2eeoiySbx_xtFZTW
 _$s11SprenVision0A5StateOSHAASH9hashValueSivgTW
@@ -1812,7 +1812,7 @@ _$s11SprenVision13InternalStateOSHAAMc
 _$s11SprenVision13InternalStateOSQAAMcMK
 _$s11SprenVision13InternalStateOSQAAMc
 _$s11SprenVision13InternalStateON
-/Users/nick/dev/spren-ios-framework/Spren/Spren/State.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/State.swift
 $s11SprenVision13InternalStateOACSQAAWl
 $s11SprenVision13InternalStateOSHAASQWb
 $s11SprenVision13InternalStateOMa
@@ -1841,7 +1841,7 @@ _$s11SprenVision0A5FrameCMF
 _$s11SprenVision0A5FrameC11orientationAA0C11OrientationOvgTq
 _$s11SprenVision0A5FrameC11orientationAA0C11OrientationOvsTq
 _$s11SprenVision0A5FrameC11orientationAA0C11OrientationOvMTq
-/Users/nick/dev/spren-ios-framework/Spren/Spren/Frame/SprenFrame.swift
+/Users/keithcarolus/Development/spren/spren-ios-framework/Spren/Spren/Frame/SprenFrame.swift
 $s11SprenVision0A5FrameCMa
 Spren/Frame/Orientation/FrameOrientation.swift
 sampleBuffer.get

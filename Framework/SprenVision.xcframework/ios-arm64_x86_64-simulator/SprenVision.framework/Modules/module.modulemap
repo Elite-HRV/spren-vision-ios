@@ -1,0 +1,4 @@
+framework module SprenVision {
+  header "SprenVision-Swift.h"
+  requires objc
+}

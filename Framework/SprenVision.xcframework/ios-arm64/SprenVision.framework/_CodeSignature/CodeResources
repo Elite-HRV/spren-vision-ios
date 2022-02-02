@@ -22,11 +22,11 @@
 		</data>
 		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		NL6RU2L1hd3FYGFBLvGhQr4Hfow=
+		UZpsFT6scAXhApJA94saId1169s=
 		</data>
 		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		ljqCSSVIpnegWl0hixUuQg0qIRA=
+		0Pcisu1LFq0GUdulSskIVTyb0Oo=
 		</data>
 		<key>Modules/SprenVision.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>Modules/SprenVision.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		NL6RU2L1hd3FYGFBLvGhQr4Hfow=
+		UZpsFT6scAXhApJA94saId1169s=
 		</data>
 		<key>Modules/SprenVision.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		ljqCSSVIpnegWl0hixUuQg0qIRA=
+		0Pcisu1LFq0GUdulSskIVTyb0Oo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -72,14 +72,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/p4IQQ1gTASxzSkKwkB8Ju1C1pKbxO100vm2if0uASw=
+			6mvvhh/KDFSEwhrNNpccfJktmbfCqprf4hajoX+ji9g=
 			</data>
 		</dict>
 		<key>Modules/SprenVision.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3x9VVBHd/wQ4CEkgXhDoGxEqHbEhLzw6C96Pj+cSkT4=
+			K2JDmQwClhAK0WyiC/hnNyMN1n9sQAsqByqOFPpff+M=
 			</data>
 		</dict>
 		<key>Modules/SprenVision.swiftmodule/arm64.swiftdoc</key>
@@ -93,14 +93,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/p4IQQ1gTASxzSkKwkB8Ju1C1pKbxO100vm2if0uASw=
+			6mvvhh/KDFSEwhrNNpccfJktmbfCqprf4hajoX+ji9g=
 			</data>
 		</dict>
 		<key>Modules/SprenVision.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3x9VVBHd/wQ4CEkgXhDoGxEqHbEhLzw6C96Pj+cSkT4=
+			K2JDmQwClhAK0WyiC/hnNyMN1n9sQAsqByqOFPpff+M=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

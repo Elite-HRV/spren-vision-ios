@@ -85,13 +85,13 @@ open class SprenCapture {
         session.addInput(videoInput)
         session.addOutput(videoOutput)
         session.commitConfiguration()
-//        session.startRunning()
     }
     
-    private func configureOutput() {
-        if let connection = videoOutput.connection(with: .video) {
-            connection.videoOrientation = videoOrientation
+    private func configureOutput() throws {
+        guard let connection = videoOutput.connection(with: .video) else {
+            throw SprenCaptureError.sessionInputOutputConfigurationError
         }
+        connection.videoOrientation = videoOrientation
         videoOutput.setSampleBufferDelegate(sprenCaptureDelegate, queue: .global(qos: .userInitiated))
         videoOutput.videoSettings = [String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_32BGRA]
     }

@@ -59,7 +59,7 @@ public enum SprenComplianceError : Swift.Error {
 }
 @_hasMissingDesignatedInitializers public class Spren {
   public static var autoStart: Swift.Bool
-  public var readingDurationSeconds: Swift.Double {
+  public static var readingDurationSeconds: Swift.Double {
     get
   }
   public static func process(frame: SprenVision.SprenFrame)
@@ -82,7 +82,6 @@ public enum SprenComplianceError : Swift.Error {
 extension SprenVision.Spren {
   public static func setReadingDuration(duration: Swift.Int)
   public static func setOnPrereadingComplianceCheck(onPrereadingComplianceCheck: @escaping (SprenVision.ComplianceCheck.Name, Swift.Bool, SprenVision.ComplianceCheck.Action?) -> Swift.Void)
-  public static func setOnStart(onStart: @escaping () -> Swift.Void)
   public static func setOnProgressUpdate(onProgressUpdate: @escaping (_ progress: Swift.Double) -> Swift.Void)
   public static func setOnStateChange(onStateChange: @escaping (_ state: SprenVision.SprenState, _ error: Swift.Error?) -> Swift.Void)
   public static func startReading()

@@ -17,7 +17,7 @@ open class SprenCapture {
     private var formats: [AVCaptureDevice.Format]
     private var formatIndex: Int
     
-    static private let frameRate: (min: Double, max: Double) = (min: 60, max: 240)
+    static private let frameRate: (min: Double, max: Double) = (min: 60, max: 120)
     static private let resolution = (min: 1280*720, max: 1920*1080)
     private let filter: (AVCaptureDevice.Format) -> Bool = { format in
         let cond1 = format.resolution >= resolution.min && format.resolution <= resolution.max
@@ -60,6 +60,8 @@ open class SprenCapture {
         guard let format = formats.last else {
             throw SprenCaptureError.noCameraFormatDetected
         }
+        
+        print(format)
         
         try videoDevice.lockForConfiguration()
         videoDevice.activeFormat = format
@@ -199,11 +201,17 @@ extension SprenCapture {
     }
     
     public func dropComplexity() throws -> Bool {
-        if try !dropFrameRate() {
-            return try dropResolution()
-        } else {
+        let droppedFrameRate = try dropFrameRate()
+        print("dropped frame rate \(droppedFrameRate)")
+        
+        if droppedFrameRate {
             return true
         }
+        
+        let droppedResolution = try dropResolution()
+        print("dropped resolution \(droppedResolution)")
+        
+        return droppedResolution
     }
     
 }

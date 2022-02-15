@@ -12,7 +12,6 @@ import SprenVision
 open class SprenCapture {
     
     public let session = AVCaptureSession()
-    public var torchMode: AVCaptureDevice.TorchMode = .on
     
     private let videoDevice: AVCaptureDevice
     private let videoOutput = AVCaptureVideoDataOutput()
@@ -72,20 +71,10 @@ open class SprenCapture {
         
         try videoDevice.lockForConfiguration()
         videoDevice.activeFormat = format
-        
         let frameDuration = CMTime(value: 1, timescale: CMTimeScale(frameRate))
         videoDevice.activeVideoMinFrameDuration = frameDuration
         videoDevice.activeVideoMaxFrameDuration = frameDuration
-        
-        if torchMode == .off {
-            videoDevice.torchMode = .off
-        } else {
-            try videoDevice.setTorchModeOn(level: 1.0)
-        }
-        
         videoDevice.unlockForConfiguration()
-        
-        try unlock()
     }
     
     private func configureSession() throws {
@@ -134,10 +123,7 @@ extension SprenCapture {
             try videoDevice.setTorchModeOn(level: 1.0)
         }
         videoDevice.unlockForConfiguration()
-        
-        torchMode = videoDevice.torchMode
-        
-        return torchMode
+        return videoDevice.torchMode
     }
     
     public func lock() throws {

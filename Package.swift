@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "SprenKit",
+    name: "SprenVision",
     platforms: [
         .iOS(.v14)
     ],
@@ -13,18 +13,18 @@ let package = Package(
             name: "SprenCapture",
             targets: ["SprenCapture"]),
         .library(
-            name: "SprenVision",
-            targets: ["SprenVision"]),
+            name: "Spren",
+            targets: ["Spren"]),
     ],
     targets: [
         .target(
             name: "SprenCapture",
-            dependencies: ["SprenVision"],
+            dependencies: ["Spren"],
             path: "Sources"
         ),
         .binaryTarget(
-            name: "SprenVision",
-            path: "Framework/SprenVision.xcframework"
+            name: "Spren",
+            path: "Framework/Spren.xcframework"
         )
     ]
 )

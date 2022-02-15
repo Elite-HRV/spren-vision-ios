@@ -10,8 +10,8 @@ import AVFoundation
 
 extension AVCaptureDevice.Format {
     
-    var frameRate: Double {
-        return self.videoSupportedFrameRateRanges[0].maxFrameRate
+    var frameRate: Int {
+        return Int(videoSupportedFrameRateRanges[0].maxFrameRate)
     }
     
     var resolution: Int {

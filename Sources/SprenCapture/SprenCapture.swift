@@ -12,11 +12,20 @@ import SprenVision
 open class SprenCapture {
     
     public let session = AVCaptureSession()
+    public var torchMode: AVCaptureDevice.TorchMode = .on
     
     private let videoDevice: AVCaptureDevice
-    private var formats: [AVCaptureDevice.Format]
-    private var formatIndex: Int
+    private let videoOutput = AVCaptureVideoDataOutput()
+    private let sprenCaptureDelegate = SprenCaptureDelegate()
     
+    // state for config adjustments
+    private var formats: [AVCaptureDevice.Format]
+    
+    private var formatIndex: Int
+    private var frameRate: Int
+    private var resolution: Int
+    
+    // camera config
     static private let frameRate: (min: Double, max: Double) = (min: 60, max: 120)
     static private let resolution = (min: 1280*720, max: 1920*1080)
     private let filter: (AVCaptureDevice.Format) -> Bool = { format in
@@ -31,8 +40,6 @@ open class SprenCapture {
 
     let videoOrientation: AVCaptureVideoOrientation = .portrait
     
-    private let videoOutput = AVCaptureVideoDataOutput()
-    private let sprenCaptureDelegate = SprenCaptureDelegate()
     
     public init() throws {
         guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
@@ -48,9 +55,11 @@ open class SprenCapture {
         formats.sort { format1, format2 in
             format1.videoSupportedFrameRateRanges[0].maxFrameRate < format2.videoSupportedFrameRateRanges[0].maxFrameRate
         }
-        
+                
         formatIndex = formats.count - 1
-        
+        frameRate  = Int(formats[formatIndex].frameRate)
+        resolution = formats[formatIndex].resolution
+                
         try configureDevice()
         try configureSession()
         try configureOutput()
@@ -61,14 +70,19 @@ open class SprenCapture {
             throw SprenCaptureError.noCameraFormatDetected
         }
         
-        print(format)
-        
         try videoDevice.lockForConfiguration()
         videoDevice.activeFormat = format
-        videoDevice.activeVideoMinFrameDuration = CMTime(value: 1, timescale: CMTimeScale(format.frameRate))
-//        let poi = CGPoint(x: 0.5, y: 0.5)
-//        device.focusPointOfInterest = poi
-//        device.exposurePointOfInterest = poi
+        
+        let frameDuration = CMTime(value: 1, timescale: CMTimeScale(frameRate))
+        videoDevice.activeVideoMinFrameDuration = frameDuration
+        videoDevice.activeVideoMaxFrameDuration = frameDuration
+        
+        if torchMode == .off {
+            videoDevice.torchMode = .off
+        } else {
+            try videoDevice.setTorchModeOn(level: 1.0)
+        }
+        
         videoDevice.unlockForConfiguration()
         
         try unlock()
@@ -112,16 +126,18 @@ extension SprenCapture {
         session.stopRunning()
     }
     
-    public func toggleTorch() throws -> AVCaptureDevice.TorchMode {
+    public func setTorchMode(to newMode: AVCaptureDevice.TorchMode) throws -> AVCaptureDevice.TorchMode {
         try videoDevice.lockForConfiguration()
-        if videoDevice.torchMode == .on {
+        if newMode == .off {
             videoDevice.torchMode = .off
         } else {
             try videoDevice.setTorchModeOn(level: 1.0)
         }
         videoDevice.unlockForConfiguration()
         
-        return videoDevice.torchMode
+        torchMode = videoDevice.torchMode
+        
+        return torchMode
     }
     
     public func lock() throws {
@@ -140,78 +156,45 @@ extension SprenCapture {
         videoDevice.unlockForConfiguration()
     }
     
-    public func dropFrameRate() throws -> Bool {
-        guard formatIndex > 0 else { return false }
-        
-        var testIndex = formatIndex - 1
-        while testIndex >= 0 {
-            if formats[testIndex].frameRate < formats[formatIndex].frameRate {
-                formatIndex = testIndex
-                try configureDevice()
-                return true
-            }
-            testIndex -= 1
+    private func dropFrameRate() throws -> Bool {
+        if frameRate == 120 {
+            frameRate = 60
+            try configureDevice()
+            return true
+        } else {
+            return false
         }
-        return false
     }
-    
-    public func increaseFrameRate() throws -> Bool {
-        guard formatIndex < formats.count - 1 else { return false }
         
-        var testIndex = formatIndex + 1
-        while testIndex <= formats.count - 1 {
-            if formats[testIndex].frameRate < formats[formatIndex].frameRate {
-                formatIndex = testIndex
-                try configureDevice()
-                return true
-            }
-            testIndex += 1
+    private func dropResolution() throws -> Bool {
+        let lowerResFormats = formats.filter { format in
+            return format.resolution < formats[formatIndex].resolution
         }
-        return false
-    }
-    
-    public func dropResolution() throws -> Bool {
-        guard formatIndex > 0 else { return false }
         
-        var testIndex = formatIndex - 1
-        while testIndex >= 0 {
-            if formats[testIndex].resolution < formats[formatIndex].resolution {
-                formatIndex = testIndex
-                try configureDevice()
-                return true
-            }
-            testIndex -= 1
-        }
-        return false
-    }
-    
-    public func increaseResolution() throws -> Bool {
-        guard formatIndex < formats.count - 1 else { return false }
+        guard lowerResFormats.count > 0 else { return false }
         
-        var testIndex = formatIndex + 1
-        while testIndex <= formats.count - 1 {
-            if formats[testIndex].resolution < formats[formatIndex].resolution {
-                formatIndex = testIndex
-                try configureDevice()
-                return true
-            }
-            testIndex += 1
-        }
-        return false
+        formats = lowerResFormats
+        formatIndex = formats.count - 1
+        frameRate  = Int(formats[formatIndex].frameRate)
+        resolution = formats[formatIndex].resolution
+        try configureDevice()
+        return true
     }
-    
+        
     public func dropComplexity() throws -> Bool {
-        let droppedFrameRate = try dropFrameRate()
-        print("dropped frame rate \(droppedFrameRate)")
+        print("dropping complexity - \(frameRate)fps, \(resolution)px")
         
-        if droppedFrameRate {
+        if try dropResolution() {
+            print("dropped resolution - \(frameRate)fps, \(resolution)px")
             return true
         }
         
-        let droppedResolution = try dropResolution()
-        print("dropped resolution \(droppedResolution)")
+        if try dropFrameRate() {
+            print("dropped framerate - \(frameRate)fps, \(resolution)px")
+            return true
+        }
         
-        return droppedResolution
+        return false
     }
     
 }

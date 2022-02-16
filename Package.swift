@@ -13,18 +13,18 @@ let package = Package(
             name: "SprenCapture",
             targets: ["SprenCapture"]),
         .library(
-            name: "Spren",
-            targets: ["Spren"]),
+            name: "SprenCore",
+            targets: ["SprenCore"]),
     ],
     targets: [
         .target(
             name: "SprenCapture",
-            dependencies: ["Spren"],
+            dependencies: ["SprenCore"],
             path: "Sources"
         ),
         .binaryTarget(
-            name: "Spren",
-            path: "Framework/Spren.xcframework"
+            name: "SprenCore",
+            path: "Framework/SprenCore.xcframework"
         )
     ]
 )

@@ -7,7 +7,7 @@
 
 import Foundation
 import AVFoundation
-import SprenVision
+import SprenCore
 
 class SprenCaptureDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
 

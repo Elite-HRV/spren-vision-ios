@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-spren": ["./src/index"]
+      "react-native-spren": ["./react-native/src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

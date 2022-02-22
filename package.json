@@ -1,5 +1,5 @@
 {
-  "name": "react-native-spren",
+  "name": "spren-ios-sdk",
   "version": "1.0.0",
   "description": "React Native module wrapping Spren",
   "main": "react-native/lib/commonjs/index",
@@ -13,7 +13,7 @@
     "react-native/android",
     "react-native/ios",
     "react-native/cpp",
-    "react-native-spren.podspec",
+    "spren-ios-sdk.podspec",
     "!react-native/lib/typescript/example",
     "!react-native/android/build",
     "!react-native/ios/build",
@@ -36,13 +36,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/Elite-HRV/react-native-spren",
+  "repository": "https://github.com/Elite-HRV/spren-ios-sdk",
   "author": "nick <nick@elitehrv.com> (https://github.com/Elite-HRV)",
-  "license": "MIT",
+  "license": "",
   "bugs": {
-    "url": "https://github.com/Elite-HRV/react-native-spren/issues"
+    "url": "https://github.com/Elite-HRV/spren-ios-sdk/issues"
   },
-  "homepage": "https://github.com/Elite-HRV/react-native-spren#readme",
+  "homepage": "https://github.com/Elite-HRV/spren-ios-sdk#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -139,7 +139,7 @@
       [
         "typescript",
         {
-          "project": "tsconfig.build.json"
+          "project": "react-native/tsconfig.build.json"
         }
       ]
     ]

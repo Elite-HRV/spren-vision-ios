@@ -1,17 +1,17 @@
-# react-native-spren
+# spren-ios-sdk
 
 React Native module wrapping Spren
 
 ## Installation
 
 ```sh
-npm install react-native-spren
+npm install spren-ios-sdk
 ```
 
 ## Usage
 
 ```js
-import { SprenView } from "react-native-spren";
+import { SprenView } from "spren-ios-sdk";
 
 // ...
 

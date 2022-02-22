@@ -1,6 +1,6 @@
 //
 //  SprenView.swift
-//  react-native-spren
+//  spren-ios-sdk
 //
 //  Created by nick on 22.02.2022.
 //

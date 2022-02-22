@@ -1,6 +1,6 @@
 {
   "name": "spren-ios-sdk",
-  "version": "1.0.0",
+  "version": "0.0.27",
   "description": "React Native module wrapping Spren",
   "main": "react-native/lib/commonjs/index",
   "module": "react-native/lib/module/index",

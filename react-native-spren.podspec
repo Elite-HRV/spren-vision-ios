@@ -13,7 +13,8 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => "10.0" }
   s.source       = { :git => "https://github.com/Elite-HRV/spren-ios-sdk.git" }
 
-  s.source_files = "react-native/ios/**/*.{h,m,mm,swift}"
+  s.source_files = "react-native/ios/**/*.{h,m,mm,swift}", "Sources/**/*.{swift}"
+  s.vendored_frameworks = "Framework/SprenCore.xcframework"
 
   s.dependency "React-Core"
 end

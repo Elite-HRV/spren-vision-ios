@@ -131,8 +131,8 @@
     "useTabs": false
   },
   "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
+    "source": "react-native/src",
+    "output": "react-native/lib",
     "targets": [
       "commonjs",
       "module",

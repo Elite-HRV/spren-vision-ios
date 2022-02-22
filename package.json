@@ -2,24 +2,24 @@
   "name": "react-native-spren",
   "version": "1.0.0",
   "description": "React Native module wrapping Spren",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
+  "main": "react-native/lib/commonjs/index",
+  "module": "react-native/lib/module/index",
+  "types": "react-native/lib/typescript/index.d.ts",
+  "react-native": "react-native/src/index",
+  "source": "react-native/src/index",
   "files": [
-    "src",
-    "lib",
-    "android",
-    "ios",
-    "cpp",
+    "react-native/src",
+    "react-native/lib",
+    "react-native/android",
+    "react-native/ios",
+    "react-native/cpp",
     "react-native-spren.podspec",
-    "!lib/typescript/example",
-    "!android/build",
-    "!ios/build",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__"
+    "!react-native/lib/typescript/example",
+    "!react-native/android/build",
+    "!react-native/ios/build",
+    "!react-native/**/__tests__",
+    "!react-native/**/__fixtures__",
+    "!react-native/**/__mocks__"
   ],
   "scripts": {
     "test": "jest",
@@ -121,7 +121,7 @@
   },
   "eslintIgnore": [
     "node_modules/",
-    "lib/"
+    "react-native/lib/"
   ],
   "prettier": {
     "quoteProps": "consistent",

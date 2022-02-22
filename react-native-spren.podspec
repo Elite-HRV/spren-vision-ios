@@ -1,6 +1,6 @@
 require "json"
 
-package = JSON.parse(File.read(File.join(__dir__, "package.json")))
+package = JSON.parse(File.read(File.join(__dir__, "react-native/package.json")))
 
 Pod::Spec.new do |s|
   s.name         = "react-native-spren"
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.authors      = package["author"]
 
   s.platforms    = { :ios => "10.0" }
-  s.source       = { :git => "https://github.com/Elite-HRV/react-native-spren.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/Elite-HRV/spren-ios-sdk.git" }
 
   s.source_files = "react-native/ios/**/*.{h,m,mm,swift}"
 

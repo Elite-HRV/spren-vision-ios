@@ -6,28 +6,39 @@
 //
 
 import Foundation
+import AVKit
 
 class SprenView : UIView {
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
 
-  @objc var color: String = "" {
-    didSet {
-      self.backgroundColor = hexStringToUIColor(hexColor: color)
+    @objc var width: NSNumber = 0
+    @objc var height: NSNumber = 0
+
+
+    override func didSetProps(_ changedProps: [String]!) {
+        do {
+            let sprenCapture = try SprenCapture()
+            setupPreviewLayer(with: sprenCapture.session)
+            startCamera(sprenCapture)
+        } catch {
+            print("SprenCapture failed to initiate")
+            print(error.localizedDescription)
+            return
+        }
     }
-  }
 
-  func hexStringToUIColor(hexColor: String) -> UIColor {
-    let stringScanner = Scanner(string: hexColor)
+    func setupPreviewLayer(with session: AVCaptureSession) {
+        self.videoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
+        self.videoPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+        self.videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
 
-    if(hexColor.hasPrefix("#")) {
-      stringScanner.scanLocation = 1
+        self.frame = CGRect(x: 0, y: 0, width: Double(truncating: self.width), height: Double(truncating: self.height))
+        self.videoPreviewLayer?.frame = self.frame
+        self.layer.insertSublayer(videoPreviewLayer!, at: 0)
     }
-    var color: UInt32 = 0
-    stringScanner.scanHexInt32(&color)
 
-    let r = CGFloat(Int(color >> 16) & 0x000000FF)
-    let g = CGFloat(Int(color >> 8) & 0x000000FF)
-    let b = CGFloat(Int(color) & 0x000000FF)
-
-    return UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: 1)
-  }
+    func startCamera(_ sprenCapture: SprenCapture) {
+        sprenCapture.start()
+        print("SprenCapture started")
+    }
 }

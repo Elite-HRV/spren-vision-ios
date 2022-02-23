@@ -7,19 +7,24 @@
 
 import Foundation
 import AVKit
+import SprenCore
 
 class SprenView : UIView {
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-
+    var sprenCapture: SprenCapture? = nil
     @objc var width: NSNumber = 0
     @objc var height: NSNumber = 0
-
+    @objc var onStateChange: RCTBubblingEventBlock?
+    @objc var onPrereadingComplianceCheck: RCTBubblingEventBlock?
+    @objc var onProgressUpdate: RCTBubblingEventBlock?
+    @objc var onReadingDataReady: RCTBubblingEventBlock?
 
     override func didSetProps(_ changedProps: [String]!) {
         do {
-            let sprenCapture = try SprenCapture()
-            setupPreviewLayer(with: sprenCapture.session)
-            startCamera(sprenCapture)
+            sprenCapture = try SprenCapture()
+            setupPreviewLayer()
+            startCamera()
+            setupCallbacks()
         } catch {
             print("SprenCapture failed to initiate")
             print(error.localizedDescription)
@@ -27,8 +32,8 @@ class SprenView : UIView {
         }
     }
 
-    func setupPreviewLayer(with session: AVCaptureSession) {
-        self.videoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
+    func setupPreviewLayer() {
+        self.videoPreviewLayer = AVCaptureVideoPreviewLayer(session: sprenCapture!.session)
         self.videoPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
         self.videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
 
@@ -37,8 +42,8 @@ class SprenView : UIView {
         self.layer.insertSublayer(videoPreviewLayer!, at: 0)
     }
 
-    func startCamera(_ sprenCapture: SprenCapture) {
-        sprenCapture.start()
+    func startCamera() {
+        sprenCapture!.start()
         print("SprenCapture started")
-    }
+    }    
 }

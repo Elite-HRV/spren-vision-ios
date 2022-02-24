@@ -1,5 +1,3 @@
-# Table of contents
+# SprenVision
 - [Introduction](Introduction.md)
-
-## SprenVision
 - [SprenVision iOS SDK](SprenVision/SprenVision-iOS-SDK.md)

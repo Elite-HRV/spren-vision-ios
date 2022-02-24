@@ -1,8 +1,10 @@
-# SprenVision iOS SDK 
+# Spren Vision iOS SDK
 
 ## Installation
 
-The [SprenVision iOS SDK](https://github.com/Elite-HRV/spren-ios-sdk) is installable via the Swift Package Manager. For more information see the Apple docs for [Adding Package Dependencies to Your App](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app).
+1.  Install the [SprenVision iOS SDK](https://github.com/Elite-HRV/spren-ios-sdk) via the Swift Package Manager. For more information, see the Apple docs for [Adding Package Dependencies to Your App](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app).
+
+2.  Add a camera usage description to your app's Info.plist or target info. For more information, [Requesting Authorization for Media Capture on iOS](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_ios) and the [NSCameraUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nscamerausagedescription) Apple docs.&#x20;
 
 ## Implementation Overview
 
@@ -14,54 +16,55 @@ import SprenVision
 
 ...
 
-**/* SprenCapture */**
+/* SprenCapture */
 // configure camera
 let sprenCapture = SprenCapture()
 try? SprenCapture.start()
 // set up camera preview
 preview.session = sprenCapture.session
 
-**/* SprenVision */**
+/* SprenVision */
 
-Spren.setOnProgressUpdate { (progress) in
-    // handle progress UI update
+// handle prereading compliance checks
+Spren.setOnPrereadingComplianceCheck { check, compliant, action in
+    switch (check, compliant) {
+    case (.frameDrop, false):
+		// adjust camera
+        sprenCapture.dropComplexity()
+    case (.brightness, _):
+        // optionally update UI to reflect brightness compliance
+    case (.lensCoverage,_):
+		// optionally update UI to reflect lens coverage compliance
+    }
 }
 
 // handle state transitions
 Spren.setOnStateChanged { (state, error) in
 		switch state {
 	  case .started:
-				sprenCapture.lock()
+			sprenCapture.lock()
 		    // handle reading started UI update
 	
 	  case .finished:
-		    **// successful reading!**
+		    // successful reading!
 		    let readingData = Spren.getReadingData()
 	
 		    // make POST request to the Spren API
 		    // with readingData to get insights!
 	    
 	  case .cancelled:
-				sprenCapture.unlock()
+			sprenCapture.unlock()
 		    // handle user cancelled UI update
 	
 	  case .error:
-				sprenCapture.unlock()
+			sprenCapture.unlock()
 		    // handle error UI update, may be non-compliance
 		    let description = error.localizedDescription
 	  }
 }
 
-Spren.setOnPrereadingComplianceCheck { check, compliant, action in
-    switch (check, compliant) {
-    case (.frameDrop, false):
-				// adjust camera
-        sprenCapture.dropComplexity()
-    case (.brightness, _):
-        // optionally update UI to reflect brightness compliance
-    case (.lensCoverage,_):
-			  // optionally update UI to reflect lens coverage compliance
-    }
+Spren.setOnProgressUpdate { (progress) in
+    // handle progress UI update
 }
 ```
 
@@ -131,7 +134,7 @@ Set a closure to be executed when a compliance check is performed before reading
 
 `static setOnProgressUpdate(onProgressUpdate: @escaping (_ progress: Double) -> Void)`
 
-Set a closure to be executed when progress updates. Progress ranges from 0 to 100 in integer increments.
+Set a closure to be executed when progress updates. Progress ranges from 0 to 99 in integer increments. State change to finished occurs in lieu of progress update at 100.
 
 `static func setOnStateChange(onStateChange: @escaping (_ state: SprenState, _ error: Error?) -> Void)`
 
@@ -177,7 +180,7 @@ Created from received media buffers, e.g.:
 
 Compliance checks are run at 1 second intervals as frames are provided, i.e., if internally to SprenVision the time when the frame is received is >1 second later than the last check. For `ComplianceCheck.name`:
 
-*   `.frameDrop`: frame drop must be less than 5% during one second and at least 60 frames must be received.
+*   `.frameDrop`: frame drop must be less than 5% during one second and at least 60 frames must be received. During the initial setup of SprenCapture, frame drop may be high; **so, we suggest ignoring the first frame drop noncompliance** before any camera reconfiguration.
 
 *   `.brightness`: enough ambient light must be received, torch (flashlight) is recommended. Brightness checks also provide a `ComplianceCheck.action`, either `.increase` or `.decrease`.
 
@@ -196,4 +199,3 @@ Readings error if noncompliance of any check occurs for 5 consecutive seconds. I
 *   `.brightnessHigh`
 
 *   `.lensCoverage`
-

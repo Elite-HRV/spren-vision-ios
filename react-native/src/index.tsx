@@ -4,8 +4,6 @@ import {
   Platform,
   ViewStyle,
 } from 'react-native';
-import { IStateChange } from "./";
-import { IPrereadingComplianceCheck, IProgressChange, IReadingDataReady } from "spren-ios-sdk";
 
 const LINKING_ERROR =
   `The package 'spren-ios-sdk' doesn't seem to be linked. Make sure: \n\n` +
@@ -15,10 +13,10 @@ const LINKING_ERROR =
 
 type SprenProps = {
   style: ViewStyle;
-  onStateChange: (event: IStateChange) => void;
-  onPrereadingComplianceCheck: (event: IPrereadingComplianceCheck) => void;
-  onProgressUpdate: (event: IProgressChange) => void;
-  onReadingDataReady: (event: IReadingDataReady) => void;
+  // onStateChange: (event: IStateChange) => void;
+  // onPrereadingComplianceCheck: (event: IPrereadingComplianceCheck) => void;
+  // onProgressUpdate: (event: IProgressChange) => void;
+  // onReadingDataReady: (event: IReadingDataReady) => void;
 };
 
 const ComponentName = 'SprenView';

@@ -1,3 +1,4 @@
 root: ./docs
 structure:
-    installation: Installation.md
+    readme: Introduction.md
+    summary: Summary.md

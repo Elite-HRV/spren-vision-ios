@@ -1,3 +1,3 @@
-## SprenVision
-[Introduction](SprenVision.md)
-[SprenVision iOS SDK](SDK.md)
+# SprenVision
+- [Introduction](Introduction.md)
+- [SprenVision iOS SDK](SprenVision-iOS-SDK.md)

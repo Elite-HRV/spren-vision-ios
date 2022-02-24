@@ -1,10 +1,3 @@
-
-title: SprenVision iOS SDK 
-slug: IYTs-sprenvision-ios-sdk
-createdAt: 2022-02-03T16:08:01.000Z
-updatedAt: 2022-02-20T14:14:49.000Z
----
-
 ## Installation
 
 The [SprenVision iOS SDK](https://github.com/Elite-HRV/spren-ios-sdk) is installable via the Swift Package Manager. For more information see the Apple docs for [Adding Package Dependencies to Your App](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app).

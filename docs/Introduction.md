@@ -1,5 +1,3 @@
-# Introduction to SprenVision
-
 # SprenVision
 
 The Spren Finger Camera SDK (**SprenVision**) is a useful tool for companies that don't already have their own device to collect inter-beat intervals. It's effortless to install and you can integrate it seamlessly into your mobile app in just a few steps! Check out our [SprenVision iOS SDK](https://docs.spren.com/sprenvision-ios-sdk) page for more information on installation, getting started, and code examples.

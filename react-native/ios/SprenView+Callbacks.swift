@@ -58,8 +58,8 @@ extension SprenView {
         try? sprenCapture?.dropComplexity()
     }
     
-    func setTorchMode(_ torchMode: NSNumber) {
-        let mode = AVCaptureDevice.TorchMode(rawValue: Int(truncating: torchMode))!
+    func setTorchMode(_ torchMode: Int) {
+        let mode = AVCaptureDevice.TorchMode(rawValue: torchMode)!
         try? sprenCapture?.setTorchMode(to: mode)
     }
 }

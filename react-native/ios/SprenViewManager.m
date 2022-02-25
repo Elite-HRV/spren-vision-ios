@@ -21,7 +21,7 @@ RCT_EXTERN_METHOD(captureLock:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(captureUnlock:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(dropComplexity:(nonnull NSNumber *)node)
 
-RCT_EXTERN_METHOD(setTorchMode:(nonnull NSNumber *)node torchMode: (nonnull NSNumber *)torchMode)
+RCT_EXTERN_METHOD(setTorchMode:(nonnull NSNumber *)node torchMode: (NSString)torchMode)
 
 
 + (BOOL)requiresMainQueueSetup {

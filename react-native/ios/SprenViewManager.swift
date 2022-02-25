@@ -112,14 +112,14 @@ class SprenViewManager: RCTViewManager {
     }
     
     @objc(setTorchMode:torchMode:)
-    func setTorchMode(_ node: NSNumber, torchMode: NSNumber) {
+    func setTorchMode(_ node: NSNumber, torchMode: NSString) {
         self.bridge!.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
             let view = viewRegistry![node] as! SprenView
             if (type(of: view) != SprenView.self) {
                 print("Cannot find SprenView with tag \(node)")
                 return
             }
-            view.setTorchMode(torchMode);
+            view.setTorchMode(torchMode.integerValue);
         }
     }
 }

@@ -1,0 +1,4 @@
+framework module SprenCore {
+  header "SprenCore-Swift.h"
+  requires objc
+}

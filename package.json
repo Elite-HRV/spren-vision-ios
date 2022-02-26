@@ -1,6 +1,6 @@
 {
   "name": "react-native-spren",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React Native module wrapping Spren",
   "main": "react-native/lib/commonjs/index",
   "module": "react-native/lib/module/index",

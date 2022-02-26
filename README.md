@@ -1,0 +1,1 @@
+![Spren logo](spren.svg)

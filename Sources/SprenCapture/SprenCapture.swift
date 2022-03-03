@@ -116,11 +116,12 @@ extension SprenCapture {
     }
     
     public func setTorchMode(to newMode: AVCaptureDevice.TorchMode) throws -> AVCaptureDevice.TorchMode {
+        guard videoDevice.hasTorch && videoDevice.isTorchAvailable else { return videoDevice.torchMode }
         try videoDevice.lockForConfiguration()
         if newMode == .off {
             videoDevice.torchMode = .off
         } else {
-            try videoDevice.setTorchModeOn(level: 1.0)
+            try videoDevice.setTorchModeOn(level: AVCaptureDevice.maxAvailableTorchLevel)
         }
         videoDevice.unlockForConfiguration()
         return videoDevice.torchMode

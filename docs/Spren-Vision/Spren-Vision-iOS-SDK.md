@@ -2,13 +2,13 @@
 
 ## Installation
 
-1.  Install the [SprenVision iOS SDK](https://github.com/Elite-HRV/spren-ios-sdk) via the Swift Package Manager. For more information, see the Apple docs for [Adding Package Dependencies to Your App](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app).
+1.  Install the [Spren Vision iOS SDK](https://github.com/Elite-HRV/spren-ios-sdk) via the Swift Package Manager. For more information, see the Apple docs for [Adding Package Dependencies to Your App](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app).
 
 2.  Add a camera usage description to your app's Info.plist or target info. For more information, [Requesting Authorization for Media Capture on iOS](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_ios) and the [NSCameraUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nscamerausagedescription) Apple docs.&#x20;
 
 ## Implementation Overview
 
-Here is an example of how to implement the SprenVision iOS SDK in your own app. Refer to the comments throughout the file to see what functions get called at what point.&#x20;
+Here is an example of how to implement the Spren Vision iOS SDK in your own app. Refer to the comments throughout the file to see what functions get called at what point.&#x20;
 
 ```swift
 import SprenCapture

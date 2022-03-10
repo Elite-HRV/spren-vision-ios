@@ -4,15 +4,15 @@
 
 1.  Install the [Spren Vision iOS SDK](https://github.com/Elite-HRV/spren-ios-sdk) via the Swift Package Manager. For more information, see the Apple docs for [Adding Package Dependencies to Your App](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app).
 
-2.  Add a camera usage description to your app's Info.plist or target info. For more information, [Requesting Authorization for Media Capture on iOS](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_ios) and the [NSCameraUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nscamerausagedescription) Apple docs.&#x20;
+2.  Add a camera usage description to your app's Info.plist or target info. For more information, [Requesting Authorization for Media Capture on iOS](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_ios) and the [NSCameraUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nscamerausagedescription) Apple docs.
 
 ## Implementation Overview
 
-Here is an example of how to implement the Spren Vision iOS SDK in your own app. Refer to the comments throughout the file to see what functions get called at what point.&#x20;
+Here is an example of how to implement the Spren Vision iOS SDK in your own app. Refer to the comments throughout the file to see what functions get called at what point.
 
 ```swift
 import SprenCapture
-import SprenVision
+import SprenCore
 
 ...
 
@@ -23,7 +23,7 @@ try? SprenCapture.start()
 // set up camera preview
 preview.session = sprenCapture.session
 
-/* SprenVision */
+/* SprenCore */
 
 // handle prereading compliance checks
 Spren.setOnPrereadingComplianceCheck { check, compliant, action in
@@ -108,11 +108,11 @@ Attempts to drop the computational complexity by reducing the frame rate. If fra
 
 ### `SprenDelegate`
 
-SprenDelegate is an `AVCaptureVideoDataOutputSampleBufferDelegate` and handles providing frames or notification of frame drop to **SprenVision**.
+SprenDelegate is an `AVCaptureVideoDataOutputSampleBufferDelegate` and handles providing frames or notification of frame drop to **SprenCore**.
 
-# SprenVision Library
+# SprenCore Library
 
-The SprenVision library provides internal control over readings and allows you to gain information on what's going on internally in the SDK so your UI can be updated accordingly. Here you'll be able to set reading durations, handle progress updates, start and stop readings, and more. Use this library in conjunction with **SprenCapture** to utilize the full capabilities of Spren SDK.
+The SprenCore library provides internal control over readings and allows you to gain information on what's going on internally in the SDK so your UI can be updated accordingly. Here you'll be able to set reading durations, handle progress updates, start and stop readings, and more. Use this library in conjunction with **SprenCapture** to utilize the full capabilities of Spren SDK.
 
 ### `Spren`
 
@@ -178,7 +178,7 @@ Created from received media buffers, e.g.:
 
 `static func setOnPrereadingComplianceCheck(onPrereadingComplianceCheck: @escaping (ComplianceCheck.Name, Bool, ComplianceCheck.Action?) -> Void)`
 
-Compliance checks are run at 1 second intervals as frames are provided, i.e., if internally to SprenVision the time when the frame is received is >1 second later than the last check. For `ComplianceCheck.name`:
+Compliance checks are run at 1 second intervals as frames are provided, i.e., if internally to SprenCore the time when the frame is received is >1 second later than the last check. For `ComplianceCheck.name`:
 
 *   `.frameDrop`: frame drop must be less than 5% during one second and at least 60 frames must be received. During the initial setup of SprenCapture, frame drop may be high; **so, we suggest ignoring the first frame drop noncompliance** before any camera reconfiguration.
 

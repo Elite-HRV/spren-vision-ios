@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "spren-ios-sdk": ["./src/index"]
+      "spren-vision-ios": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

@@ -1,5 +1,5 @@
 {
-  "name": "react-native-spren",
+  "name": "@spren/react-native",
   "version": "1.0.3",
   "description": "React Native module wrapping Spren",
   "main": "react-native/lib/commonjs/index",
@@ -38,13 +38,13 @@
     "react-native",
     "ios"
   ],
-  "repository": "https://github.com/Elite-HRV/spren-ios-sdk",
+  "repository": "https://github.com/Elite-HRV/spren-vision-ios",
   "author": "nick <nick@elitehrv.com> (https://github.com/Elite-HRV)",
   "license": "LicenseRef-LICENSE",
   "bugs": {
-    "url": "https://github.com/Elite-HRV/spren-ios-sdk/issues"
+    "url": "https://github.com/Elite-HRV/spren-vision-ios/issues"
   },
-  "homepage": "https://github.com/Elite-HRV/spren-ios-sdk#readme",
+  "homepage": "https://github.com/Elite-HRV/spren-vision-ios#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

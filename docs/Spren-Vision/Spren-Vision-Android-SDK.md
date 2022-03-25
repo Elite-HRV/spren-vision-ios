@@ -102,7 +102,7 @@ Attempts to toggle the torch (flashlight) on or off as appropriate. Returns the 
 
 `fun dropComplexity(): Boolean`
 
-Attempts to drop the computational complexity by reducing the frame rate. If frame rate cannot be reduced, dropping the resolution will be attempted. This may be called if frame drop is non-compliant, i.e, exceeds 5% in a 1 second period.
+Attempts to drop the computational complexity by reducing the frame rate. If frame rate cannot be reduced, dropping the resolution will be attempted. This may be called if frame drop is non-compliant, i.e, exceeds 10% in a 1 second period.
 
 ### `RGBAnalyzer`
 
@@ -156,13 +156,21 @@ If you'd like to use your own library or code to handle camera configurations an
 
 Reference `RGBAnalyzer`
 
-`override fun analyze(image: ImageProxy)`
+`fun process(frame: ByteArray, timestamp: Long)`
 
 Provide a frame for processing.
 
-`ImageProxy`
+`fun check(frame: Bitmap?)`
 
-An image proxy which has a similar interface as Image. For more information, see the Android docs for [ImageProxy](https://developer.android.com/reference/androidx/camera/core/ImageProxy).
+Record frame drop and perform verifications.
+
+`ByteArray`
+
+Created from ImageProxy e.g.:
+
+`val byteArray = image.planes[0].buffer.toByteArray()`
+
+The ImageProxy format will be PixelFormat.RGBA_8888, which has only one image plane (R, G, B, A pixel by pixel). For more information, [Image Analysis](https://developer.android.com/training/camerax/analyze).
 
 ## Compliance Checks
 

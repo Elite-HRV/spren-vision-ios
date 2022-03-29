@@ -54,7 +54,7 @@ Spren.setOnPrereadingComplianceCheck { name, compliant, action ->
 }
 
 // handle state transitions
-Spren.setOnStateChange { state, _ ->
+Spren.setOnStateChange { state, sprenComplianceError ->
     when (state) {
         SprenState.STARTED ->
             // handle reading started UI update
@@ -72,7 +72,9 @@ Spren.setOnStateChange { state, _ ->
 
         SprenState.ERROR ->
             // handle error UI update, may be non-compliance
-            errorState()
+            // with localizedDescription to log error message
+            // with error to handle sprenComplianceError type
+            errorState(sprenComplianceError)
     }
 }
 

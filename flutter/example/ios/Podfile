@@ -1,3 +1,5 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
 # Uncomment this line to define a global platform for your project
 platform :ios, '14.0'
 
@@ -32,7 +34,6 @@ target 'Runner' do
   use_modular_headers!
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
-  pod 'spren-flutter', :path => '../../..'
 end
 
 post_install do |installer|

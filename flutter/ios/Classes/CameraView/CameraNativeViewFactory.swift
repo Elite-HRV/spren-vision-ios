@@ -8,6 +8,7 @@
 import Flutter
 import UIKit
 import SprenCore
+import SprenVision
 
 class CameraNativeViewFactory: NSObject, FlutterPlatformViewFactory {
     var eventStateChange: StateChangeHandler

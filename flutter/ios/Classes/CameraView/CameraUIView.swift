@@ -7,6 +7,7 @@
 
 import Foundation
 import SprenCore
+import SprenVision
 
 class CameraUIView : UIView {
     var sprenCapture: SprenCapture

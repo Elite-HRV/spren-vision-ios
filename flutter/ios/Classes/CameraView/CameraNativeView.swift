@@ -8,6 +8,7 @@
 import Flutter
 import UIKit
 import SprenCore
+import SprenVision
 import AVFoundation
 
 class CameraNativeView: NSObject, FlutterPlatformView {

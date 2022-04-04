@@ -2,17 +2,14 @@
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
 # Run `pod lib lint spren_flutter.podspec` to validate before publishing.
 #
-require "json"
-
-package = JSON.parse(File.read(File.join(__dir__, "../../package.json")))
 
 Pod::Spec.new do |s|
   s.name             = 'spren_flutter'
-  s.version          = package["version"]
+  s.version          = '1.0.1'
   s.summary          = "Flutter plugin wrapping Spren"
-  s.homepage         = package["homepage"]
-  s.license          = package["license"]
-  s.author           = package["author"]
+  s.homepage         = "https://github.com/Elite-HRV/spren-vision-ios#readme"
+  s.license          = "LicenseRef-LICENSE"
+  s.author           = "nick <nick@elitehrv.com> (https://github.com/Elite-HRV)"
   s.source       = { :git => "https://github.com/Elite-HRV/spren-vision-ios.git", :tag => "#{s.version}" }
   s.source_files = "Classes/**/*"
   s.dependency 'Flutter'

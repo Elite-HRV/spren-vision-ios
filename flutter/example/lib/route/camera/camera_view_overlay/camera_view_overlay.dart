@@ -1,0 +1,226 @@
+import 'dart:developer';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:spren_flutter/spren_flutter.dart';
+import 'package:spren_flutter/spren_stream.dart';
+import 'package:spren_flutter/spren_model.dart';
+import 'package:spren_flutter_example/route/camera/camera_view_overlay/camera_modals.dart';
+import 'package:spren_flutter_example/route/camera/camera_view_overlay/state_pre_reading_compliance_change.dart';
+import 'package:spren_flutter_example/route/camera/widgets/flash_disable_button.dart';
+import 'package:spren_flutter_example/route/camera/widgets/flash_enable_button.dart';
+import 'package:spren_flutter_example/route/camera/widgets/progress.dart';
+import 'package:spren_flutter_example/widgets/close_button.dart';
+import 'package:spren_flutter_example/route/processing/processing.dart';
+import 'package:tuple/tuple.dart';
+
+class CameraViewOverlay extends HookWidget {
+  final double width;
+  final double height;
+
+  CameraViewOverlay(this.width, this.height, {Key? key}) : super(key: key);
+
+  CancelListening? cancelListeningStateChange;
+  CancelListening? cancelListeningPreReadingComplianceCheckChange;
+  CancelListening? cancelListeningProgressChange;
+  AwesomeDialog? lightInsufficientModal;
+  AwesomeDialog? readingStoppedModal;
+
+  @override
+  Widget build(BuildContext context) {
+    final progress = useState(0);
+    final droppedFrames = useState(0);
+    final brightness = useState(1);
+    final lensCovered = useState(1);
+    final flash = useState(0);
+    final readingStatus = useState<SprenState>(SprenState.preReading);
+    final modal = useState<ModalVisible?>(null);
+
+    Future<void> getReadingData() async {
+      // Simulator: Testing
+      // await Future.delayed(const Duration(seconds: 2));
+      // String readingData = dotenv.env['READING_TEST_DATA'];
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => RouteProcessing(readingData)),
+      // );
+      // return;
+      //
+      try {
+        String readingData = await SprenFlutter.getReadingData();
+        SprenFlutter.captureStop();
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => RouteProcessing(readingData)),
+        );
+      } catch (e) {
+        SprenFlutter.captureStop();
+        Navigator.pop(context);
+      }
+    }
+
+    Future<void> onInit() async {
+      // Simulator: Testing
+      // await getReadingData();
+      // return;
+      //
+      await Future.delayed(const Duration(seconds: 1));
+
+      flash.value = 1;
+      SprenFlutter.setAutoStart(true);
+    }
+
+    useEffect(() {
+      cancelListeningPreReadingComplianceCheckChange =
+          startListeningPreReadingComplianceCheckChange((dynamic message) {
+            Tuple3<int, int, int> tuple3 =
+            onStatePreReadingComplianceCheckChange(message);
+
+            droppedFrames.value = droppedFrames.value + tuple3.item1;
+            brightness.value = brightness.value + tuple3.item2;
+            lensCovered.value = lensCovered.value + tuple3.item3;
+          });
+      cancelListeningProgressChange =
+          startListeningProgressChange((dynamic message) {
+            progress.value = message['progress'];
+          });
+      cancelListeningStateChange = startListeningStateChange((dynamic message) {
+        String? state = message['state'];
+        if (state == null) {
+          return;
+        }
+        SprenState _sprenState =
+        SprenState.values.firstWhere((e) => e.toShortString() == state);
+        if (_sprenState == SprenState.error) {
+          modal.value = ModalVisible.stop;
+        } else if (_sprenState == SprenState.finished) {
+          progress.value = 100;
+          getReadingData();
+        }
+        readingStatus.value = _sprenState;
+      });
+
+      lightInsufficientModal = getLightInsufficientModal(context, () {
+        flash.value = 1;
+        modal.value = null;
+      }, () {
+        modal.value = null;
+      });
+
+      readingStoppedModal = getReadingStoppedModal(context, () {
+        modal.value = null;
+        Navigator.pop(context);
+      });
+
+      onInit();
+
+      return () {
+        if (cancelListeningPreReadingComplianceCheckChange != null) {
+          cancelListeningPreReadingComplianceCheckChange!();
+        }
+        if (cancelListeningStateChange != null) {
+          cancelListeningStateChange!();
+        }
+        if (cancelListeningProgressChange != null) {
+          cancelListeningProgressChange!();
+        }
+      };
+    }, []);
+
+    useEffect(() {
+      if (droppedFrames.value != 2) {
+        return;
+      }
+      SprenFlutter.dropComplexity();
+      SprenFlutter.setTorchMode(flash.value);
+      droppedFrames.value = 0;
+      return null;
+    }, [droppedFrames.value]);
+
+    // BRIGHTNESS
+    useEffect(() {
+      if (brightness.value % 6 != 0 ||
+          readingStatus.value == SprenState.started ||
+          modal.value != null) {
+        return;
+      }
+      modal.value = ModalVisible.brightness;
+      return null;
+    }, [brightness.value]);
+
+    // LENS_COVERED
+    useEffect(() {
+      if (lensCovered.value % 6 != 0 ||
+          readingStatus.value == SprenState.started ||
+          modal.value != null) {
+        return;
+      }
+      modal.value = ModalVisible.stop;
+      return null;
+    }, [lensCovered.value]);
+
+    Future<void> modalDisplay(ModalVisible? modal) async {
+      await Future.delayed(const Duration(milliseconds: 1));
+      if (modal == ModalVisible.brightness) {
+        lightInsufficientModal?.show();
+      } else if (modal == ModalVisible.stop) {
+        readingStoppedModal?.show();
+      }
+    }
+
+    // MODAL
+    useEffect(() {
+      modalDisplay(modal.value);
+      return null;
+    }, [modal.value]);
+
+    // FLASH
+    useEffect(() {
+      SprenFlutter.setTorchMode(flash.value);
+      return null;
+    }, [flash.value]);
+
+    void setTorchMode(int mode) {
+      flash.value = mode;
+    }
+
+    return Positioned(
+        top: 0,
+        left: 0,
+        width: width,
+        height: height,
+        child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 50, 16, 40),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: CloseBtn(color: Colors.white, onPressed: () {
+                              Navigator.pop(context);
+                            }),
+                          ),
+                          CameraProgress(progress: progress.value),
+                        ],
+                      ),
+                      flash.value == 0
+                          ? FlashEnableButton(notifyParent: setTorchMode)
+                          : FlashDisableButton(notifyParent: setTorchMode),
+                    ],
+                  ),
+                ))));
+  }
+}
+
+enum ModalVisible {
+  brightness,
+  stop,
+}

@@ -39,7 +39,7 @@ Spren.setOnPrereadingComplianceCheck { check, compliant, action in
 }
 
 // handle state transitions
-Spren.setOnStateChanged { (state, error) in
+Spren.setOnStateChange { (state, error) in
 		switch state {
 	  case .started:
 			sprenCapture.lock()

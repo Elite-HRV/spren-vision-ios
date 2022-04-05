@@ -32,7 +32,7 @@ class CameraViewOverlay extends HookWidget {
     final droppedFrames = useState(0);
     final brightness = useState(1);
     final lensCovered = useState(1);
-    final flash = useState(0);
+    final flash = useState(-1);
     final readingStatus = useState<SprenState>(SprenState.preReading);
     final modal = useState<ModalVisible?>(null);
 
@@ -67,6 +67,26 @@ class CameraViewOverlay extends HookWidget {
       await Future.delayed(const Duration(seconds: 1));
 
       flash.value = 1;
+      SprenFlutter.setAutoStart(true);
+    }
+
+    void setTorchMode(int mode) async {
+      try {
+        await SprenFlutter.setTorchMode(mode);
+      } catch (e) {
+        if (mode == 0) {
+          flash.value = 1;
+        } else {
+          flash.value = 0;
+        }
+      }
+    }
+
+    reset () {
+      readingStatus.value = SprenState.preReading;
+      progress.value = 0;
+      droppedFrames.value = 0;
+      brightness.value = 1;
       SprenFlutter.setAutoStart(true);
     }
 
@@ -109,7 +129,7 @@ class CameraViewOverlay extends HookWidget {
 
       readingStoppedModal = getReadingStoppedModal(context, () {
         modal.value = null;
-        Navigator.pop(context);
+        reset();
       });
 
       onInit();
@@ -132,7 +152,7 @@ class CameraViewOverlay extends HookWidget {
         return;
       }
       SprenFlutter.dropComplexity();
-      SprenFlutter.setTorchMode(flash.value);
+      setTorchMode(flash.value);
       droppedFrames.value = 0;
       return null;
     }, [droppedFrames.value]);
@@ -152,6 +172,8 @@ class CameraViewOverlay extends HookWidget {
     useEffect(() {
       if (lensCovered.value % 6 != 0 ||
           readingStatus.value == SprenState.started ||
+          readingStatus.value == SprenState.error ||
+          readingStatus.value == SprenState.preReading ||
           modal.value != null) {
         return;
       }
@@ -176,11 +198,11 @@ class CameraViewOverlay extends HookWidget {
 
     // FLASH
     useEffect(() {
-      SprenFlutter.setTorchMode(flash.value);
+      setTorchMode(flash.value);
       return null;
     }, [flash.value]);
 
-    void setTorchMode(int mode) {
+    void changeTorchMode(int mode) {
       flash.value = mode;
     }
 
@@ -211,9 +233,8 @@ class CameraViewOverlay extends HookWidget {
                           CameraProgress(progress: progress.value),
                         ],
                       ),
-                      flash.value == 0
-                          ? FlashEnableButton(notifyParent: setTorchMode)
-                          : FlashDisableButton(notifyParent: setTorchMode),
+                      if (flash.value == 0) FlashEnableButton(notifyParent: changeTorchMode),
+                      if (flash.value == 1) FlashDisableButton(notifyParent: changeTorchMode),
                     ],
                   ),
                 ))));

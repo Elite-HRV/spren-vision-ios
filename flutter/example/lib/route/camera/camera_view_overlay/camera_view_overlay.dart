@@ -198,6 +198,9 @@ class CameraViewOverlay extends HookWidget {
 
     // FLASH
     useEffect(() {
+      if (flash.value == -1) {
+        return;
+      }
       setTorchMode(flash.value);
       return null;
     }, [flash.value]);

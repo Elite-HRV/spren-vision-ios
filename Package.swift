@@ -22,7 +22,7 @@ let package = Package(
     targets: [
         .target(
             name: "SprenCapture",
-            dependencies: ["SprenCore"],
+            dependencies: ["DeviceKit", "SprenCore"],
             path: "Sources"
         ),
         .binaryTarget(

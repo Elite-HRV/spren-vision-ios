@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import DeviceKit
 import SprenCore
 
 open class SprenCapture {
@@ -41,7 +42,14 @@ open class SprenCapture {
     
     
     public init() throws {
-        guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
+        let deviceType: AVCaptureDevice.DeviceType
+        switch Device.current {
+        case .iPhone7Plus, .iPhone8Plus:
+            deviceType = .builtInTelephotoCamera
+        default:
+            deviceType = .builtInWideAngleCamera
+        }
+        guard let videoDevice = AVCaptureDevice.default(deviceType, for: .video, position: .back) else {
             throw SprenCaptureError.noCameraDetected
         }
         self.videoDevice = videoDevice

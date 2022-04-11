@@ -181,6 +181,13 @@ class CameraViewOverlay extends HookWidget {
       return null;
     }, [lensCovered.value]);
 
+    useOnAppLifecycleStateChange((AppLifecycleState? previous,
+        AppLifecycleState current) {
+      if (current == AppLifecycleState.resumed) {
+        setTorchMode(flash.value);
+      }
+    });
+
     Future<void> modalDisplay(ModalVisible? modal) async {
       await Future.delayed(const Duration(milliseconds: 1));
       if (modal == ModalVisible.brightness) {

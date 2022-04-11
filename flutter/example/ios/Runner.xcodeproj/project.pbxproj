@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		014AD8362804D284004FD128 /* libswift_Concurrency.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 014AD8352804D284004FD128 /* libswift_Concurrency.tbd */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		3FF0F1EA89B034B0B5B8A47C /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987E86CF43A89E7B7E90EC5E /* Pods_Runner.framework */; };
@@ -56,7 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				014AD8362804D284004FD128 /* libswift_Concurrency.tbd in Frameworks */,
 				3FF0F1EA89B034B0B5B8A47C /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

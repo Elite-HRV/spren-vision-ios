@@ -12,7 +12,7 @@ Future main() async {
       // We recommend adjusting this value in production.
       options.tracesSampleRate = 1.0;
     },
-    appRunner: () => runApp(const SprenDemoApp()),
+    appRunner: () => runApp(SprenDemoApp()),
   );
 }
 

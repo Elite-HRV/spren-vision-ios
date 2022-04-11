@@ -10,7 +10,7 @@ class FlashEnableButton extends StatelessWidget {
     return IconButton(
       icon: Image.asset('images/flash_enable.png'),
       onPressed: () {
-        notifyParent(1);
+        notifyParent(0);
       },
     );
   }

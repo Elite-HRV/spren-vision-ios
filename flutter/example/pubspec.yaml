@@ -40,6 +40,8 @@ dependencies:
   flutter_hooks: ^0.18.2+1
   http: ^0.13.4
   flutter_dotenv: ^5.0.2
+  sentry_flutter: ^6.4.0
+  permission_handler: ^9.2.0
 
 dev_dependencies:
   flutter_test:

@@ -82,7 +82,7 @@ class CameraViewOverlay extends HookWidget {
       }
     }
 
-    reset () {
+    reset() {
       readingStatus.value = SprenState.preReading;
       progress.value = 0;
       droppedFrames.value = 0;
@@ -93,24 +93,24 @@ class CameraViewOverlay extends HookWidget {
     useEffect(() {
       cancelListeningPreReadingComplianceCheckChange =
           startListeningPreReadingComplianceCheckChange((dynamic message) {
-            Tuple3<int, int, int> tuple3 =
+        Tuple3<int, int, int> tuple3 =
             onStatePreReadingComplianceCheckChange(message);
 
-            droppedFrames.value = droppedFrames.value + tuple3.item1;
-            brightness.value = brightness.value + tuple3.item2;
-            lensCovered.value = lensCovered.value + tuple3.item3;
-          });
+        droppedFrames.value = droppedFrames.value + tuple3.item1;
+        brightness.value = brightness.value + tuple3.item2;
+        lensCovered.value = lensCovered.value + tuple3.item3;
+      });
       cancelListeningProgressChange =
           startListeningProgressChange((dynamic message) {
-            progress.value = message['progress'];
-          });
+        progress.value = message['progress'];
+      });
       cancelListeningStateChange = startListeningStateChange((dynamic message) {
         String? state = message['state'];
         if (state == null) {
           return;
         }
         SprenState _sprenState =
-        SprenState.values.firstWhere((e) => e.toShortString() == state);
+            SprenState.values.firstWhere((e) => e.toShortString() == state);
         if (_sprenState == SprenState.error) {
           modal.value = ModalVisible.stop;
         } else if (_sprenState == SprenState.finished) {
@@ -229,15 +229,19 @@ class CameraViewOverlay extends HookWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10),
-                            child: CloseBtn(color: Colors.white, onPressed: () {
-                              Navigator.pop(context);
-                            }),
+                            child: CloseBtn(
+                                color: Colors.white,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }),
                           ),
                           CameraProgress(progress: progress.value),
                         ],
                       ),
-                      if (flash.value == 0) FlashEnableButton(notifyParent: changeTorchMode),
-                      if (flash.value == 1) FlashDisableButton(notifyParent: changeTorchMode),
+                      if (flash.value == 1)
+                        FlashEnableButton(notifyParent: changeTorchMode),
+                      if (flash.value == 0)
+                        FlashDisableButton(notifyParent: changeTorchMode),
                     ],
                   ),
                 ))));

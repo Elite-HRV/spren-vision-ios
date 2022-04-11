@@ -21,6 +21,11 @@ class RouteHome extends HookWidget {
       onInit();
     }, []);
 
+    useOnAppLifecycleStateChange((AppLifecycleState? previous,
+        AppLifecycleState current) {
+      onInit();
+    });
+
     return Scaffold(
         body: Padding(
             padding: const EdgeInsets.fromLTRB(16, 50, 16, 18),

@@ -1,4 +1,4 @@
-package com.reactnativespren;
+package com.spren.rn;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

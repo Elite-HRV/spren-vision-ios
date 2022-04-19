@@ -27,10 +27,9 @@ CancelListening startListeningPreReadingComplianceCheckChange(
   };
 }
 
-CancelListening startListeningProgressChange(
-    Listener listener) {
-  const _channel = EventChannel(
-      'com.spren/spren_flutter_event_progress_update');
+CancelListening startListeningProgressChange(Listener listener) {
+  const _channel =
+      EventChannel('com.spren/spren_flutter_event_progress_update');
   var subscription = _channel
       .receiveBroadcastStream(nextListenerId++)
       .listen(listener, cancelOnError: true);

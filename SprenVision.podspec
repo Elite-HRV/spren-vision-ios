@@ -1,14 +1,13 @@
-require "json"
-
-package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 
 Pod::Spec.new do |s|
   s.name         = "SprenVision"
-  s.version      = package["version"]
-  s.summary      = package["description"]
-  s.homepage     = package["homepage"]
-  s.license      = package["license"]
-  s.authors      = package["author"]
+  s.version      = "1.1.0"
+  s.summary      = "Spren Finger Camera SDK"
+  s.homepage     = "https://github.com/Elite-HRV/spren-vision-ios#readme"
+  s.license      = "LicenseRef-LICENSE"
+  s.authors      = {'Keith Carolus'     => 'keith@spren.com',
+                    'Fernando Eckert'   => 'Fernando@spren.com',
+                    'Nick Avasiloy'     => 'nick@spren.com'}
 
   s.platforms    = { :ios => "14.0" }
   s.source       = { :git => "https://github.com/Elite-HRV/spren-vision-ios.git", :tag => "v#{s.version}" }

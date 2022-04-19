@@ -1,31 +1,30 @@
-
 import 'dart:async';
 
 import 'package:flutter/services.dart';
 
 class SprenFlutter {
-  static const MethodChannel _channel = MethodChannel('com.spren/spren_flutter_method');
+  static const MethodChannel _channel =
+      MethodChannel('com.spren/spren_flutter_method');
 
   /// Set reading auto start. autoStart by default is false
   /// Set autoStart to true if you want reading to start automatically.
   static Future<void> setAutoStart(bool autoStart) async {
     try {
-      return await _channel.invokeMethod('setAutoStart', <String, dynamic>{
-        'autoStart': autoStart
-      });
+      return await _channel.invokeMethod(
+          'setAutoStart', <String, dynamic>{'autoStart': autoStart});
     } on PlatformException catch (e) {
       throw 'Unable to run setAutoStart: ${e.message}';
     }
   }
+
   /// Configure flash light mode. torchMode possible values are:
   /// 0 - The capture device torch is always off.
   /// 1 - The capture device torch is always on.
   /// 2 - The capture device continuously monitors light levels and uses the torch when necessary.
   static Future<void> setTorchMode(int torchMode) async {
     try {
-      return await _channel.invokeMethod('setTorchMode', <String, dynamic>{
-        'torchMode': torchMode
-      });
+      return await _channel.invokeMethod(
+          'setTorchMode', <String, dynamic>{'torchMode': torchMode});
     } on PlatformException catch (e) {
       throw 'Unable to run setTorchMode: ${e.message}';
     }

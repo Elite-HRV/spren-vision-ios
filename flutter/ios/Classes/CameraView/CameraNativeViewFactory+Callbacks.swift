@@ -51,12 +51,6 @@ extension CameraNativeViewFactory {
             } else if (call.method == "getReadingData") {
                 let readingData: String? = Spren.getReadingData()
                 result(readingData)
-            } else if (call.method == "getPlatformVersion") {
-                self.eventStateChange.eventSink?("10")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    self.eventStateChange.eventSink?("11")
-                }
-                result("iOS " + UIDevice.current.systemVersion)
             } else {
                 result(FlutterMethodNotImplemented)
             }

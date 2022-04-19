@@ -8,6 +8,7 @@
 import Foundation
 import AVKit
 import SprenCore
+import SprenVision
 
 class SprenView : UIView {
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -45,5 +46,5 @@ class SprenView : UIView {
     func startCamera() {
         sprenCapture!.start()
         print("SprenCapture started")
-    }    
+    }
 }

@@ -15,4 +15,5 @@ Pod::Spec.new do |s|
   s.source_files = "Sources/**/*.{swift}"
   s.vendored_frameworks = "Framework/SprenCore.xcframework"
   s.swift_version = '5.0'
+  s.dependency 'DeviceKit', '~> 4.0'
 end

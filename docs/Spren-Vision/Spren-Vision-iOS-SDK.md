@@ -122,7 +122,7 @@ Enable or disable reading autostart. Autostart occurs after 3 seconds of conditi
 
 `static internal(set) var readingDurationSeconds: Double`
 
-Reading duration ≥ 90 seconds or ≤ 240 seconds.
+Reading duration ≥ 60 seconds or ≤ 240 seconds.
 
 `static func setReadingDuration(duration: Int)`
 

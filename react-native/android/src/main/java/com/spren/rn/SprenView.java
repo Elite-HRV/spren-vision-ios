@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.camera.view.PreviewView;
-import androidx .appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.uimanager.ThemedReactContext;
@@ -35,7 +34,7 @@ public class SprenView extends FrameLayout {
         this.context = context;
 
         PreviewView previewView = setupViews();
-        sprenCapture = new SprenCapture((AppCompatActivity) Objects.requireNonNull(context.getReactApplicationContext().getCurrentActivity()), previewView);
+        sprenCapture = new SprenCapture(Objects.requireNonNull(context.getReactApplicationContext().getCurrentActivity()), previewView.getSurfaceProvider());
         sprenViewCommands = new SprenViewCommands(sprenCapture, this);
         setSprenCallbacks();
         startSpren(previewView);

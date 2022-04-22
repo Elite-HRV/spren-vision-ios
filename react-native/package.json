@@ -34,7 +34,8 @@
   "keywords": [
     "spren",
     "react-native",
-    "ios"
+    "ios",
+    "android"
   ],
   "repository": "https://github.com/Elite-HRV/spren-vision-ios",
   "author": "nick <nick@elitehrv.com> (https://github.com/Elite-HRV)",

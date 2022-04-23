@@ -126,7 +126,7 @@ Reading duration ≥ 60 seconds or ≤ 240 seconds.
 
 `static func setReadingDuration(duration: Int)`
 
-Set the reading duration. A duration in the range ≥ 90 seconds or ≤ 240 seconds must be provided or the call returns.
+Set the reading duration. A duration in the range ≥ 60 seconds or ≤ 240 seconds must be provided or the call returns.
 
 `static func setOnPrereadingComplianceCheck(onPrereadingComplianceCheck: @escaping (ComplianceCheck.Name, Bool, ComplianceCheck.Action?) -> Void)`
 

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
-class CameraView extends StatelessWidget {
+class CameraViewiOS extends StatelessWidget {
   final double width;
   final double height;
 
-  const CameraView({Key? key, required this.width, required this.height}) : super(key: key);
+  const CameraViewiOS({Key? key, required this.width, required this.height}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

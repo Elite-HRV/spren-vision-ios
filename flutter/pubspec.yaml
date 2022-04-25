@@ -1,6 +1,6 @@
 name: spren_flutter
 description: Spren flutter plugin
-version: 1.0.1
+version: 1.1.0
 homepage: https://www.spren.com/
 
 environment:
@@ -29,9 +29,9 @@ flutter:
     platforms:
       ios:
         pluginClass: SprenFlutterPlugin
-#      android:
-#        package: com.spren.spren_flutter
-#        pluginClass: SprenFlutterPlugin
+      android:
+        package: com.spren.spren_flutter
+        pluginClass: SprenFlutterPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

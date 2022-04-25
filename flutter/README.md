@@ -4,14 +4,13 @@
 
 A Flutter plugin for iOS allowing access Spren services.
 
-|                | iOS     |
-|----------------|---------|
-| **Support**    | iOS 14+*|
+|                | iOS     | Android     |
+|----------------|---------|---------|
+| **Support**    | iOS 14+*| API 21+|
 
 ## Features
 
 * Records biological activity data.
-* Add access to reading data from Dart.
 
 ## Installation
 
@@ -45,8 +44,8 @@ import 'package:spren_flutter/spren_flutter.dart';
 | `SprenFlutter.captureStart()`                |              | Starts camera capture |
 | `SprenFlutter.captureStop()`          |             | Stops camera capture                                                      |
 | `SprenFlutter.dropComplexity()`  |   | Lower camera resolution and/or frame rate when phone load gets too high                                                              |
-| `SprenFlutter.captureLock()`     |          | Locks camera device configuration      |
-| `SprenFlutter.captureUnlock()`     |          | Unlocks camera device configuration      |
+| `SprenFlutter.captureLock()` *iOS only*     |          | Locks camera device configuration      |
+| `SprenFlutter.captureUnlock()` *iOS only*     |          | Unlocks camera device configuration      |
 
 ### Usage
 

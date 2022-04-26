@@ -19,7 +19,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  spren_flutter: ^1.0.0
+  spren_flutter: ^1.1.0
 #  spren_flutter:
 #    # When depending on this package from a real application you should use:
 #    #   spren_flutter: ^x.y.z

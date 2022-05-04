@@ -19,4 +19,9 @@ extension AVCaptureDevice.Format {
         return Int(dims.width*dims.height)
     }
     
+    var hrsiSupported: Bool {
+        let hrsiDims = highResolutionStillImageDimensions
+        return resolution != Int(hrsiDims.width*hrsiDims.height)
+    }
+    
 }

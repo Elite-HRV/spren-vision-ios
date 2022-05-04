@@ -22,20 +22,42 @@ open class SprenCapture {
     private var formats: [AVCaptureDevice.Format]
     
     private var formatIndex: Int
-    private var frameRate: Int
     private var resolution: Int
-    
+    private var frameRate: Int
+
     // camera config
-    static private let frameRate: (min: Double, max: Double) = (min: 60, max: 120)
-    static private let resolution = (min: 1280*720, max: 1920*1080)
+    static private let minFrameRate = 60
+    static private let minResolution = 1280*720
+
+    static private let (maxFrameRate, maxResolution): (Int, Int) = {
+        switch Device.current {
+        case .iPhoneSE:     return (120, 1280*720)
+        case .iPhone6s:     return (120, 1280*720)
+        case .iPhone6sPlus: return (120, 1280*720)
+        case .iPhone7:      return (120, 1280*720)
+        case .iPhone7Plus:  return (120, 1280*720)
+        case .iPhone8:      return (120, 1280*720)
+        case .iPhone8Plus:  return (120, 1280*720)
+        case .iPhoneX:      return (120, 1280*720)
+        case .iPhoneXR:     return (120, 1280*720)
+        case .iPhoneXS:     return (120, 1280*720)
+        case .iPhoneXSMax:  return (120, 1280*720)
+        case .iPhoneSE2:    return (120, 1920*1080)
+        default: return (120, 1920*1080)
+        }
+    }()
+
     private let filter: (AVCaptureDevice.Format) -> Bool = { format in
-        let cond1 = format.resolution >= resolution.min && format.resolution <= resolution.max
-        let cond2 = format.videoSupportedFrameRateRanges.contains { $0.maxFrameRate >= frameRate.min && $0.maxFrameRate <= frameRate.max }
-        
-        let cond3 = !format.supportedColorSpaces.contains(.P3_D65)
-        let cond4 = !format.isVideoHDRSupported
-        
-        return cond1 && cond2 && cond3 && cond4
+        let cond1 = format.resolution >= minResolution && format.resolution <= maxResolution
+        let cond2 = !format.hrsiSupported
+
+        let cond3 = format.videoSupportedFrameRateRanges.contains { maxFrameRate == Int($0.maxFrameRate) }
+
+        let cond4 = format.formatDescription.mediaSubType == .init(rawValue: kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)
+        let cond5 = !format.supportedColorSpaces.contains(.P3_D65)
+        let cond6 = !format.isVideoHDRSupported
+
+        return cond1 && cond2 && cond3 && cond4 && cond5 && cond6
     }
 
     let videoOrientation: AVCaptureVideoOrientation = .portrait
@@ -60,15 +82,15 @@ open class SprenCapture {
         }
         
         formats.sort { format1, format2 in
-            format1.videoSupportedFrameRateRanges[0].maxFrameRate < format2.videoSupportedFrameRateRanges[0].maxFrameRate
+            format1.frameRate < format2.frameRate
         }
                 
         formatIndex = formats.count - 1
-        frameRate  = Int(formats[formatIndex].frameRate)
+        frameRate  = min(Self.maxFrameRate, formats[formatIndex].frameRate)
         resolution = formats[formatIndex].resolution
                 
-        try configureDevice()
         try configureSession()
+        try configureDevice()
         try configureOutput()
     }
     
@@ -171,6 +193,7 @@ extension SprenCapture {
         formats = lowerResFormats
         formatIndex = formats.count - 1
         frameRate  = Int(formats[formatIndex].frameRate)
+        frameRate  = min(Self.maxFrameRate, formats[formatIndex].frameRate)
         resolution = formats[formatIndex].resolution
         try configureDevice()
         return true

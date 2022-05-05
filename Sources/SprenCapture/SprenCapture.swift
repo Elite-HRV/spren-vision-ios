@@ -31,17 +31,19 @@ open class SprenCapture {
 
     static private let (maxFrameRate, maxResolution): (Int, Int) = {
         switch Device.current {
+        case .iPhone6s:     return (100, 1280*720)
+        case .iPhone6sPlus: return (100, 1280*720)
+        case .iPhone7:      return (100, 1280*720)
+        case .iPhone7Plus:  return (100, 1280*720)
+        
         case .iPhoneSE:     return (120, 1280*720)
-        case .iPhone6s:     return (120, 1280*720)
-        case .iPhone6sPlus: return (120, 1280*720)
-        case .iPhone7:      return (120, 1280*720)
-        case .iPhone7Plus:  return (120, 1280*720)
         case .iPhone8:      return (120, 1280*720)
         case .iPhone8Plus:  return (120, 1280*720)
         case .iPhoneX:      return (120, 1280*720)
         case .iPhoneXR:     return (120, 1280*720)
         case .iPhoneXS:     return (120, 1280*720)
         case .iPhoneXSMax:  return (120, 1280*720)
+        
         case .iPhoneSE2:    return (120, 1920*1080)
         default: return (120, 1920*1080)
         }
@@ -51,7 +53,7 @@ open class SprenCapture {
         let cond1 = format.resolution >= minResolution && format.resolution <= maxResolution
         let cond2 = !format.hrsiSupported
 
-        let cond3 = format.videoSupportedFrameRateRanges.contains { maxFrameRate == Int($0.maxFrameRate) }
+        let cond3 = format.videoSupportedFrameRateRanges.contains { maxFrameRate <= Int($0.maxFrameRate) }
 
         let cond4 = format.formatDescription.mediaSubType == .init(rawValue: kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)
         let cond5 = !format.supportedColorSpaces.contains(.P3_D65)

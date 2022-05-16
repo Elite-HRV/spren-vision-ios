@@ -1,15 +1,16 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
+// swift-compiler-version: Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
 // swift-module-flags: -target x86_64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SprenCore
 import AVFoundation
+import Accelerate
 import CommonCrypto
 import CoreImage
 import CoreMedia
 import CoreVideo
 import Foundation
+import MetalPerformanceShaders
 import Swift
 import UIKit
-import _Concurrency
 import zlib
 public struct Format {
   public let fps: Swift.Double
@@ -68,22 +69,16 @@ public enum SprenComplianceError : Swift.Error {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class Test {
-  public static func testOrigBrightness(_ frame: CoreMedia.CMSampleBuffer)
-  public static func testNewBrightness(_ frame: CoreMedia.CMSampleBuffer)
-  public static func testOrigLensCoverage(_ frame: CoreMedia.CMSampleBuffer)
-  public static func testNewLensCoverage(_ frame: CoreMedia.CMSampleBuffer)
-  public static func testOrigRGB(_ frame: CoreMedia.CMSampleBuffer)
-  public static func testNewRGB(_ frame: CoreMedia.CMSampleBuffer)
   public static func testMode()
   public static func getJsonString() -> Swift.String?
   public static func testFinished()
   @objc deinit
 }
-extension SprenCore.Spren {
+extension Spren {
   public static func setReadingDuration(duration: Swift.Int)
   public static func setOnPrereadingComplianceCheck(onPrereadingComplianceCheck: @escaping (SprenCore.ComplianceCheck.Name, Swift.Bool, SprenCore.ComplianceCheck.Action?) -> Swift.Void)
-  public static func setOnProgressUpdate(onProgressUpdate: @escaping (_ progress: Swift.Int) -> Swift.Void)
-  public static func setOnStateChange(onStateChange: @escaping (_ state: SprenCore.SprenState, _ error: Swift.Error?) -> Swift.Void)
+  public static func setOnProgressUpdate(onProgressUpdate: @escaping (Swift.Int) -> Swift.Void)
+  public static func setOnStateChange(onStateChange: @escaping (SprenCore.SprenState, Swift.Error?) -> Swift.Void)
   public static func startReading()
   public static func cancelReading()
 }

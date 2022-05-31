@@ -2,10 +2,18 @@
 
 The Android SDK is in Alpha. We're working quickly to expand our support in the heterogeneity of Android devices. 
 
+## Device Support and Recommendations
+
+> A supported device function exposed by the SDK is coming soon!
+
 ## Tested Devices
 * Google Pixel 4a
 * Google Pixel 6
 * Samsung Galaxy S9
+
+## Currently Testing
+* Google Pixel 4, 5, and 6
+* Samsung Galaxy S10, S20, S21, and S22
 
 ## Recommendations
 
@@ -15,12 +23,14 @@ Currently, we advise users to consistently perform readings with either flash on
 
 ### Hardware
 
-We recommend using an Android device that is not a low RAM device, has at least 8 cores, and 192MB RAM available to your app. 
-```kotlin
-val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-val isHighPerformingDevice = !activityManager.isLowRamDevice && Runtime.getRuntime()
-    .availableProcessors() >= 8 && activityManager.memoryClass >= 192
-```
+1. We recommend using an Android device that is not a low RAM device, has at least 8 cores, and has 192MB or more RAM available to your app. 
+    ```kotlin
+    val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    val isHighPerformingDevice = !activityManager.isLowRamDevice && 
+        Runtime.getRuntime().availableProcessors() >= 8 && 
+        activityManager.memoryClass >= 192
+    ```
+2. 30FPS is acceptable, but for best accuracy and UX, we recommend devices that support 60FPS in CameraX. Note that 60FPS or better may be listed in manufacturer's device specifications, thus, be supported in the native camera app, but be unavailable to CameraX.
 
 
 ## Installation

@@ -87,7 +87,7 @@ public class SprenView extends FrameLayout implements MethodChannel.MethodCallHa
                 public void run() {
                     StateChangeHandler.getInstance().getEventSink().success(new HashMap<String, String>(){{
                         put("state", SprenChannel.COMPLIANCE_STATE_MAP.get(sprenState));
-                        put("error", sprenComplianceError == null ? null : sprenComplianceError.getLocalizedDescription());
+//                        put("error", sprenComplianceError == null ? null : sprenComplianceError.getLocalizedDescription());
                     }});
                 }
             });

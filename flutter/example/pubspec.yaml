@@ -21,12 +21,12 @@ dependencies:
 
   spren_flutter: ^1.1.0
 #  spren_flutter:
+#    path: ../
 #    # When depending on this package from a real application you should use:
-#    #   spren_flutter: ^x.y.z
+#    #   spren_flutter: latest version
 #    # See https://dart.dev/tools/pub/dependencies#version-constraints
 #    # The example app is bundled with the plugin so we use a path dependency on
 #    # the parent directory to use the current plugin's version.
-#    path: ../
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

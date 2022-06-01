@@ -17,8 +17,8 @@ class CameraViewAndroid extends StatelessWidget {
     }
 
     final Map<String, dynamic> creationParams = <String, dynamic>{
-      "width": width - 100,
-      "height": height - 100
+      "width": width,
+      "height": height
     };
 
     return FutureBuilder<AndroidDeviceInfo>(
@@ -26,8 +26,8 @@ class CameraViewAndroid extends StatelessWidget {
         builder: (context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
           if (snapshot.hasData && snapshot.data!.isPhysicalDevice == true) {
             return SizedBox(
-                width: MediaQuery.of(context).size.width - 100,
-                height: MediaQuery.of(context).size.height - 100,
+                width: width,
+                height: height,
                 child: AndroidView(
                   viewType: viewType,
                   layoutDirection: TextDirection.ltr,

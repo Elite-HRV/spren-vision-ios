@@ -15,8 +15,10 @@ buildscript {
 rootProject.allprojects {
     repositories {
         google()
-        mavenCentral()
-        mavenLocal()
+        maven {
+            name = 'snapshots'
+            url = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+        }
     }
 }
 
@@ -36,8 +38,8 @@ android {
 }
 
 dependencies {
-    implementation("com.spren:sprencapture:1.0.0")
-    implementation("com.spren:sprencore:1.0.0")
+    implementation("com.spren:sprencapture:+")
+    implementation("com.spren:sprencore:+")
     implementation 'androidx.camera:camera-view:1.1.0-beta02'
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
 }

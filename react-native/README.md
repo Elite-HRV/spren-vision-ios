@@ -36,18 +36,27 @@ If editing `Info.plist` as text, add:
 ### API
 ```typescript
 import {SprenView} from '@spren/react-native';
+const sprenRef = useRef<SprenView>();
+return (
+  <SprenView
+    ref={sprenRef}
+    onStateChange={(event: IStateChange) => {})
+    onProgressUpdate={(event: IProgressChange) => {})
+    onReadingDataReady={async (event: IReadingDataReady) => {})
+  >{children}</SprenView>
+)
 ```
 | Method                     | Parameters              | Description                                                                               |
 |----------------------------|-------------------|-------------------------------------------------------------------------------------------|
-| `SprenFlutter.setAutoStart(bool)`           | `true`,`false`          | Set reading auto start. `autoStart` by default is false. Set `autoStart` to `true` if you want reading to start automatically.                                                             |
-| `SprenFlutter.setTorchMode(string)`         | `"0"`,`"1"`,`"2"`          | Configure flash light mode. torchMode possible values are: `"0"` - The capture device torch is always off. `"1"` - The capture device torch is always on. `"2"` - The capture device continuously monitors light levels and uses the torch when necessary.                                                                 |
-| `SprenFlutter.getReadingData()`        | `string`          | Returns reading data information (needs to be called when reading is over)                                                                 |
-| `SprenFlutter.cancelReading()`           |  | Cancels the ongoing reading                                                 |
-| `SprenFlutter.captureStart()`                |              | Starts camera capture |
-| `SprenFlutter.captureStop()`          |             | Stops camera capture                                                      |
-| `SprenFlutter.dropComplexity()`  |   | Lower camera resolution and/or frame rate when phone load gets too high                                                              |
-| `SprenFlutter.captureLock()` *iOS only*    |          | Locks camera device configuration      |
-| `SprenFlutter.captureUnlock()` *iOS only*     |          | Unlocks camera device configuration      |
+| `sprenRef.current?.setAutoStart(bool)`           | `true`,`false`          | Set reading auto start. `autoStart` by default is false. Set `autoStart` to `true` if you want reading to start automatically.                                                             |
+| `sprenRef.current?.setTorchMode(string)`         | `"0"`,`"1"`,`"2"`          | Configure flash light mode. torchMode possible values are: `"0"` - The capture device torch is always off. `"1"` - The capture device torch is always on. `"2"` - The capture device continuously monitors light levels and uses the torch when necessary.                                                                 |
+| `sprenRef.current?.getReadingData()`        | `string`          | Returns reading data information (needs to be called when reading is over)                                                                 |
+| `sprenRef.current?.cancelReading()`           |  | Cancels the ongoing reading                                                 |
+| `sprenRef.current?.captureStart()`                |              | Starts camera capture |
+| `sprenRef.current?.captureStop()`          |             | Stops camera capture                                                      |
+| `sprenRef.current?.dropComplexity()`  |   | Lower camera resolution and/or frame rate when phone load gets too high                                                              |
+| `sprenRef.current?.captureLock()` *iOS only*    |          | Locks camera device configuration      |
+| `sprenRef.current?.captureUnlock()` *iOS only*     |          | Unlocks camera device configuration      |
 
 ## Usage
 

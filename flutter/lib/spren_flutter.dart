@@ -30,6 +30,15 @@ class SprenFlutter {
     }
   }
 
+  /// Handles camera over exposure
+  static Future<void> handleOverExposure() async {
+    try {
+      return await _channel.invokeMethod('handleOverExposure');
+    } on PlatformException catch (e) {
+      throw 'Unable to run setTorchMode: ${e.message}';
+    }
+  }
+
   /// Returns reading data information (needs to be called when reading is over)
   static Future<String> getReadingData() async {
     try {

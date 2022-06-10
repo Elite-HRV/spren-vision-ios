@@ -36,6 +36,8 @@ public class SprenViewCommands {
             Spren.Companion.setAutoStart(autoStart);
         } else if (call.method.equals(SprenCommands.COMMAND_CAPTURE_START.toString())) {
             sprenCapture.start();
+        } else if (call.method.equals(SprenCommands.COMMAND_HANDLE_OVER_EXPOSURE.toString())) {
+            sprenCapture.handleOverExposure();
         } else if (call.method.equals(SprenCommands.COMMAND_CAPTURE_STOP.toString())) {
             sprenCapture.stop();
         } else if (call.method.equals(SprenCommands.COMMAND_DROP_COMPLEXITY.toString())) {

@@ -41,6 +41,9 @@ export class SprenView extends React.Component<IProps, {}> {
     dropComplexity = () => {
         callNativeMethod(findNodeHandle(this), 'SprenView', 'dropComplexity');
     };
+    handleOverExposure = () => {
+        callNativeMethod(findNodeHandle(this), 'SprenView', 'handleOverExposure');
+    };
     setTorchMode = (torchMode: string) => {
         callNativeMethod(
             findNodeHandle(this),

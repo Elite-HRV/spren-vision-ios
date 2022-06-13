@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "SprenVision"
-  s.version      = "1.1.0"
+  s.version      = "1.2.0"
   s.summary      = "Spren Finger Camera SDK"
   s.homepage     = "https://github.com/Elite-HRV/spren-vision-ios#readme"
   s.license      = "LicenseRef-LICENSE"

@@ -282,9 +282,9 @@ PODS:
     - React-Core
   - react-native-keep-awake (4.0.0):
     - React
-  - react-native-spren (1.1.0):
+  - react-native-spren (1.2.0):
     - React-Core
-    - SprenVision (~> 1.1.0)
+    - SprenVision (~> 1.2.0)
   - React-perflogger (0.67.2)
   - React-RCTActionSheet (0.67.2):
     - React-Core/RCTActionSheetHeaders (= 0.67.2)
@@ -398,7 +398,7 @@ PODS:
   - Sentry (7.11.0):
     - Sentry/Core (= 7.11.0)
   - Sentry/Core (7.11.0)
-  - SprenVision (1.1.0):
+  - SprenVision (1.2.0):
     - DeviceKit (~> 4.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -606,7 +606,7 @@ SPEC CHECKSUMS:
   React-logger: 23de8ea0f44fa00ee77e96060273225607fd4d78
   react-native-config: 6502b1879f97ed5ac570a029961fc35ea606cd14
   react-native-keep-awake: afad8a51dfef9fe9655a6344771be32c8596d774
-  react-native-spren: 96a9a01bfe6932a734c7ed93c974e1bbd646641f
+  react-native-spren: 737a17d82fa93b0ff916dfa601c5ca05f75a29c1
   React-perflogger: 3c9bb7372493e49036f07a82c44c8cf65cbe88db
   React-RCTActionSheet: 052606483045a408693aa7e864410b4a052f541a
   React-RCTAnimation: 08d4cac13222bb1348c687a0158dfd3b577cdb63
@@ -625,7 +625,7 @@ SPEC CHECKSUMS:
   RNSentry: fbbdcd7213058e3de5fbaa452b25a06a16b4b382
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   Sentry: 0c5cd63d714187b4a39c331c1f0eb04ba7868341
-  SprenVision: 3bff2d86acd563407fc3255d07f2fe2a302091fe
+  SprenVision: 7e193808aa798037b6fced4271afde9f271ab941
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

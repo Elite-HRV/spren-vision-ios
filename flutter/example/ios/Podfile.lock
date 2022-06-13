@@ -7,17 +7,17 @@ PODS:
     - Flutter
   - permission_handler_apple (9.0.4):
     - Flutter
-  - Sentry (7.10.2):
-    - Sentry/Core (= 7.10.2)
-  - Sentry/Core (7.10.2)
+  - Sentry (7.11.0):
+    - Sentry/Core (= 7.11.0)
+  - Sentry/Core (7.11.0)
   - sentry_flutter (0.0.1):
     - Flutter
     - FlutterMacOS
-    - Sentry (~> 7.10.1)
-  - spren_flutter (1.1.0):
+    - Sentry (~> 7.11.0)
+  - spren_flutter (1.2.0):
     - Flutter
-    - SprenVision (~> 1.1.0)
-  - SprenVision (1.1.0):
+    - SprenVision (~> 1.2.0)
+  - SprenVision (1.2.0):
     - DeviceKit (~> 4.0)
   - wakelock (0.0.1):
     - Flutter
@@ -59,10 +59,10 @@ SPEC CHECKSUMS:
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
-  Sentry: 7bf9bfe713692cf87812e55f0999260494ba7982
-  sentry_flutter: 77ccdac346608b8ce7e428e7284e7a3e4e7f4a02
-  spren_flutter: 54eb627fa155277ee22343a0dca853c0b75c8998
-  SprenVision: 3bff2d86acd563407fc3255d07f2fe2a302091fe
+  Sentry: 0c5cd63d714187b4a39c331c1f0eb04ba7868341
+  sentry_flutter: efb3df2c203cd03aad255892a8d628a458656d14
+  spren_flutter: 1b73e0a3c891822ef31d8c8749d6fd3ad8079fff
+  SprenVision: 7e193808aa798037b6fced4271afde9f271ab941
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
 
 PODFILE CHECKSUM: c3b9c46d359d604bcf6095373776b2f89118e7db

@@ -357,6 +357,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.2"
+  spren_flutter:
+    dependency: "direct main"
+    description:
+      name: spren_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
   sprintf:
     dependency: "direct main"
     description:

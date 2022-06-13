@@ -26,8 +26,8 @@ class CameraViewAndroid extends StatelessWidget {
         builder: (context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
           if (snapshot.hasData && snapshot.data!.isPhysicalDevice == true) {
             return SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
+                width: width,
+                height: height,
                 child: AndroidView(
                   viewType: viewType,
                   layoutDirection: TextDirection.ltr,

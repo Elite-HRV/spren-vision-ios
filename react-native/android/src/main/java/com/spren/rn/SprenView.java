@@ -14,7 +14,7 @@ import com.spren.sprencore.Spren;
 import com.spren.sprencore.SprenState;
 import com.spren.sprencore.Spren_PublicConfigKt;
 import com.spren.sprencore.finger.compliance.ComplianceCheck;
-import com.spren.sprencore.finger.compliance.SprenComplianceError;
+// import com.spren.sprencore.finger.compliance.SprenComplianceError;
 import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import kotlin.Unit;
@@ -67,7 +67,7 @@ public class SprenView extends FrameLayout {
     private void setSprenCallbacks() {
         SprenView that = this;
         Spren_PublicConfigKt.setOnStateChange(Spren.Companion, (sprenState, sprenComplianceError) -> {
-            SprenEvents.emitStateChangeEvent(that, sprenState, sprenComplianceError);
+            SprenEvents.emitStateChangeEvent(that, sprenState);
             return null;
         });
         Spren_PublicConfigKt.setOnPrereadingComplianceCheck(Spren.Companion, (name, aBoolean, action) -> {

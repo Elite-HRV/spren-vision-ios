@@ -1,7 +1,7 @@
 import 'package:tuple/tuple.dart';
 import 'package:spren_flutter/spren_model.dart';
 
-Tuple3<int, int, int> onStatePreReadingComplianceCheckChange(dynamic message) {
+Tuple4<int, int, int, int> onStatePreReadingComplianceCheckChange(dynamic message) {
   int droppedFrames =
       message['name'] == SprenComplicanceChecks.frameDrop.toShortString() &&
               message['compliant'] == false
@@ -18,5 +18,11 @@ Tuple3<int, int, int> onStatePreReadingComplianceCheckChange(dynamic message) {
           ? 1
           : 0;
 
-  return Tuple3<int, int, int>(droppedFrames, brightness, lensCoverage);
+  int exposure =
+      message['name'] == SprenComplicanceChecks.exposure.toShortString() &&
+              message['compliant'] == false
+          ? 1
+          : 0;
+
+  return Tuple4<int, int, int, int>(droppedFrames, brightness, lensCoverage, exposure);
 }

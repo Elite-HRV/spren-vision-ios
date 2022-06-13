@@ -330,14 +330,14 @@ packages:
       name: sentry
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.4.0"
+    version: "6.5.1"
   sentry_flutter:
     dependency: "direct main"
     description:
       name: sentry_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.4.0"
+    version: "6.5.1"
   simple_animations:
     dependency: transitive
     description:
@@ -360,9 +360,9 @@ packages:
   spren_flutter:
     dependency: "direct main"
     description:
-      name: spren_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: ".."
+      relative: true
+    source: path
     version: "1.1.0"
   sprintf:
     dependency: "direct main"

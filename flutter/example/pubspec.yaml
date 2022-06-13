@@ -19,7 +19,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  spren_flutter: ^1.1.0
+  spren_flutter: ^1.2.0
 #  spren_flutter:
 #    path: ../
 #    # When depending on this package from a real application you should use:
@@ -40,7 +40,7 @@ dependencies:
   flutter_hooks: ^0.18.2+1
   http: ^0.13.4
   flutter_dotenv: ^5.0.2
-  sentry_flutter: ^6.4.0
+  sentry_flutter: ^6.5.1
   permission_handler: ^9.2.0
 
 dev_dependencies:

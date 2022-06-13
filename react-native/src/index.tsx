@@ -47,7 +47,7 @@ export interface IReadingDataReady {
   }
 }
 
-export type Compliance = 'frameDrop' | 'brightness' | 'lensCoverage'
+export type Compliance = 'frameDrop' | 'brightness' | 'lensCoverage' | 'exposure'
 export type ComplianceAction = 'increase' | 'decrease'
 
 export interface IPrereadingComplianceCheck {

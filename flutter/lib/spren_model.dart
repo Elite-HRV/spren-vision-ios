@@ -8,6 +8,7 @@ enum SprenComplicanceChecks {
   frameDrop,
   brightness,
   lensCoverage,
+  exposure,
 }
 
 enum SprenState {

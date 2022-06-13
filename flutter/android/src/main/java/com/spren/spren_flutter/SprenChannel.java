@@ -18,6 +18,7 @@ public enum SprenChannel {
         put(ComplianceCheck.Name.BRIGHTNESS, "brightness");
         put(ComplianceCheck.Name.FRAME_DROP, "frameDrop");
         put(ComplianceCheck.Name.LENS_COVERAGE, "lensCoverage");
+        put(ComplianceCheck.Name.EXPOSURE, "exposure");
     }};
     final static Map<ComplianceCheck.Action, String> COMPLIANCE_ACTION_MAP = new HashMap() {{
         put(ComplianceCheck.Action.INCREASE, "increase");

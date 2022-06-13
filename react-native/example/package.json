@@ -12,7 +12,7 @@
   "license": "LicenseRef-LICENSE",
   "dependencies": {
     "@sentry/react-native": "^3.2.13",
-    "@spren/react-native": "^1.1.1",
+    "@spren/react-native": "^1.2.0",
     "axios": "^0.26.0",
     "react": "17.0.2",
     "react-native": "0.67.2",

@@ -8,6 +8,7 @@ public enum SprenCommands {
     COMMAND_CAPTURE_STOP("captureStop"),
     COMMAND_DROP_COMPLEXITY("dropComplexity"),
     COMMAND_SET_TORCH_MODE("setTorchMode"),
+    COMMAND_HANDLE_OVER_EXPOSURE("handleOverExposure"),
 
     COMMAND_SET_AUTO_START_PARAM("autoStart"),
     COMMAND_SET_TORCH_MODE_PARAM("torchMode");

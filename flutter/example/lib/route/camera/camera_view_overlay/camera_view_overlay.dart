@@ -29,6 +29,7 @@ class CameraViewOverlay extends HookWidget {
   Widget build(BuildContext context) {
     final progress = useState(0);
     final droppedFrames = useState(0);
+    final exposure = useState(0);
     final brightness = useState(1);
     final lensCovered = useState(1);
     final flash = useState(-1);
@@ -69,6 +70,12 @@ class CameraViewOverlay extends HookWidget {
       SprenFlutter.setAutoStart(true);
     }
 
+    void handleOverExposure() async {
+      try {
+        await SprenFlutter.handleOverExposure();
+      } catch (e) { }
+    }
+
     void setTorchMode(int mode) async {
       try {
         await SprenFlutter.setTorchMode(mode);
@@ -92,12 +99,12 @@ class CameraViewOverlay extends HookWidget {
     useEffect(() {
       cancelListeningPreReadingComplianceCheckChange =
           startListeningPreReadingComplianceCheckChange((dynamic message) {
-        Tuple3<int, int, int> tuple3 =
+        Tuple4<int, int, int, int> tuple4 =
             onStatePreReadingComplianceCheckChange(message);
-
-        droppedFrames.value = droppedFrames.value + tuple3.item1;
-        brightness.value = brightness.value + tuple3.item2;
-        lensCovered.value = lensCovered.value + tuple3.item3;
+        droppedFrames.value = droppedFrames.value + tuple4.item1;
+        brightness.value = brightness.value + tuple4.item2;
+        lensCovered.value = lensCovered.value + tuple4.item3;
+        exposure.value = exposure.value + tuple4.item4;
       });
       cancelListeningProgressChange =
           startListeningProgressChange((dynamic message) {
@@ -179,6 +186,12 @@ class CameraViewOverlay extends HookWidget {
       modal.value = ModalVisible.stop;
       return null;
     }, [lensCovered.value]);
+
+    // EXPOSURE
+    useEffect(() {
+      handleOverExposure();
+      return null;
+    }, [exposure.value]);
 
     useOnAppLifecycleStateChange((AppLifecycleState? previous,
         AppLifecycleState current) {

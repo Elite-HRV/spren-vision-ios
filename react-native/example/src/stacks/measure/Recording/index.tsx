@@ -31,6 +31,7 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
     const [droppedFrames, setDroppedFrames] = useState(0);
     const [brightness, setBrightness] = useState(0);
     const [lensCovered, setLensCovered] = useState(0);
+    const [exposure, setExposure] = useState(0);
     const [flash, setFlash] = useState('0');
     const [readingStatus, setReadingStatus] =
         useState<ReadingStateApp>('preReading');
@@ -60,6 +61,10 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
             setBrightnessModalVisible(true);
         }
     }, [brightness]);
+
+    useEffect(() => {
+        sprenRef.current?.handleOverExposure();
+    }, [exposure]);
 
     useEffect(() => {
         if (lensCovered == 5 && readingStatus != 'started') {
@@ -101,6 +106,7 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
         setReadingStatus('preReading');
         setPercentage(0);
         setBrightness(0);
+        setExposure(0);
         setDroppedFrames(0);
         sprenRef.current?.setAutoStart(true);
     };
@@ -136,6 +142,12 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
                         event.nativeEvent.compliant === false
                     ) {
                         setLensCovered(lensCovered + 1);
+                    }
+                    if (
+                        event.nativeEvent.name === 'exposure' &&
+                        event.nativeEvent.compliant === false
+                    ) {
+                        setExposure(exposure + 1);
                     }
                 }}
                 onProgressUpdate={(event: IProgressChange) => {

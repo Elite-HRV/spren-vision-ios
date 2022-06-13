@@ -7,7 +7,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.spren.sprencore.SprenState;
 import com.spren.sprencore.finger.compliance.ComplianceCheck;
-import com.spren.sprencore.finger.compliance.SprenComplianceError;
+// import com.spren.sprencore.finger.compliance.SprenComplianceError;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +22,7 @@ public enum SprenEvents {
         put(ComplianceCheck.Name.BRIGHTNESS, "brightness");
         put(ComplianceCheck.Name.FRAME_DROP, "frameDrop");
         put(ComplianceCheck.Name.LENS_COVERAGE, "lensCoverage");
+        put(ComplianceCheck.Name.EXPOSURE, "exposure");
     }};
     private final static Map<ComplianceCheck.Action, String> complianceActionMap = new HashMap() {{
         put(ComplianceCheck.Action.INCREASE, "increase");
@@ -54,7 +55,7 @@ public enum SprenEvents {
             .receiveEvent(view.getId(), SprenEvents.EVENT_ON_PROGRESS_UPDATE.toString(), map);
     }
 
-    public static void emitStateChangeEvent(final ViewGroup view, SprenState sprenState, SprenComplianceError sprenComplianceError) {
+    public static void emitStateChangeEvent(final ViewGroup view, SprenState sprenState) {
         WritableMap map = Arguments.createMap();
         map.putString("state", complianceStateMap.get(sprenState));
 

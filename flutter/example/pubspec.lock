@@ -363,7 +363,7 @@ packages:
       name: spren_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.1"
   sprintf:
     dependency: "direct main"
     description:

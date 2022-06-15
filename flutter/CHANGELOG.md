@@ -1,3 +1,9 @@
+## 1.2.1
+
+Android: Added Pixel 5 support:
+
+    - com.spren.sprencapture:1.1.0
+
 ## 1.2.0
 
 iOS: updated SprenVision 1.2.0 dependency

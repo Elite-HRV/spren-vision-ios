@@ -1,3 +1,7 @@
+## 1.2.2
+
+Android: Fixing bug https://github.com/Elite-HRV/spren-vision-ios/issues/9
+
 ## 1.2.1
 
 Android: Added Pixel 5 support:

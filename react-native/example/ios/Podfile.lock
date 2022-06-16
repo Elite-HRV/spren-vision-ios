@@ -282,7 +282,7 @@ PODS:
     - React-Core
   - react-native-keep-awake (4.0.0):
     - React
-  - react-native-spren (1.2.1):
+  - react-native-spren (1.2.2):
     - React-Core
     - SprenVision (~> 1.2.0)
   - React-perflogger (0.67.2)
@@ -606,7 +606,7 @@ SPEC CHECKSUMS:
   React-logger: 23de8ea0f44fa00ee77e96060273225607fd4d78
   react-native-config: 6502b1879f97ed5ac570a029961fc35ea606cd14
   react-native-keep-awake: afad8a51dfef9fe9655a6344771be32c8596d774
-  react-native-spren: 22257c342f17c85d64bf6af9ed9c9dc72d76eac0
+  react-native-spren: 733a2005a82199226269d0f6b883b808f30cbb65
   React-perflogger: 3c9bb7372493e49036f07a82c44c8cf65cbe88db
   React-RCTActionSheet: 052606483045a408693aa7e864410b4a052f541a
   React-RCTAnimation: 08d4cac13222bb1348c687a0158dfd3b577cdb63

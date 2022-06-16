@@ -1388,9 +1388,9 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@spren/react-native@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@spren/react-native/-/react-native-1.2.1.tgz#0aca6783bf4e0964046f04310949dd8c844ac0ec"
-  integrity sha512-nRFJwvCBEwt1gnEwwY8Sh8CL7ZPRLvhilJejwX1/BqAedDUqbQM/ZMEM6na9Acb4EgxWec1Ben0+p3mjcpE4kA==
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@spren/react-native/-/react-native-1.2.2.tgz#7f5952f1f7cc062c50b885c5616c0f964ca719f5"
+  integrity sha512-Y0I96AB4BoyeoKRdXe9CA+THZ5lWIX1JVahR03QGjdbDeLh2uY1YuR6E6OD2n+OSwyxYzfZynom6KpnYnZezIw==
 
 "@tootallnate/once@1":
   version "1.1.2"

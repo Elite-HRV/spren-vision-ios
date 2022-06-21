@@ -1,3 +1,8 @@
+## 1.2.3
+
+Android: - Add ability to call Spren methods asynchronously using `await` 
+Android: - Set `Measurement complete` text in the end of the reading 
+
 ## 1.2.2
 
 Android: Fixing bug https://github.com/Elite-HRV/spren-vision-ios/issues/9

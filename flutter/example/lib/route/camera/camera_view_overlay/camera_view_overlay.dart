@@ -2,15 +2,15 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:spren_flutter/spren_flutter.dart';
-import 'package:spren_flutter/spren_stream.dart';
 import 'package:spren_flutter/spren_model.dart';
+import 'package:spren_flutter/spren_stream.dart';
 import 'package:spren_flutter_example/route/camera/camera_view_overlay/camera_modals.dart';
 import 'package:spren_flutter_example/route/camera/camera_view_overlay/state_pre_reading_compliance_change.dart';
 import 'package:spren_flutter_example/route/camera/widgets/flash_disable_button.dart';
 import 'package:spren_flutter_example/route/camera/widgets/flash_enable_button.dart';
 import 'package:spren_flutter_example/route/camera/widgets/progress.dart';
-import 'package:spren_flutter_example/widgets/close_button.dart';
 import 'package:spren_flutter_example/route/processing/processing.dart';
+import 'package:spren_flutter_example/widgets/close_button.dart';
 import 'package:tuple/tuple.dart';
 
 class CameraViewOverlay extends HookWidget {
@@ -48,13 +48,13 @@ class CameraViewOverlay extends HookWidget {
       //
       try {
         String readingData = await SprenFlutter.getReadingData();
-        SprenFlutter.captureStop();
+        await SprenFlutter.captureStop();
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => RouteProcessing(readingData)),
         );
       } catch (e) {
-        SprenFlutter.captureStop();
+        await SprenFlutter.captureStop();
         Navigator.pop(context);
       }
     }
@@ -67,13 +67,13 @@ class CameraViewOverlay extends HookWidget {
       await Future.delayed(const Duration(seconds: 1));
 
       flash.value = 1;
-      SprenFlutter.setAutoStart(true);
+      await SprenFlutter.setAutoStart(true);
     }
 
     void handleOverExposure() async {
       try {
         await SprenFlutter.handleOverExposure();
-      } catch (e) { }
+      } catch (e) {}
     }
 
     void setTorchMode(int mode) async {
@@ -88,12 +88,20 @@ class CameraViewOverlay extends HookWidget {
       }
     }
 
-    reset() {
+    reset() async {
       readingStatus.value = SprenState.preReading;
       progress.value = 0;
       droppedFrames.value = 0;
       brightness.value = 1;
-      SprenFlutter.setAutoStart(true);
+      await SprenFlutter.setAutoStart(true);
+    }
+
+    Future<void> dropComplexity() async {
+      await SprenFlutter.dropComplexity();
+    }
+
+    Future<void> cancelReading() async {
+      await SprenFlutter.cancelReading();
     }
 
     useEffect(() {
@@ -157,7 +165,7 @@ class CameraViewOverlay extends HookWidget {
       if (droppedFrames.value != 2) {
         return;
       }
-      SprenFlutter.dropComplexity();
+      dropComplexity();
       setTorchMode(flash.value);
       droppedFrames.value = 0;
       return null;
@@ -193,8 +201,8 @@ class CameraViewOverlay extends HookWidget {
       return null;
     }, [exposure.value]);
 
-    useOnAppLifecycleStateChange((AppLifecycleState? previous,
-        AppLifecycleState current) {
+    useOnAppLifecycleStateChange(
+        (AppLifecycleState? previous, AppLifecycleState current) {
       if (current == AppLifecycleState.resumed) {
         setTorchMode(flash.value);
       }
@@ -228,42 +236,48 @@ class CameraViewOverlay extends HookWidget {
       flash.value = mode;
     }
 
-    return Positioned(
-        top: 0,
-        left: 0,
-        width: width,
-        height: height,
-        child: Scaffold(
-            backgroundColor: Colors.transparent,
-            body: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 50, 16, 40),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return WillPopScope(
+        child: Positioned(
+            top: 0,
+            left: 0,
+            width: width,
+            height: height,
+            child: Scaffold(
+                backgroundColor: Colors.transparent,
+                body: Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 50, 16, 40),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
-                            child: CloseBtn(
-                                color: Colors.white,
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                }),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: CloseBtn(
+                                    color: Colors.white,
+                                    onPressed: () async {
+                                      await cancelReading();
+                                      Navigator.pop(context);
+                                    }),
+                              ),
+                              CameraProgress(progress: progress.value),
+                            ],
                           ),
-                          CameraProgress(progress: progress.value),
+                          if (flash.value == 1)
+                            FlashEnableButton(notifyParent: changeTorchMode),
+                          if (flash.value == 0)
+                            FlashDisableButton(notifyParent: changeTorchMode),
                         ],
                       ),
-                      if (flash.value == 1)
-                        FlashEnableButton(notifyParent: changeTorchMode),
-                      if (flash.value == 0)
-                        FlashDisableButton(notifyParent: changeTorchMode),
-                    ],
-                  ),
-                ))));
+                    )))),
+        onWillPop: () async {
+          await cancelReading();
+          return true;
+        });
   }
 }
 

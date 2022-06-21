@@ -27,28 +27,68 @@ public class SprenViewCommands {
             assert call.arguments instanceof HashMap;
             Map<String, Integer> args = (Map<String, Integer>) call.arguments;
             boolean torch = 1 == args.get(SprenCommands.COMMAND_SET_TORCH_MODE_PARAM.toString());
-            sprenCapture.setTorchMode(torch);
+            try {
+                sprenCapture.setTorchMode(torch);
+                result.success(null);
+            } catch (Exception e) {
+                result.error("100", "Unable to SprenCapture.setTorchMode", "SprenCapture.setTorchMode");
+            }
         } else if (call.method.equals(SprenCommands.COMMAND_SET_AUTO_START.toString())) {
             assert call.arguments != null;
             assert call.arguments instanceof HashMap;
             Map<String, Boolean> args = (Map<String, Boolean>) call.arguments;
             boolean autoStart = args.get(SprenCommands.COMMAND_SET_AUTO_START_PARAM.toString());
-            Spren.Companion.setAutoStart(autoStart);
+            try {
+                Spren.Companion.setAutoStart(autoStart);
+                result.success(null);
+            } catch (Exception e) {
+                result.error("101", "Unable to Spren.setAutoStart", "Spren.setAutoStart");
+            }
         } else if (call.method.equals(SprenCommands.COMMAND_CAPTURE_START.toString())) {
-            sprenCapture.start();
+            try {
+                sprenCapture.start();
+                result.success(null);
+            } catch (Exception e) {
+                result.error("102", "Unable to SprenCapture.start", "SprenCapture.start");
+            }
         } else if (call.method.equals(SprenCommands.COMMAND_HANDLE_OVER_EXPOSURE.toString())) {
-            sprenCapture.handleOverExposure();
+            try {
+                sprenCapture.handleOverExposure();
+                result.success(null);
+            } catch (Exception e) {
+                result.error("103", "Unable to SprenCapture.handleOverExposure", "SprenCapture.handleOverExposure");
+            }
         } else if (call.method.equals(SprenCommands.COMMAND_CAPTURE_STOP.toString())) {
-            sprenCapture.stop();
+            try {
+                sprenCapture.stop();
+                result.success(null);
+            } catch (Exception e) {
+                result.error("104", "Unable to SprenCapture.stop", "SprenCapture.stop");
+            }
         } else if (call.method.equals(SprenCommands.COMMAND_DROP_COMPLEXITY.toString())) {
-            sprenCapture.dropComplexity();
+            try {
+                sprenCapture.dropComplexity();
+                result.success(null);
+            } catch (Exception e) {
+                result.error("105", "Unable to SprenCapture.dropComplexity", "SprenCapture.dropComplexity");
+            }
         } else if (call.method.equals(SprenCommands.COMMAND_CANCEL_READING.toString())) {
-            Spren_PublicConfigKt.cancelReading(Spren.Companion);
+            try {
+                Spren_PublicConfigKt.cancelReading(Spren.Companion);
+                result.success(null);
+            } catch (Exception e) {
+                result.error("106", "Unable to Spren.cancelReading", "Spren.cancelReading");
+            }
         } else if (call.method.equals(SprenCommands.COMMAND_GET_READING_DATA.toString())) {
-            String readingData = Spren.Companion.getReadingData(context);
-            result.success(readingData);
+            try {
+                String readingData = Spren.Companion.getReadingData(context);
+                result.success(readingData);
+            } catch (Exception e) {
+                result.error("107", "Unable to Spren.getReadingData", "Spren.getReadingData");
+            }
         } else {
             Log.v(TAG, String.format("no command %s", call.method));
+            result.error("999", String.format("no command %s", call.method), null);
         }
     }
 }

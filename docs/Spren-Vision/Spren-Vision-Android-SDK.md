@@ -7,19 +7,20 @@ The Android SDK is in Alpha. We're working quickly to expand our support in the 
 > A supported device function exposed by the SDK is coming soon!
 
 ## Tested Devices
-* Google Pixel 4a
-* Google Pixel 6
-* Samsung Galaxy S9
+* Google Pixel 4
+* Xiaomi Redmi 9
+* Huawei Mate 20
+* Samsung Galaxy S10+
 
 ## Currently Testing
-* Google Pixel 4, 5, and 6
-* Samsung Galaxy S10, S20, S21, and S22
+* Google Pixel 3 XL, 4a, 5, and 6
+* Samsung Galaxy S9, S10, S20, S21, and S22
 
 ## Recommendations
 
 ### Flash
 
-Currently, we advise users to consistently perform readings with either flash on or flash off.
+Currently, we allow users to only perform readings with flash on.
 
 ### Hardware
 
@@ -35,7 +36,7 @@ Currently, we advise users to consistently perform readings with either flash on
 
 ## Installation
 
-1.  Visit the [Spren Vision Android SDK GitHub Repository](https://github.com/Elite-HRV/spren-vision-android) to install the SDK via the Gradle build system. For more information, see the Android docs for [Add build dependencies](https://developer.android.com/studio/build/dependencies).
+1.  Visit the [Spren Vision Android SDK Maven Repository](https://repo1.maven.org/maven2/com/spren/) to install the SDK via the Gradle build tool. We encourage using the latest remote binary available. For more information, see the Android docs for [Add build dependencies](https://developer.android.com/studio/build/dependencies).
 
 2.  Add a camera usage permission to your app's Manifest. For more information, [Request app permissions](https://developer.android.com/training/permissions/requesting).
 
@@ -60,22 +61,6 @@ sprenCapture?.start()
 Spren.setOnPrereadingComplianceCheck { name, compliant, action ->
 
     when (name) {
-        ComplianceCheck.Name.FRAME_DROP ->
-            // adjust camera
-            handleFrameDropCompliance(
-                name,
-                compliant,
-                action
-            )
-
-        ComplianceCheck.Name.BRIGHTNESS ->
-            // optionally update UI to reflect brightness compliance
-            handleBrightnessCompliance(
-                name,
-                compliant,
-                action
-            )
-
         ComplianceCheck.Name.LENS_COVERAGE ->
             // optionally update UI to reflect lens coverage compliance
             handleLensCoverageCompliance(
@@ -141,15 +126,15 @@ Stops the Preview and ImageAnalysis use cases
 
 `fun setTorchMode(torch: Boolean): Boolean`
 
-Attempts to toggle the torch (flashlight) on or off as appropriate. Returns the resulting torch mode. It also updates the exposure to its corresponding value.
+Attempts to toggle the torch (flashlight) on as appropriate. Returns the resulting torch mode. Setting the flash off has been disabled.
 
 `fun dropComplexity(): Boolean`
 
-Attempts to drop the computational complexity by reducing the frame resolution. If frame resolution cannot be reduced, dropping the frame rate will be attempted. This may be called if frame drop is non-compliant, i.e, exceeds 5% in a 1 second period at less than 28FPS.
+This function has been deprecated and will be removed in the next releases.
 
 `fun handleOverExposure()`
 
-Attempts to reduce the exposure of the image by changing the sensor exposure time and the sensor sensitivity. This may be called if exposure is non-compliant, i.e, at least 30 frames are over-exposed.
+Attempts to reduce the exposure of the image by lowering the sensor exposure time. This may be called if exposure is non-compliant, i.e, at least 5 frames are over-exposed.
 
 ### `RGBAnalyzer`
 
@@ -223,10 +208,6 @@ The ImageProxy format will be PixelFormat.RGBA_8888, which has only one image pl
 
 Compliance checks are run at 1 second intervals as frames are provided, i.e., if internally to SprenCore the time when the frame is received is >1 second later than the last check. For `ComplianceCheck.Name`:
 
-*   `FRAME_DROP`: frame drop must be less than 5% during one second if FPS is less than 28. During the initial setup of SprenCapture, frame drop may be high; **so, we suggest ignoring the first frame drop noncompliance** before any camera reconfiguration.
-
-*   `BRIGHTNESS`: enough ambient light must be received, torch (flashlight) is recommended. Brightness checks also provide a `ComplianceCheck.Action`, either `INCREASE` or `DECREASE`.
-
 *   `LENS_COVERAGE`: finger must cover lens with light pressure.
 
 *   `EXPOSURE`: less than 30 frames must have overexposure. A frame is over-exposed when it appears brighter than it should.
@@ -236,12 +217,6 @@ Compliance checks are run at 1 second intervals as frames are provided, i.e., if
 `fun Spren.Companion.setOnStateChange(onStateChange: (ExternalStateMessage, SprenComplianceError?) -> Unit)`
 
 Readings error if noncompliance of any check occurs for 5 consecutive seconds. If this occurs, re-enable autostart to start the compliance check and reading process over again.
-
-*   `FRAME_DROP_HIGH`
-
-*   `BRIGHTNESS_LOW`
-
-*   `BRIGHTNESS_HIGH`
 
 *   `LENS_COVERAGE`
 

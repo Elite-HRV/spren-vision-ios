@@ -1,3 +1,8 @@
+## 1.3.0
+
+Android: - Adding support for more Android devices
+https://docs.spren.com/spren-vision/spren-vision-android-sdk
+
 ## 1.2.3
 
 Android: - Add ability to call Spren methods asynchronously using `await` 

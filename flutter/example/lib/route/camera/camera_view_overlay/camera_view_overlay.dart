@@ -28,7 +28,6 @@ class CameraViewOverlay extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final progress = useState(0);
-    final droppedFrames = useState(0);
     final exposure = useState(0);
     final brightness = useState(1);
     final lensCovered = useState(1);
@@ -91,13 +90,8 @@ class CameraViewOverlay extends HookWidget {
     reset() async {
       readingStatus.value = SprenState.preReading;
       progress.value = 0;
-      droppedFrames.value = 0;
       brightness.value = 1;
       await SprenFlutter.setAutoStart(true);
-    }
-
-    Future<void> dropComplexity() async {
-      await SprenFlutter.dropComplexity();
     }
 
     Future<void> cancelReading() async {
@@ -109,7 +103,6 @@ class CameraViewOverlay extends HookWidget {
           startListeningPreReadingComplianceCheckChange((dynamic message) {
         Tuple4<int, int, int, int> tuple4 =
             onStatePreReadingComplianceCheckChange(message);
-        droppedFrames.value = droppedFrames.value + tuple4.item1;
         brightness.value = brightness.value + tuple4.item2;
         lensCovered.value = lensCovered.value + tuple4.item3;
         exposure.value = exposure.value + tuple4.item4;
@@ -160,16 +153,6 @@ class CameraViewOverlay extends HookWidget {
         }
       };
     }, []);
-
-    useEffect(() {
-      if (droppedFrames.value != 2) {
-        return;
-      }
-      dropComplexity();
-      setTorchMode(flash.value);
-      droppedFrames.value = 0;
-      return null;
-    }, [droppedFrames.value]);
 
     // BRIGHTNESS
     useEffect(() {
@@ -267,10 +250,6 @@ class CameraViewOverlay extends HookWidget {
                               CameraProgress(progress: progress.value),
                             ],
                           ),
-                          if (flash.value == 1)
-                            FlashEnableButton(notifyParent: changeTorchMode),
-                          if (flash.value == 0)
-                            FlashDisableButton(notifyParent: changeTorchMode),
                         ],
                       ),
                     )))),

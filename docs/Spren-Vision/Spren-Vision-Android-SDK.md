@@ -36,6 +36,9 @@ Currently, we allow users to only perform readings with flash on.
 
 ## Installation
 
+* [Spren Vision Android SDK GitHub Repository](https://github.com/Elite-HRV/spren-vision-android)
+* [Spren Vision Android SDK Maven Repository](https://repo1.maven.org/maven2/com/spren/)
+
 1.  Visit the [Spren Vision Android SDK Maven Repository](https://repo1.maven.org/maven2/com/spren/) to install the SDK via the Gradle build tool. We encourage using the latest remote binary available. For more information, see the Android docs for [Add build dependencies](https://developer.android.com/studio/build/dependencies).
 
 2.  Add a camera usage permission to your app's Manifest. For more information, [Request app permissions](https://developer.android.com/training/permissions/requesting).

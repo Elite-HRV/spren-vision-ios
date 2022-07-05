@@ -73,18 +73,23 @@ class CameraViewOverlay extends HookWidget {
     void handleOverExposure() async {
       try {
         await SprenFlutter.handleOverExposure();
-      } catch (e) {}
+      } catch (e) {
+        // Unable to handle over exposure
+      }
     }
 
     void setTorchMode(int mode) async {
       try {
-        await SprenFlutter.setTorchMode(mode);
-      } catch (e) {
-        if (mode == 0) {
-          flash.value = 1;
-        } else {
-          flash.value = 0;
+        switch (defaultTargetPlatform) {
+          case TargetPlatform.android:
+            await SprenFlutter.turnFlashOn();
+            break;
+          case TargetPlatform.iOS:
+            await SprenFlutter.setTorchMode(mode);
+            break;
         }
+      } catch (e) {
+        // Unable to set flash
       }
     }
 
@@ -92,7 +97,19 @@ class CameraViewOverlay extends HookWidget {
       readingStatus.value = SprenState.preReading;
       progress.value = 0;
       brightness.value = 1;
-      await SprenFlutter.setAutoStart(true);
+
+      try {
+        switch (defaultTargetPlatform) {
+          case TargetPlatform.android:
+            await SprenFlutter.reset();
+            break;
+          case TargetPlatform.iOS:
+            await SprenFlutter.setAutoStart(true);
+            break;
+        }
+      } catch (e) {
+        // Unable to reset
+      }
     }
 
     Future<void> cancelReading() async {

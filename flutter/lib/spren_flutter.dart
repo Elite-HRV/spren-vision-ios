@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 class SprenFlutter {
@@ -21,12 +22,39 @@ class SprenFlutter {
   /// 0 - The capture device torch is always off.
   /// 1 - The capture device torch is always on.
   /// 2 - The capture device continuously monitors light levels and uses the torch when necessary.
+  /// iOS only
   static Future<void> setTorchMode(int torchMode) async {
     try {
       return await _channel.invokeMethod(
           'setTorchMode', <String, dynamic>{'torchMode': torchMode});
     } on PlatformException catch (e) {
       throw 'Unable to run setTorchMode: ${e.message}';
+    }
+  }
+
+  /// Sets Flash On
+  /// Android only
+  static Future<void> turnFlashOn() async {
+    if (defaultTargetPlatform != TargetPlatform.android) {
+      throw PlatformException(code: 'PLATFORM_NOT_SUPPORTED', message: 'Platform not supported');
+    }
+    try {
+      return await _channel.invokeMethod('turnFlashOn');
+    } on PlatformException catch (e) {
+      throw 'Unable to run turnFlashOn: ${e.message}';
+    }
+  }
+
+  /// Reset new readign to the beginning
+  /// Android only
+  static Future<void> reset() async {
+    if (defaultTargetPlatform != TargetPlatform.android) {
+      throw PlatformException(code: 'PLATFORM_NOT_SUPPORTED', message: 'Platform not supported');
+    }
+    try {
+      return await _channel.invokeMethod('reset');
+    } on PlatformException catch (e) {
+      throw 'Unable to run reset: ${e.message}';
     }
   }
 
@@ -76,6 +104,7 @@ class SprenFlutter {
   }
 
   /// Lower camera resolution and/or frame rate when phone load gets too high
+  /// iOS only
   static Future<void> dropComplexity() async {
     try {
       return await _channel.invokeMethod('dropComplexity');

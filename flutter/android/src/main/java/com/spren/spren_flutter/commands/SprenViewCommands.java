@@ -86,6 +86,20 @@ public class SprenViewCommands {
             } catch (Exception e) {
                 result.error("107", "Unable to Spren.getReadingData", "Spren.getReadingData");
             }
+        } else if (call.method.equals(SprenCommands.COMMAND_RESET.toString())) {
+            try {
+                sprenCapture.reset();
+                result.success(true);
+            } catch (Exception e) {
+                result.error("108", "Unable to sprenCapture.reset", "sprenCapture.reset");
+            }
+        } else if (call.method.equals(SprenCommands.COMMAND_TURN_FLASH_ON.toString())) {
+            try {
+                sprenCapture.turnFlashOn();
+                result.success(true);
+            } catch (Exception e) {
+                result.error("109", "Unable to turnFlashOn", "turnFlashOn");
+            }
         } else {
             Log.v(TAG, String.format("no command %s", call.method));
             result.error("999", String.format("no command %s", call.method), null);

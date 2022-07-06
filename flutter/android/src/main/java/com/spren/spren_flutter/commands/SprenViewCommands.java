@@ -51,13 +51,6 @@ public class SprenViewCommands {
             } catch (Exception e) {
                 result.error("102", "Unable to SprenCapture.start", "SprenCapture.start");
             }
-        } else if (call.method.equals(SprenCommands.COMMAND_HANDLE_OVER_EXPOSURE.toString())) {
-            try {
-                sprenCapture.handleOverExposure();
-                result.success(null);
-            } catch (Exception e) {
-                result.error("103", "Unable to SprenCapture.handleOverExposure", "SprenCapture.handleOverExposure");
-            }
         } else if (call.method.equals(SprenCommands.COMMAND_CAPTURE_STOP.toString())) {
             try {
                 sprenCapture.stop();

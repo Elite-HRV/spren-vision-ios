@@ -10,7 +10,8 @@ public enum SprenCommands {
     COMMAND_SET_TORCH_MODE("setTorchMode"),
     COMMAND_RESET("reset"),
     COMMAND_TURN_FLASH_ON("turnFlashOn"),
-    COMMAND_HANDLE_OVER_EXPOSURE("handleOverExposure"),
+    // Removed
+    // COMMAND_HANDLE_OVER_EXPOSURE("handleOverExposure"),
 
     COMMAND_SET_AUTO_START_PARAM("autoStart"),
     COMMAND_SET_TORCH_MODE_PARAM("torchMode");

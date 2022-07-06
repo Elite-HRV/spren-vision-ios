@@ -1,5 +1,4 @@
 import 'dart:ffi';
-
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -203,7 +202,12 @@ class CameraViewOverlay extends HookWidget {
 
     // EXPOSURE
     useEffect(() {
-      handleOverExposure();
+      switch (defaultTargetPlatform) {
+        case TargetPlatform.iOS:
+          handleOverExposure();
+          break;
+      }
+
       return null;
     }, [exposure.value]);
 

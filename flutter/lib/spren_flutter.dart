@@ -59,7 +59,11 @@ class SprenFlutter {
   }
 
   /// Handles camera over exposure
+  /// iOS only
   static Future<void> handleOverExposure() async {
+    if (defaultTargetPlatform != TargetPlatform.iOS) {
+      throw PlatformException(code: 'PLATFORM_NOT_SUPPORTED', message: 'Platform not supported');
+    }
     try {
       return await _channel.invokeMethod('handleOverExposure');
     } on PlatformException catch (e) {

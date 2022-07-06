@@ -38,8 +38,8 @@ android {
 }
 
 dependencies {
-    implementation("com.spren:sprencapture:1.2.3-SNAPSHOT")
-    implementation("com.spren:sprencore:1.1.3-SNAPSHOT")
+    implementation("com.spren:sprencapture:1.2.4-SNAPSHOT")
+    implementation("com.spren:sprencore:1.1.4-SNAPSHOT")
     implementation 'androidx.camera:camera-view:1.1.0-beta02'
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
 }

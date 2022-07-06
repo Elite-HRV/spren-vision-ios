@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -112,8 +114,11 @@ class CameraViewOverlay extends HookWidget {
       }
     }
 
-    Future<void> cancelReading() async {
+    Future<void> cancelReading([pop = false]) async {
       await SprenFlutter.cancelReading();
+      if (pop) {
+        Navigator.pop(context);
+      }
     }
 
     useEffect(() {
@@ -204,8 +209,8 @@ class CameraViewOverlay extends HookWidget {
 
     useOnAppLifecycleStateChange(
         (AppLifecycleState? previous, AppLifecycleState current) {
-      if (current == AppLifecycleState.resumed) {
-        setTorchMode(flash.value);
+      if (previous == AppLifecycleState.resumed) {
+        cancelReading(true);
       }
     });
 
@@ -261,8 +266,7 @@ class CameraViewOverlay extends HookWidget {
                                 child: CloseBtn(
                                     color: Colors.white,
                                     onPressed: () async {
-                                      await cancelReading();
-                                      Navigator.pop(context);
+                                      await cancelReading(true);
                                     }),
                               ),
                               CameraProgress(progress: progress.value),

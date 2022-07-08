@@ -8,9 +8,9 @@ public enum SprenCommands {
     COMMAND_CAPTURE_STOP("captureStop"),
     COMMAND_CAPTURE_LOCK("captureLock"),
     COMMAND_CAPTURE_UNLOCK("captureUnlock"),
-    COMMAND_DROP_COMPLEXITY("dropComplexity"),
     COMMAND_SET_TORCH_MODE("setTorchMode"),
-    COMMAND_HANDLE_OVER_EXPOSURE("handleOverExposure");
+    COMMAND_RESET("reset"),
+    COMMAND_TURN_FLASH_ON("turnFlashOn");
 
     private final String name;
 

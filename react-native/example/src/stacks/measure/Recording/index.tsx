@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Pressable, View, Modal} from 'react-native';
+import { Pressable, View, Modal, Platform, AppState } from "react-native";
 import {Navigation, NavigationFunctionComponent} from 'react-native-navigation';
 import KeepAwake from 'react-native-keep-awake';
 import {
@@ -19,7 +19,7 @@ import {
     IProgressChange,
     IReadingDataReady,
 } from '@spren/react-native';
-import {getColors, sleep} from '../../../utils';
+import { getColors, isIOS, sleep } from "../../../utils";
 import Processing from '../../result/Processing';
 import CloseButton from '../../../components/CloseButton';
 import Home from '../Home';
@@ -27,7 +27,11 @@ import Home from '../Home';
 interface Props {}
 type ReadingStateApp = ReadingState | 'preReading';
 
+
 const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
+    const appState = useRef(AppState.currentState);
+    const [appStateVisible, setAppStateVisible] = useState(appState.current);
+
     const [droppedFrames, setDroppedFrames] = useState(0);
     const [brightness, setBrightness] = useState(0);
     const [lensCovered, setLensCovered] = useState(0);
@@ -36,7 +40,6 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
     const [readingStatus, setReadingStatus] =
         useState<ReadingStateApp>('preReading');
     const [percentage, setPercentage] = useState(0);
-    const [brightnessModalVisible, setBrightnessModalVisible] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [text, setText] = useState(
         'Place your fingertip over the rear-facing camera lens.',
@@ -45,24 +48,43 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
     KeepAwake.activate();
 
     useEffect(() => {
-        sprenRef.current?.setTorchMode(flash);
+        const subscription = AppState.addEventListener(
+            'change',
+            nextAppState => {
+                if (nextAppState.match(/inactive|background/)) {
+                    cancelReading(true);
+                }
+
+                appState.current = nextAppState;
+                setAppStateVisible(appState.current);
+            },
+        );
+
+        return () => {
+            cancelReading();
+            subscription.remove();
+        };
+    }, []);
+
+    useEffect(() => {
+        setTorchMode(flash);
     }, [flash]);
 
     useEffect(() => {
+        if (!isIOS) {
+            return;
+        }
         if (droppedFrames == 2) {
             sprenRef.current?.dropComplexity();
-            sprenRef.current?.setTorchMode(flash);
+            setTorchMode(flash);
             setDroppedFrames(0);
         }
     }, [droppedFrames]);
 
     useEffect(() => {
-        if (brightness == 5 && readingStatus != 'started') {
-            setBrightnessModalVisible(true);
+        if (!isIOS) {
+            return;
         }
-    }, [brightness]);
-
-    useEffect(() => {
         sprenRef.current?.handleOverExposure();
     }, [exposure]);
 
@@ -71,12 +93,6 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
             setModalVisible(true);
         }
     }, [lensCovered]);
-
-    useEffect(() => {
-        if (!brightnessModalVisible) {
-            setBrightness(0);
-        }
-    }, [brightnessModalVisible]);
 
     useEffect(() => {
         (async () => {
@@ -102,13 +118,43 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
         }
     }, [readingStatus]);
 
+    const setTorchMode = (mode: string) => {
+        switch (Platform.OS) {
+            case 'android':
+                sprenRef.current?.turnFlashOn();
+                break;
+            case 'ios':
+                sprenRef.current?.setTorchMode(mode);
+                break;
+        }
+    };
+
     const reset = () => {
         setReadingStatus('preReading');
         setPercentage(0);
         setBrightness(0);
         setExposure(0);
         setDroppedFrames(0);
-        sprenRef.current?.setAutoStart(true);
+
+        switch (Platform.OS) {
+            case 'android':
+                sprenRef.current?.reset();
+                break;
+            case 'ios':
+                sprenRef.current?.setAutoStart(true);
+                break;
+        }
+    };
+
+    const cancelReading = (pop = false) => {
+        sprenRef.current?.cancelReading();
+        if (pop) {
+            Navigation.setStackRoot(componentId, {
+                component: {
+                    name: Home.componentName,
+                },
+            });
+        }
     };
 
     return (
@@ -207,7 +253,7 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
                     <RecordingStatus percentage={percentage} text={text} />
 
                     <View>
-                        {readingStatus != 'started' && (
+                        {isIOS && readingStatus != 'started' && (
                             <Pressable
                                 onPress={() => {
                                     setFlash(flash === '1' ? '0' : '1');
@@ -226,11 +272,7 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
                     <Pressable
                         style={styles.close}
                         onPress={() => {
-                            Navigation.setStackRoot(componentId, {
-                                component: {
-                                    name: Home.componentName,
-                                },
-                            });
+                            cancelReading(true);
                         }}>
                         <CloseButton.component
                             color={getColors({light: 'white', dark: 'white'})}
@@ -262,43 +304,6 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
                                 reset();
                             }}
                         />
-                    </View>
-                </View>
-            </Modal>
-
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={brightnessModalVisible}
-                onRequestClose={() => {
-                    setModalVisible(!brightnessModalVisible);
-                }}>
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalTitle}>
-                            There is not enough light for the measurement
-                        </Text>
-                        <Text style={styles.modalText}>
-                            Please move to a well lit area or turn your
-                            flashlight on.
-                        </Text>
-                        <View>
-                            <Button
-                                title="Turn on flash"
-                                style={styles.tryButton}
-                                onPress={() => {
-                                    setFlash('1');
-                                    setBrightnessModalVisible(false);
-                                }}
-                            />
-                            <Text
-                                style={styles.buttonText}
-                                onPress={() => {
-                                    setBrightnessModalVisible(false);
-                                }}>
-                                Cancel
-                            </Text>
-                        </View>
                     </View>
                 </View>
             </Modal>

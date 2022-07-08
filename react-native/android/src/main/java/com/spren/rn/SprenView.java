@@ -12,15 +12,14 @@ import com.spren.rn.events.SprenEvents;
 import com.spren.sprencapture.SprenCapture;
 import com.spren.sprencore.Spren;
 import com.spren.sprencore.SprenState;
-import com.spren.sprencore.Spren_PublicConfigKt;
+import com.spren.sprencore.event.SprenEvent;
+import com.spren.sprencore.event.SprenEventManager;
 import com.spren.sprencore.finger.compliance.ComplianceCheck;
-// import com.spren.sprencore.finger.compliance.SprenComplianceError;
 import org.jetbrains.annotations.Nullable;
+import java.util.HashMap;
 import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.functions.Function2;
-import kotlin.jvm.functions.Function3;
 
 public class SprenView extends FrameLayout {
     SprenCapture sprenCapture;
@@ -57,6 +56,9 @@ public class SprenView extends FrameLayout {
     @Override
     protected void onDetachedFromWindow() {
         sprenCapture.stop();
+        SprenEventManager.INSTANCE.unsubscribe(SprenEvent.STATE, this.stateListener);
+        SprenEventManager.INSTANCE.unsubscribe(SprenEvent.COMPLIANCE, this.complianceListener);
+        SprenEventManager.INSTANCE.unsubscribe(SprenEvent.PROGRESS, this.progressListener);
         super.onDetachedFromWindow();
     }
 
@@ -64,20 +66,38 @@ public class SprenView extends FrameLayout {
         sprenViewCommands.receiveCommand(command, args);
     }
 
+    private final Function1<? super HashMap<String, Object>, Unit> stateListener = (HashMap<String, Object> map) -> {
+        SprenState state = (SprenState) map.get("state");
+        SprenEvents.emitStateChangeEvent(this, state);
+
+        return null;
+    };
+
+    private final Function1<? super HashMap<String, Object>, Unit> complianceListener = (HashMap<String, Object> map) -> {
+        ComplianceCheck.Name name = (ComplianceCheck.Name) map.get("name");
+        Boolean isCompliant = (Boolean) map.get("isCompliant");
+
+        SprenEvents.emitPrereadingComplianceCheckEvent(this, name, isCompliant);
+        return null;
+    };
+
+    private final Function1<? super HashMap<String, Object>, Unit> progressListener = (HashMap<String, Object> map) -> {
+        Integer progress = (Integer) map.get("progress");
+
+        SprenEvents.emitProgressUpdateEvent(this, progress);
+        return null;
+    };
+
     private void setSprenCallbacks() {
-        SprenView that = this;
-        Spren_PublicConfigKt.setOnStateChange(Spren.Companion, (sprenState, sprenComplianceError) -> {
-            SprenEvents.emitStateChangeEvent(that, sprenState);
-            return null;
-        });
-        Spren_PublicConfigKt.setOnPrereadingComplianceCheck(Spren.Companion, (name, aBoolean, action) -> {
-            SprenEvents.emitPrereadingComplianceCheckEvent(that, name, aBoolean, action);
-            return null;
-        });
-        Spren_PublicConfigKt.setOnProgressUpdate(Spren.Companion, (progress) -> {
-            SprenEvents.emitProgressUpdateEvent(that, progress);
-            return null;
-        });
+        SprenEventManager.INSTANCE
+            .unsubscribe(SprenEvent.STATE, this.stateListener)
+            .subscribe(SprenEvent.STATE, this.stateListener);
+        SprenEventManager.INSTANCE
+            .unsubscribe(SprenEvent.COMPLIANCE, this.stateListener)
+            .subscribe(SprenEvent.COMPLIANCE, this.complianceListener);
+        SprenEventManager.INSTANCE
+            .unsubscribe(SprenEvent.PROGRESS, this.stateListener)
+            .subscribe(SprenEvent.PROGRESS, this.progressListener);
     }
 
     /**

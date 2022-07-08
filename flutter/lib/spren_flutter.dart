@@ -121,7 +121,11 @@ class SprenFlutter {
   }
 
   /// Locks camera device configuration
+  /// iOS only
   static Future<void> captureLock() async {
+    if (defaultTargetPlatform != TargetPlatform.iOS) {
+      throw PlatformException(code: 'PLATFORM_NOT_SUPPORTED', message: 'Platform not supported');
+    }
     try {
       return await _channel.invokeMethod('captureLock');
     } on PlatformException catch (e) {
@@ -130,7 +134,11 @@ class SprenFlutter {
   }
 
   /// Unlocks camera device configuration
+  /// iOS only
   static Future<void> captureUnlock() async {
+    if (defaultTargetPlatform != TargetPlatform.iOS) {
+      throw PlatformException(code: 'PLATFORM_NOT_SUPPORTED', message: 'Platform not supported');
+    }
     try {
       return await _channel.invokeMethod('captureUnlock');
     } on PlatformException catch (e) {

@@ -1387,10 +1387,8 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@spren/react-native@^1.2.1":
+"@spren/react-native@file:..":
   version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@spren/react-native/-/react-native-1.2.2.tgz#7f5952f1f7cc062c50b885c5616c0f964ca719f5"
-  integrity sha512-Y0I96AB4BoyeoKRdXe9CA+THZ5lWIX1JVahR03QGjdbDeLh2uY1YuR6E6OD2n+OSwyxYzfZynom6KpnYnZezIw==
 
 "@tootallnate/once@1":
   version "1.1.2"

@@ -30,6 +30,7 @@ class CameraViewOverlay extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final progress = useState(0);
+    final droppedFrames = useState(0);
     final exposure = useState(0);
     final brightness = useState(1);
     final lensCovered = useState(1);
@@ -95,6 +96,7 @@ class CameraViewOverlay extends HookWidget {
     reset() async {
       readingStatus.value = SprenState.preReading;
       progress.value = 0;
+      droppedFrames.value = 0;
       brightness.value = 1;
 
       try {
@@ -111,6 +113,18 @@ class CameraViewOverlay extends HookWidget {
       }
     }
 
+    Future<void> dropComplexity() async {
+      try {
+        switch (defaultTargetPlatform) {
+          case TargetPlatform.iOS:
+            await SprenFlutter.dropComplexity();
+            break;
+        }
+      } catch (e) {
+        // Unable to dropComplexity
+      }
+    }
+
     Future<void> cancelReading([pop = false]) async {
       await SprenFlutter.cancelReading();
       if (pop) {
@@ -123,6 +137,7 @@ class CameraViewOverlay extends HookWidget {
           startListeningPreReadingComplianceCheckChange((dynamic message) {
         Tuple4<int, int, int, int> tuple4 =
             onStatePreReadingComplianceCheckChange(message);
+        droppedFrames.value = droppedFrames.value + tuple4.item1;
         brightness.value = brightness.value + tuple4.item2;
         lensCovered.value = lensCovered.value + tuple4.item3;
         exposure.value = exposure.value + tuple4.item4;
@@ -174,6 +189,19 @@ class CameraViewOverlay extends HookWidget {
       };
     }, []);
 
+    useEffect(() {
+      if (defaultTargetPlatform != TargetPlatform.iOS) {
+        return;
+      }
+      if (droppedFrames.value != 2) {
+        return;
+      }
+      dropComplexity();
+      setTorchMode(flash.value);
+      droppedFrames.value = 0;
+      return null;
+    }, [droppedFrames.value]);
+
     // BRIGHTNESS
     useEffect(() {
       if (brightness.value % 6 != 0 ||
@@ -200,11 +228,10 @@ class CameraViewOverlay extends HookWidget {
 
     // EXPOSURE
     useEffect(() {
-      switch (defaultTargetPlatform) {
-        case TargetPlatform.iOS:
-          handleOverExposure();
-          break;
+      if (defaultTargetPlatform != TargetPlatform.iOS) {
+        return;
       }
+      handleOverExposure();
 
       return null;
     }, [exposure.value]);

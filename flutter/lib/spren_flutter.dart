@@ -110,6 +110,9 @@ class SprenFlutter {
   /// Lower camera resolution and/or frame rate when phone load gets too high
   /// iOS only
   static Future<void> dropComplexity() async {
+    if (defaultTargetPlatform != TargetPlatform.iOS) {
+      throw PlatformException(code: 'PLATFORM_NOT_SUPPORTED', message: 'Platform not supported');
+    }
     try {
       return await _channel.invokeMethod('dropComplexity');
     } on PlatformException catch (e) {

@@ -41,17 +41,15 @@ class CameraViewOverlay extends HookWidget {
       // Simulator: Testing
       // await Future.delayed(const Duration(seconds: 2));
       // String readingData = dotenv.env['READING_TEST_DATA'];
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => RouteProcessing(readingData)),
-      // );
+      // Navigator.of(context).pushReplacement(
+      //     MaterialPageRoute(builder: (context) => RouteProcessing(readingData))
+      // )
       // return;
       //
       try {
         String readingData = await SprenFlutter.getReadingData();
         await SprenFlutter.captureStop();
-        Navigator.push(
-          context,
+        Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => RouteProcessing(readingData)),
         );
       } catch (e) {

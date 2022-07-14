@@ -1,3 +1,7 @@
+## 2.0.1
+
+Updated LICENSE file
+
 ## 2.0.0
 
 ###Android Breaking changes in 2.x

@@ -1,5 +1,35 @@
 ## 2.0.0
 
+###Android Breaking changes in 2.x
+
+<s>`SprenFlutter.setAutoStart(Boolean);`</s> (Replace with `SprenCapture reset` method)
+
+<s>`SprenFlutter.setTorchMode(Boolean)`</s> (Replace with `SprenFlutter.turnFlashOn()`)
+
+<s>`SprenFlutter.dropComplexity()`</s> (no need to handle anymore)
+
+<s>`SprenFlutter.handleOverExposure()`</s> (no need to handle anymore)
+
+
+###iOS Breaking changes in 2.x
+
+None
+
+####All the breaking changes are handled in example app (check it for more details)
+
+
+------
+Android: Add SprenCapture reset method
+
+Android: Add SprenCapture turnFlashOn method
+
+Android: Fix lens coverage bug
+
+Example App: Add unsupportiveness notice for Android 8 or lower devices
+
+Example App: Cancel reading when device enter background mode
+
+Example App: Result screen when pressing back button or user swipes back -> navigates to home screen 
 
 Add new license (see LICENSE.pdf)
 

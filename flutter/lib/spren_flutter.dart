@@ -140,7 +140,7 @@ class SprenFlutter {
     }
   }
 
-  /// Reset new readign to the beginning
+  /// Reset new reading to the beginning
   /// Android only
   static Future<void> reset() async {
     if (defaultTargetPlatform != TargetPlatform.android) {

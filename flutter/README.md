@@ -35,19 +35,21 @@ If editing `Info.plist` as text, add:
 ```dart
 import 'package:spren_flutter/spren_flutter.dart';
 ```
+
 | Method                     | Parameters              | Description                                                                               |
 |----------------------------|-------------------|-------------------------------------------------------------------------------------------|
-| `await SprenFlutter.setAutoStart(bool)`           | `true`,`false`          | Set reading auto start. `autoStart` by default is false. Set `autoStart` to `true` if you want reading to start automatically.                                                             |
 | `await SprenFlutter.getReadingData()`        | `String`          | Returns reading data information (needs to be called when reading is over)                                                                 |
 | `await SprenFlutter.cancelReading()`           |  | Cancels the ongoing reading                                                 |
 | `await SprenFlutter.captureStart()`                |              | Starts camera capture |
 | `await SprenFlutter.captureStop()`          |             | Stops camera capture                                                      |
-| `await SprenFlutter.setTorchMode(int)` *Android only*        | `1`          | Configure flash light mode. torchMode possible values are: `1` - The capture device torch is always on.                                                                |
-| @Deprecated `await SprenFlutter.dropComplexity()` *Android only*  |   | Lower camera resolution and/or frame rate when phone load gets too high                                                              |
+| `await SprenFlutter.setAutoStart(bool)` *iOS only*           | `true`,`false`          | Set reading auto start. `autoStart` by default is false. Set `autoStart` to `true` if you want reading to start automatically.                                                             |
 | `await SprenFlutter.dropComplexity()` *iOS only*  |   | Lower camera resolution and/or frame rate when phone load gets too high                                                              |
 | `await SprenFlutter.setTorchMode(int)` *iOS only*        | `0`,`1`,`2`          | Configure flash light mode. torchMode possible values are: `0` - The capture device torch is always off. `1` - The capture device torch is always on. `2` - The capture device continuously monitors light levels and uses the torch when necessary.                                                                |
 | `await SprenFlutter.captureLock()` *iOS only*     |          | Locks camera device configuration      |
 | `await SprenFlutter.captureUnlock()` *iOS only*     |          | Unlocks camera device configuration      |
+| `await SprenFlutter.handleOverExposure()` *iOS only*     |          | Attempts to reduce the exposure of the image by lowering the sensor exposure time.      |
+| `await SprenFlutter.turnFlashOn()` *Android only*     |          | Sets Flash On      |
+| `await SprenFlutter.reset()` *Android only*     |          | Reset new reading to the beginning state      |
 
 ### Usage
 

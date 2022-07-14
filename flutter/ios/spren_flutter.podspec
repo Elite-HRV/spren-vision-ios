@@ -5,14 +5,14 @@
 
 Pod::Spec.new do |s|
   s.name             = 'spren_flutter'
-  s.version          = '1.3.0'
+  s.version          = '2.0.0'
   s.summary          = "Flutter plugin wrapping Spren"
   s.homepage         = "https://github.com/Elite-HRV/spren-vision-ios#readme"
   s.license          = "LicenseRef-LICENSE"
   s.author           = "nick <nick@elitehrv.com> (https://github.com/Elite-HRV)"
 
   s.platforms    = { :ios => "14.0" }
-  s.source       = { :git => "https://github.com/Elite-HRV/spren-vision-ios.git", :tag => "v1.3.0.flutter" }
+  s.source       = { :git => "https://github.com/Elite-HRV/spren-vision-ios.git", :tag => "v2.0.0.flutter" }
   s.source_files = "Classes/**/*"
 
   # Flutter.framework does not contain a i386 slice.

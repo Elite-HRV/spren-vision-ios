@@ -6,7 +6,7 @@ A Flutter plugin for iOS allowing access Spren services.
 
 |                | iOS     | Android     |
 |----------------|---------|---------|
-| **Support**    | iOS 14+*| API 21+|
+| **Support**    | iOS 14+*| API 28+|
 
 ## Features
 

@@ -1,4 +1,5 @@
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:spren_flutter_example/route/instructions/instruction1.dart';
@@ -10,16 +11,25 @@ class RouteHome extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<AndroidDeviceInfo> getDeviceInfo() async {
-      return await DeviceInfoPlugin().androidInfo;
+    Future<bool> isDeviceEligible() async {
+      switch (defaultTargetPlatform) {
+        case TargetPlatform.android:
+          AndroidDeviceInfo androidInfo = await DeviceInfoPlugin().androidInfo;
+
+          return androidInfo.version.sdkInt != null &&
+              androidInfo.version.sdkInt! >= androidMinSdk;
+        case TargetPlatform.iOS:
+          return true;
+        default:
+          return false;
+      }
     }
 
-    return FutureBuilder<AndroidDeviceInfo>(
-        future: getDeviceInfo(),
-        builder: (context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
+    return FutureBuilder<bool>(
+        future: isDeviceEligible(),
+        builder: (context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data!.version.sdkInt != null &&
-                snapshot.data!.version.sdkInt! < androidMinSdk) {
+            if (snapshot.data == false) {
               return Scaffold(
                   body: Padding(
                       padding: const EdgeInsets.fromLTRB(16, 50, 16, 18),

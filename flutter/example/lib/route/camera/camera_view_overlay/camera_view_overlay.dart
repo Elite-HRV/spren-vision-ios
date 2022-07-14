@@ -59,6 +59,26 @@ class CameraViewOverlay extends HookWidget {
       }
     }
 
+    reset() async {
+      readingStatus.value = SprenState.preReading;
+      progress.value = 0;
+      droppedFrames.value = 0;
+      brightness.value = 1;
+
+      try {
+        switch (defaultTargetPlatform) {
+          case TargetPlatform.android:
+            await SprenFlutter.reset();
+            break;
+          case TargetPlatform.iOS:
+            await SprenFlutter.setAutoStart(true);
+            break;
+        }
+      } catch (e) {
+        // Unable to reset
+      }
+    }
+
     Future<void> onInit() async {
       // Simulator: Testing
       // await getReadingData();
@@ -67,7 +87,7 @@ class CameraViewOverlay extends HookWidget {
       await Future.delayed(const Duration(seconds: 1));
 
       flash.value = 1;
-      await SprenFlutter.setAutoStart(true);
+      await reset();
     }
 
     void handleOverExposure() async {
@@ -94,26 +114,6 @@ class CameraViewOverlay extends HookWidget {
         }
       } catch (e) {
         // Unable to set flash
-      }
-    }
-
-    reset() async {
-      readingStatus.value = SprenState.preReading;
-      progress.value = 0;
-      droppedFrames.value = 0;
-      brightness.value = 1;
-
-      try {
-        switch (defaultTargetPlatform) {
-          case TargetPlatform.android:
-            await SprenFlutter.reset();
-            break;
-          case TargetPlatform.iOS:
-            await SprenFlutter.setAutoStart(true);
-            break;
-        }
-      } catch (e) {
-        // Unable to reset
       }
     }
 

@@ -1,3 +1,8 @@
+## 2.0.0
+
+
+Add new license (see LICENSE.pdf)
+
 ## 1.3.0
 
 Android: - Adding support for more Android devices

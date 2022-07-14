@@ -72,7 +72,11 @@ class CameraViewOverlay extends HookWidget {
 
     void handleOverExposure() async {
       try {
-        await SprenFlutter.handleOverExposure();
+        switch (defaultTargetPlatform) {
+          case TargetPlatform.iOS:
+            await SprenFlutter.handleOverExposure();
+            break;
+        }
       } catch (e) {
         // Unable to handle over exposure
       }

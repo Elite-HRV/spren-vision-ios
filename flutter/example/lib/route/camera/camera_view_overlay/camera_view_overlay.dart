@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -29,6 +30,7 @@ class CameraViewOverlay extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final progress = useState(0);
+    final droppedFrames = useState(0);
     final exposure = useState(0);
     final brightness = useState(1);
     final lensCovered = useState(1);
@@ -40,22 +42,40 @@ class CameraViewOverlay extends HookWidget {
       // Simulator: Testing
       // await Future.delayed(const Duration(seconds: 2));
       // String readingData = dotenv.env['READING_TEST_DATA'];
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => RouteProcessing(readingData)),
-      // );
+      // Navigator.of(context).pushReplacement(
+      //     MaterialPageRoute(builder: (context) => RouteProcessing(readingData))
+      // )
       // return;
       //
       try {
         String readingData = await SprenFlutter.getReadingData();
         await SprenFlutter.captureStop();
-        Navigator.push(
-          context,
+        Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => RouteProcessing(readingData)),
         );
       } catch (e) {
         await SprenFlutter.captureStop();
         Navigator.pop(context);
+      }
+    }
+
+    reset() async {
+      readingStatus.value = SprenState.preReading;
+      progress.value = 0;
+      droppedFrames.value = 0;
+      brightness.value = 1;
+
+      try {
+        switch (defaultTargetPlatform) {
+          case TargetPlatform.android:
+            await SprenFlutter.reset();
+            break;
+          case TargetPlatform.iOS:
+            await SprenFlutter.setAutoStart(true);
+            break;
+        }
+      } catch (e) {
+        // Unable to reset
       }
     }
 
@@ -67,36 +87,53 @@ class CameraViewOverlay extends HookWidget {
       await Future.delayed(const Duration(seconds: 1));
 
       flash.value = 1;
-      await SprenFlutter.setAutoStart(true);
+      await reset();
     }
 
     void handleOverExposure() async {
       try {
-        await SprenFlutter.handleOverExposure();
-      } catch (e) {}
+        switch (defaultTargetPlatform) {
+          case TargetPlatform.iOS:
+            await SprenFlutter.handleOverExposure();
+            break;
+        }
+      } catch (e) {
+        // Unable to handle over exposure
+      }
     }
 
     void setTorchMode(int mode) async {
       try {
-        await SprenFlutter.setTorchMode(mode);
-      } catch (e) {
-        if (mode == 0) {
-          flash.value = 1;
-        } else {
-          flash.value = 0;
+        switch (defaultTargetPlatform) {
+          case TargetPlatform.android:
+            await SprenFlutter.turnFlashOn();
+            break;
+          case TargetPlatform.iOS:
+            await SprenFlutter.setTorchMode(mode);
+            break;
         }
+      } catch (e) {
+        // Unable to set flash
       }
     }
 
-    reset() async {
-      readingStatus.value = SprenState.preReading;
-      progress.value = 0;
-      brightness.value = 1;
-      await SprenFlutter.setAutoStart(true);
+    Future<void> dropComplexity() async {
+      try {
+        switch (defaultTargetPlatform) {
+          case TargetPlatform.iOS:
+            await SprenFlutter.dropComplexity();
+            break;
+        }
+      } catch (e) {
+        // Unable to dropComplexity
+      }
     }
 
-    Future<void> cancelReading() async {
+    Future<void> cancelReading([pop = false]) async {
       await SprenFlutter.cancelReading();
+      if (pop) {
+        Navigator.pop(context);
+      }
     }
 
     useEffect(() {
@@ -104,6 +141,7 @@ class CameraViewOverlay extends HookWidget {
           startListeningPreReadingComplianceCheckChange((dynamic message) {
         Tuple4<int, int, int, int> tuple4 =
             onStatePreReadingComplianceCheckChange(message);
+        droppedFrames.value = droppedFrames.value + tuple4.item1;
         brightness.value = brightness.value + tuple4.item2;
         lensCovered.value = lensCovered.value + tuple4.item3;
         exposure.value = exposure.value + tuple4.item4;
@@ -155,6 +193,19 @@ class CameraViewOverlay extends HookWidget {
       };
     }, []);
 
+    useEffect(() {
+      if (defaultTargetPlatform != TargetPlatform.iOS) {
+        return;
+      }
+      if (droppedFrames.value != 2) {
+        return;
+      }
+      dropComplexity();
+      setTorchMode(flash.value);
+      droppedFrames.value = 0;
+      return null;
+    }, [droppedFrames.value]);
+
     // BRIGHTNESS
     useEffect(() {
       if (brightness.value % 6 != 0 ||
@@ -181,14 +232,18 @@ class CameraViewOverlay extends HookWidget {
 
     // EXPOSURE
     useEffect(() {
+      if (defaultTargetPlatform != TargetPlatform.iOS) {
+        return;
+      }
       handleOverExposure();
+
       return null;
     }, [exposure.value]);
 
     useOnAppLifecycleStateChange(
         (AppLifecycleState? previous, AppLifecycleState current) {
-      if (current == AppLifecycleState.resumed) {
-        setTorchMode(flash.value);
+      if (previous == AppLifecycleState.resumed) {
+        cancelReading(true);
       }
     });
 
@@ -244,8 +299,7 @@ class CameraViewOverlay extends HookWidget {
                                 child: CloseBtn(
                                     color: Colors.white,
                                     onPressed: () async {
-                                      await cancelReading();
-                                      Navigator.pop(context);
+                                      await cancelReading(true);
                                     }),
                               ),
                               CameraProgress(progress: progress.value),

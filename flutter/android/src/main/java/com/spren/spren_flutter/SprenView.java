@@ -13,12 +13,18 @@ import com.spren.spren_flutter.stream.ProgressUpdateHandler;
 import com.spren.spren_flutter.stream.StateChangeHandler;
 import com.spren.sprencapture.SprenCapture;
 import com.spren.sprencore.Spren;
+import com.spren.sprencore.SprenState;
 import com.spren.sprencore.Spren_PublicConfigKt;
+import com.spren.sprencore.event.SprenEvent;
+import com.spren.sprencore.event.SprenEventManager;
+import com.spren.sprencore.finger.compliance.ComplianceCheck;
 import java.util.HashMap;
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 public class SprenView extends FrameLayout implements MethodChannel.MethodCallHandler {
     private FlutterActivity flutterActivity;
@@ -64,6 +70,10 @@ public class SprenView extends FrameLayout implements MethodChannel.MethodCallHa
     @Override
     protected void onDetachedFromWindow() {
         sprenCapture.stop();
+        SprenEventManager.INSTANCE.unsubscribe(SprenEvent.STATE, this.stateListener);
+        SprenEventManager.INSTANCE.unsubscribe(SprenEvent.COMPLIANCE, this.complianceListener);
+        SprenEventManager.INSTANCE.unsubscribe(SprenEvent.PROGRESS, this.progressListener);
+
         methodChannel.setMethodCallHandler(null);
         super.onDetachedFromWindow();
     }
@@ -78,45 +88,58 @@ public class SprenView extends FrameLayout implements MethodChannel.MethodCallHa
         sprenViewCommands.receiveCommand(call, result);
     }
 
+    private final Function1<? super HashMap<String, Object>, Unit> stateListener = (HashMap<String, Object> map) -> {
+        SprenState state = (SprenState) map.get("state");
+        flutterActivity.runOnUiThread(new Runnable() {
+            public void run() {
+                StateChangeHandler.getInstance().getEventSink().success(new HashMap<String, String>(){{
+                    put("state", SprenChannel.COMPLIANCE_STATE_MAP.get(state));
+                }});
+            }
+        });
+
+        return null;
+    };
+
+    private final Function1<? super HashMap<String, Object>, Unit> complianceListener = (HashMap<String, Object> map) -> {
+        ComplianceCheck.Name name = (ComplianceCheck.Name) map.get("name");
+        Boolean isCompliant = (Boolean) map.get("isCompliant");
+        flutterActivity.runOnUiThread(new Runnable() {
+            public void run() {
+                PreReadingComplianceCheckHandler.getInstance().getEventSink().success(new HashMap<String, Object>(){{
+                    put("name", SprenChannel.COMPLIANCE_NAME_MAP.get(name));
+                    put("compliant", isCompliant);
+                }});
+            }
+        });
+        return null;
+    };
+
+    private final Function1<? super HashMap<String, Object>, Unit> progressListener = (HashMap<String, Object> map) -> {
+        Integer progress = (Integer) map.get("progress");
+        flutterActivity.runOnUiThread(new Runnable() {
+            public void run() {
+                ProgressUpdateHandler.getInstance().getEventSink().success(new HashMap<String, Integer>(){{
+                    put("progress", progress);
+                }});
+            }
+        });
+        return null;
+    };
+
     /**
      * Set Spren callbacks to flutter
      */
     private void setSprenCallbacks() {
-        Spren_PublicConfigKt.setOnStateChange(Spren.Companion, (sprenState, sprenComplianceError) -> {
-            flutterActivity.runOnUiThread(new Runnable() {
-                public void run() {
-                    StateChangeHandler.getInstance().getEventSink().success(new HashMap<String, String>(){{
-                        put("state", SprenChannel.COMPLIANCE_STATE_MAP.get(sprenState));
-//                        put("error", sprenComplianceError == null ? null : sprenComplianceError.getLocalizedDescription());
-                    }});
-                }
-            });
-            return null;
-        });
-
-        Spren_PublicConfigKt.setOnPrereadingComplianceCheck(Spren.Companion, (name, aBoolean, action) -> {
-            flutterActivity.runOnUiThread(new Runnable() {
-                public void run() {
-                    PreReadingComplianceCheckHandler.getInstance().getEventSink().success(new HashMap<String, Object>(){{
-                        put("name", SprenChannel.COMPLIANCE_NAME_MAP.get(name));
-                        put("action", action != null ? SprenChannel.COMPLIANCE_ACTION_MAP.get(action) : null);
-                        put("compliant", aBoolean);
-                    }});
-                }
-            });
-            return null;
-        });
-
-        Spren_PublicConfigKt.setOnProgressUpdate(Spren.Companion, (progress) -> {
-            flutterActivity.runOnUiThread(new Runnable() {
-                public void run() {
-                    ProgressUpdateHandler.getInstance().getEventSink().success(new HashMap<String, Integer>(){{
-                        put("progress", progress);
-                    }});
-                }
-            });
-            return null;
-        });
+        SprenEventManager.INSTANCE
+                .unsubscribe(SprenEvent.STATE, this.stateListener)
+                .subscribe(SprenEvent.STATE, this.stateListener);
+        SprenEventManager.INSTANCE
+                .unsubscribe(SprenEvent.COMPLIANCE, this.stateListener)
+                .subscribe(SprenEvent.COMPLIANCE, this.complianceListener);
+        SprenEventManager.INSTANCE
+                .unsubscribe(SprenEvent.PROGRESS, this.stateListener)
+                .subscribe(SprenEvent.PROGRESS, this.progressListener);
     }
 
     /**

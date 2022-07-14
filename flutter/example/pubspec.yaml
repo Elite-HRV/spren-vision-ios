@@ -19,9 +19,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  spren_flutter: ^1.2.0
-#  spren_flutter:
-#    path: ../
+#  spren_flutter: ^1.3.0
+  spren_flutter:
+    path: ../
 #    # When depending on this package from a real application you should use:
 #    #   spren_flutter: latest version
 #    # See https://dart.dev/tools/pub/dependencies#version-constraints

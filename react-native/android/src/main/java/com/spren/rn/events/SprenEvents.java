@@ -65,13 +65,10 @@ public enum SprenEvents {
             .receiveEvent(view.getId(), SprenEvents.EVENT_ON_STATE_CHANGE.toString(), map);
     }
 
-    public static void emitPrereadingComplianceCheckEvent(final ViewGroup view, ComplianceCheck.Name name, Boolean isCompliant, ComplianceCheck.Action action) {
+    public static void emitPrereadingComplianceCheckEvent(final ViewGroup view, ComplianceCheck.Name name, Boolean isCompliant) {
         WritableMap map = Arguments.createMap();
         map.putString("name", complianceNameMap.get(name));
         map.putBoolean("compliant", isCompliant);
-        if (action != null) {
-            map.putString("action", complianceActionMap.get(action));
-        }
 
         final ReactContext reactContext = (ReactContext) view.getContext();
         reactContext

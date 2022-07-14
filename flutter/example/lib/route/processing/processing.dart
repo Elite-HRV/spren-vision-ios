@@ -46,15 +46,13 @@ class RouteProcessing extends HookWidget {
     }
 
     void errorNavigate() {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => RouteResult(true, 0, 0)),
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => RouteResult(true, 0, 0))
       );
     }
 
     void successNavigate(double hr, double hrvScore) {
-      Navigator.push(
-        context,
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => RouteResult(false, hr, hrvScore)),
       );
     }

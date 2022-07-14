@@ -2,7 +2,7 @@
 
 ###Android Breaking changes in 2.x
 
-<s>`SprenFlutter.setAutoStart(Boolean);`</s> (Replace with `SprenCapture reset` method)
+<s>`SprenFlutter.setAutoStart(Boolean);`</s> (Replace with `SprenFlutter.reset()` method)
 
 <s>`SprenFlutter.setTorchMode(Boolean)`</s> (Replace with `SprenFlutter.turnFlashOn()`)
 

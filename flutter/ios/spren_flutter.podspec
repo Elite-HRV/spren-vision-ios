@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.version          = '2.0.0'
   s.summary          = "Flutter plugin wrapping Spren"
   s.homepage         = "https://github.com/Elite-HRV/spren-vision-ios#readme"
-  s.license          = "LicenseRef-LICENSE"
+  s.license          = "SEE LICENSE IN LICENSE.pdf"
   s.author           = "nick <nick@elitehrv.com> (https://github.com/Elite-HRV)"
 
   s.platforms    = { :ios => "14.0" }

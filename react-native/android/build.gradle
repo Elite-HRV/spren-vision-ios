@@ -65,8 +65,10 @@ dependencies {
         }
     }
     // END TODO
-    implementation("com.spren:sprencapture:1.2.6-SNAPSHOT")
-    implementation("com.spren:sprencore:1.1.5-SNAPSHOT")
-    implementation 'androidx.camera:camera-view:1.1.0-beta02'
+    implementation("com.spren:sprencore:2.0.0")
+    implementation("com.spren:sprencapture:2.0.0")
+
+    def camerax_version = "1.1.0-rc02"
+    implementation "androidx.camera:camera-view:${camerax_version}"
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
 }

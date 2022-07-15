@@ -99,7 +99,7 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
             if (sprenRef.current) {
                 await sleep(1000);
                 setFlash('1');
-                sprenRef.current?.setAutoStart(true);
+                reset();
             }
         })();
     }, [sprenRef.current]);

@@ -1,6 +1,6 @@
 {
   "name": "@spren/react-native",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "React Native module wrapping Spren",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -39,7 +39,7 @@
   ],
   "repository": "https://github.com/Elite-HRV/spren-vision-ios",
   "author": "nick <nick@elitehrv.com> (https://github.com/Elite-HRV)",
-  "license": "LicenseRef-LICENSE",
+  "license": "SEE LICENSE IN LICENSE.pdf",
   "bugs": {
     "url": "https://github.com/Elite-HRV/spren-vision-ios/issues"
   },

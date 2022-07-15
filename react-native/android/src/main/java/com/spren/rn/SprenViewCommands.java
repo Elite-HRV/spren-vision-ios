@@ -23,23 +23,7 @@ public class SprenViewCommands {
     }
 
     public void receiveCommand(String command, @Nullable ReadableArray args) {
-        if (command.equals(SprenCommands.COMMAND_SET_TORCH_MODE.toString())) {
-            assert args != null;
-            boolean torch = "1".equals(args.getString(0));
-            try {
-                sprenCapture.setTorchMode(torch);
-            } catch (Exception e) {
-                logger.log(Level.SEVERE, "Unable to run command %s", command);
-            }
-        } else if (command.equals(SprenCommands.COMMAND_SET_AUTO_START.toString())) {
-            assert args != null;
-            boolean autoStart = args.getBoolean(0);
-            try {
-                Spren.Companion.setAutoStart(autoStart);
-            } catch (Exception e) {
-                logger.log(Level.SEVERE, "Unable to run command %s", command);
-            }
-        } else if (command.equals(SprenCommands.COMMAND_CAPTURE_START.toString())) {
+        if (command.equals(SprenCommands.COMMAND_CAPTURE_START.toString())) {
             try {
                 sprenCapture.start();
             } catch (Exception e) {

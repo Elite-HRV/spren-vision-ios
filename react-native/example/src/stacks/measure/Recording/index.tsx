@@ -82,10 +82,7 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
     }, [droppedFrames]);
 
     useEffect(() => {
-        if (!isIOS) {
-            return;
-        }
-        sprenRef.current?.handleOverExposure();
+
     }, [exposure]);
 
     useEffect(() => {

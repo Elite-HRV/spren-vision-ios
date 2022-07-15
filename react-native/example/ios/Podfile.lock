@@ -282,7 +282,7 @@ PODS:
     - React-Core
   - react-native-keep-awake (4.0.0):
     - React
-  - react-native-spren (1.2.2):
+  - react-native-spren (2.0.0):
     - React-Core
     - SprenVision (~> 1.2.0)
   - React-perflogger (0.67.2)
@@ -361,6 +361,8 @@ PODS:
     - React-Core
     - React-RCTImage
     - React-RCTText
+  - RNDeviceInfo (10.0.1):
+    - React-Core
   - RNPermissions (3.3.1):
     - React-Core
   - RNReanimated (2.7.0):
@@ -463,6 +465,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - "RNSentry (from `../node_modules/@sentry/react-native`)"
@@ -559,6 +562,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   ReactNativeNavigation:
     :path: "../node_modules/react-native-navigation"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNReanimated:
@@ -606,7 +611,7 @@ SPEC CHECKSUMS:
   React-logger: 23de8ea0f44fa00ee77e96060273225607fd4d78
   react-native-config: 6502b1879f97ed5ac570a029961fc35ea606cd14
   react-native-keep-awake: afad8a51dfef9fe9655a6344771be32c8596d774
-  react-native-spren: 733a2005a82199226269d0f6b883b808f30cbb65
+  react-native-spren: 9c9932f35b976b747165708c76a816ae8aea485a
   React-perflogger: 3c9bb7372493e49036f07a82c44c8cf65cbe88db
   React-RCTActionSheet: 052606483045a408693aa7e864410b4a052f541a
   React-RCTAnimation: 08d4cac13222bb1348c687a0158dfd3b577cdb63
@@ -620,6 +625,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 2450b43df7ffe8e805a0b3dcb2abd4282f1f1836
   ReactCommon: d98c6c96b567f9b3a15f9fd4cc302c1eda8e3cf2
   ReactNativeNavigation: c7e6d14dfcbe8c981887674deb0a37082cfc74e3
+  RNDeviceInfo: ee3ec9e7a48fa8a2ea4d711ee312497857e4ee74
   RNPermissions: 34d678157c800b25b22a488e4d8babb57456e796
   RNReanimated: 96ab42cfb0e5517293499e0f3f810420eb459f75
   RNSentry: fbbdcd7213058e3de5fbaa452b25a06a16b4b382

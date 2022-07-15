@@ -80,7 +80,11 @@ const Home: NavigationFunctionComponent<Props> = ({
             </View>
         );
     } else {
-        return <CircularProgress value={58} />;
+        return (
+            <View style={styles.containerCircle}>
+                <CircularProgress value={100} showProgressValue={false} />
+            </View>
+        );
     }
 };
 Home.options = {

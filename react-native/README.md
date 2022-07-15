@@ -57,7 +57,6 @@ return (
 | `sprenRef.current?.setTorchMode(string)` *iOS only*        | `"0"`,`"1"`,`"2"`          | Configure flash light mode. torchMode possible values are: `"0"` - The capture device torch is always off. `"1"` - The capture device torch is always on. `"2"` - The capture device continuously monitors light levels and uses the torch when necessary.                                                                 |
 | `sprenRef.current?.captureLock()` *iOS only*    |          | Locks camera device configuration      |
 | `sprenRef.current?.captureUnlock()` *iOS only*     |          | Unlocks camera device configuration      |
-| `sprenRef.current?.handleOverExposure()` *iOS only*     |          | Attempts to reduce the exposure of the image by lowering the sensor exposure time.      |
 | `sprenRef.current?.turnFlashOn()` *Android only*     |          | Sets Flash On      |
 | `sprenRef.current?.reset()` *Android only*     |          | Reset new reading to the beginning state      |
 

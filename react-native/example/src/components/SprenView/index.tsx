@@ -122,22 +122,6 @@ export class SprenView extends React.Component<IProps, {}> {
     };
 
     /**
-     * Handles camera over exposure
-     *
-     * iOS only
-     */
-    handleOverExposure = () => {
-        if (!isIOS) {
-            throw new Error('Platform not supported');
-        }
-        callNativeMethod(
-            findNodeHandle(this),
-            'SprenView',
-            'handleOverExposure',
-        );
-    };
-
-    /**
      * Sets Flash On
      *
      * Android only

@@ -47,7 +47,6 @@ import 'package:spren_flutter/spren_flutter.dart';
 | `await SprenFlutter.setTorchMode(int)` *iOS only*        | `0`,`1`,`2`          | Configure flash light mode. torchMode possible values are: `0` - The capture device torch is always off. `1` - The capture device torch is always on. `2` - The capture device continuously monitors light levels and uses the torch when necessary.                                                                |
 | `await SprenFlutter.captureLock()` *iOS only*     |          | Locks camera device configuration      |
 | `await SprenFlutter.captureUnlock()` *iOS only*     |          | Unlocks camera device configuration      |
-| `await SprenFlutter.handleOverExposure()` *iOS only*     |          | Attempts to reduce the exposure of the image by lowering the sensor exposure time.      |
 | `await SprenFlutter.turnFlashOn()` *Android only*     |          | Sets Flash On      |
 | `await SprenFlutter.reset()` *Android only*     |          | Reset new reading to the beginning state      |
 

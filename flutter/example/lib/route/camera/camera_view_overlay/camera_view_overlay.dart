@@ -90,18 +90,6 @@ class CameraViewOverlay extends HookWidget {
       await reset();
     }
 
-    void handleOverExposure() async {
-      try {
-        switch (defaultTargetPlatform) {
-          case TargetPlatform.iOS:
-            await SprenFlutter.handleOverExposure();
-            break;
-        }
-      } catch (e) {
-        // Unable to handle over exposure
-      }
-    }
-
     void setTorchMode(int mode) async {
       try {
         switch (defaultTargetPlatform) {
@@ -232,10 +220,6 @@ class CameraViewOverlay extends HookWidget {
 
     // EXPOSURE
     useEffect(() {
-      if (defaultTargetPlatform != TargetPlatform.iOS) {
-        return;
-      }
-      handleOverExposure();
 
       return null;
     }, [exposure.value]);

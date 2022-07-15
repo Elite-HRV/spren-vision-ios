@@ -82,10 +82,7 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
     }, [droppedFrames]);
 
     useEffect(() => {
-        if (!isIOS) {
-            return;
-        }
-        sprenRef.current?.handleOverExposure();
+
     }, [exposure]);
 
     useEffect(() => {
@@ -99,7 +96,7 @@ const Recording: NavigationFunctionComponent<Props> = ({componentId}) => {
             if (sprenRef.current) {
                 await sleep(1000);
                 setFlash('1');
-                sprenRef.current?.setAutoStart(true);
+                reset();
             }
         })();
     }, [sprenRef.current]);

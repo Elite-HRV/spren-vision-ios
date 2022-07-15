@@ -9,15 +9,16 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
-  "license": "LicenseRef-LICENSE",
+  "license": "SEE LICENSE IN LICENSE.pdf",
   "dependencies": {
     "@sentry/react-native": "^3.2.13",
     "@spren/react-native": "file:..",
     "axios": "^0.26.0",
     "react": "17.0.2",
     "react-native": "0.67.2",
-    "react-native-circular-progress-indicator": "^2.0.6",
+    "react-native-circular-progress-indicator": "^4.3.0",
     "react-native-config": "^1.4.5",
+    "react-native-device-info": "^10.0.1",
     "react-native-keep-awake": "^4.0.0",
     "react-native-navigation": "^7.25.4",
     "react-native-permissions": "^3.2.0",

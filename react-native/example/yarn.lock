@@ -1388,7 +1388,7 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@spren/react-native@file:..":
-  version "1.2.2"
+  version "2.0.0"
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -5963,10 +5963,10 @@ react-lifecycles-compat@2.0.0:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-2.0.0.tgz#71d9c4cde47114c4102454f76da055c2bc48c948"
   integrity sha512-txfpPCQYiazVdcbMRhatqWKcAxJweUu2wDXvts5/7Wyp6+Y9cHojqXHsLPEckzutfHlxZhG8Oiundbmp8Fd6eQ==
 
-react-native-circular-progress-indicator@^2.0.6:
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/react-native-circular-progress-indicator/-/react-native-circular-progress-indicator-2.0.10.tgz#29b02ab26a0715f4fe9842d308f20f54a5f55660"
-  integrity sha512-YrOQP6rZxKJycXBQcZbNgJJN5AX4d/+JpcXULbHyjfer4fZpLJd8kbVMFCgRboIzbo/0cwoLfyWHIFhKO4kW3w==
+react-native-circular-progress-indicator@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-circular-progress-indicator/-/react-native-circular-progress-indicator-4.3.0.tgz#87c7f75c08ae3b84b65d5c4a52c8b9c4051895ae"
+  integrity sha512-HrNmjBu5aiBvBRaUCU/VexMPAeSrPk9/EsO/vtMilwkJXfJ7iSK3TvHJKQzIQRHS8PJgItsU6szV9BXMenvARw==
 
 react-native-codegen@^0.0.8:
   version "0.0.8"
@@ -5981,6 +5981,11 @@ react-native-config@^1.4.5:
   version "1.4.5"
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.4.5.tgz#6fe5895410b75e44fe4f4bf00caaf894a0981f3a"
   integrity sha512-5oiAsoW88SOYDg/0cleJ2vJDqv98FJUbFQYEnH4sdMtEn3AAT3lb7BkTGW8HO/t3Vk9VOruwxUUnO4tzuxzCsw==
+
+react-native-device-info@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-10.0.1.tgz#33d5a5189a460c88054a32cdeaf0a87604adc13d"
+  integrity sha512-4INPcRYZ+syEhRr+T3AYhBjQBGh0b+/auWKtQ6KrWMYI5Kqwf134Fi19z2QYztvwWVplthQ7CRlUufxR43BdIw==
 
 react-native-keep-awake@^4.0.0:
   version "4.0.0"

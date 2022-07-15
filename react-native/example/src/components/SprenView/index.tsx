@@ -12,34 +12,18 @@ interface IProps extends SprenProps {
 }
 
 export class SprenView extends React.Component<IProps, {}> {
+    /**
+     * Returns reading data information (needs to be called when reading is over)
+     */
+    getReadingData = () => {
+        callNativeMethod(findNodeHandle(this), 'SprenView', 'getReadingData');
+    };
 
     /**
      * Cancels the ongoing reading
      */
     cancelReading = () => {
         callNativeMethod(findNodeHandle(this), 'SprenView', 'cancelReading');
-    };
-
-    /**
-     * Set reading auto start. autoStart by default is false
-     * Set autoStart to true if you want reading to start automatically.
-     *
-     * @param autoStart
-     */
-    setAutoStart = (autoStart: boolean) => {
-        callNativeMethod(
-            findNodeHandle(this),
-            'SprenView',
-            'setAutoStart',
-            autoStart,
-        );
-    };
-
-    /**
-     * Returns reading data information (needs to be called when reading is over)
-     */
-    getReadingData = () => {
-        callNativeMethod(findNodeHandle(this), 'SprenView', 'getReadingData');
     };
 
     /**
@@ -54,6 +38,19 @@ export class SprenView extends React.Component<IProps, {}> {
      */
     captureStop = () => {
         callNativeMethod(findNodeHandle(this), 'SprenView', 'captureStop');
+    };
+
+    /**
+     * Lower camera resolution and/or frame rate when phone load gets too high
+     *
+     * iOS only
+     */
+    dropComplexity = () => {
+        if (!isIOS) {
+            throw new Error('Platform not supported');
+        }
+
+        callNativeMethod(findNodeHandle(this), 'SprenView', 'dropComplexity');
     };
 
     /**
@@ -82,31 +79,45 @@ export class SprenView extends React.Component<IProps, {}> {
     };
 
     /**
-     * Lower camera resolution and/or frame rate when phone load gets too high
+     * Set reading auto start. autoStart by default is false
+     * Set autoStart to true if you want reading to start automatically.
+     *
+     * @param autoStart
      *
      * iOS only
      */
-    dropComplexity = () => {
+    setAutoStart = (autoStart: boolean) => {
         if (!isIOS) {
             throw new Error('Platform not supported');
         }
 
-        callNativeMethod(findNodeHandle(this), 'SprenView', 'dropComplexity');
-    };
-
-    /**
-     * Handles camera over exposure
-     *
-     * iOS only
-     */
-    handleOverExposure = () => {
-        if (!isIOS) {
-            throw new Error('Platform not supported');
-        }
         callNativeMethod(
             findNodeHandle(this),
             'SprenView',
-            'handleOverExposure',
+            'setAutoStart',
+            autoStart,
+        );
+    };
+
+    /**
+     * Configure flash light mode. torchMode possible values are:
+     * @param torchMode
+     *   0 - The capture device torch is always off.
+     *   1 - The capture device torch is always on.
+     *   2 - The capture device continuously monitors light levels and uses the torch when necessary.
+     *
+     *   iOS only
+     */
+    setTorchMode = (torchMode: string) => {
+        if (!isIOS) {
+            throw new Error('Platform not supported');
+        }
+
+        callNativeMethod(
+            findNodeHandle(this),
+            'SprenView',
+            'setTorchMode',
+            torchMode,
         );
     };
 
@@ -132,24 +143,6 @@ export class SprenView extends React.Component<IProps, {}> {
             throw new Error('Platform not supported');
         }
         callNativeMethod(findNodeHandle(this), 'SprenView', 'reset');
-    };
-
-    /**
-     * Configure flash light mode. torchMode possible values are:
-     * @param torchMode
-     *   0 - The capture device torch is always off.
-     *   1 - The capture device torch is always on.
-     *   2 - The capture device continuously monitors light levels and uses the torch when necessary.
-     *
-     *   iOS only
-     */
-    setTorchMode = (torchMode: string) => {
-        callNativeMethod(
-            findNodeHandle(this),
-            'SprenView',
-            'setTorchMode',
-            torchMode,
-        );
     };
 
     render() {

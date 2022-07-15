@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.spren.demo.rn">
     <uses-feature android:name="android.hardware.camera.any" />
-
+    <uses-sdk tools:overrideLibrary="com.spren.sprencapture,com.spren.sprencore" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 

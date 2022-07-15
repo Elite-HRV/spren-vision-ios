@@ -4,7 +4,7 @@ buildscript {
     ext {
         RNNKotlinVersion = "1.5.30"
         buildToolsVersion = "30.0.2"
-        minSdkVersion = 28
+        minSdkVersion = 21
         compileSdkVersion = 31
         targetSdkVersion = 31
         Spren_compileSdkVersion = 31

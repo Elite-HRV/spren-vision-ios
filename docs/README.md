@@ -15,13 +15,13 @@ There are a few requirements for this current version of SprenVision:
 | iOS Device          | iPhone 6s and iPhone SE (1st gen), or newer |
 | iOS Version         | iOS 14+                                     |
 | Android Version     | Android 5.0 (Lollipop) or newer             |
-| Android SDK Version | API 21+                                     |
+| Android SDK Version | API 28+                                     |
 
 Our iOS and Android SDK's automatically support native iOS and Android applications, but we also support a variety of framework and language integrations. Below you'll find a table outlining which integration components we currently have available for the iOS SDK, Android SDK, or both.
 
-| **Framework / Language** | **iOS SDK** | **Android SDK** |
-| ------------------------ | ----------- | --------------- |
-| Flutter                  | Available   | Coming soon!    |
-| React Native             | Available   | Coming soon!    |
+| **Framework / Language** | **iOS SDK** | **Android SDK (Alpha)** |
+| ------------------------ | ----------- | ----------------------- |
+| Flutter                  | Available   | Available               |
+| React Native             | Available   | Coming soon!            |
 
 If you're using a framework that isn't listed here, we can work with you and your team to figure out a solution so you can seamlessly integrate our SDK's into your mobile app!

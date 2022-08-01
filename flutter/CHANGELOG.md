@@ -1,3 +1,7 @@
+## 2.0.2
+
+Android: Fixed MissingPluginException error
+
 ## 2.0.1
 
 Updated LICENSE file

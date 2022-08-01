@@ -84,7 +84,7 @@ class CameraViewOverlay extends HookWidget {
       // await getReadingData();
       // return;
       //
-      await Future.delayed(const Duration(seconds: 1));
+      // await Future.delayed(const Duration(seconds: 1));
 
       flash.value = 1;
       await reset();

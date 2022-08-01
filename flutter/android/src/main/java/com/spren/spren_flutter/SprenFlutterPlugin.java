@@ -23,6 +23,7 @@ public class SprenFlutterPlugin implements FlutterPlugin, ActivityAware {
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
         binaryMessenger = flutterPluginBinding.getBinaryMessenger();
+        binaryMessenger.enableBufferingIncomingMessages();
         platformViewRegistry = flutterPluginBinding.getPlatformViewRegistry();
         setEventHandlers(binaryMessenger);
     }

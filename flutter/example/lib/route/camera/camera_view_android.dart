@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
@@ -28,12 +31,31 @@ class CameraViewAndroid extends StatelessWidget {
             return SizedBox(
                 width: width,
                 height: height,
-                child: AndroidView(
+                child: PlatformViewLink(
                   viewType: viewType,
-                  layoutDirection: TextDirection.ltr,
-                  creationParams: creationParams,
-                  creationParamsCodec: const StandardMessageCodec(),
-                )
+                  surfaceFactory:
+                      (context, controller) {
+                    return AndroidViewSurface(
+                      controller: controller as AndroidViewController,
+                      gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+                      hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+                    );
+                  },
+                  onCreatePlatformView: (params) {
+                    return PlatformViewsService.initExpensiveAndroidView(
+                      id: params.id,
+                      viewType: viewType,
+                      layoutDirection: TextDirection.ltr,
+                      creationParams: creationParams,
+                      creationParamsCodec: const StandardMessageCodec(),
+                      onFocus: () {
+                        params.onFocusChanged(true);
+                      },
+                    )
+                      ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
+                      ..create();
+                  },
+                ),
             );
           } else if (snapshot.hasData && snapshot.data!.isPhysicalDevice == false) {
             return Container(

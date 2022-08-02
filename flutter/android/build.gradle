@@ -43,4 +43,5 @@ dependencies {
     def camerax_version = "1.1.0-rc02"
     implementation "androidx.camera:camera-view:${camerax_version}"
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+    implementation 'com.google.code.gson:gson:2.9.0'
 }

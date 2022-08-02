@@ -1,3 +1,7 @@
+## 2.0.3
+
+Android: Add Gson dependency
+
 ## 2.0.2
 
 Android: Fixed MissingPluginException error

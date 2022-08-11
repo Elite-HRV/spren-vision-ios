@@ -1,3 +1,7 @@
+## 2.0.4
+
+Android: Fixed bug hang issue with Samsung S8 
+
 ## 2.0.3
 
 Android: Add Gson dependency

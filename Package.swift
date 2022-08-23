@@ -10,6 +10,9 @@ let package = Package(
     ],
     products: [
         .library(
+            name: "SprenUI",
+            targets: ["SprenUI"]),
+        .library(
             name: "SprenCapture",
             targets: ["SprenCapture"]),
         .library(
@@ -21,9 +24,17 @@ let package = Package(
     ],
     targets: [
         .target(
+            name: "SprenUI",
+            dependencies: ["DeviceKit", "SprenCapture", "SprenCore"],
+            path: "Sources/SprenUI"
+//            resources: [
+//                .process("Sources/SprenUI/Assets.xcassets")
+//            ]
+        ),
+        .target(
             name: "SprenCapture",
             dependencies: ["DeviceKit", "SprenCore"],
-            path: "Sources"
+            path: "Sources/SprenCapture"
         ),
         .binaryTarget(
             name: "SprenCore",

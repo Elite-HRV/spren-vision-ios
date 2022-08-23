@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MessageScreen: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     let illustration: String
     let title: String
     let paragraph: String
@@ -25,8 +27,8 @@ struct MessageScreen: View {
     
     var body: some View {
         VStack {
-            Header(onBackButtonTap: onBackButtonTap)
-            
+            Header(backButtonColor: colorScheme == .light ? .black : .white, onBackButtonTap: onBackButtonTap)
+                        
             if illustration == "Home" && Autoscale.scale == 3 {
                 HomeAnimation()
                     .padding(Autoscale.padding)

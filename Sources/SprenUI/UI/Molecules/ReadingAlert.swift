@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ReadingAlert: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     let title: String
     let paragraph: String
     
@@ -56,7 +58,7 @@ struct ReadingAlert: View {
                 
             }
             .padding(Autoscale.padding)
-            .background(Color.white)
+            .background(colorScheme == .light ? Color.white : Color.black)
             .cornerRadius(cornerRadius)
         }
     }

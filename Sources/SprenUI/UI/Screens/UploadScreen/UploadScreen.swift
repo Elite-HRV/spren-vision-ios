@@ -9,6 +9,8 @@ import SwiftUI
 
 struct UploadScreen: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @StateObject var viewModel: ViewModel
     
     let circleSize = Autoscale.scaleFactor * 100
@@ -17,7 +19,7 @@ struct UploadScreen: View {
     var body: some View {
         ZStack {
             VStack {
-                Header(backButtonColor: .black,
+                Header(backButtonColor: colorScheme == .light ? .black : .white,
                        onBackButtonTap: viewModel.handleCancel)
                 Spacer()
             }

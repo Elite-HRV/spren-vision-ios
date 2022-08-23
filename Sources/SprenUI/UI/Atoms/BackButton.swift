@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BackButton: View {
     
-    var color: Color = .black
+    var color: Color
     var action: (() -> Void)? = nil
 
     var body: some View {
@@ -26,6 +26,6 @@ struct BackButton: View {
 
 struct BackButton_Previews: PreviewProvider {
     static var previews: some View {
-        BackButton(action: {})
+        BackButton(color: .black, action: {})
     }
 }

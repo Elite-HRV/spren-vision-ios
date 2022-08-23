@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MeasurementProgress: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     let progress: Int
     let text: String
     
@@ -55,7 +57,7 @@ struct MeasurementProgress: View {
         }
         .frame(maxWidth: .infinity)
         .padding(Autoscale.padding)
-        .background(Color.white)
+        .background(colorScheme == .light ? Color.white : Color.black)
         .cornerRadius(cornerRadius)
     }
 }

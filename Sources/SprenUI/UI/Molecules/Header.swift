@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Header: View {
     
-    var backButtonColor: Color = .black
+    var backButtonColor: Color
     var onBackButtonTap: (() -> Void)? = nil
         
     var body: some View {
@@ -29,7 +29,7 @@ struct Header: View {
 
 struct Header_Previews: PreviewProvider {
     static var previews: some View {
-        Header()
-        Header(onBackButtonTap: {})
+        Header(backButtonColor: .black)
+        Header(backButtonColor: .black, onBackButtonTap: {})
     }
 }

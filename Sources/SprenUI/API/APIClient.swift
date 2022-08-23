@@ -49,7 +49,7 @@ enum Response {
 }
 
 class APIClient: NSObject {
-    let logger = Logger(label: "HTTPClient")
+    let logger = SprenUI.config.logger
     let session = URLSession.shared
 }
 
@@ -86,7 +86,8 @@ extension APIClient {
         body: Body,
         completionHandler: RequestCompletionHandler? = nil
     ) -> (URLRequest, URLSessionDataTask) {
-        logger.debug("\(HTTPMethod.post.rawValue), \(path), \(body)")
+        // logger?.debug("\(HTTPMethod.post.rawValue), \(path), \(body)")
+        logger?.debug("\(HTTPMethod.post.rawValue), \(path)")
         
         var request = baseURLRequest(.post, path: path, headers: headers)
         if let bodyData = try? JSONEncoder().encode(body) {
@@ -104,7 +105,7 @@ extension APIClient {
         timeout: Double = 30,
         completionHandler: RequestCompletionHandler? = nil
     ) -> (URLRequest, URLSessionDataTask) {
-        logger.debug("\(HTTPMethod.get.rawValue), \(path), \(params ?? [:])")
+        logger?.debug("\(HTTPMethod.get.rawValue), \(path), \(params ?? [:])")
         
         var request = baseURLRequest(.get, path: path, headers: headers)
         request.timeoutInterval = timeout
@@ -163,12 +164,12 @@ extension APIClient {
     /// Process a response
     fileprivate func processRequestCompletion(_ data: Data?, response: URLResponse?, error: Swift.Error?) -> Response {
         if let error = error {
-            logger.warning("Request Error: \(error)")
+            logger?.warning("Request Error: \(error)")
             return .error(error: error, response: response as? HTTPURLResponse, data: nil)
         }
 
         guard let data = data else {
-            logger.warning("Request Data Error: data is nil")
+            logger?.warning("Request Data Error: data is nil")
                 return .error(
                 error: RequestError.invalidData,
                 response: response as? HTTPURLResponse,
@@ -177,7 +178,7 @@ extension APIClient {
         }
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            logger.warning("Request Response Error: response is not an http response")
+            logger?.warning("Request Response Error: response is not an http response")
             return .error(
                 error: RequestError.invalidResponse,
                 response: response as? HTTPURLResponse,
@@ -186,7 +187,7 @@ extension APIClient {
         }
 
         guard let url = httpResponse.url else {
-            logger.warning("Request URL Error: url is nil")
+            logger?.warning("Request URL Error: url is nil")
             return .error(error: RequestError.invalidURL, response: httpResponse, data: data)
         }
 
@@ -194,7 +195,7 @@ extension APIClient {
         case 200..<400:
             return .success(data: data)
         default:
-            logger.error("Request Failed: \(httpResponse.statusCode), \(url)")
+            logger?.error("Request Failed: \(httpResponse.statusCode), \(url)")
             return .error(error: RequestError.statusCode, response: httpResponse, data: data)
         }
     }

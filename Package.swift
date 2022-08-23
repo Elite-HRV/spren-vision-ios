@@ -20,16 +20,19 @@ let package = Package(
             targets: ["SprenCore"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(url: "https://github.com/devicekit/DeviceKit.git", from: "4.0.0"),
     ],
     targets: [
         .target(
             name: "SprenUI",
-            dependencies: ["DeviceKit", "SprenCapture", "SprenCore"],
+            dependencies: [
+                .product(name: "Logging", package: "swift-log"),
+                "DeviceKit",
+                "SprenCapture",
+                "SprenCore"
+            ],
             path: "Sources/SprenUI"
-//            resources: [
-//                .process("Sources/SprenUI/Assets.xcassets")
-//            ]
         ),
         .target(
             name: "SprenCapture",

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SprenCore
-//import Sentry
 
 extension UploadScreen {
     
@@ -106,7 +105,7 @@ extension UploadScreen {
         }
         
         func handleShowAlert() {
-//            SentrySDK.capture(message: "network connectivity alert")
+            SprenUI.config.logger?.info("network connectivity alert")
             cleanupUITimers()
             showAlert = true
         }
@@ -114,16 +113,16 @@ extension UploadScreen {
         func handleTapTryAgain() {
             startUITimers()
             if let guid = self.guid {
-//                SentrySDK.capture(message: "try again with guid (GET failed)")
+                SprenUI.config.logger?.info("try again with guid (GET failed)")
                 startGet(guid: guid)
             } else {
-//                SentrySDK.capture(message: "try again (POST failed)")
+                SprenUI.config.logger?.info("try again (POST failed)")
                 post()
             }
         }
         
         func handleError() {
-//            SentrySDK.capture(message: "handle error")
+            SprenUI.config.logger?.info("handle error")
             cleanupUITimers()
             onError()
         }
@@ -149,7 +148,7 @@ extension UploadScreen {
         
         public func post() {
             guard let readingData = self.readingData else {
-//                SentrySDK.capture(message: "readingData nil")
+                SprenUI.config.logger?.error("readingData nil for POST")
                 handleError()
                 return
             }
@@ -165,7 +164,7 @@ extension UploadScreen {
                     print("POST success!")
                     self.handlePostSuccess(data: data)
                 case .error(let error, let response, _):
-//                    SentrySDK.capture(message: "POST errored, status code: \(response?.statusCode ?? -1)")
+                    SprenUI.config.logger?.error("POST errored, status code: \(response?.statusCode ?? -1)")
                     self.handleResponseError(error)
                 }
             })
@@ -178,8 +177,7 @@ extension UploadScreen {
                 self.guid = apiResponse.guid
                 startGet(guid: apiResponse.guid, delaySeconds: retryAfterPostDelay)
             } catch {
-//                SentrySDK.capture(message: "could not decode POST response")
-//                SentrySDK.capture(message: String(data: data, encoding: .utf8) ?? "")
+                SprenUI.config.logger?.error("could not decode POST response: \(String(data: data, encoding: .utf8) ?? "")")
                 handleError()
             }
         }
@@ -198,7 +196,7 @@ extension UploadScreen {
             let timeElapsed = NSDate().timeIntervalSince1970 - getStartTime
             
             if timeElapsed >= self.retryGetTimeout {
-//                SentrySDK.capture(message: "GET timeout")
+                SprenUI.config.logger?.info("GET timeout")
                 handleShowAlert()
                 return
             }
@@ -211,8 +209,7 @@ extension UploadScreen {
                     print("GET success!")
                     
                     guard let getResultsResponse = try? JSONDecoder().decode(GetResultsResponse.self, from: data) else {
-//                        SentrySDK.capture(message: "could not decode GET response")
-//                        SentrySDK.capture(message: String(data: data, encoding: .utf8) ?? "")
+                        SprenUI.config.logger?.error("could not decode GET response: \(String(data: data, encoding: .utf8) ?? "")")
                         self.handleError()
                         return
                     }
@@ -221,7 +218,7 @@ extension UploadScreen {
                         print("results complete!")
                         guard let hr = getResultsResponse.biomarkers.hr.value,
                                 let hrvScore = getResultsResponse.biomarkers.hrvScore.value else {
-//                            SentrySDK.capture(message: "hr or hrvScore nil")
+                            SprenUI.config.logger?.error("hr or hrvScore nil")
                             self.handleError()
                             return
                         }
@@ -232,7 +229,7 @@ extension UploadScreen {
                         self.handleFinish(hr: hr, hrvScore: hrvScore)
                         
                     } else if getResultsResponse.hasError() {
-//                        SentrySDK.capture(message: "response has errored biomarker")
+                        SprenUI.config.logger?.info("response has errored biomarker")
                         self.handleError()
                         
                     } else {
@@ -245,7 +242,7 @@ extension UploadScreen {
                     }
                     
                 case .error(let error, let response, _):
-//                    SentrySDK.capture(message: "GET errored, status code: \(response?.statusCode ?? -1)")
+                    SprenUI.config.logger?.info("GET errored, status code: \(response?.statusCode ?? -1)")
                     self.handleResponseError(error)
                 }
             }
@@ -254,13 +251,11 @@ extension UploadScreen {
         // MARK: - ERROR
         
         func handleResponseError(_ error: Error) {
-//            SentrySDK.capture(error: error)
-            print("handling response error...")
             if error is RequestError { // data nil, url nil, HTTP error, non HTTP response
-//                SentrySDK.capture(message: "request type error")
+                SprenUI.config.logger?.info("request type error")
                 handleError()
             } else {
-//                SentrySDK.capture(message: "non request type error")
+                SprenUI.config.logger?.info("non request type error")
                 handleShowAlert() // I think it's a connectivity error
             }
         }

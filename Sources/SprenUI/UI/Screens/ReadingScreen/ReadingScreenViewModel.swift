@@ -9,7 +9,6 @@ import Foundation
 import AVKit
 import SprenCapture
 import SprenCore
-//import Sentry
 
 extension ReadingScreen {
     class ViewModel: ObservableObject {
@@ -54,10 +53,9 @@ extension ReadingScreen {
                 sprenCapture = try SprenCapture()
                 sprenCapture?.start()
                 
-                print("SprenCapture started")
+                SprenUI.config.logger?.info("SprenCapture started")
             } catch {
-                print("SprenCapture failed to start")
-                print(error.localizedDescription)
+                SprenUI.config.logger?.error("SprenCapture failed to start: \(error.localizedDescription)")
                 return
             }
             
@@ -75,7 +73,7 @@ extension ReadingScreen {
                         self.cancelState()
                     case .error:
                         if let error = error {
-//                            SentrySDK.capture(error: error)
+                            SprenUI.config.logger?.info("Spren transitioned to error state: \(error.localizedDescription)")
                         }
                         self.errorState()
                     @unknown default:
@@ -88,7 +86,7 @@ extension ReadingScreen {
                 guard let self = self else { return }
                 
                 if self.readingState == .reading {
-//                    SentrySDK.capture(message: "received prereading compliance check while VM has reading state, progress \(self.progress)%, showAlert \(self.showAlert), alertTitle \(self.alertTitle)")
+                    SprenUI.config.logger?.info(.init(stringLiteral: "received prereading compliance check while VM has reading state, progress \(self.progress)%, showAlert \(self.showAlert), alertTitle \(self.alertTitle)"))
                 }
                 
                 DispatchQueue.main.async {
@@ -111,19 +109,7 @@ extension ReadingScreen {
                     self.progress = progress
                 }
             }
-            
-//            Spren.setOnSignalPreviewUpdate { [weak self] signalPreview in
-//                DispatchQueue.main.async {
-//                    self?.signalPreview = signalPreview
-//                }
-//            }
-//            
-//            Spren.setOnLiveHRUpdate { [weak self] bpm in
-//                DispatchQueue.main.async {
-//                    self?.bpm = "\(Int(round(bpm)))"
-//                }
-//            }
-            
+                        
             reset()
         }
         
@@ -181,7 +167,7 @@ extension ReadingScreen {
                 torchMode = try? sprenCapture?.setTorchMode(to: torchMode ?? .on)
                 frameDropNonComplianceCounter = 0
                 
-//                SentrySDK.capture(message: "drop complexity during state: \(readingState == .reading ? "reading" : "not reading")")
+                SprenUI.config.logger?.info("drop complexity during state: \(readingState == .reading ? "reading" : "not reading")")                
             }
         }
         
@@ -257,7 +243,8 @@ extension ReadingScreen {
                 self.reset()
             }
             
-//            SentrySDK.capture(message: "show brightness alert")
+            SprenUI.config.logger?.info("show brightness alert")
+
             showAlert = true
         }
         
@@ -271,7 +258,8 @@ extension ReadingScreen {
             alertSecondaryButtonText = nil
             alertOnSecondaryButtonTap = nil
             
-//            SentrySDK.capture(message: "show error alert")
+            SprenUI.config.logger?.info("show error alert")
+
             showAlert = true
         }
         
@@ -288,7 +276,8 @@ extension ReadingScreen {
                 self.showAlert = false
             }
             
-//            SentrySDK.capture(message: "show cancel alert")
+            SprenUI.config.logger?.info("show cancel alert")
+            
             showAlert = true
         }
         

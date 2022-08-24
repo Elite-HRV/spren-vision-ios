@@ -1,3 +1,7 @@
+## 2.1.0
+
+Android: Improved exposure change in a way that camera doesn't need to restart.
+
 ## 2.0.4
 
 Android: Fixed bug hang issue with Samsung S8 

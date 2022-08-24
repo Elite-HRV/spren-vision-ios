@@ -3,18 +3,9 @@ PODS:
     - Flutter
   - DeviceKit (4.6.1)
   - Flutter (1.0.0)
-  - package_info_plus (0.4.5):
-    - Flutter
   - permission_handler_apple (9.0.4):
     - Flutter
-  - Sentry (7.11.0):
-    - Sentry/Core (= 7.11.0)
-  - Sentry/Core (7.11.0)
-  - sentry_flutter (0.0.1):
-    - Flutter
-    - FlutterMacOS
-    - Sentry (~> 7.11.0)
-  - spren_flutter (2.0.4):
+  - spren_flutter (2.1.0):
     - Flutter
     - SprenVision (~> 1.2.0)
   - SprenVision (1.2.0):
@@ -25,16 +16,13 @@ PODS:
 DEPENDENCIES:
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
-  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
-  - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
   - spren_flutter (from `.symlinks/plugins/spren_flutter/ios`)
   - wakelock (from `.symlinks/plugins/wakelock/ios`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - DeviceKit
-    - Sentry
     - SprenVision
 
 EXTERNAL SOURCES:
@@ -42,12 +30,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
     :path: Flutter
-  package_info_plus:
-    :path: ".symlinks/plugins/package_info_plus/ios"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
-  sentry_flutter:
-    :path: ".symlinks/plugins/sentry_flutter/ios"
   spren_flutter:
     :path: ".symlinks/plugins/spren_flutter/ios"
   wakelock:
@@ -57,11 +41,8 @@ SPEC CHECKSUMS:
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
   DeviceKit: 316f28290430467278b8a0d1c895968efa9e16e2
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
-  Sentry: 0c5cd63d714187b4a39c331c1f0eb04ba7868341
-  sentry_flutter: efb3df2c203cd03aad255892a8d628a458656d14
-  spren_flutter: 133fd25af0f9ce857d375a683d3782e5e21dd90f
+  spren_flutter: eaac77f13966025930fa1670b38a4573a8680e4a
   SprenVision: 7e193808aa798037b6fced4271afde9f271ab941
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
 

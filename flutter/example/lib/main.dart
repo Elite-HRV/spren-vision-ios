@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spren_flutter_example/route/home/home.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");

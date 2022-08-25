@@ -12,7 +12,7 @@ public struct SprenUI: View {
     static var config = Config(baseURL: "", apiKey: "", userID: "")
     
     @StateObject var viewModel = ViewModel()
-    
+        
     public init(config: Config) {
         Self.config = config
     }
@@ -130,7 +130,7 @@ extension SprenUI {
     }
     
     var resultsScreen: ResultsScreen {
-        ResultsScreen(onDoneButtonTap: { viewModel.transition(to: .homeScreen, transition: .backwardsSlide) },
+        ResultsScreen(onDoneButtonTap: Self.config.onFinish ?? { viewModel.transition(to: .homeScreen, transition: .backwardsSlide) },
                       hrvScore: viewModel.hrvScore,
                       hr: viewModel.hr)
     }

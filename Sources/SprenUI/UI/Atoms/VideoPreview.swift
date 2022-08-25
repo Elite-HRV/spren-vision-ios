@@ -1,6 +1,6 @@
 //
 //  VideoPreview.swift
-//  SprenInternal
+//  SprenUI
 //
 //  Created by Keith Carolus on 11/11/21.
 //

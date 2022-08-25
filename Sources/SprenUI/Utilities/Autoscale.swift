@@ -1,6 +1,6 @@
 //
 //  Autoscale.swift
-//  SprenInternal
+//  SprenUI
 //
 //  Created by Keith Carolus on 2/8/22.
 //

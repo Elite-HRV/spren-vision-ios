@@ -1,6 +1,6 @@
 //
 //  MeasurementProgress.swift
-//  SprenInternal
+//  SprenUI
 //
 //  Created by Keith Carolus on 1/27/22.
 //

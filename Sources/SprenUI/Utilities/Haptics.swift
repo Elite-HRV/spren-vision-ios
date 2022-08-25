@@ -1,6 +1,6 @@
 //
 //  Haptics.swift
-//  SprenInternal
+//  SprenUI
 //
 //  Created by nick on 03.02.2022.
 //

@@ -1,6 +1,6 @@
 //
-//  SprenConfig.swift
-//  SprenInternal
+//  SprenUI+Config.swift
+//  SprenUI
 //
 //  Created by Keith Carolus on 8/18/22.
 //

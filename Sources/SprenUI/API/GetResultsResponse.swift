@@ -1,6 +1,6 @@
 //
 //  GetResultsResponse.swift
-//  SprenInternal
+//  SprenUI
 //
 //  Created by Keith Carolus on 2/11/22.
 //

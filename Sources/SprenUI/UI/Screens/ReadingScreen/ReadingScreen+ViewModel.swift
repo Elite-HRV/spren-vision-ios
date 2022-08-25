@@ -1,6 +1,6 @@
 //
-//  ReadingScreenViewModel.swift
-//  SprenInternal
+//  ReadingScreen+ViewModel.swift
+//  SprenUI
 //
 //  Created by Keith Carolus on 11/11/21.
 //

@@ -11,17 +11,21 @@ struct ResultsScreen: View {
     
     @Environment(\.openURL) var openURL
     
-    let onDoneButtonTap: () -> Void
+    let onDoneButtonTap: (_ guid: String, _ hr: Double, _ hrvScore: Double) -> Void
     
-    let hrvScore: Double
+    let guid: String
     let hr: Double
+    let hrvScore: Double
+    
     
     var body: some View {
         ScrollView {
             
             VStack {
                 HStack {
-                    Button(action: onDoneButtonTap, label: {
+                    Button(action: {
+                        onDoneButtonTap(guid, hr, hrvScore)
+                    }, label: {
                         Text("Done")
                             .font(.sprenProgress)
                             .foregroundColor(.sprenPurple)
@@ -127,6 +131,6 @@ struct ResultsScreen: View {
 
 struct ResultsScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ResultsScreen(onDoneButtonTap: {}, hrvScore: 63.1, hr: 58.9)
+        ResultsScreen(onDoneButtonTap: { _,_,_ in }, guid: "", hr: 58.9, hrvScore: 63.1)
     }
 }

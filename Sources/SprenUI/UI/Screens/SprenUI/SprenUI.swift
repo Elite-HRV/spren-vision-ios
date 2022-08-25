@@ -111,8 +111,9 @@ extension SprenUI {
             viewModel.transition(to: .homeScreen, transition: .backwardsSlide)
         }, onError: {
             viewModel.transition(to: .errorScreen, transition: .forwardSlide)
-        }, onFinish: { hr, hrvScore in
+        }, onFinish: { guid, hr, hrvScore in
             
+            viewModel.guid = guid
             viewModel.hr = hr
             viewModel.hrvScore = hrvScore
             
@@ -130,9 +131,10 @@ extension SprenUI {
     }
     
     var resultsScreen: ResultsScreen {
-        ResultsScreen(onDoneButtonTap: Self.config.onFinish ?? { viewModel.transition(to: .homeScreen, transition: .backwardsSlide) },
-                      hrvScore: viewModel.hrvScore,
-                      hr: viewModel.hr)
+        ResultsScreen(onDoneButtonTap: Self.config.onFinish ?? { _,_,_ in viewModel.transition(to: .homeScreen, transition: .backwardsSlide) },
+                      guid: viewModel.guid,
+                      hr: viewModel.hr,
+                      hrvScore: viewModel.hrvScore)
     }
     
 }

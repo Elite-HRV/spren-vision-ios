@@ -15,6 +15,7 @@ extension SprenUI {
         @Published var navTag: NavTag = .homeScreen
         var transition: AnyTransition = .forwardSlide
         
+        @Published var guid = ""
         @Published var hr: Double = 0
         @Published var hrvScore: Double = 0
         

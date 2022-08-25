@@ -13,10 +13,10 @@ extension SprenUI {
         public let baseURL: String
         public let apiKey: String
         public let userID: String
-        public let onFinish: (() -> Void)?
+        public let onFinish: ((_ guid: String, _ hr: Double, _ hrvScore: Double) -> Void)?
         public let logger: Logger?
         
-        public init(baseURL: String, apiKey: String, userID: String, onFinish: (() -> Void)? = nil, logger: Logger? = nil) {
+        public init(baseURL: String, apiKey: String, userID: String, onFinish: ((String, Double, Double) -> Void)? = nil, logger: Logger? = nil) {
             self.baseURL = baseURL
             self.apiKey = apiKey
             self.userID = userID

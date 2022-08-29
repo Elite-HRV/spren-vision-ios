@@ -1,3 +1,7 @@
+## 2.1.1
+
+iOS: Fixed Request camera permission on the application bootstrap
+
 ## 2.1.0
 
 Android: Improved exposure change in a way that camera doesn't need to restart.

@@ -10,7 +10,7 @@ class DialogUtils {
           title: Text(title),
           content:  Text(message),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child:  const Text("OK"),
               onPressed: () => Navigator.pop(context),
             ),

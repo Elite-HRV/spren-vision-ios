@@ -11,7 +11,9 @@ import 'package:spren_flutter_example/route/camera/camera_view_overlay/state_pre
 import 'package:spren_flutter_example/route/camera/widgets/flash_disable_button.dart';
 import 'package:spren_flutter_example/route/camera/widgets/flash_enable_button.dart';
 import 'package:spren_flutter_example/route/camera/widgets/progress.dart';
+import 'package:spren_flutter_example/route/home/home.dart';
 import 'package:spren_flutter_example/route/processing/processing.dart';
+import 'package:spren_flutter_example/utils/dialog_utils.dart';
 import 'package:spren_flutter_example/widgets/close_button.dart';
 import 'package:tuple/tuple.dart';
 
@@ -38,6 +40,12 @@ class CameraViewOverlay extends HookWidget {
     final readingStatus = useState<SprenState>(SprenState.preReading);
     final modal = useState<ModalVisible?>(null);
 
+    void pop() {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const RouteHome())
+      );
+    }
+
     Future<void> getReadingData() async {
       // Simulator: Testing
       // await Future.delayed(const Duration(seconds: 2));
@@ -55,7 +63,7 @@ class CameraViewOverlay extends HookWidget {
         );
       } catch (e) {
         await SprenFlutter.captureStop();
-        Navigator.pop(context);
+        pop();
       }
     }
 
@@ -117,10 +125,10 @@ class CameraViewOverlay extends HookWidget {
       }
     }
 
-    Future<void> cancelReading([pop = false]) async {
-      await SprenFlutter.cancelReading();
-      if (pop) {
-        Navigator.pop(context);
+    Future<void> cancelReading([popOut = false]) async {
+      // await SprenFlutter.cancelReading();
+      if (popOut) {
+        pop();
       }
     }
 
@@ -140,6 +148,8 @@ class CameraViewOverlay extends HookWidget {
       });
       cancelListeningStateChange = startListeningStateChange((dynamic message) {
         String? state = message['state'];
+        String? error = message['error'];
+        DialogUtils.displayDialogOKCallBack(context, "State: $state", "Error: $error");
         if (state == null) {
           return;
         }
@@ -214,6 +224,10 @@ class CameraViewOverlay extends HookWidget {
           modal.value != null) {
         return;
       }
+
+      SprenState state = readingStatus.value;
+      int lensCoveredCounter = lensCovered.value;
+      DialogUtils.displayDialogOKCallBack(context, "State: $state", "LensCoveredCounter: $lensCoveredCounter");
       modal.value = ModalVisible.stop;
       return null;
     }, [lensCovered.value]);

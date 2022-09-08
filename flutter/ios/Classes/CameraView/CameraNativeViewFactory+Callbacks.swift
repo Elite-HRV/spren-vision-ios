@@ -59,7 +59,7 @@ extension CameraNativeViewFactory {
         Spren.setOnStateChange { [weak self] state, error in
             self?.eventStateChange.eventSink?([
                 "state": String(describing: state),
-                "error": error?.localizedDescription
+                "error": error
             ])
         }
 

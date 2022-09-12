@@ -84,10 +84,9 @@ class CameraViewOverlay extends HookWidget {
       // await getReadingData();
       // return;
       //
-      // await Future.delayed(const Duration(seconds: 1));
 
-      flash.value = 1;
       await reset();
+      flash.value = 1;
     }
 
     void setTorchMode(int mode) async {

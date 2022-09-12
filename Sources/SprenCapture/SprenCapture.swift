@@ -13,7 +13,9 @@ import SprenCore
 open class SprenCapture {
     
     public let session = AVCaptureSession()
-    
+
+    static public var flutter = false
+
     private let videoDevice: AVCaptureDevice
     private let videoOutput = AVCaptureVideoDataOutput()
     private let sprenCaptureDelegate = SprenCaptureDelegate()
@@ -30,6 +32,10 @@ open class SprenCapture {
     static private let minResolution = 1280*720
 
     static private let (maxFrameRate, maxResolution): (Int, Int) = {
+        if flutter {
+            return (60, 1280*720)
+        }
+
         switch Device.current {
         case .iPhone6s:     return (100, 1280*720)
         case .iPhone6sPlus: return (100, 1280*720)

@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
 
   s.dependency 'Flutter'
-  s.dependency 'SprenVision', '~> 1.2.0'
+  s.dependency 'SprenVision', '~> 1.2.1'
 end

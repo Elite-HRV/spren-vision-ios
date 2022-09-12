@@ -15,6 +15,7 @@ class CameraNativeViewFactory: NSObject, FlutterPlatformViewFactory {
     var eventPreReadingComplianceCheckHandler: PreReadingComplianceCheckHandler
     var eventProgressUpdateHandler: ProgressUpdateHandler
     lazy var sprenCapture: SprenCapture? = {
+       SprenCapture.flutter = true
        let sprenCapture = try? SprenCapture()
        return sprenCapture
     }()

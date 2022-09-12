@@ -90,8 +90,9 @@ class SprenFlutter {
       throw PlatformException(code: 'PLATFORM_NOT_SUPPORTED', message: 'Platform not supported');
     }
     try {
-      return await _channel.invokeMethod(
+      await _channel.invokeMethod(
           'setAutoStart', <String, dynamic>{'autoStart': autoStart});
+      await Future.delayed(const Duration(seconds: 1));
     } on PlatformException catch (e) {
       throw 'Unable to run setAutoStart: ${e.message}';
     }

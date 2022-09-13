@@ -1,3 +1,7 @@
+## 2.1.2
+
+iOS: Fixed frame drop issue
+
 ## 2.1.1
 
 iOS: Fixed Request camera permission on the application bootstrap

@@ -8,7 +8,6 @@
 import Foundation
 
 enum NavTag {
-    case homeScreen
     case greetingScreen1
     case greetingScreen2
     case noCameraScreen

@@ -13,15 +13,21 @@ extension SprenUI {
         public let baseURL: String
         public let apiKey: String
         public let userID: String
-        public let onFinish: ((_ guid: String, _ hr: Double, _ hrvScore: Double) -> Void)?
+        public let onCancel: (() -> Void)
+        public let onFinish: ((_ guid: String, _ hr: Double, _ hrvScore: Double) -> Void)
         public let logger: Logger?
+        public let homeScreen: Bool
         
-        public init(baseURL: String, apiKey: String, userID: String, onFinish: ((String, Double, Double) -> Void)? = nil, logger: Logger? = nil) {
+        public let secondReadingKey = "com.spren.ui.second-reading"
+        
+        public init(baseURL: String, apiKey: String, userID: String, onCancel: @escaping (() -> Void), onFinish: @escaping ((String, Double, Double) -> Void), logger: Logger? = nil, homeScreen: Bool = false) {
             self.baseURL = baseURL
             self.apiKey = apiKey
             self.userID = userID
+            self.onCancel = onCancel
             self.onFinish = onFinish
             self.logger = logger
+            self.homeScreen = homeScreen
         }
     }
 }

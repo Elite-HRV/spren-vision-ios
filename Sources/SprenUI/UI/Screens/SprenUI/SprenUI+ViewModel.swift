@@ -12,15 +12,19 @@ extension SprenUI {
     
     class ViewModel: ObservableObject {
         
-        @Published var navTag: NavTag = .homeScreen
-        var transition: AnyTransition = .forwardSlide
+        let firstScreen: NavTag = UserDefaults.standard.bool(forKey: SprenUI.config.secondReadingKey) ? .fingerOnCameraScreen : .greetingScreen1
+        @Published var navTag: NavTag
         
         @Published var guid = ""
         @Published var hr: Double = 0
         @Published var hrvScore: Double = 0
         
-        func transition(to navTag: NavTag, transition: AnyTransition) {
-            self.transition = transition
+        init() {
+            navTag = firstScreen
+        }
+        
+        func transition(to navTag: NavTag) {
+//            self.transition = transition
             DispatchQueue.main.async {
                 withAnimation {
                     self.navTag = navTag
@@ -31,19 +35,19 @@ extension SprenUI {
         func handleVideoAuthorization() {
             switch AVCaptureDevice.authorizationStatus(for: .video) {
             case .authorized:
-                self.transition(to: .readingScreen, transition: .forwardSlide)
+                self.transition(to: .readingScreen)
             case .notDetermined:
                AVCaptureDevice.requestAccess(for: .video) { granted in
                    if granted {
-                       self.transition(to: .fingerOnCameraScreen, transition: .forwardSlide)
+                       self.transition(to: .fingerOnCameraScreen)
                    } else {
-                       self.transition(to: .noCameraScreen, transition: .forwardSlide)
+                       self.transition(to: .noCameraScreen)
                    }
                }
             case .denied:
-                self.transition(to: .noCameraScreen, transition: .forwardSlide)
+                self.transition(to: .noCameraScreen)
             case .restricted:
-                self.transition(to: .noCameraScreen, transition: .forwardSlide)
+                self.transition(to: .noCameraScreen)
             @unknown default:
                 break
             }
@@ -55,9 +59,17 @@ extension SprenUI {
             if UIApplication.shared.canOpenURL(settingsUrl) {
                 UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
                     if success {
-                        self.transition(to: .noCameraScreen, transition: .forwardSlide)
+                        self.transition(to: .noCameraScreen)
                     }
                 })
+            }
+        }
+        
+        func handleFingerOnCameraScreenBackButtonTap() {
+            if firstScreen == .fingerOnCameraScreen {
+                SprenUI.config.onCancel()
+            } else {
+                self.transition(to: firstScreen)
             }
         }
         

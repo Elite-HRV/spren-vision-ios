@@ -141,6 +141,9 @@ extension ReadingScreen {
             DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
                 self.onFinishNav()
             }
+            DispatchQueue.global(qos: .background).async {
+                UserDefaults.standard.set(true, forKey: SprenUI.config.secondReadingKey)
+            }
         }
         
         func cancelState() {

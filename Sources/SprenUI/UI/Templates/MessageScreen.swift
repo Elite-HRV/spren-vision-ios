@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct MessageScreen: View {
-    
+public struct MessageScreen: View {
+
     @Environment(\.colorScheme) var colorScheme
     
     let illustration: String
@@ -25,7 +25,19 @@ struct MessageScreen: View {
     
     let illustrationSize = Autoscale.scaleFactor * 300
     
-    var body: some View {
+    public init(illustration: String, title: String, paragraph: String, buttonText: String, textVStackAlignment: HorizontalAlignment = .leading, titleTextAlignment: TextAlignment = .leading, paragraphTextAlignment: TextAlignment = .leading, onBackButtonTap: (() -> Void)? = nil, onBottomButtonTap: @escaping () -> Void) {
+        self.illustration = illustration
+        self.title = title
+        self.paragraph = paragraph
+        self.buttonText = buttonText
+        self.textVStackAlignment = textVStackAlignment
+        self.titleTextAlignment = titleTextAlignment
+        self.paragraphTextAlignment = paragraphTextAlignment
+        self.onBackButtonTap = onBackButtonTap
+        self.onBottomButtonTap = onBottomButtonTap
+    }
+    
+    public var body: some View {
         VStack {
             Header(backButtonColor: colorScheme == .light ? .black : .white, onBackButtonTap: onBackButtonTap)
                         

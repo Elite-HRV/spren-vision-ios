@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct SprenUI: View {
         
-    static var config = Config(baseURL: "", apiKey: "", userID: "", onCancel: {}, onFinish: { _,_,_ in })
+    static var config = Config(baseURL: "", apiKey: "", userID: "", onCancel: {}, onFinish: { _ in })
     
     @StateObject var viewModel = ViewModel()
         
@@ -80,12 +80,8 @@ extension SprenUI {
             viewModel.transition(to: viewModel.firstScreen)
         }, onError: {
             viewModel.transition(to: .errorScreen)
-        }, onFinish: { guid, hr, hrvScore in
-            
-            viewModel.guid = guid
-            viewModel.hr = hr
-            viewModel.hrvScore = hrvScore
-            
+        }, onFinish: { results in
+            viewModel.results = results
             viewModel.transition(to: .resultsScreen)
         }))
     }
@@ -100,17 +96,14 @@ extension SprenUI {
     }
     
     var resultsScreen: ResultsScreen {
-        ResultsScreen(onDoneButtonTap: Self.config.onFinish,
-                      guid: viewModel.guid,
-                      hr: viewModel.hr,
-                      hrvScore: viewModel.hrvScore)
+        ResultsScreen(onDoneButtonTap: Self.config.onFinish, results: viewModel.results)
     }
     
 }
 
 struct SprenUI_Previews: PreviewProvider {
     static var previews: some View {
-        SprenUI(config: .init(baseURL: "", apiKey: "", userID: "", onCancel: {}, onFinish: { _,_,_ in }))
+        SprenUI(config: .init(baseURL: "", apiKey: "", userID: "", onCancel: {}, onFinish: { _ in }))
 //            .preferredColorScheme(.light)
 //            .environment(\.colorScheme, .dark)
     }

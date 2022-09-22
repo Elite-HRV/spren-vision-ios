@@ -17,7 +17,7 @@ extension UploadScreen {
         
         let onCancel: () -> Void
         var onError:  () -> Void
-        var onFinish: (_ guid: String, _ hr: Double, _ hrvScore: Double) -> Void
+        var onFinish: (_ results: Results) -> Void
         
         // UI
         @Published var circleRotation: Double = 0
@@ -58,7 +58,7 @@ extension UploadScreen {
         
         init(onCancel: @escaping () -> Void,
              onError: @escaping () -> Void,
-             onFinish: @escaping (_ guid: String, _ hr: Double, _ hrvScore: Double) -> Void,
+             onFinish: @escaping (_ results: Results) -> Void,
              readingData: String? = Spren.getReadingData()
         ) {
 
@@ -100,7 +100,7 @@ extension UploadScreen {
             postTask?.cancel()
             getTask?.cancel()
             onError = {}
-            onFinish = { _, _, _ in}
+            onFinish = { _ in}
             onCancel()
         }
         
@@ -127,7 +127,7 @@ extension UploadScreen {
             onError()
         }
         
-        func handleFinish(guid: String, hr: Double, hrvScore: Double) {
+        func handleFinish(results: Results) {
             DispatchQueue.main.async {
                 withAnimation {
                     self.finished = true
@@ -139,7 +139,7 @@ extension UploadScreen {
             cleanupUITimers()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 if !self.cancelled {
-                    self.onFinish(guid, hr, hrvScore)
+                    self.onFinish(results)
                 }
             }
         }
@@ -216,20 +216,17 @@ extension UploadScreen {
                     
                     if getResultsResponse.isComplete() {
                         print("results complete!")
-                        guard let hr = getResultsResponse.biomarkers.hr.value,
-                                let hrvScore = getResultsResponse.biomarkers.hrvScore.value else {
-                            SprenUI.config.logger?.error("hr or hrvScore nil")
+                        
+                        guard let results = getResultsResponse.toResults(guid: guid) else {
+                            SprenUI.config.logger?.error("some biomarker or insight nil")
                             self.handleError()
                             return
                         }
                         
-                        print("hr \(hr)")
-                        print("hrvScore \(hrvScore)")
-                        
-                        self.handleFinish(guid: guid, hr: hr, hrvScore: hrvScore)
+                        self.handleFinish(results: results)
                         
                     } else if getResultsResponse.hasError() {
-                        SprenUI.config.logger?.info("response has errored biomarker")
+                        SprenUI.config.logger?.info("response has errored biomarker or insight")
                         self.handleError()
                         
                     } else {

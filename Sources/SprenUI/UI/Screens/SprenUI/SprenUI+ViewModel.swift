@@ -15,16 +15,13 @@ extension SprenUI {
         let firstScreen: NavTag = UserDefaults.standard.bool(forKey: SprenUI.config.secondReadingKey) ? .fingerOnCameraScreen : .greetingScreen1
         @Published var navTag: NavTag
         
-        @Published var guid = ""
-        @Published var hr: Double = 0
-        @Published var hrvScore: Double = 0
+        @Published var results: Results = .empty
         
         init() {
             navTag = firstScreen
         }
         
         func transition(to navTag: NavTag) {
-//            self.transition = transition
             DispatchQueue.main.async {
                 withAnimation {
                     self.navTag = navTag

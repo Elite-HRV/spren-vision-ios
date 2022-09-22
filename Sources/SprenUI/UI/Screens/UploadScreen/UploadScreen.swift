@@ -76,6 +76,6 @@ struct UploadScreen: View {
 
 struct UploadScreen_Previews: PreviewProvider {
     static var previews: some View {
-        UploadScreen(viewModel: .init(onCancel: {}, onError: {}, onFinish: {_,_,_ in }))
+        UploadScreen(viewModel: .init(onCancel: {}, onError: {}, onFinish: { _ in }))
     }
 }

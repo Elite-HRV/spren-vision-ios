@@ -11,12 +11,8 @@ struct ResultsScreen: View {
     
     @Environment(\.openURL) var openURL
     
-    let onDoneButtonTap: (_ guid: String, _ hr: Double, _ hrvScore: Double) -> Void
-    
-    let guid: String
-    let hr: Double
-    let hrvScore: Double
-    
+    let onDoneButtonTap: (_ results: Results) -> Void
+    let results: Results
     
     var body: some View {
         ScrollView {
@@ -24,7 +20,7 @@ struct ResultsScreen: View {
             VStack {
                 HStack {
                     Button(action: {
-                        onDoneButtonTap(guid, hr, hrvScore)
+                        onDoneButtonTap(results)
                     }, label: {
                         Text("Done")
                             .font(.sprenProgress)
@@ -46,14 +42,14 @@ struct ResultsScreen: View {
                 
                 HStack {
                     VStack {
-                        Text(String(format: "%.0f", hrvScore.rounded(.toNearestOrEven)))
+                        Text(String(format: "%.0f", results.hrvScore.rounded(.toNearestOrEven)))
                             .font(.sprenNumber)
                         Text("HRV Score")
                             .font(.sprenParagraph)
                     }
                     Image("HeartSignal", bundle: .module)
                     VStack {
-                        Text(String(format: "%.0f", hr.rounded(.toNearestOrEven)))
+                        Text(String(format: "%.0f", results.hr.rounded(.toNearestOrEven)))
                             .font(.sprenNumber)
                         Text("Heart Rate")
                             .font(.sprenParagraph)
@@ -73,7 +69,7 @@ struct ResultsScreen: View {
                         .foregroundColor(.gray)
                         .padding([.leading, .trailing, .bottom], Autoscale.padding)
                     
-                    RangeBar(value: Int(hrvScore.rounded(.toNearestOrEven)))
+                    RangeBar(value: Int(results.hrvScore.rounded(.toNearestOrEven)))
                         .padding(.bottom, 2*Autoscale.padding)
                 }
                 .background(Color.gray.opacity(0.1))
@@ -131,6 +127,13 @@ struct ResultsScreen: View {
 
 struct ResultsScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ResultsScreen(onDoneButtonTap: { _,_,_ in }, guid: "", hr: 58.9, hrvScore: 63.1)
+        ResultsScreen(onDoneButtonTap: { _ in }, results: .init(guid: "",
+                                                                hr: 58.9,
+                                                                hrvScore: 63.1,
+                                                                rmssd: 0.3,
+                                                                breathingRate: 12,
+                                                                readiness: 8,
+                                                                ansBalance: 3,
+                                                                signalQuality: 2))
     }
 }

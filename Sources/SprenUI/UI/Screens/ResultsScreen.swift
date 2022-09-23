@@ -112,6 +112,5 @@ struct ResultsScreen_Previews: PreviewProvider {
                                                                    readiness: 8,
                                                                    ansBalance: 3,
                                                                    signalQuality: 2))
-            .loadCustomFonts()
     }
 }

@@ -37,37 +37,37 @@ struct Biomarkers: Decodable {
     let hr: StatusValue
     let hrvScore: StatusValue
     let rmssd: StatusValue
+    let breathingRate: StatusValue
     
     enum CodingKeys: String, CodingKey {
         case hr
         case hrvScore
         case rmssd
+        case breathingRate
     }
     
     var complete: Bool {
-        hr.complete && hrvScore.complete && rmssd.complete
+        hr.complete && hrvScore.complete && rmssd.complete && breathingRate.complete
     }
     var error: Bool {
-        hr.error || hrvScore.error || rmssd.error
+        hr.error || hrvScore.error || rmssd.error || breathingRate.error
     }
 }
 
 struct Insights: Decodable {
     let readiness: StatusValue
     let ansBalance: StatusValue
-    let breathingRate: StatusValue
     
     enum CodingKeys: String, CodingKey {
         case readiness
         case ansBalance
-        case breathingRate
     }
     
     var complete: Bool {
-        readiness.complete && ansBalance.complete && breathingRate.complete
+        readiness.complete && ansBalance.complete
     }
     var error: Bool {
-        readiness.error || ansBalance.error || breathingRate.error
+        readiness.error || ansBalance.error
     }
 }
 
@@ -89,7 +89,7 @@ struct GetResultsResponse: Decodable {
         guard let hr = biomarkers.hr.value,
               let hrvScore = biomarkers.hrvScore.value,
               let rmssd = biomarkers.rmssd.value,
-              let breathingRate = insights.breathingRate.value,
+              let breathingRate = biomarkers.breathingRate.value,
               let signalQuality = signalQuality.value else {
             return nil
         }

@@ -1,139 +1,117 @@
 //
-//  ResultsScreen.swift
-//  SprenUI
+//  NewResultsScreen.swift
+//  
 //
-//  Created by Keith Carolus on 2/3/22.
+//  Created by Keith Carolus on 9/22/22.
 //
 
 import SwiftUI
 
 struct ResultsScreen: View {
     
-    @Environment(\.openURL) var openURL
+    @Environment(\.colorScheme) var colorScheme
     
     let onDoneButtonTap: (_ results: Results) -> Void
     let results: Results
     
     var body: some View {
+        
         ScrollView {
             
-            VStack {
+            // heading
+            ZStack {
+                Text("Results")
+                    .font(.sprenButton)
+                
                 HStack {
                     Button(action: {
                         onDoneButtonTap(results)
                     }, label: {
                         Text("Done")
-                            .font(.sprenProgress)
-                            .foregroundColor(.sprenPurple)
+                            .font(.sprenButton)
+                            .foregroundColor(.sprenPink)
                     })
                     .padding(Autoscale.padding)
                     Spacer()
                 }
-                
-                Text("Congrats!")
-                    .font(.sprenTitle)
-                    .padding(.bottom, Autoscale.scaleFactor*3)
-                
-                Text("You just completed a heart rate variability (HRV) reading using your smartphone camera.")
-                    .font(.sprenParagraph)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .multilineTextAlignment(.center)
-                    .padding([.leading, .trailing, .bottom], Autoscale.padding)
-                
-                HStack {
-                    VStack {
-                        Text(String(format: "%.0f", results.hrvScore.rounded(.toNearestOrEven)))
-                            .font(.sprenNumber)
-                        Text("HRV Score")
-                            .font(.sprenParagraph)
+            }
+            .background(colorScheme == .light ? Color.white : Color.black)
+            
+            // readiness
+            if let readiness = results.readiness {
+                ReadinessResult(readiness: Int(readiness.rounded(.toNearestOrEven)))
+            } else {
+                ReadinessResult(readiness: nil)
+            }
+            
+            // results cards
+            HStack(spacing: 20) {
+                VStack(spacing: 20) {
+                    ResultCard(title: "HRV Score", value: results.hrvScore, label: "")
+                    ResultCard(title: "Heart Rate", value: results.hr, label: "bpm")
+                    Spacer()
+                }
+                VStack(spacing: 20) {
+                    ResultCard(title: "Respiration", value: results.breathingRate, label: "rpm")
+                    Spacer()
+                }
+            }
+            .padding([.leading, .top, .trailing])
+            
+            // FAQ
+            VStack {
+                VStack {
+                    HStack {
+                        Text("FAQ")
+                            .font(.sprenAlertTitle)
+                            .padding(.bottom)
+                        Spacer()
                     }
-                    Image("HeartSignal", bundle: .module)
-                    VStack {
-                        Text(String(format: "%.0f", results.hr.rounded(.toNearestOrEven)))
-                            .font(.sprenNumber)
-                        Text("Heart Rate")
+                    
+                    HStack {
+                        Text("What is HRV and why does it matter?")
                             .font(.sprenParagraph)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                    }
+                    Divider()
+                    HStack {
+                        Text("What does my score mean?")
+                            .font(.sprenParagraph)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                    }
+                    Divider()
+                    HStack {
+                        Text("How often should I measure?")
+                            .font(.sprenParagraph)
+                        Spacer()
+                        Image(systemName: "chevron.right")
                     }
                 }
                 .padding()
-                
-                VStack {
-                    Text("Population Comparison")
-                        .font(.sprenAlertTitle)
-                        .padding(Autoscale.padding)
-                    
-                    Text("Compare yourself against the average HRV range of Spren's global population.*")
-                        .font(.sprenParagraph)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.gray)
-                        .padding([.leading, .trailing, .bottom], Autoscale.padding)
-                    
-                    RangeBar(value: Int(results.hrvScore.rounded(.toNearestOrEven)))
-                        .padding(.bottom, 2*Autoscale.padding)
-                }
-                .background(Color.gray.opacity(0.1))
-                .padding(Autoscale.padding)
-                
-                Group {
-                
-                    Text("Unlock biomarkers and insights for your users!")
-                        .font(.sprenTitle)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(.center)
-                        .padding(Autoscale.padding)
-                                        
-                    Text("How are brands using Spren?")
-                        .font(.sprenSubtitle)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(.center)
-                        .padding(.bottom, 1)
-                    
-                    Text(" •  Personalize training programs\n •  Measure stress and recovery\n •  Quantify well-being outcomes")
-                        .font(.sprenParagraph)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(.bottom, Autoscale.padding)
-                    
-                    Text("Tap below for examples of how you can elevate your offering simply by integrating Spren into your app.")
-                        .font(.sprenSubtitle)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(.center)
-                        .padding(Autoscale.padding)
-                    
-                    SprenButton(title: "See how Spren can help", action: {
-                        if let url = URL(string: "https://spren.app.link/e/see-more-spren-demo") {
-                            openURL(url)
-                        }
-                    })
-                    .padding(Autoscale.padding)
-                    
-                    Spacer()
-                    Text("* For investigational use only. These numbers are estimates and not a substitute for the judgment of a health care professional. They are intended to improve awareness of general fitness and wellness.")
-                        .font(.disclaimer)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.sprenGray)
-                        .padding([.top,.leading,.trailing], Autoscale.padding)
-                    Image("PoweredBySpren", bundle: .module)
-                        .padding(Autoscale.padding)
-                    
-                }
-                
+                .background(colorScheme == .light ? Color.white : Color.black)
+                .cornerRadius(16)
+                .shadow(color: .gray.opacity(0.2), radius: 8)
             }
+            .padding()
             
         }
+        .background(colorScheme == .light ? Color.offWhite : Color.offBlack)
+
     }
 }
 
 struct ResultsScreen_Previews: PreviewProvider {
     static var previews: some View {
         ResultsScreen(onDoneButtonTap: { _ in }, results: .init(guid: "",
-                                                                hr: 58.9,
-                                                                hrvScore: 63.1,
-                                                                rmssd: 0.3,
-                                                                breathingRate: 12,
-                                                                readiness: 8,
-                                                                ansBalance: 3,
-                                                                signalQuality: 2))
+                                                                   hr: 58.9,
+                                                                   hrvScore: 63.1,
+                                                                   rmssd: 0.3,
+                                                                   breathingRate: 12,
+                                                                   readiness: 8,
+                                                                   ansBalance: 3,
+                                                                   signalQuality: 2))
+            .loadCustomFonts()
     }
 }

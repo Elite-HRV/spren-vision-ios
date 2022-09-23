@@ -31,8 +31,9 @@ struct InfoScreen: View {
                     Button(action: onBackButtonTap, label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(colorScheme == .light ? Color.black : Color.white)
+                            .padding(.leading)
                     })
-                    .padding(Autoscale.padding)
+                    .padding()
                     Spacer()
                 }
             }

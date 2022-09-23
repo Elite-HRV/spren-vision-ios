@@ -12,6 +12,7 @@ struct ReadinessResult: View {
     @Environment(\.colorScheme) var colorScheme
     
     let readiness: Int?
+    let onInfoButtonTap: () -> Void
     
     var body: some View {
         VStack {
@@ -19,9 +20,7 @@ struct ReadinessResult: View {
                 HStack {
                     Text("Recovery").font(.sprenAlertTitle)
                     Spacer()
-                    Button(action: {
-                        
-                    }, label: {
+                    Button(action: onInfoButtonTap, label: {
                         Image(systemName: "info.circle")
                             .foregroundColor(.sprenGray)
                     })
@@ -158,6 +157,6 @@ extension ReadinessResult {
 
 struct ReadinessResult_Previews: PreviewProvider {
     static var previews: some View {
-        ReadinessResult(readiness: 6)
+        ReadinessResult(readiness: 6, onInfoButtonTap: {})
     }
 }

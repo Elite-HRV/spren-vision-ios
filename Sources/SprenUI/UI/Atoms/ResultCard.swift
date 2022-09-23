@@ -15,6 +15,8 @@ struct ResultCard: View {
     let value: Double
     let label: String
     
+    let onTap: () -> Void
+    
     var body: some View {
         VStack {
             HStack {
@@ -36,6 +38,7 @@ struct ResultCard: View {
         .background(colorScheme == .light ? Color.white : Color.black)
         .cornerRadius(16)
         .shadow(color: .gray.opacity(0.2), radius: 8)
+        .onTapGesture(perform: onTap)
     }
 }
 
@@ -43,12 +46,12 @@ struct ResultCard_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
             VStack {
-                ResultCard(title: "HRV Score", value: 58, label: "")
-                ResultCard(title: "Heart Rate", value: 66, label: "bpm")
+                ResultCard(title: "HRV Score", value: 58, label: "", onTap: {})
+                ResultCard(title: "Heart Rate", value: 66, label: "bpm", onTap: {})
                 Spacer()
             }
             VStack {
-                ResultCard(title: "Respiration", value: 17, label: "rpm")
+                ResultCard(title: "Respiration", value: 17, label: "rpm", onTap: {})
                 Spacer()
             }
         }

@@ -171,7 +171,7 @@ struct TestReadingAnimation: View {
                     Text("toggle animation")
                         .foregroundColor(Color.black)
                 })
-                .padding()
+                .sprenUIPadding()
                 .background(Color.white)
                 .cornerRadius(10)
             }

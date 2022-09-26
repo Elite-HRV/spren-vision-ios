@@ -19,7 +19,7 @@ struct BackButton: View {
                 .frame(width: 25*Autoscale.scaleFactor,
                        height: 25*Autoscale.scaleFactor)
         }
-        .padding(Autoscale.padding)
+        .sprenUIPadding()
         .foregroundColor(color)
     }
 }

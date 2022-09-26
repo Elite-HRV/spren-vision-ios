@@ -25,7 +25,7 @@ struct ReadinessResult: View {
                             .foregroundColor(.sprenGray)
                     })
                 }
-                .padding()
+                .sprenUIPadding()
                 
                 ZStack {
                     Circle()
@@ -50,7 +50,7 @@ struct ReadinessResult: View {
                                 .font(.sprenLabelBold)
                                 .padding(.vertical, -10)
                         }
-                        .padding(.bottom)
+                        .sprenUIPadding(.bottom)
                     } else {
                         Text("N/A")
                             .font(.sprenNumber)
@@ -77,22 +77,22 @@ struct ReadinessResult: View {
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
                             Text(blurbHeadline).font(.sprenAlertTitle)
-                                .padding([.leading, .top, .trailing])
+                                .sprenUIPadding([.leading, .top, .trailing])
                             Spacer()
                         }
                         Text(blurb)
                             .font(.sprenParagraph)
-                            .padding([.leading, .bottom, .trailing])
+                            .sprenUIPadding([.leading, .bottom, .trailing])
                     }
                 }
             }
-            .padding()
+            .sprenUIPadding()
             .background(colorScheme == .light ? Color.white : Color.black)
             .cornerRadius(16)
             .shadow(color: .gray.opacity(0.2), radius: 8)
 
         }
-        .padding()
+        .sprenUIPadding()
     }
 }
 

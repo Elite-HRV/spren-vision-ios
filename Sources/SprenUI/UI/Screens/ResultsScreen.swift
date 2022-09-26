@@ -60,7 +60,7 @@ struct ResultsScreen: View {
                             .font(.sprenButton)
                             .foregroundColor(.sprenPink)
                     })
-                    .padding(Autoscale.padding)
+                    .sprenUIPadding()
                     Spacer()
                 }
             }
@@ -90,7 +90,7 @@ struct ResultsScreen: View {
                     Spacer()
                 }
             }
-            .padding([.leading, .top, .trailing])
+            .sprenUIPadding([.leading, .top, .trailing])
             
             // FAQ
             VStack {
@@ -98,7 +98,7 @@ struct ResultsScreen: View {
                     HStack {
                         Text("FAQ")
                             .font(.sprenAlertTitle)
-                            .padding(.bottom)
+                            .sprenUIPadding(.bottom)
                         Spacer()
                     }
                     
@@ -123,12 +123,12 @@ struct ResultsScreen: View {
                         Image(systemName: "chevron.right")
                     }
                 }
-                .padding()
+                .sprenUIPadding()
                 .background(colorScheme == .light ? Color.white : Color.black)
                 .cornerRadius(16)
                 .shadow(color: .gray.opacity(0.2), radius: 8)
             }
-            .padding()
+            .sprenUIPadding()
             
         }
         .background(colorScheme == .light ? Color.offWhite : Color.offBlack)
@@ -188,6 +188,55 @@ extension ResultsScreen {
 
 struct ResultsScreen_Previews: PreviewProvider {
     static var previews: some View {
+        let previewDevices = [
+            // problem devices
+//            "iPhone SE (1st generation)",
+//            "iPhone 6s",
+//            "iPhone 7",
+//            "iPhone 8",
+            "iPhone SE (2nd generation)",
+            "iPhone 11",
+            "iPhone 13 mini",
+            
+//            "iPhone SE (1st generation)",
+//            "iPhone 6s",
+//            "iPhone 6s Plus",
+//            "iPhone 7",
+//            "iPhone 7 Plus",
+//            "iPhone 8",
+//            "iPhone 8 Plus",
+//            "iPhone X",
+//            "iPhone XR",
+//            "iPhone XS",
+//            "iPhone XS Max",
+//            "iPhone SE (2nd generation)",
+//            "iPhone 11",
+//            "iPhone 11 Pro",
+//            "iPhone 11 Pro Max",
+//            "iPhone 12 mini",
+//            "iPhone 12",
+//            "iPhone 12 Pro",
+//            "iPhone 12 Pro Max",
+//            "iPhone 13 mini",
+//            "iPhone 13",
+//            "iPhone 13 Pro",
+//            "iPhone 13 Pro Max",
+        ]
+        
+//        ForEach(previewDevices, id: \.self) { device -> AnyView in
+//            AnyView(
+//                ResultsScreen(onDoneButtonTap: { _ in }, results: .init(guid: "",
+//                                                                           hr: 58.9,
+//                                                                           hrvScore: 63.1,
+//                                                                           rmssd: 0.3,
+//                                                                           breathingRate: 12,
+//                                                                           readiness: 8,
+//                                                                           ansBalance: 5,
+//                                                                           signalQuality: 2))
+//                    .previewDevice(PreviewDevice.init(rawValue: device))
+//            )
+//        }
+        
         ResultsScreen(onDoneButtonTap: { _ in }, results: .init(guid: "",
                                                                    hr: 58.9,
                                                                    hrvScore: 63.1,
@@ -196,5 +245,6 @@ struct ResultsScreen_Previews: PreviewProvider {
                                                                    readiness: 8,
                                                                    ansBalance: 5,
                                                                    signalQuality: 2))
+        
     }
 }

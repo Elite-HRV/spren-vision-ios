@@ -27,10 +27,10 @@ struct UploadScreen: View {
             VStack {
                 Text("Calculating your results")
                     .font(.sprenTitle)
-                    .padding(Autoscale.padding)
+                    .sprenUIPadding()
                 Text(viewModel.messageText)
                     .font(.sprenParagraph)
-                    .padding(.bottom, Autoscale.scaleFactor * 50)
+                    .sprenUIPadding(.bottom, factor: 2)
                 
                 ZStack {
                     if viewModel.finished {
@@ -50,7 +50,7 @@ struct UploadScreen: View {
                         .foregroundColor(Color.sprenPink)
                         .frame(width: circleSize, height: circleSize)
                 }
-                .padding(Autoscale.padding)
+                .sprenUIPadding()
                 
             }
             
@@ -60,9 +60,9 @@ struct UploadScreen: View {
                     .font(.disclaimer)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.sprenGray)
-                    .padding(Autoscale.padding)
+                    .sprenUIPadding()
                 Image("PoweredBySpren", bundle: .module)
-                    .padding(Autoscale.padding)
+                    .sprenUIPadding()
             }
         }
         .alert(isPresented: $viewModel.showAlert) {

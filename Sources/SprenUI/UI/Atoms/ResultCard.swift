@@ -25,7 +25,7 @@ struct ResultCard: View {
                 Spacer()
                 Image(systemName: "chevron.right")
             }
-            .padding(.bottom)
+            .sprenUIPadding(.bottom)
             HStack {
                 Text("\(String(format: "%.0f", value))")
                     .font(.sprenTitle)
@@ -34,7 +34,7 @@ struct ResultCard: View {
                 Spacer()
             }
         }
-        .padding()
+        .sprenUIPadding()
         .background(colorScheme == .light ? Color.white : Color.black)
         .cornerRadius(16)
         .shadow(color: .gray.opacity(0.2), radius: 8)
@@ -55,6 +55,6 @@ struct ResultCard_Previews: PreviewProvider {
                 Spacer()
             }
         }
-        .padding()
+        .sprenUIPadding()
     }
 }

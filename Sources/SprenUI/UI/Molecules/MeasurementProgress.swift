@@ -45,7 +45,7 @@ struct MeasurementProgress: View {
                     .frame(width: size, height: size)
                 
             }
-            .padding([.leading, .trailing], Autoscale.padding)
+            .sprenUIPadding([.leading, .trailing])
             Spacer()
             Text(text)
                 .font(.sprenParagraph)
@@ -53,10 +53,10 @@ struct MeasurementProgress: View {
                 .multilineTextAlignment(.leading)
                 .frame(height: size)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding([.top, .bottom, .trailing], Autoscale.padding)
+                .sprenUIPadding([.top, .bottom, .trailing])
         }
         .frame(maxWidth: .infinity)
-        .padding(Autoscale.padding)
+        .sprenUIPadding()
         .background(colorScheme == .light ? Color.white : Color.black)
         .cornerRadius(cornerRadius)
     }
@@ -69,23 +69,23 @@ struct MeasurementProgress_Previews: PreviewProvider {
             
             VStack {
                 MeasurementProgress(progress: 0, text: "Place your fingertip over the rear-facing camera lens.")
-                    .padding()
+                    .sprenUIPadding()
                 
                 MeasurementProgress(progress: 0, text: "Almost there...")
-                    .padding()
+                    .sprenUIPadding()
             }
         }
         
         ZStack {
             Color.black.ignoresSafeArea()
             MeasurementProgress(progress: 30, text: "Place your fingertip over the rear-facing camera lens.")
-                .padding()
+                .sprenUIPadding()
         }
         
         ZStack {
             Color.black.ignoresSafeArea()
             MeasurementProgress(progress: 100, text: "Place your fingertip over the rear-facing camera lens.")
-                .padding()
+                .sprenUIPadding()
         }
     }
 }

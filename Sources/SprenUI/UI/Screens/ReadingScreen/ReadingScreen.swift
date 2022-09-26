@@ -47,7 +47,7 @@ struct ReadingScreen: View {
                              onPrimaryButtonTap: viewModel.alertOnPrimaryButtonTap,
                              secondaryButtonText: viewModel.alertSecondaryButtonText,
                              onSecondaryButtonTap: viewModel.alertOnSecondaryButtonTap)
-                    .padding(Autoscale.padding)
+                    .sprenUIPadding()
             }
             
         }
@@ -70,7 +70,7 @@ extension ReadingScreen {
     var measurementProgress: some View {
         MeasurementProgress(progress: viewModel.progress,
                             text: viewModel.progressText)
-            .padding(Autoscale.padding)
+            .sprenUIPadding()
     }
     
     var torchToggleButton: some View {
@@ -82,7 +82,7 @@ extension ReadingScreen {
             .onTapGesture {
                 viewModel.onTapToggleTorch()
             }
-            .padding(Autoscale.padding)
+            .sprenUIPadding()
     }
     
     var footer: some View {

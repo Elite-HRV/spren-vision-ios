@@ -35,12 +35,12 @@ struct ReadingAlert: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .multilineTextAlignment(.center)
                     .font(.sprenAlertTitle)
-                    .padding(.bottom, Autoscale.padding)
+                    .sprenUIPadding(.bottom)
                 
                 Text(paragraph)
                     .multilineTextAlignment(.center)
                     .font(.sprenParagraph)
-                    .padding(.bottom, Autoscale.padding)
+                    .sprenUIPadding(.bottom)
                 
                 VStack {
                     SprenButton(title: primaryButtonText,
@@ -51,13 +51,13 @@ struct ReadingAlert: View {
                             .font(.sprenButton)
                             .foregroundColor(.sprenPurple)
                             .onTapGesture(perform: osbt)
-                            .padding(.top, Autoscale.padding/2)
-                            .padding(.bottom, Autoscale.padding/2)
+                            .sprenUIPadding(.top, factor: 0.5)
+                            .sprenUIPadding(.bottom, factor: 0.5)
                     }
                 }
                 
             }
-            .padding(Autoscale.padding)
+            .sprenUIPadding()
             .background(colorScheme == .light ? Color.white : Color.black)
             .cornerRadius(cornerRadius)
         }
@@ -74,7 +74,7 @@ struct ReadingAlert_Previews: PreviewProvider {
                          onPrimaryButtonTap: {},
                          secondaryButtonText: "Cancel",
                          onSecondaryButtonTap: {})
-                .padding()
+                .sprenUIPadding()
         }
         
         ZStack {
@@ -83,7 +83,7 @@ struct ReadingAlert_Previews: PreviewProvider {
                          paragraph: "Please make sure your finger fully covers the camera lens throughout the entire measurement.",
                          primaryButtonText: "Try again",
                          onPrimaryButtonTap: {})
-                .padding()
+                .sprenUIPadding()
         }
         
         ZStack {
@@ -94,7 +94,7 @@ struct ReadingAlert_Previews: PreviewProvider {
                          onPrimaryButtonTap: {},
                          secondaryButtonText: "Continue Measurement",
                          onSecondaryButtonTap: {})
-                .padding()
+                .sprenUIPadding()
         }
     }
 }

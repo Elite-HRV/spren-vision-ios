@@ -20,7 +20,7 @@ struct Header: View {
             HStack {
                 Spacer()
                 BackButton(color: backButtonColor, action: onBackButtonTap)
-                    .padding(.trailing, Autoscale.padding)
+                    .sprenUIPadding(.trailing)
             }
             .frame(height: Autoscale.headingHeight)
         }

@@ -33,9 +33,9 @@ struct InfoScreen: View {
                     Button(action: onBackButtonTap, label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(colorScheme == .light ? Color.black : Color.white)
-                            .padding(.leading)
+                            .sprenUIPadding(.leading)
                     })
-                    .padding()
+                    .sprenUIPadding()
                     Spacer()
                 }
             }
@@ -48,12 +48,12 @@ struct InfoScreen: View {
                         .font(.sprenAlertTitle)
                     Spacer()
                 }
-                .padding([.leading, .bottom, .trailing])
+                .sprenUIPadding([.leading, .bottom, .trailing])
                 
                 // paragraph 1
                 Text(paragraph1)
                     .font(.sprenParagraph)
-                    .padding([.leading, .bottom, .trailing])
+                    .sprenUIPadding([.leading, .bottom, .trailing])
                 
                 // illustration
                 HStack {
@@ -62,16 +62,16 @@ struct InfoScreen: View {
                         .resizable()
                         .frame(width: illustrationSize,
                                height: illustrationSize)
-                        .padding()
+                        .sprenUIPadding()
                     Spacer()
                 }
                 
                 // paragraph 2
                 Text(paragraph2)
                     .font(.sprenParagraph)
-                    .padding()
+                    .sprenUIPadding()
             }
-            .padding()
+            .sprenUIPadding()
             
         }
         .background(colorScheme == .light ? Color.offWhite : Color.offBlack)

@@ -43,7 +43,7 @@ public struct MessageScreen: View {
                         
             if illustration == "Home" && Autoscale.scale == 3 {
                 HomeAnimation()
-                    .padding(Autoscale.padding)
+                    .sprenUIPadding()
             } else {
                 Image(illustration, bundle: .module)
                     .resizable()
@@ -59,20 +59,20 @@ public struct MessageScreen: View {
                         .font(.sprenTitle)
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(titleTextAlignment)
-                        .padding([.leading, .trailing], Autoscale.padding)
+                        .sprenUIPadding([.leading, .trailing])
 
                     Text(paragraph)
                         .font(.sprenParagraph)
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(paragraphTextAlignment)
-                        .padding([.top, .leading, .trailing], Autoscale.padding)
+                        .sprenUIPadding([.top, .leading, .trailing])
                 }
             }
             
             Spacer()
             
             SprenButton(title: buttonText, action: onBottomButtonTap)
-                .padding(Autoscale.padding)
+                .sprenUIPadding()
         }
     }
 }

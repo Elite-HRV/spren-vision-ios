@@ -26,19 +26,19 @@ struct OldResultsScreen: View {
                             .font(.sprenProgress)
                             .foregroundColor(.sprenPurple)
                     })
-                    .padding(Autoscale.padding)
+                    .sprenUIPadding()
                     Spacer()
                 }
                 
                 Text("Congrats!")
                     .font(.sprenTitle)
-                    .padding(.bottom, Autoscale.scaleFactor*3)
+                    .sprenUIPadding(.bottom, factor: 3)
                 
                 Text("You just completed a heart rate variability (HRV) reading using your smartphone camera.")
                     .font(.sprenParagraph)
                     .fixedSize(horizontal: false, vertical: true)
                     .multilineTextAlignment(.center)
-                    .padding([.leading, .trailing, .bottom], Autoscale.padding)
+                    .sprenUIPadding([.leading, .trailing, .bottom])
                 
                 HStack {
                     VStack {
@@ -55,25 +55,25 @@ struct OldResultsScreen: View {
                             .font(.sprenParagraph)
                     }
                 }
-                .padding()
+                .sprenUIPadding()
                 
                 VStack {
                     Text("Population Comparison")
                         .font(.sprenAlertTitle)
-                        .padding(Autoscale.padding)
+                        .sprenUIPadding()
                     
                     Text("Compare yourself against the average HRV range of Spren's global population.*")
                         .font(.sprenParagraph)
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.gray)
-                        .padding([.leading, .trailing, .bottom], Autoscale.padding)
+                        .sprenUIPadding([.leading, .trailing, .bottom])
                     
                     RangeBar(value: Int(results.hrvScore.rounded(.toNearestOrEven)))
-                        .padding(.bottom, 2*Autoscale.padding)
+                        .sprenUIPadding(.bottom, factor: 2)
                 }
                 .background(Color.gray.opacity(0.1))
-                .padding(Autoscale.padding)
+                .sprenUIPadding()
                 
                 Group {
                 
@@ -81,7 +81,7 @@ struct OldResultsScreen: View {
                         .font(.sprenTitle)
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding(Autoscale.padding)
+                        .sprenUIPadding()
                                         
                     Text("How are brands using Spren?")
                         .font(.sprenSubtitle)
@@ -92,20 +92,20 @@ struct OldResultsScreen: View {
                     Text(" •  Personalize training programs\n •  Measure stress and recovery\n •  Quantify well-being outcomes")
                         .font(.sprenParagraph)
                         .fixedSize(horizontal: false, vertical: true)
-                        .padding(.bottom, Autoscale.padding)
+                        .sprenUIPadding(.bottom)
                     
                     Text("Tap below for examples of how you can elevate your offering simply by integrating Spren into your app.")
                         .font(.sprenSubtitle)
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
-                        .padding(Autoscale.padding)
+                        .sprenUIPadding()
                     
                     SprenButton(title: "See how Spren can help", action: {
                         if let url = URL(string: "https://spren.app.link/e/see-more-spren-demo") {
                             openURL(url)
                         }
                     })
-                    .padding(Autoscale.padding)
+                    .sprenUIPadding()
                     
                     Spacer()
                     Text("* For investigational use only. These numbers are estimates and not a substitute for the judgment of a health care professional. They are intended to improve awareness of general fitness and wellness.")
@@ -113,9 +113,9 @@ struct OldResultsScreen: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.sprenGray)
-                        .padding([.top,.leading,.trailing], Autoscale.padding)
+                        .sprenUIPadding([.top,.leading,.trailing])
                     Image("PoweredBySpren", bundle: .module)
-                        .padding(Autoscale.padding)
+                        .sprenUIPadding()
                     
                 }
                 

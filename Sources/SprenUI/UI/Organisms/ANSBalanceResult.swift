@@ -28,25 +28,25 @@ struct ANSBalanceResult: View {
                             .foregroundColor(.sprenGray)
                     })
                 }
-                .padding()
+                .sprenUIPadding()
                 
                 if let blurb = getBlurb() {
                     Text(blurb)
                         .font(.sprenParagraph)
-                        .padding([.leading, .trailing])
+                        .sprenUIPadding([.leading, .trailing])
                 }
                 
                 ANSBalanceBar(ansBalance: ansBalance)
-                    .padding([.leading, .trailing])
+                    .sprenUIPadding([.leading, .trailing])
 
             }
-            .padding()
+            .sprenUIPadding()
             .background(colorScheme == .light ? Color.white : Color.black)
             .cornerRadius(16)
             .shadow(color: .gray.opacity(0.2), radius: 8)
 
         }
-        .padding()
+        .sprenUIPadding()
     }
 }
 

@@ -19,6 +19,8 @@ struct InfoScreen: View {
     
     let onBackButtonTap: () -> Void
     
+    let illustrationSize = Autoscale.scaleFactor * 300
+    
     var body: some View {
         ScrollView {
             
@@ -57,6 +59,9 @@ struct InfoScreen: View {
                 HStack {
                     Spacer()
                     Image(illustration, bundle: .module)
+                        .resizable()
+                        .frame(width: illustrationSize,
+                               height: illustrationSize)
                         .padding()
                     Spacer()
                 }

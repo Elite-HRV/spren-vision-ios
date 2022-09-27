@@ -32,7 +32,8 @@ extension Font {
     
     static let sprenLabel = Font.custom("Avenir Next Medium", size: Autoscale.scaleFactor*14)
     static let sprenLabelBold = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*14)
-    
+    static let sprenLabelSmallBold = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*12)
+    static let sprenLabelSmall = Font.custom("Avenir Next Medium", size: Autoscale.scaleFactor*12)
 }
 
 //public enum CustomFonts {

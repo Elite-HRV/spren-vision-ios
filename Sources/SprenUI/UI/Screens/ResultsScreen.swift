@@ -79,18 +79,24 @@ struct ResultsScreen: View {
             }
             
             // results cards
-            HStack(spacing: 20) {
-                VStack(spacing: 20) {
-                    ResultCard(title: "HRV Score", value: results.hrvScore, label: "", onTap: { transition(to: .hrvScoreInfo) })
-                    ResultCard(title: "Heart Rate", value: results.hr, label: "bpm", onTap: { transition(to: .hrInfo) })
-                    Spacer()
+            if let readiness = results.readiness {
+                HStack(spacing: 20) {
+                    VStack(spacing: 20) {
+                        ResultCard(title: "HRV Score", value: results.hrvScore, label: "", onTap: { transition(to: .hrvScoreInfo) })
+                        ResultCard(title: "Heart Rate", value: results.hr, label: "bpm", onTap: { transition(to: .hrInfo) })
+                        Spacer()
+                    }
+                    VStack(spacing: 20) {
+                        ResultCard(title: "Respiration", value: results.breathingRate, label: "rpm", onTap: { transition(to: .respiratoryRateInfo) })
+                        Spacer()
+                    }
                 }
-                VStack(spacing: 20) {
-                    ResultCard(title: "Respiration", value: results.breathingRate, label: "rpm", onTap: { transition(to: .respiratoryRateInfo) })
-                    Spacer()
-                }
+                .sprenUIPadding([.leading, .top, .trailing])
+            }else{
+                ScoreCard(results: results, type: "hrvScore")
+                ScoreCard(results: results, type: "hr")
+                ScoreCard(results: results, type: "breathingRate")
             }
-            .sprenUIPadding([.leading, .top, .trailing])
             
             // FAQ
             VStack {
@@ -242,8 +248,8 @@ struct ResultsScreen_Previews: PreviewProvider {
                                                                    hrvScore: 63.1,
                                                                    rmssd: 0.3,
                                                                    breathingRate: 12,
-                                                                   readiness: 8,
-                                                                   ansBalance: 5,
+                                                                   readiness: nil,
+                                                                   ansBalance: nil,
                                                                    signalQuality: 2))
         
     }

@@ -49,6 +49,7 @@ public struct MessageScreen: View {
                     .resizable()
                     .frame(width: illustrationSize,
                            height: illustrationSize)
+                    .colorMultiply(Color.sprenUIColor.opacity(0.75))
             }
             
             Spacer()

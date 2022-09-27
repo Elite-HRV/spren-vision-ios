@@ -29,7 +29,7 @@ struct ReadingAlert: View {
                 Image(systemName: "exclamationmark.circle.fill")
                     .resizable()
                     .frame(width: exclamationSize, height: exclamationSize)
-                    .foregroundColor(.sprenPink)
+                    .foregroundColor(.sprenUIColor)
                 
                 Text(title)
                     .fixedSize(horizontal: false, vertical: true)
@@ -49,7 +49,7 @@ struct ReadingAlert: View {
                     if let sbt = secondaryButtonText, let osbt = onSecondaryButtonTap {
                         Text(sbt)
                             .font(.sprenButton)
-                            .foregroundColor(.sprenPurple)
+                            .foregroundColor(.sprenUIColor)
                             .onTapGesture(perform: osbt)
                             .sprenUIPadding(.top, factor: 0.5)
                             .sprenUIPadding(.bottom, factor: 0.5)

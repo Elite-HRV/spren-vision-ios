@@ -37,7 +37,8 @@ struct ANSBalanceBar: View {
                         LinearGradient(gradient: Gradient(stops: [
                                 .init(color: .red, location: 0),
                                 .init(color: .yellow, location: 2/6),
-                                .init(color: .green, location: 3/6),
+                                .init(color: .green, location: 11/24),
+                                .init(color: .green, location: 13/24),
                                 .init(color: .yellow, location: 4/6),
                                 .init(color: .red, location: 1),
                             ]),

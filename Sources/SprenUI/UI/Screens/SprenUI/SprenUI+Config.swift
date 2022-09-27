@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import Logging
 
 extension SprenUI {
@@ -20,6 +21,7 @@ extension SprenUI {
         public let userBirthdate: Date?
         
         // UI config
+        public let color: Color?
         public let onCancel: (() -> Void)
         public let onFinish: ((_ results: Results) -> Void)
         
@@ -39,6 +41,7 @@ extension SprenUI {
                     userID: String,
                     userGender: Gender? = nil,
                     userBirthdate: Date? = nil,
+                    color: Color? = nil,
                     onCancel: @escaping (() -> Void),
                     onFinish: @escaping ((Results) -> Void),
                     logger: Logger? = nil,
@@ -50,6 +53,7 @@ extension SprenUI {
             self.userGender = userGender
             self.userBirthdate = userBirthdate
             
+            self.color = color
             self.onCancel = onCancel
             self.onFinish = onFinish
             

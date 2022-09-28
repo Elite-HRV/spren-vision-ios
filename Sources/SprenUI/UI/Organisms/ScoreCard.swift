@@ -20,20 +20,7 @@ struct ScoreCard: View {
         VStack {
             VStack {
                 HStack {
-                    ZStack {
-                        Circle()
-                            .stroke(Color(red: 0.596, green: 0.922, blue: 0.267), style: StrokeStyle(lineWidth: 3))
-                            .frame(height: 72)
-                        VStack {
-                            Text(value)
-                                .font(.sprenAlertTitle)
-                                .padding(.bottom, unit != nil ? -15 : 0)
-                            if(unit != nil){
-                                Text(unit!)
-                                    .font(.sprenLabelSmall)
-                            }
-                        }
-                    }
+                    Score(value: value, unit: unit, color: Color("LightGreen", bundle: .module))
                     
                     HStack {
                         Text(title)

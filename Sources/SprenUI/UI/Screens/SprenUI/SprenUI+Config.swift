@@ -17,7 +17,7 @@ extension SprenUI {
         
         // user config
         public let userID: String
-        public let userGender: Gender?
+        public let userGender: BiologicalSex?
         public let userBirthdate: Date?
         
         // UI config
@@ -31,15 +31,16 @@ extension SprenUI {
         
         public let secondReadingKey = "com.spren.ui.second-reading"
         
-        public enum Gender {
+        public enum BiologicalSex {
             case male
             case female
+            case other
         }
         
         public init(baseURL: String,
                     apiKey: String,
                     userID: String,
-                    userGender: Gender? = nil,
+                    userGender: BiologicalSex? = nil,
                     userBirthdate: Date? = nil,
                     color: Color? = nil,
                     onCancel: @escaping (() -> Void),

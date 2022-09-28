@@ -28,8 +28,8 @@ extension SprenUI {
         
         // only relevant to demo app
         public let logger: Logger?
-        public let homeScreen: Bool
         
+        // keys for UserDefaults
         public let secondReadingKey = "com.spren.ui.second-reading"
         
         public enum BiologicalSex {
@@ -47,8 +47,7 @@ extension SprenUI {
                     color2: Color? = nil,
                     onCancel: @escaping (() -> Void),
                     onFinish: @escaping ((Results) -> Void),
-                    logger: Logger? = nil,
-                    homeScreen: Bool = false) {
+                    logger: Logger? = nil) {
             self.baseURL = baseURL
             self.apiKey = apiKey
             
@@ -62,7 +61,6 @@ extension SprenUI {
             self.onFinish = onFinish
             
             self.logger = logger
-            self.homeScreen = homeScreen
         }
     }
 }

@@ -21,7 +21,8 @@ extension SprenUI {
         public let userBirthdate: Date?
         
         // UI config
-        public let color: Color?
+        public let color1: Color?
+        public let color2: Color?
         public let onCancel: (() -> Void)
         public let onFinish: ((_ results: Results) -> Void)
         
@@ -42,7 +43,8 @@ extension SprenUI {
                     userID: String,
                     userGender: BiologicalSex? = nil,
                     userBirthdate: Date? = nil,
-                    color: Color? = nil,
+                    color1: Color? = nil,
+                    color2: Color? = nil,
                     onCancel: @escaping (() -> Void),
                     onFinish: @escaping ((Results) -> Void),
                     logger: Logger? = nil,
@@ -54,7 +56,8 @@ extension SprenUI {
             self.userGender = userGender
             self.userBirthdate = userBirthdate
             
-            self.color = color
+            self.color1 = color1
+            self.color2 = color2
             self.onCancel = onCancel
             self.onFinish = onFinish
             

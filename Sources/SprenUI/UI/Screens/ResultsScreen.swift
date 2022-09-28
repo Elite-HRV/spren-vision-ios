@@ -58,7 +58,7 @@ struct ResultsScreen: View {
                     }, label: {
                         Text("Done")
                             .font(.sprenButton)
-                            .foregroundColor(.sprenUIColor)
+                            .foregroundColor(.sprenUIColor1)
                     })
                     .sprenUIPadding()
                     Spacer()

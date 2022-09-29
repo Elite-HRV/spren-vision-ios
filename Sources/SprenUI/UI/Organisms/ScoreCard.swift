@@ -33,7 +33,7 @@ struct ScoreCard: View {
                 
                 Text(text)
                     .font(.sprenLabel)
-                    .lineSpacing(4)
+                    .lineSpacing(Autoscale.scaleFactor * 4)
                     .sprenUIPadding([.bottom])
                 
                 HStack{
@@ -41,8 +41,8 @@ struct ScoreCard: View {
                         Text(labelText)
                             .font(.sprenLabelSmallBold)
                             .foregroundColor(Color.white)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 2)
+                            .padding(.horizontal, Autoscale.scaleFactor * 10)
+                            .padding(.vertical, Autoscale.scaleFactor * 2)
                     }.background(Color.green).cornerRadius(16)
                     Spacer()
                 }

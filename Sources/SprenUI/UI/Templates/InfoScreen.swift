@@ -44,8 +44,18 @@ struct InfoScreen: View {
             .background(colorScheme == .light ? Color.white : Color.black)
             
             VStack(alignment: .leading, spacing: 0) {
-                if(type == "breathingRate"){
-                    RespiratoryRateBarCard(breathingRate: results.breathingRate)
+                VStack {
+                    if(type == "breathingRate"){
+                        RespiratoryRateBarCard(breathingRate: results.breathingRate)
+                    }
+                    
+                    if(type == "hrvScore"){
+                        DemographicHRVCard(value: results.hrvScore, age: nil, gender: nil)
+                    }
+                    
+                    if(type == "hr"){
+                        DemographicHRCard(value: results.hr, age: nil, gender: nil)
+                    }
                 }
                 
                 // title
@@ -115,20 +125,20 @@ struct InfoScreen: View {
 
 struct InfoScreen_Previews: PreviewProvider {
     static var previews: some View {
-        InfoScreen(navBarTitle: "Respiratory Rate",
-                   title: "What is resting respiratory rate?",
-                   paragraph1: "Respiratory rate, or breathing rate, is the number of respirations (i.e. breaths) you take per minute while at rest. The normal respiration rate for an adult at rest is 12 to 20  breaths per minute. A respiration rate under 12 or over 20 breaths per minute while resting is considered abnormal.\n\nResting respiration rate can indicate general cardiorespiratory fitness. Acute changes in resting respiratory rate can indicate poor rest and recovery or the onset of illness.\n\nYour respiratory rate is calculated via raw heart rate data by taking advantage of Respiratory Sinus Arrhythmia, a normal phenomenom where the heart rate varies with respiration.",
+        InfoScreen(navBarTitle: "HRV Score",
+                   title: "What is HRV?",
+                   paragraph1: "Your HRV Score is a 1-100 score that indicates your stress levels, recovery status, and general well-being.\n\nUnlike basic heart rate (HR) that counts the number of heartbeats per minute, heart rate variability (HRV) looks much closer at the subtle variations between heartbeats that originate from your nervous system.\n\nHRV is considered the best, non-invasive measure of your Autonomic Nervous System and reveals how your body responds to exercise, illness, treatment, recovery, inflammation, stress, mental health, and lifestyle choices you make.\n\nA higher HRV Score generally indicates better health and fitness and lower stress, as well as a younger biological age.",
                    illustration: "",
                    paragraph2: "",
-                   type: "breathingRate",
+                   type: "hrvScore",
                    results: Results(guid: "",
-                                  hr: 58.9,
-                                  hrvScore: 63.1,
-                                  rmssd: 0.3,
-                                  breathingRate: 9,
-                                  readiness: 8,
-                                  ansBalance: 2,
-                                  signalQuality: 2),
+                                    hr: 58.9,
+                                    hrvScore: 63.1,
+                                    rmssd: 0.3,
+                                    breathingRate: 12,
+                                    readiness: 8,
+                                    ansBalance: 2,
+                                    signalQuality: 2),
                    onBackButtonTap: {})
         
         InfoScreen(navBarTitle: "Heart Rate",
@@ -146,22 +156,26 @@ struct InfoScreen_Previews: PreviewProvider {
                                     ansBalance: 2,
                                     signalQuality: 2),
                    onBackButtonTap: {})
-            
-        InfoScreen(navBarTitle: "HRV Score",
-                   title: "What is HRV?",
-                   paragraph1: "Your HRV Score is a 1-100 score that indicates your stress levels, recovery status, and general well-being.\n\nUnlike basic heart rate (HR) that counts the number of heartbeats per minute, heart rate variability (HRV) looks much closer at the subtle variations between heartbeats that originate from your nervous system.\n\nHRV is considered the best, non-invasive measure of your Autonomic Nervous System and reveals how your body responds to exercise, illness, treatment, recovery, inflammation, stress, mental health, and lifestyle choices you make.\n\nA higher HRV Score generally indicates better health and fitness and lower stress, as well as a younger biological age.",
+        
+        InfoScreen(navBarTitle: "Respiratory Rate",
+                   title: "What is resting respiratory rate?",
+                   paragraph1: "Respiratory rate, or breathing rate, is the number of respirations (i.e. breaths) you take per minute while at rest. The normal respiration rate for an adult at rest is 12 to 20  breaths per minute. A respiration rate under 12 or over 20 breaths per minute while resting is considered abnormal.\n\nResting respiration rate can indicate general cardiorespiratory fitness. Acute changes in resting respiratory rate can indicate poor rest and recovery or the onset of illness.\n\nYour respiratory rate is calculated via raw heart rate data by taking advantage of Respiratory Sinus Arrhythmia, a normal phenomenom where the heart rate varies with respiration.",
                    illustration: "",
                    paragraph2: "",
-                   type: "hrvScore",
+                   type: "breathingRate",
                    results: Results(guid: "",
-                                    hr: 58.9,
-                                    hrvScore: 63.1,
-                                    rmssd: 0.3,
-                                    breathingRate: 12,
-                                    readiness: 8,
-                                    ansBalance: 2,
-                                    signalQuality: 2),
+                                  hr: 58.9,
+                                  hrvScore: 63.1,
+                                  rmssd: 0.3,
+                                  breathingRate: 9,
+                                  readiness: 8,
+                                  ansBalance: 2,
+                                  signalQuality: 2),
                    onBackButtonTap: {})
+        
+        
+            
+        
         
         InfoScreen(navBarTitle: "Recovery",
                    title: "Recovery",

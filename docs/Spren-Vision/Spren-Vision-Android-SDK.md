@@ -44,7 +44,79 @@ Currently, we allow users to only perform readings with flash on.
 
 The open source code is available in the [Spren Vision Android SDK GitHub Repository](https://github.com/Elite-HRV/spren-vision-android).
 
-## Implementation Overview
+## Spren UI
+
+### Implementation Example
+
+Here is an example of how a to add Spren UI to an activity. This is `MainActivity.kt`.
+
+```kotlin
+import com.spren.sprenui.SprenUI
+import com.spren.sprenui.util.UserId
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Set up your own theme if desired, it has to inherit from "Theme.MaterialComponents.DayNight.NoActionBar"
+        setTheme(R.style.Theme_SprenUI)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Set up your own userId if necessary
+        SprenUI.Config.userId = UserId.get(contentResolver)
+        // Uncomment this to add onFinish(after dismissing Results Screen)
+        /*SprenUI.Config.onFinish =
+            { guid,
+              hr,
+              hrvScore,
+              rmssd,
+              breathingRate,
+              readiness,
+              ansBalance,
+              signalQuality ->
+            }*/
+        // Uncomment this to add onCancel(after pressing 'x' on each screen)
+        //SprenUI.Config.onCancel = { }
+    }
+}
+```
+
+This is its corresponding view(`activity_main.xml`).
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<com.spren.sprenui.SprenUI xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:api_key="@string/api_key"
+    app:base_url="@string/base_url"
+    tools:context=".MainActivity" />
+```
+
+Finally, this is an example of how a implement your own customised theme(`themes.xml`). Refer to the comments to understand each property.
+
+```xml
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:textColor">#6200EE</item> <!-- Color for clickable texts -->
+        <item name="colorPrimary">#6200EE</item> <!-- Color for buttons -->
+        <item name="colorOnPrimary">@android:color/white</item> <!-- Color for text on buttons -->
+        <item name="colorSecondary">#03DAC5</item> <!-- Color for graphics -->
+    </style>
+</resources>
+```
+
+## SprenCapture and SprenCore
+
+### Implementation Example
 
 Here is an example of how to implement the Spren Vision Android SDK in your own app. Refer to the comments throughout the file to see what functions get called at what point.
 
@@ -129,14 +201,14 @@ SprenEventManager.subscribe(SprenEvent.PROGRESS, ::progressListener)
 SprenEventManager.unsubscribe(SprenEvent.PROGRESS, ::progressListener)
 ```
 
-### Breaking changes in 2.x
+#### Breaking changes in 2.x
 
-#### `SprenCapture`
+##### `SprenCapture`
 <s>`var autoStart = true`</s> (Replace with `SprenCapture reset` method)
 
 Enable or disable reading autostart. Autostart occurs after 3 seconds of conditions checks compliance.
 
-#### `Spren`
+##### `Spren`
 <s>`fun setTorchMode(torch: Boolean): Boolean`</s> (Replace with `fun turnFlashOn()`)
 
 Attempts to toggle the torch (flashlight) on as appropriate. Returns the resulting torch mode. Setting the flash off has been disabled.
@@ -150,11 +222,11 @@ This function has been deprecated and will be removed in the next releases.
 Attempts to reduce the exposure of the image by lowering the sensor exposure time. This may be called if exposure is non-compliant, i.e, at least 5 frames are over-exposed.
 
 
-# SprenCapture Library
+## SprenCapture Library
 
 SprenCapture is where you can initialize a camera preview and first configure the camera. This will start a camera preview and image analysis, allow you to add the camera preview to your UI, and handle various other camera controls. Check out the function definitions below!
 
-### `SprenCapture`
+#### `SprenCapture`
 
 `fun start(): Boolean`
 
@@ -174,15 +246,15 @@ This function needs to be called after `fun start(): Boolean` method and after s
 
 Attempts to toggle the torch (flashlight) on.
 
-### `RGBAnalyzer`
+#### `RGBAnalyzer`
 
 RGBAnalyzer is an `ImageAnalysis.Analyzer` and handles providing frames to **SprenCore**.
 
-# SprenCore Library
+## SprenCore Library
 
 The SprenCore library provides internal control over readings and allows you to gain information on what's going on internally in the SDK so your UI can be updated accordingly. Here you'll be able to set reading durations, handle progress updates, start and stop readings, and more. Use this library in conjunction with **SprenCapture** to utilize the full capabilities of Spren SDK.
 
-### `SprenEventManager` subscribe
+#### `SprenEventManager` subscribe
 `SprenEventManager.subscribe(SprenEvent.STATE, ::stateListener)`
 
 Subscribes to events when state changes occur, i.e., *started*, *finished*, *cancelled*, and *error*.
@@ -206,7 +278,7 @@ Subscribes to events when progress updates. Progress ranges from 0 to 99 in inte
 >> HashMap  **key**: value
 >> * **progress**:  Int
 
-### `SprenEventManager` unsubscribe
+#### `SprenEventManager` unsubscribe
 Unsubscribing events before leaving the flow
 ```
 SprenEventManager.unsubscribe(SprenEvent.STATE, ::stateListener)
@@ -214,7 +286,7 @@ SprenEventManager.unsubscribe(SprenEvent.COMPLIANCE, ::complianceListener)
 SprenEventManager.unsubscribe(SprenEvent.PROGRESS, ::progressListener)
 ```
 
-### `Spren`
+#### `Spren`
 
 `fun Spren.Companion.startReading()`
 
@@ -237,7 +309,7 @@ Reading duration ≥ 90 seconds or ≤ 240 seconds.
 Set the reading duration. A duration in the range ≥ 90 seconds or ≤ 240 seconds must be provided or the call returns.
 
 
-### If not using SprenCapture
+#### If not using SprenCapture
 
 If you'd like to use your own library or code to handle camera configurations and initialization, make sure to reference this section and the **RGBAnalyzer** section to get more context and see what functions need to be implemented.
 
@@ -255,9 +327,9 @@ Created from ImageProxy e.g.:
 
 The ImageProxy format will be PixelFormat.RGBA_8888, which has only one image plane (R, G, B, A pixel by pixel). For more information, [Image Analysis](https://developer.android.com/training/camerax/analyze).
 
-## Compliance Checks
+### Compliance Checks
 
-### `ComplianceCheck`
+#### `ComplianceCheck`
 
 Compliance checks are run at 1 second intervals as frames are provided, i.e., if internally to SprenCore the time when the frame is received is >1 second later than the last check. For `ComplianceCheck.Name`:
 

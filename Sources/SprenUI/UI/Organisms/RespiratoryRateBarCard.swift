@@ -16,7 +16,7 @@ struct RespiratoryRateBarCard: View {
         VStack {
             VStack {
                 HStack {
-                    Score(value: "\(String(format: "%.0f", breathingRate))", unit: "rpm", color: breathingRate >= 12 && breathingRate <= 20 ? Color.green : Color("Yellow", bundle: .module))
+                    Score(value: "\(String(format: "%.0f", breathingRate))", unit: "rpm", color: breathingRate >= RespiratoryConstants.rangeMin && breathingRate <= RespiratoryConstants.rangeMax ? Color.green : Color("Yellow", bundle: .module))
                     Text("Respiratory Rate").font(.sprenProgress).sprenUIPadding([.leading])
                     Spacer()
                 }.sprenUIPadding([.bottom])
@@ -36,6 +36,11 @@ struct RespiratoryRateBarCard: View {
         .sprenUIPadding()
     }
 }
+
+struct RespiratoryConstants {
+     static let rangeMin: CGFloat = 12
+     static let rangeMax: CGFloat = 20
+ }
 
 struct RespiratoryRateBarCard_Previews: PreviewProvider {
     static var previews: some View {

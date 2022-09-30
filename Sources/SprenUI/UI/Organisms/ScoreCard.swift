@@ -13,14 +13,16 @@ struct ScoreCard: View {
 
     let results: Results
     let type: String
+    let age: Int?
+    let gender: String?
     
     var body: some View {
-        let (title, value, text, labelText, unit) = getScoreCardData(type: type, results: results)
+        let (color, title, value, text, labelText, unit) = getScoreCardData(type: type, results: results, age: age, gender: gender)
         
         VStack {
             VStack {
                 HStack {
-                    Score(value: value, unit: unit, color: Color("LightGreen", bundle: .module))
+                    Score(value: value, unit: unit, color: color)
                     
                     HStack {
                         Text(title)
@@ -43,7 +45,7 @@ struct ScoreCard: View {
                             .foregroundColor(Color.white)
                             .padding(.horizontal, Autoscale.scaleFactor * 10)
                             .padding(.vertical, Autoscale.scaleFactor * 2)
-                    }.background(Color.green).cornerRadius(16)
+                    }.background(color).cornerRadius(16)
                     Spacer()
                 }
             }
@@ -56,14 +58,53 @@ struct ScoreCard: View {
     }
 }
 
-func getScoreCardData(type: String, results: Results) -> (String, String, String, String, String?) {
+func getScoreCardData(type: String, results: Results, age: Int?, gender: String?) -> (Color, String, String, String, String, String?) {
     switch type {
     case "hrvScore":
-        return ("HRV score", "\(String(format: "%.0f", results.hrvScore))", "HRV is an indicator of overall health and fitness. A higher HRV score means better health and fitness and lower stress.", "Better than average for your age and gender", nil)
+        let (_, _, index) = getDataDemographicHRVCard(value: results.hr, age: age, gender: gender)
+        var text = age != nil && gender != nil ? "Better than average for your age and gender" : "Better than the population average"
+        var color = Color("DemographicGreen", bundle: .module)
+        
+        if(index == 3){
+            text = age != nil && gender != nil ? "Average for your age and gender" : "Average compared to population"
+        }
+        
+        if(index > 3){
+            color = Color("DemographicOrange", bundle: .module)
+            text = age != nil && gender != nil ? "Below average for your age and gender" : "Below the population average"
+        }
+        
+        return (color, "HRV score", "\(String(format: "%.0f", results.hrvScore))", "HRV is an indicator of overall health and fitness. A higher HRV score means better health and fitness and lower stress.", text, nil)
     case "hr":
-        return ("Heart rate", "\(String(format: "%.0f", results.hr))", "Resting heart rate can reflect your current and future health. A lower heart rate indicates better cardiovascular fitness and increased longevity.", "Better that average for your age and gender", "bpm")
+        let (_, _, index) = getDataDemographicHRCard(value: results.hr, age: age, gender: gender)
+        var text = age != nil && gender != nil ? "Better than average for your age and gender" : "Better than the population average"
+        var color = Color("DemographicGreen", bundle: .module)
+        
+        if(index == 3){
+            text = age != nil && gender != nil ? "Average for your age and gender" : "Average compared to population"
+        }
+        
+        if(index > 3){
+            color = Color("DemographicOrange", bundle: .module)
+            text = age != nil && gender != nil ? "Below average for your age and gender" : "Below the population average"
+        }
+        
+        return (color, "Heart rate", "\(String(format: "%.0f", results.hr))", "Resting heart rate can reflect your current and future health. A lower heart rate indicates better cardiovascular fitness and increased longevity.", text, "bpm")
     default:
-        return ("Respiration", "\(String(format: "%.0f", results.breathingRate))", "Resting respiratory rate is a key indicator of health. Changes in daily resting respiration can indicate recovery issues or illness onset.", "Normal for your age and gender", "rpm")
+        var text = "Normal for your age and gender"
+        var color: Color = Color("DemographicGreen", bundle: .module)
+        
+        if(results.breathingRate < RespiratoryConstants.rangeMin){
+            color = Color("DemographicOrange", bundle: .module)
+            text = "Abnormally low for healthy adults"
+        }
+        
+        if(results.breathingRate > RespiratoryConstants.rangeMax){
+            color = Color("DemographicOrange", bundle: .module)
+            text = "Abnormally high for healthy adults"
+        }
+        
+        return (color, "Respiration", "\(String(format: "%.0f", results.breathingRate))", "Resting respiratory rate is a key indicator of health. Changes in daily resting respiration can indicate recovery issues or illness onset.", text, "rpm")
     }
 }
 
@@ -73,9 +114,9 @@ struct ScoreCard_Previews: PreviewProvider {
                                  hr: 58.9,
                                  hrvScore: 63.1,
                                  rmssd: 0.3,
-                                 breathingRate: 12,
+                                 breathingRate: 11,
                                  readiness: nil,
                                  ansBalance: nil,
-                                 signalQuality: 2), type: "hrvScore")
+                                 signalQuality: 2), type: "hrvScore", age: nil, gender: nil)
     }
 }

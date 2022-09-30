@@ -13,6 +13,8 @@ struct ResultsScreen: View {
     
     let onDoneButtonTap: (_ results: Results) -> Void
     let results: Results
+    let age: Int?
+    let gender: String?
     
     enum ResultsNavTag {
         case results
@@ -93,9 +95,9 @@ struct ResultsScreen: View {
                 }
                 .sprenUIPadding([.leading, .top, .trailing])
             }else{
-                ScoreCard(results: results, type: "hrvScore")
-                ScoreCard(results: results, type: "hr")
-                ScoreCard(results: results, type: "breathingRate")
+                ScoreCard(results: results, type: "hrvScore", age: age, gender: gender)
+                ScoreCard(results: results, type: "hr", age: age, gender: gender)
+                ScoreCard(results: results, type: "breathingRate", age: age, gender: gender)
             }
             
             // FAQ
@@ -257,10 +259,10 @@ struct ResultsScreen_Previews: PreviewProvider {
                                                                    hr: 58.9,
                                                                    hrvScore: 63.1,
                                                                    rmssd: 0.3,
-                                                                   breathingRate: 12,
-                                                                   readiness: 8,
+                                                                   breathingRate: 11,
+                                                                   readiness: nil,
                                                                    ansBalance: 2,
-                                                                   signalQuality: 2))
+                                                                signalQuality: 2), age: nil, gender: nil)
         
     }
 }

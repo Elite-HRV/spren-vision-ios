@@ -96,7 +96,7 @@ extension SprenUI {
     }
     
     var resultsScreen: ResultsScreen {
-        ResultsScreen(onDoneButtonTap: Self.config.onFinish, results: viewModel.results)
+        ResultsScreen(onDoneButtonTap: Self.config.onFinish, results: viewModel.results, age: nil, gender: nil)
     }
     
 }

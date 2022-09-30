@@ -15,7 +15,7 @@ struct DemographicHRCard: View {
     let gender: String?
     
     var body: some View {
-        let (classification, data) = getDataDemographicHRCard(value: value, age: age, gender: gender)
+        let (classification, data, _) = getDataDemographicHRCard(value: value, age: age, gender: gender)
         
         VStack {
             VStack {
@@ -60,7 +60,7 @@ struct DemographicHRCard: View {
     }
 }
 
-func getDataDemographicHRCard(value: Double, age: Int?, gender: String?) -> (String, [String]) {
+func getDataDemographicHRCard(value: Double, age: Int?, gender: String?) -> (String, [String], Int) {
     let names = ["Excellent","Very Good","Better than Average","Average","Below Average","Poor"]
     var data:Array<Int> = [47,56,57,63,64,70,71,78,79,86,87,97]
     
@@ -133,7 +133,7 @@ func getDataDemographicHRCard(value: Double, age: Int?, gender: String?) -> (Str
         }
     }
     
-    return (names[Int(i/2)],dataLabel)
+    return (names[Int(i/2)],dataLabel, Int(i/2))
 }
 
 struct DemographicHRCard_Previews: PreviewProvider {

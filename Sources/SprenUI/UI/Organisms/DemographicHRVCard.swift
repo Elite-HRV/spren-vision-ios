@@ -15,12 +15,13 @@ struct DemographicHRVCard: View {
     let gender: String?
     
     var body: some View {
-        let (classification, data, _) = getDataDemographicHRVCard(value: value, age: age, gender: gender)
+        let (classification, data, colorIndex) = getDataDemographicHRVCard(value: value, age: age, gender: gender)
+        let colors = ["DemographicGreen", "DemographicMediumGreen", "DemographicLightGreen", "DemographicYellow", "DemographicOrange", "DemographicRed"]
         
         VStack {
             VStack {
                 HStack {
-                    Score(value: "\(String(format: "%.0f", value))", unit: nil, color: Color("LightGreen", bundle: .module))
+                    Score(value: "\(String(format: "%.0f", value))", unit: nil, color:  Color(colors[colorIndex], bundle: .module))
                     
                     HStack {
                         Text("HRV Score")
@@ -136,6 +137,6 @@ func getDataDemographicHRVCard(value: Double, age: Int?, gender: String?) -> (St
 
 struct DemographicHRVCard_Previews: PreviewProvider {
     static var previews: some View {
-        DemographicHRVCard(value: 63.1, age: 27, gender: "female")
+        DemographicHRVCard(value: 63.1, age: nil, gender: nil)
     }
 }

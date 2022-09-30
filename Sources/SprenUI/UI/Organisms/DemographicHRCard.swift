@@ -15,12 +15,13 @@ struct DemographicHRCard: View {
     let gender: String?
     
     var body: some View {
-        let (classification, data, _) = getDataDemographicHRCard(value: value, age: age, gender: gender)
+        let (classification, data, colorIndex) = getDataDemographicHRCard(value: value, age: age, gender: gender)
+        let colors = ["DemographicGreen", "DemographicMediumGreen", "DemographicLightGreen", "DemographicYellow", "DemographicOrange", "DemographicRed"]
         
         VStack {
             VStack {
                 HStack {
-                    Score(value: "\(String(format: "%.0f", value))", unit: nil, color: Color("LightGreen", bundle: .module))
+                    Score(value: "\(String(format: "%.0f", value))", unit: nil, color: Color(colors[colorIndex], bundle: .module))
                     
                     HStack {
                         Text("Resting Heart Rate")

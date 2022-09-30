@@ -42,7 +42,7 @@ struct ScoreCard: View {
                     VStack {
                         Text(labelText)
                             .font(.sprenLabelSmallBold)
-                            .foregroundColor(Color.white)
+                            .foregroundColor(colorScheme == .light ? Color.white : Color.black)
                             .padding(.horizontal, Autoscale.scaleFactor * 10)
                             .padding(.vertical, Autoscale.scaleFactor * 2)
                     }.background(color).cornerRadius(16)

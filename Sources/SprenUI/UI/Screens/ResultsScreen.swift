@@ -260,7 +260,7 @@ struct ResultsScreen_Previews: PreviewProvider {
                                                                    hrvScore: 63.1,
                                                                    rmssd: 0.3,
                                                                    breathingRate: 11,
-                                                                   readiness: 8,
+                                                                   readiness: nil,
                                                                    ansBalance: 2,
                                                                 signalQuality: 2), age: nil, gender: nil)
         

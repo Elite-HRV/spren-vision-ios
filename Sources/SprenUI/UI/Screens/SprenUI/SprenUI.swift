@@ -32,6 +32,12 @@ public struct SprenUI: View {
 }
 
 extension SprenUI {
+    
+    func setAgeAndGender(userBirthdate: Date?, gender: SprenUI.Config.Gender?) {
+        Self.config.userBirthdate = userBirthdate
+        Self.config.userGender = gender
+        viewModel.transition(to: .greetingScreen2)
+    }
         
     var greetingScreen1: MessageScreen {
         MessageScreen(illustration: "GreetingScreen1",

@@ -37,6 +37,15 @@ public struct MessageScreen: View {
         self.onBottomButtonTap = onBottomButtonTap
     }
     
+    private let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    @State private var birthdate: Date?
+    var genders = ["none", "male", "female"]
+    @State private var gender: String = "none"
+    
     public var body: some View {
         VStack {
             Header(backButtonColor: colorScheme == .light ? .black : .white, onBackButtonTap: onBackButtonTap)
@@ -70,6 +79,40 @@ public struct MessageScreen: View {
                 }
             }
             
+            if(illustration == "GreetingScreen1"){
+                HStack{
+                    if(birthdate == nil){
+                        Button{
+                            birthdate = Date()
+                        } label:{
+                            Text("Set the birthdate").font(.sprenLabel)
+                        }
+                    }else{
+                        DatePicker("Birthdate:", selection: $birthdate.toUnwrapped(defaultValue: Date()), displayedComponents: .date)
+                            .datePickerStyle(CompactDatePickerStyle()).font(.sprenLabel)
+                            .onChange(of: birthdate) { value in SprenUI.config.userBirthdate = value }
+                    }
+                }.frame(maxWidth: 200)
+                HStack{
+                    Text("Gender:").font(.sprenLabel)
+                    Picker("Please choose a gender", selection: $gender) {
+                        ForEach(genders, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    .onChange(of: gender) { value in
+                        switch (value){
+                        case "male":
+                            SprenUI.config.userGender = SprenUI.Config.Gender.male
+                        case "female":
+                            SprenUI.config.userGender = SprenUI.Config.Gender.female
+                        default:
+                            SprenUI.config.userGender = nil
+                        }
+                    }
+                }
+            }
+            
             Spacer()
             
             SprenButton(title: buttonText, action: onBottomButtonTap)
@@ -78,6 +121,11 @@ public struct MessageScreen: View {
     }
 }
 
+extension Binding {
+     func toUnwrapped<T>(defaultValue: T) -> Binding<T> where Value == Optional<T>  {
+        Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
+    }
+}
 struct PrereadingScreen_Previews: PreviewProvider {
     static var previews: some View {
         

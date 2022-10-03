@@ -17,8 +17,8 @@ extension SprenUI {
         
         // user config
         public let userID: String
-        public let userGender: Gender?
-        public let userBirthdate: Date?
+        public var userGender: Gender?
+        public var userBirthdate: Date?
         
         // UI config
         public let color: Color?

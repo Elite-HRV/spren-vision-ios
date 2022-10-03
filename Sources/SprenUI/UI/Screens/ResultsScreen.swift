@@ -95,9 +95,9 @@ struct ResultsScreen: View {
                 }
                 .sprenUIPadding([.leading, .top, .trailing])
             }else{
-                ScoreCard(results: results, type: "hrvScore", age: age, gender: gender)
-                ScoreCard(results: results, type: "hr", age: age, gender: gender)
-                ScoreCard(results: results, type: "breathingRate", age: age, gender: gender)
+                ScoreCard(results: results, type: "hrvScore", age: age, gender: gender).onTapGesture(perform: {transition(to: .hrvScoreInfo)})
+                ScoreCard(results: results, type: "hr", age: age, gender: gender).onTapGesture(perform: {transition(to: .hrInfo)})
+                ScoreCard(results: results, type: "breathingRate", age: age, gender: gender).onTapGesture(perform: {transition(to: .respiratoryRateInfo)})
             }
             
             // FAQ

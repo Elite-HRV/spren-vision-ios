@@ -48,11 +48,10 @@ The open source code is available in the [Spren Vision Android SDK GitHub Reposi
 
 ### Implementation Example
 
-Here is an example of how a to add Spren UI to an activity. This is `MainActivity.kt`.
-
 ```kotlin
+// MainActivity.kt
+
 import com.spren.sprenui.SprenUI
-import com.spren.sprenui.util.UserId
 
 class MainActivity : AppCompatActivity() {
 
@@ -61,16 +60,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Set up your own theme if desired, it has to inherit from "Theme.MaterialComponents.DayNight.NoActionBar"
+        // optionally set custom theme
+        // theme inherits from "Theme.MaterialComponents.DayNight.NoActionBar"
+        // see themes.xml example below
         setTheme(R.style.Theme_SprenUI)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Set up your own userId if necessary
-        SprenUI.Config.userId = UserId.get(contentResolver)
-        // Uncomment this to add onFinish(after dismissing Results Screen)
-        /*SprenUI.Config.onFinish =
+        // set user ID
+        SprenUI.Config.userId = ...
+        
+        // after dismissing results screen
+        SprenUI.Config.onFinish =
             { guid,
               hr,
               hrvScore,
@@ -79,37 +81,49 @@ class MainActivity : AppCompatActivity() {
               readiness,
               ansBalance,
               signalQuality ->
-            }*/
-        // Uncomment this to add onCancel(after pressing 'x' on each screen)
-        //SprenUI.Config.onCancel = { }
+            
+              // handle completion of reading UI flow
+            }
+        
+
+        // user presses X
+        SprenUI.Config.onCancel = { 
+          // handle user exit of UI flow without completing a reading
+        }
     }
 }
 ```
 
-This is its corresponding view(`activity_main.xml`).
-
 ```xml
+<!-- activity_main.xml corresponding to MainActivity.kt -->
+
 <?xml version="1.0" encoding="utf-8"?>
 <com.spren.sprenui.SprenUI xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:api_key="@string/api_key"
+    app:api_key="@string/api_key" 
     app:base_url="@string/base_url"
     tools:context=".MainActivity" />
 ```
 
-Finally, this is an example of how a implement your own customised theme(`themes.xml`). Refer to the comments to understand each property.
-
 ```xml
+<!-- themes.xml -->
+
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="AppTheme.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:textColor">#6200EE</item> <!-- Color for clickable texts -->
-        <item name="colorPrimary">#6200EE</item> <!-- Color for buttons -->
-        <item name="colorOnPrimary">@android:color/white</item> <!-- Color for text on buttons -->
-        <item name="colorSecondary">#03DAC5</item> <!-- Color for graphics -->
+        <!-- text color -->
+        <item name="android:textColor">#6200EE</item>
+
+        <!-- button color --> 
+        <item name="colorPrimary">#6200EE</item> 
+
+        <!-- button text color -->
+        <item name="colorOnPrimary">@android:color/white</item> 
+        
+        <!-- graphics color -->
+        <item name="colorSecondary">#03DAC5</item> 
     </style>
 </resources>
 ```

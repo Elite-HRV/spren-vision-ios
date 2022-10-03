@@ -14,7 +14,7 @@ struct ResultsScreen: View {
     let onDoneButtonTap: (_ results: Results) -> Void
     let results: Results
     let age: Int?
-    let gender: String?
+    let gender: SprenUI.Config.Gender?
     
     enum ResultsNavTag {
         case results

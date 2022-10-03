@@ -14,7 +14,7 @@ struct ScoreCard: View {
     let results: Results
     let type: String
     let age: Int?
-    let gender: String?
+    let gender: SprenUI.Config.Gender?
     
     var body: some View {
         let (color, title, value, text, labelText, unit) = getScoreCardData(type: type, results: results, age: age, gender: gender)
@@ -58,7 +58,7 @@ struct ScoreCard: View {
     }
 }
 
-func getScoreCardData(type: String, results: Results, age: Int?, gender: String?) -> (Color, String, String, String, String, String?) {
+func getScoreCardData(type: String, results: Results, age: Int?, gender: SprenUI.Config.Gender?) -> (Color, String, String, String, String, String?) {
     switch type {
     case "hrvScore":
         let (_, _, index) = getDataDemographicHRVCard(value: results.hr, age: age, gender: gender)

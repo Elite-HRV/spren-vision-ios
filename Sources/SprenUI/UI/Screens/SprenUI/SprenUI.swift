@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct SprenUI: View {
         
-    static var config = Config(baseURL: "", apiKey: "", userID: "", onCancel: {}, onFinish: { _ in })
+    static var config = Config(baseURL: "", apiKey: "", userID: "", userGender: nil, userBirthdate: nil, onCancel: {}, onFinish: { _ in })
     
     @StateObject var viewModel = ViewModel()
         
@@ -96,9 +96,8 @@ extension SprenUI {
     }
     
     var resultsScreen: ResultsScreen {
-        ResultsScreen(onDoneButtonTap: Self.config.onFinish, results: viewModel.results, age: nil, gender: nil)
+        ResultsScreen(onDoneButtonTap: Self.config.onFinish, results: viewModel.results, age: Self.config.userBirthdate?.age, gender: Self.config.userGender)
     }
-    
 }
 
 struct SprenUI_Previews: PreviewProvider {

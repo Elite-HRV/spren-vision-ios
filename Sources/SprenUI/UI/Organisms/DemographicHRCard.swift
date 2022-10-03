@@ -12,7 +12,7 @@ struct DemographicHRCard: View {
     
     let value: Double
     let age: Int?
-    let gender: String?
+    let gender: SprenUI.Config.Gender?
     
     var body: some View {
         let (classification, data, colorIndex) = getDataDemographicHRCard(value: value, age: age, gender: gender)
@@ -61,7 +61,7 @@ struct DemographicHRCard: View {
     }
 }
 
-func getDataDemographicHRCard(value: Double, age: Int?, gender: String?) -> (String, [String], Int) {
+func getDataDemographicHRCard(value: Double, age: Int?, gender: SprenUI.Config.Gender?) -> (String, [String], Int) {
     let names = ["Excellent","Very Good","Better than Average","Average","Below Average","Poor"]
     var data:Array<Int> = [47,56,57,63,64,70,71,78,79,86,87,97]
     
@@ -83,7 +83,7 @@ func getDataDemographicHRCard(value: Double, age: Int?, gender: String?) -> (Str
         }
     }
     
-    if (age != nil && gender == "female"){
+    if (age != nil && gender == SprenUI.Config.Gender.female){
         if(age! > 15 && age! < 20){
             data = [50,61,62,68,69,76,77,84,85,93,94,102]
         }
@@ -101,7 +101,7 @@ func getDataDemographicHRCard(value: Double, age: Int?, gender: String?) -> (Str
         }
     }
     
-    if (age != nil && gender == "male"){
+    if (age != nil && gender == SprenUI.Config.Gender.male){
         if(age! > 15 && age! < 20){
             data = [46,55,56,60,61,68,69,77,78,86,87,94]
         }
@@ -139,6 +139,6 @@ func getDataDemographicHRCard(value: Double, age: Int?, gender: String?) -> (Str
 
 struct DemographicHRCard_Previews: PreviewProvider {
     static var previews: some View {
-        DemographicHRCard(value: 63.1, age: 27, gender: "female")
+        DemographicHRCard(value: 63.1, age: 27, gender: SprenUI.Config.Gender.female)
     }
 }

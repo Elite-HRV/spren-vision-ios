@@ -113,9 +113,6 @@ class MainActivity : AppCompatActivity() {
 
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="AppTheme.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- text color -->
-        <item name="android:textColor">#6200EE</item>
-
         <!-- button color --> 
         <item name="colorPrimary">#6200EE</item> 
 

@@ -71,6 +71,12 @@ class MainActivity : AppCompatActivity() {
         // set user ID
         SprenUI.Config.userId = ...
         
+        // optionally set user biological sex
+        SprenUI.Config.userGender = ...
+
+        // optionally set user birthdate
+        SprenUI.Config.userBirthdate = ...
+
         // after dismissing results screen
         SprenUI.Config.onFinish =
             { guid,

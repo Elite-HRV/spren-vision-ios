@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ConfirmationScreenParameters: View {
+    @Environment(\.colorScheme) var colorScheme
     
     var age: Int
     var weight: Double
@@ -18,21 +19,21 @@ struct ConfirmationScreenParameters: View {
     
     var body: some View {
         ZStack {
-            Color(.white)
+            Color(colorScheme == .light ? .white : .black)
             
             HStack {
                 VStack(alignment: .leading, spacing: Autoscale.convert(8)) {
                     VStack(alignment: .leading, spacing: Autoscale.convert(4)) {
                         Text("Weight: ").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
-                            .foregroundColor(Color("LightGrey"))
+                            .foregroundColor(Color("LightGrey", bundle: .module))
                         Text(String(weight) + " \(UserData.weightMetricLables[weightMetric])").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
                         
                         Text("Age: ").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
-                            .foregroundColor(Color("LightGrey"))
+                            .foregroundColor(Color("LightGrey", bundle: .module))
                         Text("\(age)").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
                         
                         Text("Recent activity level: ").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
-                            .foregroundColor(Color("LightGrey"))
+                            .foregroundColor(Color("LightGrey", bundle: .module))
                         Text("\(fitnessLevel) days per week").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
                     }
                 }
@@ -42,7 +43,7 @@ struct ConfirmationScreenParameters: View {
                 VStack(alignment: .leading, spacing: Autoscale.convert(8)) {
                     VStack(alignment: .leading, spacing: Autoscale.convert(4)) {
                         Text("Height: ").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
-                            .foregroundColor(Color("LightGrey"))
+                            .foregroundColor(Color("LightGrey", bundle: .module))
                         
                         if(height.unit == HeightSize.Unit.ft_in) {
                             Text("\(height.feet) feet \(height.inches) inches").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
@@ -51,7 +52,7 @@ struct ConfirmationScreenParameters: View {
                         }
                         
                         Text("Gender: ").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
-                            .foregroundColor(Color("LightGrey"))
+                            .foregroundColor(Color("LightGrey", bundle: .module))
                         Text(biologicalSex == 1 ? "Female" : biologicalSex == 2 ? "Other" : "Male").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
                     }
                 }

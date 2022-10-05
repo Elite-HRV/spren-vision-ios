@@ -12,6 +12,7 @@ public struct SprenUI: View {
     static var config = Config(baseURL: "", apiKey: "", userID: "", project: SprenUI.Config.SprenProject.bodyComp, onCancel: {}, onFinish: { _ in })
     
     @StateObject var viewModel = ViewModel()
+    @State private var isActive : Bool = false
         
     public init(config: Config) {
         Self.config = config
@@ -32,7 +33,12 @@ public struct SprenUI: View {
         }
         
         if(Self.config.project == SprenUI.Config.SprenProject.bodyComp){
-            GreetingScreen()
+            NavigationView {
+                GreetingScreen()
+            }
+            .accentColor(Color("AppBlack", bundle: .module))
+                .navigationViewStyle(StackNavigationViewStyle())
+                .environment(\.rootPresentationMode, self.$isActive)
         }
     }
 }

@@ -50,7 +50,7 @@ struct UserImageMasked {
 //
 //        let backgroundScaled =  background.transformed(by: __CGAffineTransformMake(backgroundScaleX, 0, 0, backgroundScaleY, 0, 0))
 
-        let overlay = UIImage(named: "Square")!.resized(to: CGSize(width: input.extent.width, height: input.extent.height))
+        let overlay = UIImage(named: "Square", in: .module, with: nil)!.resized(to: CGSize(width: input.extent.width, height: input.extent.height))
         let overlayCGImage = CIImage(cgImage: overlay.cgImage!)
 
         let blendFilter = CIFilter.blendWithMask()

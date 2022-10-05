@@ -9,6 +9,8 @@ import SwiftUI
 import AVFoundation
 
 struct CameraScreen: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     @StateObject var model = CameraViewModel()
     
     @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
@@ -43,7 +45,7 @@ struct CameraScreen: View {
                 
                 ZStack {
                     if(model.isTimerOn != nil && model.time != nil && model.time ?? 0 > 0) {
-                        Color("Black20")
+                        Color("Black20", bundle: .module)
                     }
                     
                     ZStack {
@@ -164,7 +166,7 @@ struct CameraScreen: View {
     var timer: some View {
         Text(String(model.time!))
             .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 100))
-            .foregroundColor(.white)
+            .foregroundColor(colorScheme == .light ? .white : .black)
     }
     
     var timerButton: some View {
@@ -173,10 +175,10 @@ struct CameraScreen: View {
         } label: {
             VStack {
                 Spacer().frame(height: Autoscale.convert(25))
-                Image(isTimerOpen ? "TimerRed" : "Timer")
+                Image(isTimerOpen ? "TimerRed" : "Timer", bundle: .module)
                 Text(model.isTimerOn != nil ? String(model.isTimerOn!) + "s" : " ")
                     .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 15))
-                    .foregroundColor(.white)
+                    .foregroundColor(colorScheme == .light ? .white : .black)
             }
         }
     }
@@ -190,9 +192,9 @@ struct CameraScreen: View {
             }
         } label: {
             if(model.time ?? 0 > 0) {
-                Image("Stop")
+                Image("Stop", bundle: .module)
             } else {
-                Image("Camera")
+                Image("Camera", bundle: .module)
             }
         }
     }
@@ -203,7 +205,7 @@ struct CameraScreen: View {
         } label: {
             VStack {
                 Spacer().frame(height: Autoscale.convert(25))
-                Image(model.isCameraFlipped ? "SwitchRed" : "Switch")
+                Image(model.isCameraFlipped ? "SwitchRed" : "Switch", bundle: .module)
                 Text(" ")
             }
         }

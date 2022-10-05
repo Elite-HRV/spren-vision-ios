@@ -14,7 +14,7 @@ struct BodyCompResults: View {
 
     var body: some View {
         ZStack {
-            Color("AppBackground").edgesIgnoringSafeArea(.all)
+            Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.all)
 
             ScrollView {
                 VStack {
@@ -71,7 +71,7 @@ struct BodyCompResults: View {
                     
                     Spacer().frame(height: Autoscale.convert(80))
                     
-                    Image("PoweredBySpren")
+                    Image("PoweredBySpren", bundle: .module)
                         .padding(Autoscale.padding)
                 }.padding(.horizontal, Autoscale.convert(16))
             }.padding(.top, 0.1)
@@ -84,7 +84,7 @@ struct BodyCompResults: View {
         } label: {
             Text("Done")
                 .font(Font.custom("Sofia Pro Bold", size: Autoscale.convert(18)))
-                .foregroundColor(Color("AppPink"))
+                .foregroundColor(Color("AppPink", bundle: .module))
         }
     }
 
@@ -93,7 +93,7 @@ struct BodyCompResults: View {
             Image(systemName: "exclamationmark.circle")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(Color("AppGrey"))
+                .foregroundColor(Color("AppGrey", bundle: .module))
                 .frame(width: Autoscale.convert(23), height: Autoscale.convert(23))
                 .rotationEffect(.degrees(-180))
         }.isDetailLink(false)
@@ -102,7 +102,7 @@ struct BodyCompResults: View {
     var text: some View {
         Text("Go deeper with resting metabolic rate and normative indicators as well as showing progress over time")
             .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 18))
-            .foregroundColor(Color("AppBlack"))
+            .foregroundColor(Color("AppBlack", bundle: .module))
             .multilineTextAlignment(.center).padding(.top, Autoscale.convert(24))
     }    
 }

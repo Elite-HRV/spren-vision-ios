@@ -15,7 +15,7 @@ extension AnalyzingScreen {
                 Spacer()
                 Rectangle()
 //                        .fill(Color.red)
-                    .fill(Color("AppGreen"))
+                    .fill(Color("AppGreen", bundle: .module))
                     .cornerRadius(Autoscale.convert(2))
                     .frame(width: size.width - Autoscale.convert(4), height: Autoscale.convert(4), alignment: .center)
                     .offset(x: 0, y: -(animationModel.lineOffset))

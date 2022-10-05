@@ -19,7 +19,7 @@ struct InfoBox: View {
                     .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor*20))
                     .lineLimit(1)
                     .minimumScaleFactor(0.01)
-                    .foregroundColor(Color("AppBlack")).multilineTextAlignment(.leading)
+                    .foregroundColor(Color("AppBlack", bundle: .module)).multilineTextAlignment(.leading)
                 
                 Spacer()
             }
@@ -27,7 +27,7 @@ struct InfoBox: View {
             HStack {
                 Text(text)
                     .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor*14))
-                    .foregroundColor(Color("AppBlack")).multilineTextAlignment(.leading)
+                    .foregroundColor(Color("AppBlack", bundle: .module)).multilineTextAlignment(.leading)
                 
                 Spacer()
             }
@@ -36,7 +36,7 @@ struct InfoBox: View {
         .padding(.horizontal, Autoscale.convert(15)).padding(.vertical, Autoscale.convert(20))
         .background(Color.white)
         .cornerRadius(Autoscale.convert(16))
-        .shadow(color: Color("Shaddow"), radius: Autoscale.convert(7), x: 0, y: Autoscale.convert(10))
+        .shadow(color: Color("Shaddow", bundle: .module), radius: Autoscale.convert(7), x: 0, y: Autoscale.convert(10))
     }
 }
 

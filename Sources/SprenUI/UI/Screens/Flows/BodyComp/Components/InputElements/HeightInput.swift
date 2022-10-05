@@ -11,7 +11,7 @@ struct HeightInput: View {
 
     @Binding var isPickerVisible: Bool
     @Binding var selection: HeightSize
-    var strokeColor: Color = Color("AppPink")
+    var strokeColor: Color = Color("AppPink", bundle: .module)
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -25,7 +25,7 @@ struct HeightInput: View {
                 Spacer()
                 Text(textUnit)
                     .font(Font.custom("Sofia Pro Regular", size: 21))
-                    .foregroundColor(Color("AppPink"))
+                    .foregroundColor(Color("AppPink", bundle: .module))
             }
             .padding()
             .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(strokeColor, style: StrokeStyle(lineWidth: 1.0)))

@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct AccuracyCorrelationComparison: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         VStack {
             ZStack {
-                Color(.white)
+                Color(colorScheme == .light ? .white : .black)
                 VStack {
                     HStack {
                         Text("Correlation Comparison")
@@ -24,7 +26,7 @@ struct AccuracyCorrelationComparison: View {
                         Spacer()
                     }
                     
-                    Image("AccuracyCorrelationComparison").resizable()
+                    Image("AccuracyCorrelationComparison", bundle: .module).resizable()
                         .aspectRatio(contentMode: .fit)
                     
                     HStack {

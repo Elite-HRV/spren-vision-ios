@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AnalyzingScreen: View {
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     static let imageHeightPercent = 0.8

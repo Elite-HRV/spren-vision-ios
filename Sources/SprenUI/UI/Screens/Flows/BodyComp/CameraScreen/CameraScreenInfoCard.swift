@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CameraScreenInfoCard: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         ZStack {
             VisualEffectView(effect: UIBlurEffect(style: .dark)).edgesIgnoringSafeArea(.bottom)
@@ -16,14 +18,14 @@ struct CameraScreenInfoCard: View {
                 Image(systemName: "exclamationmark.circle.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .foregroundColor(.white)
+                    .foregroundColor(colorScheme == .light ? .white : .black)
                     .frame(width: 25, height: 25)
 
                 Text("Please stand with your feet together and your arms out at 45 degrees.   Make sure your whole body is in the picture.  Match the guide. The indicators will turn green when you are in the correct position.")
                     .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
                     .lineLimit(10)
                     .minimumScaleFactor(0.01)
-                    .foregroundColor(.white)
+                    .foregroundColor(colorScheme == .light ? .white : .black)
                     .padding(.leading, Autoscale.convert(15))
 
             }.padding(Autoscale.convert(24))

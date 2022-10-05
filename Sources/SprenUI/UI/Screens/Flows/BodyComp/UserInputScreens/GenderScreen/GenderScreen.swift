@@ -19,13 +19,13 @@ struct GenderScreen: View {
                     Rectangle()
                         .frame(height:Autoscale.convert(4), alignment: .bottom)
                         .cornerRadius(Autoscale.convert(2))
-                        .foregroundColor(Color("AppPink"))
+                        .foregroundColor(Color("AppPink", bundle: .module))
                 }
                 ForEach(0..<1) {_ in
                     Rectangle()
                         .frame(height:Autoscale.convert(4), alignment: .bottom)
                         .cornerRadius(Autoscale.convert(2))
-                        .foregroundColor(Color("AppPink").opacity(0.3))
+                        .foregroundColor(Color("AppPink", bundle: .module).opacity(0.3))
                 }
             }
             CloseButton(action : {

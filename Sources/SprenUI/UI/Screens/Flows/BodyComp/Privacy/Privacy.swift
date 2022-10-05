@@ -11,12 +11,12 @@ struct Privacy: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     var body: some View {
         ZStack {
-            Color("AppBackground").edgesIgnoringSafeArea(.all)
+            Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.all)
             
             VStack {
                 CloseButton(action: {self.presentationMode.wrappedValue.dismiss()})
                 
-                Image("Privacy").resizable()
+                Image("Privacy", bundle: .module).resizable()
                     .aspectRatio(contentMode: .fit)
                 
                 title

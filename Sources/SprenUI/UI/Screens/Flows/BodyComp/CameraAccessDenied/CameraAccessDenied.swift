@@ -15,12 +15,12 @@ struct CameraAccessDenied: View {
 
     var body: some View {
         ZStack {
-            Color("AppBackground").edgesIgnoringSafeArea(.all)
+            Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.all)
             
             VStack {
                 CloseButton(action: {self.rootPresentationMode.wrappedValue.dismiss()})
 
-                Image("CameraAccessDenied")
+                Image("CameraAccessDenied", bundle: .module)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .padding(.horizontal, Autoscale.convert(30))

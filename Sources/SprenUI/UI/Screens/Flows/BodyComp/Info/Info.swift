@@ -11,7 +11,7 @@ struct Info: View {
     
     var body: some View {
         ZStack {
-            Color("AppBackground").edgesIgnoringSafeArea(.all)
+            Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.all)
             
             ScrollView {                
                 VStack(spacing: Autoscale.convert(20)) {
@@ -33,7 +33,7 @@ struct Info: View {
                     
                     Spacer()
                     
-                    Image("PoweredBySpren")
+                    Image("PoweredBySpren", bundle: .module)
                         .padding(Autoscale.padding)
                 }
                 .padding(.horizontal, Autoscale.convert(16)).padding(.top, Autoscale.convert(40))

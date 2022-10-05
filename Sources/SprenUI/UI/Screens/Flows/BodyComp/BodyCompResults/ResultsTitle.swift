@@ -14,7 +14,7 @@ struct ResultsTitle: View {
     
     var body: some View {
         Text(text)
-        .foregroundColor(Color("AppBlack"))
+        .foregroundColor(Color("AppBlack", bundle: .module))
         .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 24))
         .lineLimit(lines)        
         .minimumScaleFactor(0.01)

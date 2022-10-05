@@ -24,7 +24,7 @@ struct HeightInputPicker: View {
                     } label: {
                         Text("Done")
                             .font(Font.custom("Sofia Pro Black", size: 16))
-                            .foregroundColor(Color("AppPink"))
+                            .foregroundColor(Color("AppPink", bundle: .module))
                     }
                 }
                 HStack {

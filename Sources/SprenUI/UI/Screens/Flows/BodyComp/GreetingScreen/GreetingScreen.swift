@@ -18,7 +18,7 @@ struct GreetingScreen: View {
             VStack {
                 CloseButton(action: {self.presentationMode.wrappedValue.dismiss()})
                 
-                Image("GreetingsImage").resizable()
+                Image("GreetingsImage", bundle: .module).resizable()
                     .aspectRatio(contentMode: .fit)
                     .padding(.top, Autoscale.convert(10))
                     .padding(.bottom, Autoscale.convert(10))
@@ -69,7 +69,7 @@ struct GreetingScreen: View {
                     Text("How accurate is this?")
                         .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 16))
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(Color("Red"))
+                        .foregroundColor(Color("Red", bundle: .module))
                     Spacer()
                 }
             }.padding(.top, Autoscale.convert(10))
@@ -79,7 +79,7 @@ struct GreetingScreen: View {
                     Text("Privacy and security")
                         .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 16))
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(Color("Red"))
+                        .foregroundColor(Color("Red", bundle: .module))
                     Spacer()
                 }
             }.padding(.top, Autoscale.convert(1)).padding(.bottom)

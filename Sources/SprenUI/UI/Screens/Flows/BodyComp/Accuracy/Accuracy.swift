@@ -14,7 +14,7 @@ struct Accuracy: View {
     var body: some View {
         ZStack {
             
-            Color("AppBackground").edgesIgnoringSafeArea(.all)
+            Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.all)
             
             ScrollView {
                 VStack {
@@ -95,7 +95,7 @@ struct Accuracy: View {
                 Text("Disclaimer:").bold() +
                 Text(" This body composition scan is not intended for pregnant women or women up to 6 months post-partum. The results would not reflect accurate body composition for pregnant and post-partum women and following the body composition results and insights could be harmful to the fetus or mother.")
             }.font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
-                .foregroundColor(Color("AppGrey"))
+                .foregroundColor(Color("AppGrey", bundle: .module))
             .multilineTextAlignment(.leading)
             Spacer()
         }.padding(.top, Autoscale.convert(50)).padding(.bottom, Autoscale.convert(20))

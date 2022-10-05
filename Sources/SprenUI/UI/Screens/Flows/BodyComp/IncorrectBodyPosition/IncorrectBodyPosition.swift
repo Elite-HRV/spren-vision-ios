@@ -16,12 +16,12 @@ struct IncorrectBodyPosition: View {
         ZStack {
             NavigationLink(destination: SetupGuide(), tag: "SetupGuide", selection: $navigateTo) { EmptyView() }
 
-            Color("AppBackground").edgesIgnoringSafeArea(.all)
+            Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.all)
             
             VStack {
                 CloseButton(action: {self.rootPresentationMode.wrappedValue.dismiss()})
                 
-                Image("IncorrectBodyPosition").resizable()
+                Image("IncorrectBodyPosition", bundle: .module).resizable()
                     .aspectRatio(contentMode: .fit).frame(maxHeight: Autoscale.convert(280))
 
                 title

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ConfirmationScreen: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @Environment(\.colorScheme) var colorScheme
     
     @State var inputImage = UIImage()
     @State var finalOutputImage = UIImage()
@@ -27,10 +28,10 @@ struct ConfirmationScreen: View {
     
     var body: some View {
         ZStack {
-            Color(.white).edgesIgnoringSafeArea(.all)
+            Color(colorScheme == .light ? .white : .black).edgesIgnoringSafeArea(.all)
             
             ZStack {
-                Color("AppBackground").edgesIgnoringSafeArea(.top)
+                Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.top)
                 
                 ScrollView {
                     VStack {
@@ -130,14 +131,14 @@ struct ConfirmationScreen: View {
                 showModal.toggle()
             } label: {
                 Text("Edit").font(Font.custom("Sofia Pro Black", size: Autoscale.scaleFactor * 16))
-                    .foregroundColor(Color("AppPink"))
+                    .foregroundColor(Color("AppPink", bundle: .module))
             }
         }.padding(.top, Autoscale.convert(20))
     }
     
     var button: some View {
         ZStack {
-            Color(.white)
+            Color(colorScheme == .light ? .white : .black)
 
             VStack {
                 Spacer()
@@ -157,7 +158,7 @@ struct ConfirmationScreen: View {
             showingOptions = true
         } label: {
             Text("Retake").font(Font.custom("Sofia Pro Black", size: Autoscale.scaleFactor * 16))
-                .foregroundColor(Color("AppPink"))
+                .foregroundColor(Color("AppPink", bundle: .module))
         }
         .actionSheet(isPresented: $showingOptions) {
             ActionSheet(
@@ -249,6 +250,6 @@ struct ConfirmationScreen: View {
 
 struct Confirmation_Previews: PreviewProvider {
     static var previews: some View {
-        ConfirmationScreen(image: UIImage(named: "Women"))
+        ConfirmationScreen(image: UIImage(named: "Women", in: .module, with: nil))
     }
 }

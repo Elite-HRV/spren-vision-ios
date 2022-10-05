@@ -32,7 +32,7 @@ struct CloseButton: View {
         Button {
             action()
         } label: {
-            Image(image ?? "Close")
+            Image(image ?? "Close", bundle: .module)
                 .frame(width: sizeWidth ?? Autoscale.convert(18), height: sizeHeight ?? Autoscale.convert(18), alignment: .center)
                 .padding(Autoscale.convert(padding ? 10 : 0))
         }

@@ -14,7 +14,8 @@ typealias OnChooseHandler = ((_ selectedImage: UIImage) -> Void)
 
 struct SetupGuide: View {
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-
+    @Environment(\.colorScheme) var colorScheme
+    
     @State private var showingOptions = false
     @State private var permissionStatus = "notDetermined"
     @State private var isImagePickerDisplay = false
@@ -24,18 +25,18 @@ struct SetupGuide: View {
     var body: some View {
         ZStack {
             
-            Color(.white).edgesIgnoringSafeArea(.all)
+            Color(colorScheme == .light ? .white : .black).edgesIgnoringSafeArea(.all)
             
             ZStack {
                 
-                Color("AppBackground").edgesIgnoringSafeArea(.top)
+                Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.top)
                 
                 VStack {
                         CloseButton(action: {
                             self.presentationMode.wrappedValue.dismiss()  
                         }).padding(.horizontal, Autoscale.convert(16))
 
-                        Image("SetupGuide").resizable()
+                        Image("SetupGuide", bundle: .module).resizable()
                             .aspectRatio(contentMode: .fit)
                         
                         title
@@ -86,7 +87,7 @@ struct SetupGuide: View {
     
     var button: some View {
         ZStack {
-            Color(.white)
+            Color(colorScheme == .light ? .white : .black)
 
             VStack {
                 Spacer()

@@ -13,7 +13,7 @@ struct Hint: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "checkmark.circle.fill").foregroundColor(Color("AppPink"))
+            Image(systemName: "checkmark.circle.fill").foregroundColor(Color("AppPink", bundle: .module))
             Text(text)
                 .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
                 .lineLimit(1)

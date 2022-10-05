@@ -1,0 +1,38 @@
+//
+//  WeightInput.swift
+//  SprenInternal
+//
+//  Created by nick on 19.08.2022.
+//
+
+import SwiftUI
+
+struct WeightInput: View {
+
+    private let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+
+    @Binding var weight: Double
+    var weightMetric: Int
+    var strokeColor: Color = Color("AppPink")
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            let textUnit = weightMetric == 0 ? "lbs" : "kg"
+            HStack {
+                TextField("Enter your weight", value: $weight, formatter: numberFormatter)
+                    .font(Font.custom("Sofia Pro Regular", size: 21))
+                    .keyboardType(.decimalPad)
+                Spacer()
+                Text(textUnit)
+                    .font(Font.custom("Sofia Pro Regular", size: 21))
+                    .foregroundColor(Color("AppPink"))
+            }
+            .padding()
+            .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(strokeColor, style: StrokeStyle(lineWidth: 1.0)))
+        }
+    }
+}

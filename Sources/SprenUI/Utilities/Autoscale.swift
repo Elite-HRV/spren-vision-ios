@@ -48,4 +48,13 @@ class Autoscale {
     }
     static var padding: CGFloat = 16 * scaleFactor
     static var headingHeight = 60 * scaleFactor
+    
+    static func convert(_ value: CGFloat) -> CGFloat {
+        switch scale - 2.0 {
+            case 1:
+            return value * (458/326)
+            default:
+                return value
+        }
+    }
 }

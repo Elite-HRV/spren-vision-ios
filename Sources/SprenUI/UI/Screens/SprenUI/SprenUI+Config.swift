@@ -21,6 +21,7 @@ extension SprenUI {
         public let userBirthdate: Date?
         
         // UI config
+        public let project: SprenProject
         public let color1: Color?
         public let color2: Color?
         public let onCancel: (() -> Void)
@@ -38,11 +39,17 @@ extension SprenUI {
             case other
         }
         
+        public enum SprenProject {
+            case fingerCamera
+            case bodyComp
+        }
+        
         public init(baseURL: String,
                     apiKey: String,
                     userID: String,
                     userGender: BiologicalSex? = nil,
                     userBirthdate: Date? = nil,
+                    project: SprenProject,
                     color1: Color? = nil,
                     color2: Color? = nil,
                     onCancel: @escaping (() -> Void),
@@ -55,6 +62,7 @@ extension SprenUI {
             self.userGender = userGender
             self.userBirthdate = userBirthdate
             
+            self.project = project
             self.color1 = color1
             self.color2 = color2
             self.onCancel = onCancel

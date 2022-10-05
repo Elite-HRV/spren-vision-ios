@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct SprenUI: View {
         
-    static var config = Config(baseURL: "", apiKey: "", userID: "", onCancel: {}, onFinish: { _ in })
+    static var config = Config(baseURL: "", apiKey: "", userID: "", project: SprenUI.Config.SprenProject.bodyComp, onCancel: {}, onFinish: { _ in })
     
     @StateObject var viewModel = ViewModel()
         
@@ -18,15 +18,21 @@ public struct SprenUI: View {
     }
         
     public var body: some View {
-        switch viewModel.navTag {
-        case .greetingScreen1:      greetingScreen1
-        case .greetingScreen2:      greetingScreen2
-        case .noCameraScreen:       noCameraScreen
-        case .fingerOnCameraScreen: fingerOnCameraScreen
-        case .readingScreen:        readingScreen
-        case .uploadScreen:         uploadScreen
-        case .errorScreen:          errorScreen
-        case .resultsScreen:        resultsScreen
+        if(Self.config.project == SprenUI.Config.SprenProject.fingerCamera){
+            switch viewModel.navTag {
+            case .greetingScreen1:      greetingScreen1
+            case .greetingScreen2:      greetingScreen2
+            case .noCameraScreen:       noCameraScreen
+            case .fingerOnCameraScreen: fingerOnCameraScreen
+            case .readingScreen:        readingScreen
+            case .uploadScreen:         uploadScreen
+            case .errorScreen:          errorScreen
+            case .resultsScreen:        resultsScreen
+            }
+        }
+        
+        if(Self.config.project == SprenUI.Config.SprenProject.bodyComp){
+            GreetingScreen()
         }
     }
 }
@@ -103,7 +109,7 @@ extension SprenUI {
 
 struct SprenUI_Previews: PreviewProvider {
     static var previews: some View {
-        SprenUI(config: .init(baseURL: "", apiKey: "", userID: "", onCancel: {}, onFinish: { _ in }))
+        SprenUI(config: .init(baseURL: "", apiKey: "", userID: "", project: SprenUI.Config.SprenProject.bodyComp, onCancel: {}, onFinish: { _ in }))
 //            .preferredColorScheme(.light)
 //            .environment(\.colorScheme, .dark)
     }

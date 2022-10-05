@@ -58,3 +58,9 @@ struct AgeScreen: View {
         .padding(.all, Autoscale.convert(15))
     }
 }
+
+struct AgeScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        AgeScreen()
+    }
+}

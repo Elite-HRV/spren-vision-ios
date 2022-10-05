@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PurpleButton: View {
-    @Environment(\.colorScheme) var colorScheme
     
     var text: String
 
@@ -17,7 +16,7 @@ struct PurpleButton: View {
             .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 18))
             .lineLimit(1)
             .minimumScaleFactor(0.01)
-            .foregroundColor(colorScheme == .light ? .white : .black)
+            .foregroundColor(.white)
             .frame(maxWidth: .infinity, maxHeight: Autoscale.convert(50))
             .background(Color("AppPurple", bundle: .module))
             .cornerRadius(Autoscale.convert(6))

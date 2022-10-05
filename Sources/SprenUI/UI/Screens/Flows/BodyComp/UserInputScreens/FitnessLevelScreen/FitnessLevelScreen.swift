@@ -48,3 +48,9 @@ struct FitnessLevelScreen: View {
         .padding(.all, Autoscale.convert(15))
     }
 }
+
+struct FitnessLevelScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        FitnessLevelScreen()
+    }
+}

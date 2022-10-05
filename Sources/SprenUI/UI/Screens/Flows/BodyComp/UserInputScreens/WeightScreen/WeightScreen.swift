@@ -56,3 +56,9 @@ struct WeightScreen: View {
         .padding(.all, Autoscale.convert(15))
     }
 }
+
+struct WeightScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        WeightScreen()
+    }
+}

@@ -58,3 +58,9 @@ struct GenderScreen: View {
         .padding(.all, Autoscale.convert(15))
     }
 }
+
+struct GenderScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        GenderScreen()
+    }
+}

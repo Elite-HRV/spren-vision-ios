@@ -63,3 +63,9 @@ extension HeightScreen {
         @Published var isPickerVisible = false
     }
 }
+
+struct HeightScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        HeightScreen()
+    }
+}

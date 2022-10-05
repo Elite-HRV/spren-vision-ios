@@ -7,9 +7,9 @@
 
 import Foundation
 
-//let ENV      = "dev"
-//let API_URL  = "https://gczw0qnqsk.execute-api.us-west-2.amazonaws.com/dev"
-//let API_KEY  = "f6c28d98-6395-4ada-92dd-20b09d080425"
+let ENV      = "dev"
+let API_URL  = "https://gczw0qnqsk.execute-api.us-west-2.amazonaws.com/dev"
+let API_KEY  = "f6c28d98-6395-4ada-92dd-20b09d080425"
 
 #if DEV
 let ENV      = "dev"
@@ -61,10 +61,21 @@ class Config {
     }
     
     fileprivate static func writeOut(deviceIdentifier: String) {
-        guard let documentsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[safe: 0] else {
+        var urlPath: URL? = nil
+        do {
+            let documentDirectory = try FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            )
+            urlPath = documentDirectory.appendingPathComponent("deviceIdentifier.txt")
+        } catch {
+            fatalError("error")
+        }
+        guard let url = urlPath else {
             return
         }
-        let url = documentsDir.appendingPathComponent("deviceIdentifier.txt")
         
         if FileManager.default.fileExists(atPath: url.path){
             do {
@@ -82,5 +93,4 @@ class Config {
             return
         }
     }
-
 }

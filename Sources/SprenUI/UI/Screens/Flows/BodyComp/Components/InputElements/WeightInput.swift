@@ -24,11 +24,11 @@ struct WeightInput: View {
             let textUnit = weightMetric == 0 ? "lbs" : "kg"
             HStack {
                 TextField("Enter your weight", value: $weight, formatter: numberFormatter)
-                    .font(Font.custom("Sofia Pro Regular", size: 21))
+                    .font(.sprenInput)
                     .keyboardType(.decimalPad)
                 Spacer()
                 Text(textUnit)
-                    .font(Font.custom("Sofia Pro Regular", size: 21))
+                    .font(.sprenInput)
                     .foregroundColor(Color("AppPink", bundle: .module))
             }
             .padding()

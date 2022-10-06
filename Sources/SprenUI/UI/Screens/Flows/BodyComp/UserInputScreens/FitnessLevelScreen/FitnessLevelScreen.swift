@@ -27,11 +27,11 @@ struct FitnessLevelScreen: View {
                 self.presentationMode.wrappedValue.dismiss()
             })
             Text("Recent activity level")
-                .font(Font.custom("Sofia Pro Semi Bold", size: 40))
+                .font(.sprenBoldNumber)
                 .lineLimit(1)
                 .minimumScaleFactor(0.01)
             Text("During the last 7 days, on how many days did you do vigorous physical activities like heavy lifting or hard cardio exercise?")
-                .font(Font.custom("Sofia Pro Regular", size: 21))
+                .font(.sprenInput)
                 .lineLimit(3)
                 .minimumScaleFactor(0.01)
 

@@ -17,7 +17,7 @@ struct AccuracyCorrelationComparison: View {
                 VStack {
                     HStack {
                         Text("Correlation Comparison")
-                            .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 20))
+                            .font(.sprenProgress)
                             .lineLimit(1)
                             .minimumScaleFactor(0.01)
                             .multilineTextAlignment(.leading)
@@ -31,7 +31,7 @@ struct AccuracyCorrelationComparison: View {
                     
                     HStack {
                         Text("This chart shows a high degree of correlation between the body volume (BV) estimates of the Underwater weighing method (UWW) and our 2D image processing system (SPREN) for calculating body composition results.")
-                            .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
+                            .font(.sprenLabel)
                             .multilineTextAlignment(.leading)
                             .lineSpacing(3)
                             .padding(.top, 16)

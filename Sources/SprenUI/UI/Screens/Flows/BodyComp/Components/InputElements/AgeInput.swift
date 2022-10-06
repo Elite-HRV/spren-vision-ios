@@ -20,7 +20,7 @@ struct AgeInput: View {
     
     var body: some View {
         TextField("Enter your age", value: $age, formatter: numberFormatter)
-            .font(Font.custom("Sofia Pro Regular", size: 21))
+            .font(.sprenInput)
             .keyboardType(.numberPad)
             .padding()
             .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(strokeColor, style: StrokeStyle(lineWidth: 1.0)))

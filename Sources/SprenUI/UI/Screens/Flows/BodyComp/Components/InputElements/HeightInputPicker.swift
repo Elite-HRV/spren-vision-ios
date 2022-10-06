@@ -23,7 +23,7 @@ struct HeightInputPicker: View {
                         isPickerVisible.toggle()
                     } label: {
                         Text("Done")
-                            .font(Font.custom("Sofia Pro Black", size: 16))
+                            .font(.sprenParagraphBold).fontWeight(.bold)
                             .foregroundColor(Color("AppPink", bundle: .module))
                     }
                 }

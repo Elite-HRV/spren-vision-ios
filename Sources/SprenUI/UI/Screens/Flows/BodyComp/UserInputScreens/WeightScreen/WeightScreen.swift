@@ -31,11 +31,11 @@ struct WeightScreen: View {
                 self.presentationMode.wrappedValue.dismiss()
             })
             Text("Enter your weight")
-                .font(Font.custom("Sofia Pro Semi Bold", size: 40))
+                .font(.sprenBoldNumber)
                 .lineLimit(1)
                 .minimumScaleFactor(0.01)
             Text("We need your body weight to accurately track changes in fat-free mass and fat mass over time.")
-                .font(Font.custom("Sofia Pro Regular", size: 21))
+                .font(.sprenInput)
                 .lineLimit(3)
                 .minimumScaleFactor(0.01)
 

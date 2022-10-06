@@ -32,17 +32,17 @@ struct AgeScreen: View {
                 self.presentationMode.wrappedValue.dismiss()
             })
             Text("Enter your age")
-                .font(Font.custom("Sofia Pro Semi Bold", size: 40))
+                .font(.sprenBoldNumber)
                 .lineLimit(1)
                 .minimumScaleFactor(0.01)
             Text("This data improve the accuracy of the results and used to provide appropriate reference ranges and guidance.")
-                .font(Font.custom("Sofia Pro Regular", size: 21))
+                .font(.sprenInput)
                 .lineLimit(3)
                 .minimumScaleFactor(0.01)
 
             VStack(alignment: .leading, spacing: 0) {
                 Text("Age")
-                    .font(Font.custom("Sofia Pro Regular", size: 21))
+                    .font(.sprenInput)
                     .padding([.bottom], 10)
                 AgeInput(age: $age)
             }

@@ -31,7 +31,7 @@ struct Privacy: View {
     var title: some View {
         HStack {
             Text("Privacy and Security")
-                .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 30))
+                .font(.sprenTitle)
                 .lineLimit(1)
                 .minimumScaleFactor(0.01)
                 .multilineTextAlignment(.leading)
@@ -44,7 +44,7 @@ struct Privacy: View {
     var text: some View {
         HStack {
             Text("Your privacy and security are important!\n\nNo identifiable imagery leaves your phone. Your photo is de-identified prior to being transmitted to the cloud where our algorithms process and calculate your results. Once you receive your results, your unidentifiable photo is automatically deleted from the cloud.\n\nWe use world class encryption security and privacy measures when transmitting and storing any data that is used to provide you results and guidance.")
-                .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                .font(.sprenParagraph)
                 .multilineTextAlignment(.leading).padding(.bottom, Autoscale.convert(20))
             Spacer()
         }

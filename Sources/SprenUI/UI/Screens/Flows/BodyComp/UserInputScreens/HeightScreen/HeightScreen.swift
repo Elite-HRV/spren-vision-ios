@@ -35,11 +35,11 @@ struct HeightScreen: View {
                 self.presentationMode.wrappedValue.dismiss()
             })
             Text("Enter your height")
-                .font(Font.custom("Sofia Pro Semi Bold", size: 40))
+                .font(.sprenBoldNumber)
                 .lineLimit(1)
                 .minimumScaleFactor(0.01)
             Text("We need to know your height to provide you with accurate measurement results.")
-                .font(Font.custom("Sofia Pro Regular", size: 21))
+                .font(.sprenInput)
                 .lineLimit(2)
                 .minimumScaleFactor(0.01)
 

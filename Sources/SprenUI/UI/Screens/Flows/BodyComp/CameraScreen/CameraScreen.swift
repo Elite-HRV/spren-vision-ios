@@ -165,7 +165,7 @@ struct CameraScreen: View {
     
     var timer: some View {
         Text(String(model.time!))
-            .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 100))
+            .font(.sprenBigNumber)
             .foregroundColor(colorScheme == .light ? .white : .black)
     }
     
@@ -177,7 +177,7 @@ struct CameraScreen: View {
                 Spacer().frame(height: Autoscale.convert(25))
                 Image(isTimerOpen ? "TimerRed" : "Timer", bundle: .module)
                 Text(model.isTimerOn != nil ? String(model.isTimerOn!) + "s" : " ")
-                    .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 15))
+                    .font(.sprenParagraph)
                     .foregroundColor(colorScheme == .light ? .white : .black)
             }
         }

@@ -15,7 +15,7 @@ struct ResultsTitle: View {
     var body: some View {
         Text(text)
         .foregroundColor(Color("AppBlack", bundle: .module))
-        .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 24))
+        .font(.sprenAlertTitle)
         .lineLimit(lines)        
         .minimumScaleFactor(0.01)
         .multilineTextAlignment(.center)

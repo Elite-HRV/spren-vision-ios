@@ -77,7 +77,7 @@ struct SetupGuide: View {
     var title: some View {
         HStack {
             Text("Hints for accurate measurement results")
-                .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 30))
+                .font(.sprenTitle)
                 .lineLimit(2)
                 .minimumScaleFactor(0.01)
                 .multilineTextAlignment(.leading)
@@ -99,7 +99,7 @@ struct SetupGuide: View {
                 }
                 .actionSheet(isPresented: $showingOptions) {
                     ActionSheet(
-                        title: Text("Take a photo or upload one you already have").font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 30)),
+                        title: Text("Take a photo or upload one you already have").font(.sprenTitle),
                         buttons: [
                             .default(Text("Take photo")) {
                                 checkAccess(request: true)

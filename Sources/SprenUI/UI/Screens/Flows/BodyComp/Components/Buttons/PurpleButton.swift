@@ -13,7 +13,7 @@ struct PurpleButton: View {
 
     var body: some View {
         Text(text)
-            .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 18))
+            .font(.sprenButton)
             .lineLimit(1)
             .minimumScaleFactor(0.01)
             .foregroundColor(.white)

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct InfoBox: View {
+    @Environment(\.colorScheme) var colorScheme
     
     var title: String
     var text: String
@@ -16,7 +17,7 @@ struct InfoBox: View {
         VStack(spacing: Autoscale.convert(8)) {
             HStack {
                 Text(title)
-                    .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor*20))
+                    .font(.sprenProgress)
                     .lineLimit(1)
                     .minimumScaleFactor(0.01)
                     .foregroundColor(Color("AppBlack", bundle: .module)).multilineTextAlignment(.leading)
@@ -26,7 +27,7 @@ struct InfoBox: View {
             
             HStack {
                 Text(text)
-                    .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor*14))
+                    .font(.sprenLabel)
                     .foregroundColor(Color("AppBlack", bundle: .module)).multilineTextAlignment(.leading)
                 
                 Spacer()
@@ -34,7 +35,7 @@ struct InfoBox: View {
         }
         .frame(width: .infinity)
         .padding(.horizontal, Autoscale.convert(15)).padding(.vertical, Autoscale.convert(20))
-        .background(Color.white)
+        .background(colorScheme == .light ? Color.white : Color("AppGrey", bundle: .module))
         .cornerRadius(Autoscale.convert(16))
         .shadow(color: Color("Shaddow", bundle: .module), radius: Autoscale.convert(7), x: 0, y: Autoscale.convert(10))
     }

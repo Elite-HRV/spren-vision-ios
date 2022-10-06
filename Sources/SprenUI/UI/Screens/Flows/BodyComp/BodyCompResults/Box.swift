@@ -33,7 +33,7 @@ struct Box: View {
                     HStack {
                         Text(title!)
                             .foregroundColor(Color("AppBlack", bundle: .module))
-                            .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 12))
+                            .font(.sprenSmallText)
                             .lineLimit(1)
                             .minimumScaleFactor(0.01)
 
@@ -44,13 +44,13 @@ struct Box: View {
                         if (number != nil) {
                             Text(String(format: "%.2f", number!))
                                 .foregroundColor(Color("AppBlack", bundle: .module))
-                                .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 40)).fontWeight(.bold)
+                                .font(.sprenBoldNumber)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.01)
                         }
                         Text(metric!)
                             .foregroundColor(Color("AppBlack", bundle: .module))
-                            .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16)).padding(.bottom, Autoscale.convert(7))
+                            .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
 
                         Spacer()
                     }.padding(.horizontal, Autoscale.convert(16))
@@ -61,19 +61,19 @@ struct Box: View {
                 VStack {
                     Text(title!)
                         .foregroundColor(Color("AppBlack", bundle: .module))
-                        .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 12))
+                        .font(.sprenSmallText)
                         .lineLimit(1)
                         .minimumScaleFactor(0.01)
 
                     if (status != nil) {
                         Text("Status: \(status!.rawValue)")
                             .foregroundColor(Color("AppBlack", bundle: .module))
-                            .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16)).padding(.bottom, Autoscale.convert(7))
+                            .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
                     }
                     if (errorDescription != nil) {
                         Text(errorDescription!)
                             .foregroundColor(Color("AppBlack", bundle: .module))
-                            .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16)).padding(.bottom, Autoscale.convert(7))
+                            .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
                     }
                 }
             } else {
@@ -85,6 +85,6 @@ struct Box: View {
 
 struct Box_Previews: PreviewProvider {
     static var previews: some View {
-        Box(title: "Body Fat", number: 25, metric: "%")
+        Box(title: "Body Fat", number: 25, metric: "%", status: StatusValue.Status.pending)
     }
 }

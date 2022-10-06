@@ -15,7 +15,7 @@ struct IncorrectBodyPositionTip: View {
         HStack(alignment: .top) {
             Image(systemName: "checkmark.circle.fill").foregroundColor(Color("AppPink", bundle: .module))
             Text(text)
-                .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                .font(.sprenParagraph)
                 .lineLimit(2)
                 .minimumScaleFactor(0.01)
                 .multilineTextAlignment(.leading)

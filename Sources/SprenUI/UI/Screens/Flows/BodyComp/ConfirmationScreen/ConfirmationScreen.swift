@@ -38,7 +38,7 @@ struct ConfirmationScreen: View {
                         VStack {
                             HStack {
                                 Text("Everything look good?")
-                                    .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 24))
+                                    .font(.sprenAlertTitle)
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.01)
                                     .multilineTextAlignment(.leading)
@@ -113,7 +113,7 @@ struct ConfirmationScreen: View {
     
     var firstMenu: some View {
         HStack {
-            Text("Picture").font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 20))
+            Text("Picture").font(.sprenProgress)
             
             Spacer()
             
@@ -123,14 +123,14 @@ struct ConfirmationScreen: View {
     
     var secondMenu: some View {
         HStack {
-            Text("Parameters").font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 20))
+            Text("Parameters").font(.sprenProgress)
             
             Spacer()
             
             Button {
                 showModal.toggle()
             } label: {
-                Text("Edit").font(Font.custom("Sofia Pro Black", size: Autoscale.scaleFactor * 16))
+                Text("Edit").font(.sprenParagraph)
                     .foregroundColor(Color("AppPink", bundle: .module))
             }
         }.padding(.top, Autoscale.convert(20))
@@ -157,12 +157,12 @@ struct ConfirmationScreen: View {
         Button {
             showingOptions = true
         } label: {
-            Text("Retake").font(Font.custom("Sofia Pro Black", size: Autoscale.scaleFactor * 16))
+            Text("Retake").font(.sprenParagraph)
                 .foregroundColor(Color("AppPink", bundle: .module))
         }
         .actionSheet(isPresented: $showingOptions) {
             ActionSheet(
-                title: Text("Take a photo or upload one you already have").font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 30)),
+                title: Text("Take a photo or upload one you already have").font(.sprenTitle),
                 buttons: [
                     .default(Text("Take photo")) {
                         navigateTo = "CameraScreen"
@@ -182,7 +182,7 @@ struct ConfirmationScreen: View {
         VStack {
             ZStack {
                 HStack {
-                    Text("Edit parameters").font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 16))
+                    Text("Edit parameters").font(.sprenParagraphBold)
                 }
                 
                 HStack {
@@ -190,7 +190,7 @@ struct ConfirmationScreen: View {
                     Button {
                         showModal.toggle()
                     } label: {
-                        Text("Close").font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 16))
+                        Text("Close").font(.sprenParagraphBold)
                             .foregroundColor(Color("AppPink"))
                     }.padding(.trailing, Autoscale.convert(16))
                 }
@@ -201,7 +201,7 @@ struct ConfirmationScreen: View {
             VStack {
                 Group {
                     HStack {
-                        Text("Weight").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                        Text("Weight").font(.sprenParagraph)
                         Spacer()
                     }
                     WeightInput(weight: $weight, weightMetric: UserData.default.weightMetric, strokeColor: .black)
@@ -209,7 +209,7 @@ struct ConfirmationScreen: View {
                 
                 Group {
                     HStack {
-                        Text("Height").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                        Text("Height").font(.sprenParagraph)
                         Spacer()
                     }.padding(.top, Autoscale.convert(10))
                     HeightInput(isPickerVisible: $viewModel.isPickerVisible, selection: $viewModel.selection, strokeColor: .black)
@@ -218,7 +218,7 @@ struct ConfirmationScreen: View {
                 
                 Group {
                     HStack {
-                        Text("Age").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                        Text("Age").font(.sprenParagraph)
                         Spacer()
                     }.padding(.top, Autoscale.convert(10))
                     AgeInput(age: $age, strokeColor: .black)
@@ -226,7 +226,7 @@ struct ConfirmationScreen: View {
                 
                 Group {
                     HStack {
-                        Text("Gender").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                        Text("Gender").font(.sprenParagraph)
                         Spacer()
                     }.padding(.top, Autoscale.convert(10))
                     GenderInput(biologicalSex: $biologicalSex)
@@ -234,7 +234,7 @@ struct ConfirmationScreen: View {
                 
                 Group {
                     HStack {
-                        Text("Recent Activity Level").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                        Text("Recent Activity Level").font(.sprenParagraph)
                         Spacer()
                     }.padding(.top, Autoscale.convert(10))
                     FitnessLevelInput(isPickerVisible: $isPickerVisible, fitnessLevel: $fitnessLevel, strokeColor: .black)

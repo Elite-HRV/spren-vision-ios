@@ -43,7 +43,7 @@ struct PhotoAccessDenied: View {
     var title: some View {
         HStack {
             Text("Access to Photos is needed to upload a photo for body composition analysis")
-                .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 30))
+                .font(.sprenTitle)
                 .lineLimit(4)
                 .minimumScaleFactor(0.01)
                 .multilineTextAlignment(.leading)
@@ -54,7 +54,7 @@ struct PhotoAccessDenied: View {
     var text: some View {
         HStack {
             Text("Allow access to Photos in your iOS Settings in order to receive personalized insights and guidance.")
-                .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                .font(.sprenParagraph)
                 .multilineTextAlignment(.leading)
                 .lineLimit(3)
                 .minimumScaleFactor(0.01)

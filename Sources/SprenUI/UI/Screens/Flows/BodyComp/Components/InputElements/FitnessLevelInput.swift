@@ -17,10 +17,10 @@ struct FitnessLevelInput: View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
                 Text("\(fitnessLevel)")
-                    .font(Font.custom("Sofia Pro Regular", size: 21))
+                    .font(.sprenInput)
                 Spacer()
                 Text("days in week")
-                    .font(Font.custom("Sofia Pro Regular", size: 21))
+                    .font(.sprenInput)
                     .foregroundColor(Color("AppPink", bundle: .module))
             }
             .padding()

@@ -22,7 +22,7 @@ struct CameraScreenTimerSelectionContainer: View {
                     buttonCallBack()
                 } label: {
                     Text("timer off")
-                        .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 15))
+                        .font(.sprenParagraph)
                         .foregroundColor(model.isTimerOn == nil ? Color("Red", bundle: .module) : .white).padding()
                 }
 
@@ -31,7 +31,7 @@ struct CameraScreenTimerSelectionContainer: View {
                     buttonCallBack()
                 } label: {
                     Text("5s")
-                        .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 15))
+                        .font(.sprenParagraph)
                         .foregroundColor(model.isTimerOn == 5 ? Color("Red", bundle: .module) : .white).padding()
                 }
                 
@@ -40,7 +40,7 @@ struct CameraScreenTimerSelectionContainer: View {
                     buttonCallBack()
                 } label: {
                     Text("10s")
-                        .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 15))
+                        .font(.sprenParagraph)
                         .foregroundColor(model.isTimerOn == 10 ? Color("Red", bundle: .module) : .white).padding()
                 }
             }

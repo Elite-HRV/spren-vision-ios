@@ -42,7 +42,7 @@ struct ServerError: View {
     var title: some View {
         HStack {
             Text("Sorry! There was an error calculating your results")
-                .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 30))
+                .font(.sprenTitle)
                 .lineLimit(3)
                 .minimumScaleFactor(0.01)
                 .multilineTextAlignment(.leading)
@@ -54,7 +54,7 @@ struct ServerError: View {
     var text: some View {
         HStack {
             Text("Please take another photo to view your body composition results.")
-                .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor*16))
+                .font(.sprenParagraph)
                 .multilineTextAlignment(.leading)
                 .lineSpacing(Autoscale.convert(3))
             Spacer()

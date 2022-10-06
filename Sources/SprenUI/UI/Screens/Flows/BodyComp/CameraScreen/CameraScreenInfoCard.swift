@@ -18,14 +18,14 @@ struct CameraScreenInfoCard: View {
                 Image(systemName: "exclamationmark.circle.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .foregroundColor(colorScheme == .light ? .white : .black)
+                    .foregroundColor(.white)
                     .frame(width: 25, height: 25)
 
                 Text("Please stand with your feet together and your arms out at 45 degrees.   Make sure your whole body is in the picture.  Match the guide. The indicators will turn green when you are in the correct position.")
-                    .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
+                    .font(.sprenLabel)
                     .lineLimit(10)
                     .minimumScaleFactor(0.01)
-                    .foregroundColor(colorScheme == .light ? .white : .black)
+                    .foregroundColor(.white)
                     .padding(.leading, Autoscale.convert(15))
 
             }.padding(Autoscale.convert(24))

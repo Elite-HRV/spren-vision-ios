@@ -42,7 +42,7 @@ struct CameraAccessDenied: View {
     var title: some View {
         HStack {
             Text("Camera access is needed to do a body composition measurement")
-                .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 35))
+                .font(.sprenBigTitle)
                 .lineLimit(4)
                 .minimumScaleFactor(0.01)
                 .multilineTextAlignment(.leading)
@@ -53,7 +53,7 @@ struct CameraAccessDenied: View {
     var text: some View {
         HStack {
             Text("Allow access to camera in your iOS Settings in order to receive personalized insights and guidance.")
-                .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                .font(.sprenParagraph)
                 .multilineTextAlignment(.leading)
                 .lineLimit(3)
                 .minimumScaleFactor(0.01)

@@ -24,17 +24,17 @@ struct ConfirmationScreenParameters: View {
             HStack {
                 VStack(alignment: .leading, spacing: Autoscale.convert(8)) {
                     VStack(alignment: .leading, spacing: Autoscale.convert(4)) {
-                        Text("Weight: ").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
+                        Text("Weight: ").font(.sprenLabel)
                             .foregroundColor(Color("LightGrey", bundle: .module))
-                        Text(String(weight) + " \(UserData.weightMetricLables[weightMetric])").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                        Text(String(weight) + " \(UserData.weightMetricLables[weightMetric])").font(.sprenParagraph)
                         
-                        Text("Age: ").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
+                        Text("Age: ").font(.sprenLabel)
                             .foregroundColor(Color("LightGrey", bundle: .module))
-                        Text("\(age)").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                        Text("\(age)").font(.sprenParagraph)
                         
-                        Text("Recent activity level: ").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
+                        Text("Recent activity level: ").font(.sprenLabel)
                             .foregroundColor(Color("LightGrey", bundle: .module))
-                        Text("\(fitnessLevel) days per week").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                        Text("\(fitnessLevel) days per week").font(.sprenParagraph)
                     }
                 }
                 
@@ -42,18 +42,18 @@ struct ConfirmationScreenParameters: View {
                 
                 VStack(alignment: .leading, spacing: Autoscale.convert(8)) {
                     VStack(alignment: .leading, spacing: Autoscale.convert(4)) {
-                        Text("Height: ").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
+                        Text("Height: ").font(.sprenLabel)
                             .foregroundColor(Color("LightGrey", bundle: .module))
                         
                         if(height.unit == HeightSize.Unit.ft_in) {
-                            Text("\(height.feet) feet \(height.inches) inches").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                            Text("\(height.feet) feet \(height.inches) inches").font(.sprenParagraph)
                         } else {
-                            Text("\(height.centimeters) cm ").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                            Text("\(height.centimeters) cm ").font(.sprenParagraph)
                         }
                         
-                        Text("Gender: ").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 14))
+                        Text("Gender: ").font(.sprenLabel)
                             .foregroundColor(Color("LightGrey", bundle: .module))
-                        Text(biologicalSex == 1 ? "Female" : biologicalSex == 2 ? "Other" : "Male").font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                        Text(biologicalSex == 1 ? "Female" : biologicalSex == 2 ? "Other" : "Male").font(.sprenParagraph)
                     }
                 }
             }.padding(Autoscale.convert(16))

@@ -16,19 +16,19 @@ extension AnalyzingScreen {
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                 Text("Analyzing body composition...")
                     .foregroundColor(colorScheme == .light ? .white : .black)
-                    .font(Font.custom("Sofia Pro Regular", size: 14))
+                    .font(.sprenLabel)
             } else if (type == ToolTip.isCompleted) {
                 Image(systemName: "checkmark")
                     .foregroundColor(colorScheme == .light ? .white : .black)
                 Text("Analysis complete")
                     .foregroundColor(colorScheme == .light ? .white : .black)
-                    .font(Font.custom("Sofia Pro Regular", size: 14))
+                    .font(.sprenLabel)
             } else if (type == ToolTip.isError) {
                 Image(systemName: "xmark")
                     .foregroundColor(colorScheme == .light ? .white : .black)
                 Text("Analysis error")
                     .foregroundColor(colorScheme == .light ? .white : .black)
-                    .font(Font.custom("Sofia Pro Regular", size: 14))
+                    .font(.sprenLabel)
             }
         }
         .frame(width: UIScreen.screenWidth - Autoscale.convert(90))

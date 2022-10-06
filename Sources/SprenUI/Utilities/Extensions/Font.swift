@@ -20,18 +20,26 @@ extension Font {
 //    static let sprenSubtitle = Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor*20)
 //    static let disclaimer = Font.custom("Sofia Pro Regular",   size: Autoscale.scaleFactor*9)
     
+    static let sprenBigNumber = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*100)
     static let sprenNumber = Font.custom("Avenir Next", size: Autoscale.scaleFactor*50)
+    static let sprenBoldNumber = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*40)
     static let sprenTitle = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*30)
+    static let sprenBigTitle = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*35)
     static let sprenAlertTitle = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*24)
     static let sprenProgress = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*20)
+    static let sprenInput = Font.custom("Avenir Next Medium", size: Autoscale.scaleFactor*21)
     static let sprenButton = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*18)
+    static let sprenLargeText = Font.custom("Avenir Next Medium", size: Autoscale.scaleFactor*18)
     static let sprenParagraph = Font.custom("Avenir Next Medium",   size: Autoscale.scaleFactor*16)
+    static let sprenParagraphBold = Font.custom("Avenir Next Demi Bold",   size: Autoscale.scaleFactor*16)
 
     static let sprenSubtitle = Font.custom("Avenir Next Medium", size: Autoscale.scaleFactor*20)
     static let disclaimer = Font.custom("Avenir Next",   size: Autoscale.scaleFactor*9)
     
     static let sprenLabel = Font.custom("Avenir Next Medium", size: Autoscale.scaleFactor*14)
     static let sprenLabelBold = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*14)
+    
+    static let sprenSmallText = Font.custom("Avenir Next Medium", size: Autoscale.scaleFactor*12)
     
 }
 

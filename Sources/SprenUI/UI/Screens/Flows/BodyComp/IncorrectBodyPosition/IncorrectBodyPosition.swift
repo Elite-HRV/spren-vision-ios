@@ -45,7 +45,7 @@ struct IncorrectBodyPosition: View {
     var title: some View {
         HStack {
             Text("Sorry, we couldn’t calculate your results")
-                .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 30))
+                .font(.title)
                 .lineLimit(2)
                 .minimumScaleFactor(0.01)
                 .multilineTextAlignment(.leading)
@@ -57,7 +57,7 @@ struct IncorrectBodyPosition: View {
     var text: some View {
         HStack {
             Text("Unfortunately, we couldn’t accurately calculate your results due to incorrect body position. Please take another picture to view your body composition results.")
-                .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor*16))
+                .font(.sprenParagraph)
                 .multilineTextAlignment(.leading)
                 .lineSpacing(Autoscale.convert(3))
             Spacer()
@@ -68,7 +68,7 @@ struct IncorrectBodyPosition: View {
         VStack(spacing: Autoscale.convert(8)) {
             HStack {
                 Text("Tips")
-                    .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor*18))
+                    .font(.sprenButton)
                 Spacer()
             }
             

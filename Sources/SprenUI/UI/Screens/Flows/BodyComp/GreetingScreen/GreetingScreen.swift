@@ -44,7 +44,7 @@ struct GreetingScreen: View {
     var title: some View {
         HStack {
             Text("Measure body fat composition with your phone camera")
-                .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 30))
+                .font(.sprenTitle)
                 .lineLimit(3)
                 .minimumScaleFactor(0.01)
                 .multilineTextAlignment(.leading)
@@ -55,7 +55,7 @@ struct GreetingScreen: View {
     var text: some View {
         HStack {
             Text("Body composition provides a better picture of your health than weight or BMI alone.  Our accuracy is comparable to an in-laboratory DEXA scan.")
-                .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 16))
+                .font(.sprenParagraph)
                 .multilineTextAlignment(.leading)
                 .lineSpacing(Autoscale.convert(2))
             Spacer()
@@ -67,7 +67,7 @@ struct GreetingScreen: View {
             HStack {
                 NavigationLink(destination: Accuracy()) {
                     Text("How accurate is this?")
-                        .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 16))
+                        .font(.sprenParagraphBold)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color("Red", bundle: .module))
                     Spacer()
@@ -77,7 +77,7 @@ struct GreetingScreen: View {
             HStack {
                 NavigationLink(destination: Privacy()) {
                     Text("Privacy and security")
-                        .font(Font.custom("Sofia Pro Bold", size: Autoscale.scaleFactor * 16))
+                        .font(.sprenParagraphBold)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color("Red", bundle: .module))
                     Spacer()

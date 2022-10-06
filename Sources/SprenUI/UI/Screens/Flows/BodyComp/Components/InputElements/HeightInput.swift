@@ -21,10 +21,10 @@ struct HeightInput: View {
             let textUnit = selection.unit == HeightSize.Unit.ft_in ? "ft/in" : "cm"
             HStack {
                 Text(text)
-                    .font(Font.custom("Sofia Pro Regular", size: 21))
+                    .font(.sprenInput)
                 Spacer()
                 Text(textUnit)
-                    .font(Font.custom("Sofia Pro Regular", size: 21))
+                    .font(.sprenInput)
                     .foregroundColor(Color("AppPink", bundle: .module))
             }
             .padding()

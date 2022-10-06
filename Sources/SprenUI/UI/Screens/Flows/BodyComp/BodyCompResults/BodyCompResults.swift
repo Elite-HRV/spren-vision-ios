@@ -83,7 +83,7 @@ struct BodyCompResults: View {
             self.rootPresentationMode.wrappedValue.dismiss()
         } label: {
             Text("Done")
-                .font(Font.custom("Sofia Pro Bold", size: Autoscale.convert(18)))
+                .font(.sprenButton)
                 .foregroundColor(Color("AppPink", bundle: .module))
         }
     }
@@ -101,7 +101,7 @@ struct BodyCompResults: View {
 
     var text: some View {
         Text("Go deeper with resting metabolic rate and normative indicators as well as showing progress over time")
-            .font(Font.custom("Sofia Pro Regular", size: Autoscale.scaleFactor * 18))
+            .font(.sprenLargeText)
             .foregroundColor(Color("AppBlack", bundle: .module))
             .multilineTextAlignment(.center).padding(.top, Autoscale.convert(24))
     }    

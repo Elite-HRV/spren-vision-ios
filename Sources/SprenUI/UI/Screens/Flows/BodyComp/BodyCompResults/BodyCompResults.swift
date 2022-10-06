@@ -41,7 +41,7 @@ struct BodyCompResults: View {
                         HStack(spacing: Autoscale.convert(16)) {
                             Box(title: "Fat Mass", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse?.fatMass.value), metric: weightLabel, status: bodyCompResponse?.fatMass.status, errorDescription: bodyCompResponse?.fatMass.errorDescription)
 
-                            Box(title: "Weight", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse?.weight.value), metric: weightLabel, status: bodyCompResponse?.weight.status, errorDescription: bodyCompResponse?.weight.errorDescription)
+//                            Box(title: "Weight", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse?.weight.value), metric: weightLabel, status: bodyCompResponse?.weight.status, errorDescription: bodyCompResponse?.weight.errorDescription)
                         }
 
                         HStack(spacing: Autoscale.convert(16)) {
@@ -110,6 +110,6 @@ struct BodyCompResults: View {
 struct BodyCompResults_Previews: PreviewProvider {
     static var previews: some View {
         let statusValue = StatusValue(status: StatusValue.Status.complete, value: 12.3, errorDescription: nil)
-        BodyCompResults(bodyCompResponse: GetBodyCompResponse(bodyFat: statusValue, leanMass: statusValue, fatMass: statusValue, androidFat: statusValue, gynoidFat: statusValue, androidByGynoid: statusValue, weight: statusValue))
+        BodyCompResults(bodyCompResponse: GetBodyCompResponse(bodyFat: statusValue, leanMass: statusValue, fatMass: statusValue, androidFat: statusValue, gynoidFat: statusValue, androidByGynoid: statusValue))
     }
 }

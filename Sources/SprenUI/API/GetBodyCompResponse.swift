@@ -24,16 +24,14 @@ struct GetBodyCompResponse: Decodable, CompletableErrorable {
     let gynoidFat: StatusValue
     let androidByGynoid: StatusValue
     // let metabolicRate: StatusValue
-    let weight: StatusValue
 
-    init(bodyFat: StatusValue, leanMass: StatusValue, fatMass: StatusValue, androidFat: StatusValue, gynoidFat: StatusValue, androidByGynoid: StatusValue, weight: StatusValue) {
+    init(bodyFat: StatusValue, leanMass: StatusValue, fatMass: StatusValue, androidFat: StatusValue, gynoidFat: StatusValue, androidByGynoid: StatusValue) {
         self.bodyFat = bodyFat
         self.leanMass = leanMass
         self.fatMass = fatMass
         self.androidFat = androidFat
         self.gynoidFat = gynoidFat
         self.androidByGynoid = androidByGynoid
-        self.weight = weight
     }
 
     func isComplete() -> Bool {
@@ -42,9 +40,8 @@ struct GetBodyCompResponse: Decodable, CompletableErrorable {
                fatMass.status == .complete &&
                androidFat.status == .complete &&
                gynoidFat.status == .complete &&
-               androidByGynoid.status == .complete &&
+               androidByGynoid.status == .complete
                // metabolicRate.status == .complete &&
-               weight.status == .complete
     }
 
     func hasError() -> Bool {
@@ -53,9 +50,8 @@ struct GetBodyCompResponse: Decodable, CompletableErrorable {
             fatMass.status == .error ||
             androidFat.status == .error ||
             gynoidFat.status == .error ||
-            androidByGynoid.status == .error ||
+            androidByGynoid.status == .error
             // metabolicRate.status == .error ||
-            weight.status == .error
 
         return hasError
     }
@@ -66,9 +62,8 @@ struct GetBodyCompResponse: Decodable, CompletableErrorable {
             fatMass.errorDescription == GetBodyCompResponse.ERROR_HUMAN_NOT_DETECTED_STRING ||
             androidFat.errorDescription == GetBodyCompResponse.ERROR_HUMAN_NOT_DETECTED_STRING ||
             gynoidFat.errorDescription == GetBodyCompResponse.ERROR_HUMAN_NOT_DETECTED_STRING ||
-            androidByGynoid.errorDescription == GetBodyCompResponse.ERROR_HUMAN_NOT_DETECTED_STRING ||
+            androidByGynoid.errorDescription == GetBodyCompResponse.ERROR_HUMAN_NOT_DETECTED_STRING
             // metabolicRate.errorDescription == GetBodyCompResponse.ERROR_HUMAN_NOT_DETECTED_STRING ||
-            weight.errorDescription == GetBodyCompResponse.ERROR_HUMAN_NOT_DETECTED_STRING
 
         return isHumanNotDetected
     }

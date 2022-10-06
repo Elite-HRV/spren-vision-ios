@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct SprenUI: View {
         
-    static var config = Config(baseURL: "", apiKey: "", userID: "", project: SprenUI.Config.SprenProject.bodyComp, onCancel: {}, onFinish: { _ in })
+    static var config = Config(baseURL: "", apiKey: "", userID: "", project: SprenUI.Config.SprenProject.fingerCamera, onCancel: {}, onFinish: { _ in })
     
     @StateObject var viewModel = ViewModel()
     @State private var isActive : Bool = false

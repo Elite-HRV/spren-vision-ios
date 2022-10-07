@@ -14,7 +14,7 @@ struct ResultsScreen: View {
     let onDoneButtonTap: (_ results: Results) -> Void
     let results: Results
     let age: Int?
-    let gender: SprenUI.Config.Gender?
+    let gender: SprenUI.Config.BiologicalSex?
 
     enum ResultsNavTag {
         case results
@@ -154,6 +154,8 @@ extension ResultsScreen {
                    paragraph2: "",
                    type: "recovery",
                    results: results,
+                   age: age,
+                   gender: gender,
                    onBackButtonTap: { navTag = .results })
     }
     
@@ -165,6 +167,8 @@ extension ResultsScreen {
                    paragraph2: "The ANS Balance indicates the relative balance between thethe SNS and PSNS, thus indicating the balance between recovery and physiological stress (both physical and mental).\n\nKnowing the relative balance of the ANS helps you better understand the current state of your body and determine the best course of action towards reaching your goals without working against yourself.",
                    type: "ansBalance",
                    results: results,
+                   age: age,
+                   gender: gender,
                    onBackButtonTap: { navTag = .results })
     }
     
@@ -176,6 +180,8 @@ extension ResultsScreen {
                    paragraph2: "",
                    type: "hrvScore",
                    results: results,
+                   age: age,
+                   gender: gender,
                    onBackButtonTap: { navTag = .results })
     }
     
@@ -187,6 +193,8 @@ extension ResultsScreen {
                    paragraph2: "",
                    type: "hr",
                    results: results,
+                   age: age,
+                   gender: gender,
                    onBackButtonTap: { navTag = .results })
     }
     
@@ -198,6 +206,8 @@ extension ResultsScreen {
                    paragraph2: "",
                    type: "breathingRate",
                    results: results,
+                   age: age,
+                   gender: gender,
                    onBackButtonTap: { navTag = .results })
     }
     

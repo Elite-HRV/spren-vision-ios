@@ -17,8 +17,8 @@ extension SprenUI {
         
         // user config
         public let userID: String
-        public let userGender: BiologicalSex?
-        public let userBirthdate: Date?
+        public var userGender: BiologicalSex?
+        public var userBirthdate: Date?
         
         // UI config
         public let color1: Color?
@@ -28,12 +28,11 @@ extension SprenUI {
         
         // only relevant to demo app
         public let logger: Logger?
-        public let homeScreen: Bool
         
         // keys for UserDefaults
         public let secondReadingKey = "com.spren.ui.second-reading"
         
-        public enum BiologicalSex {
+        public enum BiologicalSex: String, CaseIterable {
             case male
             case female
             case other

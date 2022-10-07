@@ -18,6 +18,8 @@ struct InfoScreen: View {
     let paragraph2: String
     let type: String
     let results: Results
+    let age: Int?
+    let gender: SprenUI.Config.BiologicalSex?
     
     let onBackButtonTap: () -> Void
     
@@ -50,11 +52,11 @@ struct InfoScreen: View {
                     }
                     
                     if(type == "hrvScore"){
-                        DemographicHRVCard(value: results.hrvScore, age: nil, gender: nil)
+                        DemographicHRVCard(value: results.hrvScore, age: age, gender: gender)
                     }
                     
                     if(type == "hr"){
-                        DemographicHRCard(value: results.hr, age: nil, gender: nil)
+                        DemographicHRCard(value: results.hr, age: age, gender: gender)
                     }
                 }
                 
@@ -140,6 +142,8 @@ struct InfoScreen_Previews: PreviewProvider {
                                     readiness: 8,
                                     ansBalance: 2,
                                     signalQuality: 2),
+                   age: nil,
+                   gender: nil,
                    onBackButtonTap: {})
         
         InfoScreen(navBarTitle: "Heart Rate",
@@ -156,6 +160,8 @@ struct InfoScreen_Previews: PreviewProvider {
                                     readiness: 8,
                                     ansBalance: 2,
                                     signalQuality: 2),
+                   age: nil,
+                   gender: nil,
                    onBackButtonTap: {})
         
         InfoScreen(navBarTitle: "Respiratory Rate",
@@ -172,6 +178,8 @@ struct InfoScreen_Previews: PreviewProvider {
                                   readiness: 8,
                                   ansBalance: 2,
                                   signalQuality: 2),
+                   age: nil,
+                   gender: nil,
                    onBackButtonTap: {})
         
         
@@ -192,6 +200,8 @@ struct InfoScreen_Previews: PreviewProvider {
                                     readiness: 8,
                                     ansBalance: 2,
                                     signalQuality: 2),
+                   age: nil,
+                   gender: nil,
                    onBackButtonTap: {})
         
         InfoScreen(navBarTitle: "ANS Balance",
@@ -208,6 +218,8 @@ struct InfoScreen_Previews: PreviewProvider {
                                     readiness: 8,
                                     ansBalance: 2,
                                     signalQuality: 2),
+                   age: nil,
+                   gender: nil,
                    onBackButtonTap: {})
     }
 }

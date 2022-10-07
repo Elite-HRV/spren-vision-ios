@@ -12,7 +12,7 @@ struct DemographicHRVCard: View {
     
     let value: Double
     let age: Int?
-    let gender: SprenUI.Config.Gender?
+    let gender: SprenUI.Config.BiologicalSex?
     
     var body: some View {
         let (classification, data, colorIndex) = getDataDemographicHRVCard(value: value, age: age, gender: gender)
@@ -32,7 +32,7 @@ struct DemographicHRVCard: View {
                 }.padding(.bottom, Autoscale.scaleFactor * 12)
                 
                 HStack {
-                    Text("Your HRV Score of \(String(format: "%.0f", value)) is "+classification+(age != nil && gender != nil ? " for \(gender!) your age": " compared to the population."))
+                    Text("Your HRV Score of \(String(format: "%.0f", value)) is "+classification+(age != nil && gender != nil && gender?.rawValue ?? nil != "other" ? " for \(gender!) your age": age != nil && gender?.rawValue ?? nil == "other" ? " for people your age" : " compared to the population."))
                         .font(.sprenLabel)
                     Spacer()
                 }.sprenUIPadding([.bottom])
@@ -61,11 +61,11 @@ struct DemographicHRVCard: View {
     }
 }
 
-func getDataDemographicHRVCard(value: Double, age: Int?, gender: SprenUI.Config.Gender?) -> (String, [String], Int) {
+func getDataDemographicHRVCard(value: Double, age: Int?, gender: SprenUI.Config.BiologicalSex?) -> (String, [String], Int) {
     let names = ["Excellent","Very Good","Above Average","Average","Below Average","Poor"]
     var data:Array<Int> = [72,100,66,71,60,65,53,59,46,52,1,45]
     
-    if (age != nil && gender == SprenUI.Config.Gender.female){
+    if (age != nil && gender == SprenUI.Config.BiologicalSex.female){
         if(age! > 17 && age! < 30){
             data = [73,78,70,73,65,70,59,65,50,59,30,50]
         }
@@ -91,7 +91,7 @@ func getDataDemographicHRVCard(value: Double, age: Int?, gender: SprenUI.Config.
         }
     }
 
-    if (age != nil && gender == SprenUI.Config.Gender.male){
+    if (age != nil && (gender == SprenUI.Config.BiologicalSex.male || gender == SprenUI.Config.BiologicalSex.other)){
         if(age! > 17 && age! < 30){
             data = [75,100,71,75,67,71,61,67,53,61,41,53]
         }

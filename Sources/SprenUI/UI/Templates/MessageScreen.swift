@@ -43,7 +43,7 @@ public struct MessageScreen: View {
         return formatter
     }()
     @State private var birthdate: Date?
-    var genders = ["none", "male", "female"]
+    var genders = ["none"]+SprenUI.Config.BiologicalSex.allCases.map { $0.rawValue }
     @State private var gender: String = "none"
     
     public var body: some View {
@@ -79,7 +79,7 @@ public struct MessageScreen: View {
                 }
             }
             
-            if(illustration == "GreetingScreen1"){
+            if(illustration == "FingerOnCamera"){
                 HStack{
                     if(birthdate == nil){
                         Button{
@@ -103,9 +103,11 @@ public struct MessageScreen: View {
                     .onChange(of: gender) { value in
                         switch (value){
                         case "male":
-                            SprenUI.config.userGender = SprenUI.Config.Gender.male
+                            SprenUI.config.userGender = SprenUI.Config.BiologicalSex.male
                         case "female":
-                            SprenUI.config.userGender = SprenUI.Config.Gender.female
+                            SprenUI.config.userGender = SprenUI.Config.BiologicalSex.female
+                        case "other":
+                            SprenUI.config.userGender = SprenUI.Config.BiologicalSex.other
                         default:
                             SprenUI.config.userGender = nil
                         }
@@ -121,11 +123,6 @@ public struct MessageScreen: View {
     }
 }
 
-extension Binding {
-     func toUnwrapped<T>(defaultValue: T) -> Binding<T> where Value == Optional<T>  {
-        Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
-    }
-}
 
 struct PrereadingScreen_Previews: PreviewProvider {
     static var previews: some View {

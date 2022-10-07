@@ -6,9 +6,48 @@
 
 2.  Add a camera usage description to your app's Info.plist or target info. For more information, [Requesting Authorization for Media Capture on iOS](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_ios) and the [NSCameraUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nscamerausagedescription) Apple docs.
 
-## Implementation Overview
 
-Here is an example of how to implement the Spren Vision iOS SDK in your own app. Refer to the comments throughout the file to see what functions get called at what point.
+## Spren UI
+
+### Implementation Example
+
+```swift
+import SwiftUI
+import SprenUI
+
+// create SprenUI configuration
+let config = SprenUI.Config(
+		// API
+		baseURL: "https://test.api.spren.com",
+		apiKey: "<API key>",
+		
+		// user
+		userID: "<user ID>",
+		userGender: <optional, male, female, or other>,
+		userBirthdate: <optional, Date>,
+		
+		// UI
+		color1: <optional, Color>, // used for graphics
+		color2: <optional, Color>, // used for buttons
+		onCancel: {
+				// user exited UI before completing a reading
+				// dismiss SprenUI
+		},
+		onFinish: { results in 
+				// user completed a reading!
+				print(results)
+				// dismiss SprenUI
+		}
+)
+
+// init SprenUI view
+SprenUI(config: config)
+
+```
+
+## SprenCapture and SprenCore
+
+### Implementation Example
 
 ```swift
 import SprenCapture
@@ -68,11 +107,11 @@ Spren.setOnProgressUpdate { (progress) in
 }
 ```
 
-# SprenCapture Library
+## SprenCapture Library
 
 SprenCapture is where you can initialize a camera preview and first configure the camera. This will start a camera session, allow you to add the camera preview to your UI, and handle various other camera controls. Check out the function definitions below!
 
-### `SprenCapture`
+#### `SprenCapture`
 
 `session: AVCaptureSession`
 
@@ -106,15 +145,15 @@ Attempts to unlock automatic settings. This should be called if autostart will r
 
 Attempts to drop the computational complexity by reducing the frame rate. If frame rate cannot be reduced, dropping the resolution will be attempted. This may be called if frame drop is non-compliant, i.e, exceeds 5% in a 1 second period.
 
-### `SprenDelegate`
+#### `SprenDelegate`
 
 SprenDelegate is an `AVCaptureVideoDataOutputSampleBufferDelegate` and handles providing frames or notification of frame drop to **SprenCore**.
 
-# SprenCore Library
+## SprenCore Library
 
 The SprenCore library provides internal control over readings and allows you to gain information on what's going on internally in the SDK so your UI can be updated accordingly. Here you'll be able to set reading durations, handle progress updates, start and stop readings, and more. Use this library in conjunction with **SprenCapture** to utilize the full capabilities of Spren SDK.
 
-### `Spren`
+#### `Spren`
 
 `static autoStart: Bool`
 
@@ -152,7 +191,7 @@ Manually stop the reading.
 
 After Spren transitions to finished, reading data may be retrieved to hit the Spren API for results. See the [**User and SDK data**](https://docs.spren.com/user-and-sdk-data) **POST** endpoint for more information.
 
-### If not using SprenCapture
+#### If not using SprenCapture
 
 If you'd like to use your own library or code to handle camera configurations and initialization, make sure to reference this section and the **SprenDelegate **section to get more context and see what functions need to be implemented.
 
@@ -172,9 +211,9 @@ Created from received media buffers, e.g.:
 
 `SprenFrame(sampleBuffer: sampleBuffer, orientation: connection.videoOrientation.rawValue)`
 
-## Compliance Checks
+### Compliance Checks
 
-### `ComplianceCheck`
+#### `ComplianceCheck`
 
 `static func setOnPrereadingComplianceCheck(onPrereadingComplianceCheck: @escaping (ComplianceCheck.Name, Bool, ComplianceCheck.Action?) -> Void)`
 
@@ -186,7 +225,7 @@ Compliance checks are run at 1 second intervals as frames are provided, i.e., if
 
 *   `.lensCoverage`: finger must cover lens with light pressure.
 
-### `SprenComplianceError`
+#### `SprenComplianceError`
 
 `static func setOnStateChange(onStateChange: @escaping (_ state: SprenState, _ error: Error?) -> Void)`
 

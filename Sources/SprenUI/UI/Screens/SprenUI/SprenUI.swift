@@ -8,7 +8,6 @@
 import SwiftUI
 
 public struct SprenUI: View {
-        
     static var config = Config(baseURL: "", apiKey: "", userID: "", userGender: nil, userBirthdate: nil, onCancel: {}, onFinish: { _ in })
     
     @StateObject var viewModel = ViewModel()
@@ -32,8 +31,7 @@ public struct SprenUI: View {
 }
 
 extension SprenUI {
-    
-    func setAgeAndGender(userBirthdate: Date?, gender: SprenUI.Config.Gender?) {
+    func setAgeAndGender(userBirthdate: Date?, gender: SprenUI.Config.BiologicalSex?) {
         Self.config.userBirthdate = userBirthdate
         Self.config.userGender = gender
         viewModel.transition(to: .greetingScreen2)

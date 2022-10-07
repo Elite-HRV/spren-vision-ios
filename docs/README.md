@@ -2,13 +2,11 @@
 
 ## Spren Vision
 
-The Spren Finger Camera SDK (**Spren Vision**) is a useful tool for companies that don't already have their own device to collect inter-beat intervals. It's effortless to install and you can integrate it seamlessly into your mobile app in just a few steps! Check out our [Spren Vision iOS SDK](https://docs.spren.com/spren-vision/spren-vision-ios-sdk) or [Spren Vision Android SDK](https://docs.spren.com/spren-vision/spren-vision-android-sdk) pages for more information on installation, getting started, and code examples.
+The Spren Finger Camera SDK (**Spren Vision**) is a useful tool for companies that don't already have their own device to collect inter-beat intervals. A turnkey integration into your app with light UI/UX customization is only a few lines of code. For more customization, the open-source `SprenUI` library provides a complete example to integrate Spren.
 
 ## Know Before You Code
 
-Spren Vision is super easy to set up and integrate within your own mobile app. Once it's all integrated, your users will be able to take readings using their mobile device camera by placing their finger on the camera. Our public-facing code makes it easier for developers to drop our SDK in their code, interact with it in a variety ways, and customize certain parts of the reading pipeline.
-
-There are a few requirements for this current version of SprenVision:
+### Requirements
 
 | **Item**            | **Requirement**                             |
 | ------------------- | ------------------------------------------- |
@@ -17,11 +15,21 @@ There are a few requirements for this current version of SprenVision:
 | Android Version     | Android 9.0 (Pie) or newer                  |
 | Android SDK Version | API 28+                                     |
 
-Our iOS and Android SDK's automatically support native iOS and Android applications, but we also support a variety of framework and language integrations. Below you'll find a table outlining which integration components we currently have available for the iOS SDK, Android SDK, or both.
+### Cross-Platform UI Framework Support
 
 | **Framework / Language** | **iOS SDK** | **Android SDK (Alpha)** | **URL** |
 | ------------------------ | ----------- | ----------------------- | ------- |
 | Flutter                  | Available   | Available               | https://pub.dev/packages/spren_flutter |
 | React Native             | Available   | Available               | https://www.npmjs.com/package/@spren/react-native |
 
-If you're using a framework that isn't listed here, we can work with you and your team to figure out a solution so you can seamlessly integrate our SDK's into your mobile app!
+### 3 Components
+
+Spren Vision has 3 components on Android and iOS.
+
+1. The `SprenCore` binary framework - real-time video processing and finger-on-camera compliance checks to automatically start and stop a finger-on-camera reading and ensure its quality.
+2. The `SprenCapture` library - camera configuration and video functionality wrapped around `SprenCore`.
+3. The `SprenUI` library - a lightly-customizable, drop-in UI flow that uses the 2 prior components, `SprenCore` and `SprenCapture`, and communicates with Spren API to perform finger-on-camera biomarker extraction and insight generation. Feel free to fork!
+
+## Getting Started
+
+Check out our [Spren Vision iOS SDK](https://docs.spren.com/spren-vision/spren-vision-ios-sdk) or [Spren Vision Android SDK](https://docs.spren.com/spren-vision/spren-vision-android-sdk) pages for more information on installation, getting started, and code examples.

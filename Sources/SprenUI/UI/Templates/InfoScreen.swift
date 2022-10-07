@@ -58,6 +58,7 @@ struct InfoScreen: View {
                     }
                 }
                 
+
                 // title
                 HStack {
                     Text(title)

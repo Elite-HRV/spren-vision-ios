@@ -15,7 +15,7 @@ struct ResultsScreen: View {
     let results: Results
     let age: Int?
     let gender: SprenUI.Config.Gender?
-    
+
     enum ResultsNavTag {
         case results
         case recoveryInfo
@@ -60,7 +60,7 @@ struct ResultsScreen: View {
                     }, label: {
                         Text("Done")
                             .font(.sprenButton)
-                            .foregroundColor(.sprenUIColor)
+                            .foregroundColor(.sprenUIColor1)
                     })
                     .sprenUIPadding()
                     Spacer()
@@ -263,6 +263,5 @@ struct ResultsScreen_Previews: PreviewProvider {
                                                                    readiness: nil,
                                                                    ansBalance: 2,
                                                                 signalQuality: 2), age: nil, gender: nil)
-        
     }
 }

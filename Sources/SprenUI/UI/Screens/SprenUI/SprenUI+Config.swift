@@ -17,11 +17,12 @@ extension SprenUI {
         
         // user config
         public let userID: String
-        public var userGender: Gender?
-        public var userBirthdate: Date?
+        public let userGender: BiologicalSex?
+        public let userBirthdate: Date?
         
         // UI config
-        public let color: Color?
+        public let color1: Color?
+        public let color2: Color?
         public let onCancel: (() -> Void)
         public let onFinish: ((_ results: Results) -> Void)
         
@@ -29,23 +30,25 @@ extension SprenUI {
         public let logger: Logger?
         public let homeScreen: Bool
         
+        // keys for UserDefaults
         public let secondReadingKey = "com.spren.ui.second-reading"
         
-        public enum Gender {
+        public enum BiologicalSex {
             case male
             case female
+            case other
         }
         
         public init(baseURL: String,
                     apiKey: String,
                     userID: String,
-                    userGender: Gender? = nil,
+                    userGender: BiologicalSex? = nil,
                     userBirthdate: Date? = nil,
-                    color: Color? = nil,
+                    color1: Color? = nil,
+                    color2: Color? = nil,
                     onCancel: @escaping (() -> Void),
                     onFinish: @escaping ((Results) -> Void),
-                    logger: Logger? = nil,
-                    homeScreen: Bool = false) {
+                    logger: Logger? = nil) {
             self.baseURL = baseURL
             self.apiKey = apiKey
             
@@ -53,12 +56,13 @@ extension SprenUI {
             self.userGender = userGender
             self.userBirthdate = userBirthdate
             
-            self.color = color
+            self.color1 = color1
+            self.color2 = color2
+
             self.onCancel = onCancel
             self.onFinish = onFinish
             
             self.logger = logger
-            self.homeScreen = homeScreen
         }
     }
 }

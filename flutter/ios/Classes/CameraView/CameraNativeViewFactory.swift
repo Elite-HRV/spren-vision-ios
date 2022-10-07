@@ -14,13 +14,16 @@ class CameraNativeViewFactory: NSObject, FlutterPlatformViewFactory {
     var eventStateChange: StateChangeHandler
     var eventPreReadingComplianceCheckHandler: PreReadingComplianceCheckHandler
     var eventProgressUpdateHandler: ProgressUpdateHandler
-    var sprenCapture: SprenCapture?
+    lazy var sprenCapture: SprenCapture? = {
+       SprenCapture.flutter = true
+       let sprenCapture = try? SprenCapture()
+       return sprenCapture
+    }()
     
     init(method methodChannel: FlutterMethodChannel, events eventHandlers: (StateChangeHandler, PreReadingComplianceCheckHandler, ProgressUpdateHandler)) {
         self.eventStateChange = eventHandlers.0
         self.eventPreReadingComplianceCheckHandler = eventHandlers.1
         self.eventProgressUpdateHandler = eventHandlers.2
-        sprenCapture = try? SprenCapture()
         super.init()
         setupCallbacks(channel: methodChannel)
     }

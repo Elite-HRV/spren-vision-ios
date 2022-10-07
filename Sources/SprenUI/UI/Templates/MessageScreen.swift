@@ -58,7 +58,7 @@ public struct MessageScreen: View {
                     .resizable()
                     .frame(width: illustrationSize,
                            height: illustrationSize)
-                    .colorMultiply(Color.sprenUIColor.opacity(0.75))
+                    .colorMultiply(Color.sprenUIColor1.opacity(0.75))
             }
             
             Spacer()
@@ -126,6 +126,7 @@ extension Binding {
         Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
     }
 }
+
 struct PrereadingScreen_Previews: PreviewProvider {
     static var previews: some View {
         

@@ -8,37 +8,38 @@
 import SwiftUI
 
 struct GreetingScreen: View {
-    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
-
+    @State private var isActive : Bool = false
+    
     var body: some View {
-        ZStack {
-            
-            Color("AppBackground").edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                CloseButton(action: {self.presentationMode.wrappedValue.dismiss()})
+        NavigationView {
+            ZStack {
                 
-                Image("GreetingsImage", bundle: .module).resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding(.top, Autoscale.convert(10))
-                    .padding(.bottom, Autoscale.convert(10))
-
+                Color("AppBackground").edgesIgnoringSafeArea(.all)
+                
                 VStack {
-                    title
-
-                    text
+                    Image("GreetingsImage", bundle: .module).resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.top, Autoscale.convert(10))
+                        .padding(.bottom, Autoscale.convert(10))
                     
-                    links
-                }
-
-                Spacer()
-
-                NavigationLink(destination: WeightScreen()) {
-                    PurpleButton(text: "Try it now")
-                }
-            }.padding(.horizontal, Autoscale.convert(16)).padding(.bottom, Autoscale.convert(10))
-        }
-        .navigationBarHidden(true)
+                    VStack {
+                        title
+                        
+                        text
+                        
+                        links
+                    }
+                    
+                    Spacer()
+                    
+                    NavigationLink(destination: WeightScreen(), isActive: self.$isActive) {
+                        PurpleButton(text: "Try it now")
+                    }
+                }.padding(.horizontal, Autoscale.convert(16)).padding(.bottom, Autoscale.convert(10))
+            }
+            .navigationBarHidden(true)
+        }.navigationViewStyle(StackNavigationViewStyle())
+            .environment(\.rootPresentationMode, self.$isActive)
     }
 
     var title: some View {

@@ -39,7 +39,7 @@ struct CameraScreen: View {
                     .animation(.easeInOut)
 
                 //display frame
-                if(testsEnabled == true) {
+                if(testsEnabled == false) {
                     ScreenCameraTests(currentFrame: currentFrame, leftWrist: leftWrist, rightWrist: rightWrist, leftAnkle: leftAnkle, rightAnkle: rightAnkle)
                 }
                 

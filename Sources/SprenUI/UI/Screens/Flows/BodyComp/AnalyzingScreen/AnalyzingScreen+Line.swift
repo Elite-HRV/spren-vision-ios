@@ -15,7 +15,7 @@ extension AnalyzingScreen {
                 Spacer()
                 Rectangle()
 //                        .fill(Color.red)
-                    .fill(Color("AppGreen", bundle: .module))
+                    .fill(Color.sprenUIColor1)
                     .cornerRadius(Autoscale.convert(2))
                     .frame(width: size.width - Autoscale.convert(4), height: Autoscale.convert(4), alignment: .center)
                     .offset(x: 0, y: -(animationModel.lineOffset))
@@ -29,8 +29,8 @@ extension AnalyzingScreen {
     func gradient() -> some View {
         let size = getFrameSize()
 
-        let gradientStart = Color(red: 13 / 255, green: 193 / 255, blue: 139 / 255).opacity(0)
-        let gradientEnd = Color(red: 13 / 255, green: 193 / 255, blue: 139 / 255).opacity(0.4)
+        let gradientStart = Color.sprenUIColor1.opacity(0)
+        let gradientEnd = Color.sprenUIColor1.opacity(0.4)
 
         return VStack(spacing: 0) {
             VStack(spacing: 0) {

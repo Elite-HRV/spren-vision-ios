@@ -13,7 +13,7 @@ struct BottomLineTextFieldStyle: TextFieldStyle {
             configuration.padding(.vertical, 11)
             Rectangle()
                 .frame(height: 1, alignment: .bottom)
-                .foregroundColor(Color("AppPink", bundle: .module))
+                .foregroundColor(Color.sprenUIColor1)
         }
     }
 }

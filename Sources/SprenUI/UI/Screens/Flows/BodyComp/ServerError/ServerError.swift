@@ -21,7 +21,9 @@ struct ServerError: View {
                 CloseButton(action: {self.rootPresentationMode.wrappedValue.dismiss()})
                 
                 Image("ServerError", bundle: .module).resizable()
-                    .aspectRatio(contentMode: .fit).frame(maxHeight: Autoscale.convert(280))
+                    .aspectRatio(contentMode: .fit)
+                    .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                    .frame(maxHeight: Autoscale.convert(280))
                 
                 title
                 

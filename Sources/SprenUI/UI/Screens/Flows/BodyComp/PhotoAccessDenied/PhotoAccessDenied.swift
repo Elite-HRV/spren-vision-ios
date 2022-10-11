@@ -24,6 +24,7 @@ struct PhotoAccessDenied: View {
                 Image("CameraAccessDenied", bundle: .module)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .colorMultiply(Color.sprenUIColor1.opacity(0.75))
                     .padding(.horizontal, Autoscale.convert(30))
 
                 title

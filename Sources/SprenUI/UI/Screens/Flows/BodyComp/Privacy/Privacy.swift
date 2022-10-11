@@ -18,6 +18,7 @@ struct Privacy: View {
                 
                 Image("Privacy", bundle: .module).resizable()
                     .aspectRatio(contentMode: .fit)
+                    .colorMultiply(Color.sprenUIColor1.opacity(0.75))
                 
                 title
                 

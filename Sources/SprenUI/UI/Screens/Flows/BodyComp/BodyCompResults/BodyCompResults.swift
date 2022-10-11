@@ -84,7 +84,7 @@ struct BodyCompResults: View {
         } label: {
             Text("Done")
                 .font(.sprenButton)
-                .foregroundColor(Color("AppPink", bundle: .module))
+                .foregroundColor(Color.sprenUIColor1)
         }
     }
 

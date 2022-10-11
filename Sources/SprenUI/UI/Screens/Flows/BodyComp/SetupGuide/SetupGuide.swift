@@ -38,6 +38,7 @@ struct SetupGuide: View {
 
                         Image("SetupGuide", bundle: .module).resizable()
                             .aspectRatio(contentMode: .fit)
+                            .colorMultiply(Color.sprenUIColor1.opacity(0.75))
                         
                         title
                             .padding(.horizontal, Autoscale.convert(16))

@@ -16,7 +16,7 @@ struct AgeInput: View {
     }()
 
     @Binding var age: Int
-    var strokeColor: Color = Color("AppPink", bundle: .module)
+    var strokeColor: Color = Color.sprenUIColor1
     
     var body: some View {
         TextField("Enter your age", value: $age, formatter: numberFormatter)

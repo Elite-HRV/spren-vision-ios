@@ -11,7 +11,7 @@ struct FitnessLevelInput: View {
 
     @Binding var isPickerVisible: Bool
     @Binding var fitnessLevel: Int
-    var strokeColor: Color = Color("AppPink", bundle: .module)
+    var strokeColor: Color = Color.sprenUIColor1
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -21,7 +21,7 @@ struct FitnessLevelInput: View {
                 Spacer()
                 Text("days in week")
                     .font(.sprenInput)
-                    .foregroundColor(Color("AppPink", bundle: .module))
+                    .foregroundColor(Color.sprenUIColor1)
             }
             .padding()
             .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(strokeColor, style: StrokeStyle(lineWidth: 1.0)))

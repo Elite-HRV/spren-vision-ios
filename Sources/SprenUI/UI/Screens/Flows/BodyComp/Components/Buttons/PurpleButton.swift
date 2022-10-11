@@ -18,7 +18,7 @@ struct PurpleButton: View {
             .minimumScaleFactor(0.01)
             .foregroundColor(.white)
             .frame(maxWidth: .infinity, maxHeight: Autoscale.convert(50))
-            .background(Color("AppPurple", bundle: .module))
+            .background(Color.sprenUIColor2)
             .cornerRadius(Autoscale.convert(6))
     }
 }

@@ -19,12 +19,12 @@ struct WeightScreen: View {
                 Rectangle()
                     .frame(height:Autoscale.convert(4), alignment: .bottom)
                     .cornerRadius(Autoscale.convert(2))
-                    .foregroundColor(Color("AppPink", bundle: .module))
+                    .foregroundColor(Color.sprenUIColor1)
                 ForEach(0..<4) {_ in 
                     Rectangle()
                         .frame(height:Autoscale.convert(4), alignment: .bottom)
                         .cornerRadius(Autoscale.convert(2))
-                        .foregroundColor(Color("AppPink", bundle: .module).opacity(0.3))
+                        .foregroundColor(Color.sprenUIColor1.opacity(0.3))
                 }
             }
             CloseButton(action : {

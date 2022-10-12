@@ -54,11 +54,18 @@ public struct MessageScreen: View {
                 HomeAnimation()
                     .sprenUIPadding()
             } else {
-                Image(illustration, bundle: .module)
-                    .resizable()
-                    .frame(width: illustrationSize,
-                           height: illustrationSize)
-                    .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                if SprenUI.config.bundle == .module {
+                    Image(illustration, bundle: SprenUI.config.bundle)
+                        .resizable()
+                        .frame(width: illustrationSize,
+                               height: illustrationSize)
+                        .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                } else {
+                    Image(illustration, bundle: SprenUI.config.bundle)
+                        .resizable()
+                        .frame(width: illustrationSize,
+                               height: illustrationSize)
+                }
             }
             
             Spacer()

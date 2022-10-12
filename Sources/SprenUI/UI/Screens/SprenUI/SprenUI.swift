@@ -38,7 +38,7 @@ extension SprenUI {
     }
         
     var greetingScreen1: MessageScreen {
-        MessageScreen(illustration: "GreetingScreen1",
+        MessageScreen(illustration: Self.config.graphics[.greeting1] ?? "",
                          title: "Measure your HRV with your phone camera",
                          paragraph: "Simply do a quick resting scan when you wake up to receive personalized stress and recovery insights.",
                          buttonText: "Next",
@@ -47,7 +47,7 @@ extension SprenUI {
     }
     
     var greetingScreen2: MessageScreen {
-        MessageScreen(illustration: "GreetingScreen2",
+        MessageScreen(illustration: Self.config.graphics[.greeting2] ?? "",
                          title: "Place your fingertip on the rear-facing camera",
                          paragraph: "For the most accurate reading, leave the flash on or make sure you're in a well lit area and can hold your hand steady.",
                          buttonText: "Next",
@@ -56,7 +56,7 @@ extension SprenUI {
     }
     
     var noCameraScreen: MessageScreen {
-        MessageScreen(illustration: "NoCamera",
+        MessageScreen(illustration: Self.config.graphics[.noCamera] ?? "",
                          title: "Camera access is needed to start an HRV measurement",
                          paragraph: "Allow access to camera in your iOS Settings in order to receive personalized insights and guidance.",
                          buttonText: "Enable camera",
@@ -65,7 +65,7 @@ extension SprenUI {
     }
     
     var fingerOnCameraScreen: MessageScreen {
-        MessageScreen(illustration: "FingerOnCamera",
+        MessageScreen(illustration: Self.config.graphics[.fingerOnCamera] ?? "",
                          title: "Place your fingertip fully over the camera lens",
                          paragraph: "Hold your hand steady and apply light pressure with your finger.",
                          buttonText: "Start measurement",
@@ -91,7 +91,7 @@ extension SprenUI {
     }
     
     var errorScreen: MessageScreen {
-        MessageScreen(illustration: "Server",
+        MessageScreen(illustration: Self.config.graphics[.serverError] ?? "",
                          title: "Sorry! There was an error calculating your results",
                          paragraph: "Please take another measurement to view your HRV results.",
                          buttonText: "Try again",

@@ -23,6 +23,16 @@ extension SprenUI {
         // UI config
         public let color1: Color?
         public let color2: Color?
+        
+        public var bundle: Bundle? = .module
+        public var graphics: [Graphic: String] = [
+            .greeting1: "GreetingScreen1",
+            .greeting2: "GreetingScreen2",
+            .fingerOnCamera: "FingerOnCamera",
+            .noCamera: "NoCamera",
+            .serverError: "Server"
+        ]
+        
         public let onCancel: (() -> Void)
         public let onFinish: ((_ results: Results) -> Void)
         
@@ -38,6 +48,14 @@ extension SprenUI {
             case other
         }
         
+        public enum Graphic {
+            case greeting1
+            case greeting2
+            case fingerOnCamera
+            case noCamera
+            case serverError
+        }
+        
         public init(baseURL: String,
                     apiKey: String,
                     userID: String,
@@ -45,6 +63,7 @@ extension SprenUI {
                     userBirthdate: Date? = nil,
                     color1: Color? = nil,
                     color2: Color? = nil,
+                    graphics: [Graphic: String]? = nil,
                     onCancel: @escaping (() -> Void),
                     onFinish: @escaping ((Results) -> Void),
                     logger: Logger? = nil) {
@@ -57,6 +76,10 @@ extension SprenUI {
             
             self.color1 = color1
             self.color2 = color2
+            if let graphics = graphics {
+                self.graphics = graphics
+                self.bundle = .main
+            }
 
             self.onCancel = onCancel
             self.onFinish = onFinish

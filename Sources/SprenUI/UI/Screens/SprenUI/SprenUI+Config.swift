@@ -24,7 +24,7 @@ extension SprenUI {
         public let color1: Color?
         public let color2: Color?
         
-        public var bundle: Bundle? = .module
+        public var bundle: Bundle = .module
         public var graphics: [Graphic: String] = [
             .greeting1: "GreetingScreen1",
             .greeting2: "GreetingScreen2",

@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  InfoCard.swift
 //  
 //
 //  Created by Fernando on 9/28/22.

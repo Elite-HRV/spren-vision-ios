@@ -146,15 +146,11 @@ open class SprenCapture {
 extension SprenCapture {
     
     public func start() {
-        DispatchQueue.global(qos: .default).async {
-            self.session.startRunning()
-        }
+        session.startRunning()
     }
 
     public func stop() {
-        DispatchQueue.global(qos: .default).async {
-            self.session.stopRunning()
-        }
+        session.stopRunning()
     }
     
     public func setTorchMode(to newMode: AVCaptureDevice.TorchMode) throws -> AVCaptureDevice.TorchMode {

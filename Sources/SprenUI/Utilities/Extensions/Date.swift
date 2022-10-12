@@ -8,5 +8,5 @@
 import Foundation
 
 extension Date {
-    var age: Int { Calendar.current.dateComponents([.year], from: self, to: Date()).year! }
+    var age: Int? { Calendar.current.dateComponents([.year], from: self, to: Date()).year }
 }

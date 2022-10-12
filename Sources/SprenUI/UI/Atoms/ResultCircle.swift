@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  ResultCircle.swift
 //  
 //
 //  Created by Fernando on 9/28/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Score: View {
+struct ResultCircle: View {
     let value: String
     let unit: String?
     let color: Color
@@ -21,8 +21,8 @@ struct Score: View {
                 Text(value)
                     .font(.sprenAlertTitle)
                     .padding(.bottom, unit != nil ? -15 : 0)
-                if(unit != nil){
-                    Text(unit!)
+                if let unit = unit {
+                    Text(unit)
                         .font(.sprenLabelSmall)
                 }
             }
@@ -30,8 +30,8 @@ struct Score: View {
     }
 }
 
-struct Score_Previews: PreviewProvider {
+struct ResultCircle_Previews: PreviewProvider {
     static var previews: some View {
-        Score(value: "17", unit: "rpm", color: Color("LightGreen", bundle: .module))
+        ResultCircle(value: "17", unit: "rpm", color: Color("LightGreen", bundle: .module))
     }
 }

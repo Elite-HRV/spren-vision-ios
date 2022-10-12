@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  DemographicRRCard.swift
 //  
 //
 //  Created by Fernando on 9/28/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RespiratoryRateBarCard: View {
+struct DemographicRRCard: View {
     @Environment(\.colorScheme) var colorScheme
     
     let breathingRate: Double
@@ -16,7 +16,7 @@ struct RespiratoryRateBarCard: View {
         VStack {
             VStack {
                 HStack {
-                    Score(value: "\(String(format: "%.0f", breathingRate))", unit: "rpm", color: breathingRate >= RespiratoryConstants.rangeMin && breathingRate <= RespiratoryConstants.rangeMax ? Color.green : Color("Yellow", bundle: .module))
+                    ResultCircle(value: "\(String(format: "%.0f", breathingRate))", unit: "rpm", color: breathingRate >= RespiratoryConstants.rangeMin && breathingRate <= RespiratoryConstants.rangeMax ? Color.green : Color("Yellow", bundle: .module))
                     Text("Respiratory Rate").font(.sprenProgress).sprenUIPadding([.leading])
                     Spacer()
                 }.sprenUIPadding([.bottom])
@@ -26,7 +26,7 @@ struct RespiratoryRateBarCard: View {
                     Spacer()
                 }
                 
-                RespiratoryBar(breathingRate: breathingRate)
+                RRBar(breathingRate: breathingRate)
             }
             .sprenUIPadding()
             .background(colorScheme == .light ? Color.white : Color.black)
@@ -44,6 +44,6 @@ struct RespiratoryConstants {
 
 struct RespiratoryRateBarCard_Previews: PreviewProvider {
     static var previews: some View {
-        RespiratoryRateBarCard(breathingRate: 14)
+        DemographicRRCard(breathingRate: 14)
     }
 }

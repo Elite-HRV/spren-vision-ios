@@ -86,42 +86,6 @@ public struct MessageScreen: View {
                 }
             }
             
-            if(illustration == "FingerOnCamera"){
-                HStack{
-                    if(birthdate == nil){
-                        Button{
-                            birthdate = Date()
-                        } label:{
-                            Text("Set the birthdate").font(.sprenLabel)
-                        }
-                    }else{
-                        DatePicker("Birthdate:", selection: $birthdate.toUnwrapped(defaultValue: Date()), displayedComponents: .date)
-                            .datePickerStyle(CompactDatePickerStyle()).font(.sprenLabel)
-                            .onChange(of: birthdate) { value in SprenUI.config.userBirthdate = value }
-                    }
-                }.frame(maxWidth: 200)
-                HStack{
-                    Text("Gender:").font(.sprenLabel)
-                    Picker("Please choose a gender", selection: $gender) {
-                        ForEach(genders, id: \.self) {
-                            Text($0)
-                        }
-                    }
-                    .onChange(of: gender) { value in
-                        switch (value){
-                        case "male":
-                            SprenUI.config.userGender = SprenUI.Config.BiologicalSex.male
-                        case "female":
-                            SprenUI.config.userGender = SprenUI.Config.BiologicalSex.female
-                        case "other":
-                            SprenUI.config.userGender = SprenUI.Config.BiologicalSex.other
-                        default:
-                            SprenUI.config.userGender = nil
-                        }
-                    }
-                }
-            }
-            
             Spacer()
             
             SprenButton(title: buttonText, action: onBottomButtonTap)

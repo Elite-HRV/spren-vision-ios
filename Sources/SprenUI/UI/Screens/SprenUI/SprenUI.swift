@@ -31,12 +31,7 @@ public struct SprenUI: View {
 }
 
 extension SprenUI {
-    func setAgeAndGender(userBirthdate: Date?, gender: SprenUI.Config.BiologicalSex?) {
-        Self.config.userBirthdate = userBirthdate
-        Self.config.userGender = gender
-        viewModel.transition(to: .greetingScreen2)
-    }
-        
+    
     var greetingScreen1: MessageScreen {
         MessageScreen(illustration: Self.config.graphics[.greeting1] ?? "",
                          title: "Measure your HRV with your phone camera",
@@ -100,7 +95,7 @@ extension SprenUI {
     }
     
     var resultsScreen: ResultsScreen {
-        ResultsScreen(onDoneButtonTap: Self.config.onFinish, results: viewModel.results, age: Self.config.userBirthdate?.age, gender: Self.config.userGender)
+        ResultsScreen(onDoneButtonTap: Self.config.onFinish, results: viewModel.results)
     }
 }
 

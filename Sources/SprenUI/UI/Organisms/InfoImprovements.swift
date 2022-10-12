@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  InfoImprovements.swift
 //  
 //
 //  Created by Fernando on 9/27/22.
@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-
+public struct InfoImprovementViewModel {
+    let icon: String
+    let title: String
+    let text: String
+}
 
 struct InfoImprovements: View {
     
@@ -17,7 +21,7 @@ struct InfoImprovements: View {
     
     let title: String
     let text: String
-    let items: [InfoImprovementsItem]
+    let infoImprovementVMs: [InfoImprovementViewModel]
     
     var body: some View {
         VStack {
@@ -32,7 +36,7 @@ struct InfoImprovements: View {
                     Spacer()
                 }.sprenUIPadding([.bottom])
                 
-                ItemView(item: items[0])
+                InfoImprovementItemView(item: infoImprovementVMs[0])
                 
                 if(!showing) {
                     InfoImprovementsButton(showing: showing, action: {
@@ -43,9 +47,9 @@ struct InfoImprovements: View {
                 }
                 
                 if(showing) {
-                    ForEach(items.indices, id: \.self) { index in
+                    ForEach(infoImprovementVMs.indices, id: \.self) { index in
                         if(index > 0){
-                            ItemView(item: items[index])
+                            InfoImprovementItemView(item: infoImprovementVMs[index])
                         }
                     }
                     
@@ -65,8 +69,8 @@ struct InfoImprovements: View {
     }
 }
 
-struct ItemView: View {
-    var item:InfoImprovementsItem
+struct InfoImprovementItemView: View {
+    var item: InfoImprovementViewModel
     
     var body: some View {
         VStack {
@@ -110,12 +114,6 @@ struct InfoImprovements_Previews: PreviewProvider {
     static var previews: some View {
         InfoImprovements(title: "How do I improve my HRV?",
                          text: "Healthy behaviors can increase your HRV. Here are some proven ways to increase your HRV:",
-                         items: [InfoImprovementsItem(icon: "Cardio", title: "Stay active", text: "Avoid being sedentary and exercise appropriately; athletes should avoid overtraining."), InfoImprovementsItem(icon: "Sleep", title: "Sleep well and consistently", text: "Consistent, quality sleep is key to recovering from daily stressors."), InfoImprovementsItem(icon: "Food", title: "Eat well", text: "Reduce inflammatory foods and alcohol and prioritize nutrient rich foods; avoid large meals close to bedtime."), InfoImprovementsItem(icon: "Bottle", title: "Hydrate", text: "Hydration is important for maintaining a healthy blood volume needed to deliver oxygen and nutrients to your body."), InfoImprovementsItem(icon: "Bottle", title: "Hydrate", text: "Hydration is important for maintaining a healthy blood volume needed to deliver oxygen and nutrients to your body."), InfoImprovementsItem(icon: "Stress", title: "Better manage stress", text: "Listen to your body and prioritize recovery activities when you have increased stress."), InfoImprovementsItem(icon: "Breathing", title: "Intentional breathing", text: "Doing regular intentional breathing practices with slow, controlled breathing techniques can reduce stress and improve HRV."), InfoImprovementsItem(icon: "Sun", title: "Natural light exposure", text: "Early morning and evening sunlight can help regulate your circadium rhythm and improve vitamin D production.")])
+                         infoImprovementVMs: [InfoImprovementViewModel(icon: "Cardio", title: "Stay active", text: "Avoid being sedentary and exercise appropriately; athletes should avoid overtraining."), InfoImprovementViewModel(icon: "Sleep", title: "Sleep well and consistently", text: "Consistent, quality sleep is key to recovering from daily stressors."), InfoImprovementViewModel(icon: "Food", title: "Eat well", text: "Reduce inflammatory foods and alcohol and prioritize nutrient rich foods; avoid large meals close to bedtime."), InfoImprovementViewModel(icon: "Bottle", title: "Hydrate", text: "Hydration is important for maintaining a healthy blood volume needed to deliver oxygen and nutrients to your body."), InfoImprovementViewModel(icon: "Bottle", title: "Hydrate", text: "Hydration is important for maintaining a healthy blood volume needed to deliver oxygen and nutrients to your body."), InfoImprovementViewModel(icon: "Stress", title: "Better manage stress", text: "Listen to your body and prioritize recovery activities when you have increased stress."), InfoImprovementViewModel(icon: "Breathing", title: "Intentional breathing", text: "Doing regular intentional breathing practices with slow, controlled breathing techniques can reduce stress and improve HRV."), InfoImprovementViewModel(icon: "Sun", title: "Natural light exposure", text: "Early morning and evening sunlight can help regulate your circadium rhythm and improve vitamin D production.")])
     }
-}
-
-public struct InfoImprovementsItem {
-    let icon: String
-    let title: String
-    let text: String
 }

@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  RRBar.swift
 //  
 //
 //  Created by Fernando on 9/28/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RespiratoryBar: View {
+struct RRBar: View {
     
     let lineHeight = Autoscale.scaleFactor * 10
     let triangleSize = Autoscale.scaleFactor * 13
@@ -78,7 +78,7 @@ struct RespiratoryBar: View {
     }
 }
 
-extension RespiratoryBar {
+extension RRBar {
     func getArrowColor() -> Color {
         if (breathingRate < 12 || breathingRate > 20){
             return Color("Yellow", bundle: .module)
@@ -104,8 +104,8 @@ extension RespiratoryBar {
     }
 }
 
-struct RespiratoryBar_Previews: PreviewProvider {
+struct RRBar_Previews: PreviewProvider {
     static var previews: some View {
-        RespiratoryBar(breathingRate: 12)
+        RRBar(breathingRate: 12)
     }
 }

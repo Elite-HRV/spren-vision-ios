@@ -13,7 +13,7 @@ public struct MessageScreen: View {
     
     let illustration: String
     let title: String
-    let paragraph: String
+    let paragraph: String?
     let bulletsLabel: String
     let bullets: [String]
     let buttonText: String
@@ -29,7 +29,7 @@ public struct MessageScreen: View {
     
     public init(illustration: String,
                 title: String,
-                paragraph: String,
+                paragraph: String? = nil,
                 bulletsLabel: String = "",
                 bullets: [String] = [],
                 buttonText: String,
@@ -82,12 +82,14 @@ public struct MessageScreen: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(titleTextAlignment)
                         .sprenUIPadding([.leading, .trailing])
-
-                    Text(paragraph)
-                        .font(.sprenParagraph)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(paragraphTextAlignment)
-                        .sprenUIPadding([.top, .leading, .trailing])
+                    
+                    if let paragraph = paragraph {
+                        Text(paragraph)
+                            .font(.sprenParagraph)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(paragraphTextAlignment)
+                            .sprenUIPadding([.top, .leading, .trailing])
+                    }
                     
                     if bullets.count > 0 {
                         Text(bulletsLabel)
@@ -121,7 +123,7 @@ public struct MessageScreen: View {
 }
 
 
-struct PrereadingScreen_Previews: PreviewProvider {
+struct MessageScreen_Previews: PreviewProvider {
     static var previews: some View {
         
 //        let previewDevices = [
@@ -189,6 +191,18 @@ struct PrereadingScreen_Previews: PreviewProvider {
                       bullets: [
                         "Refrain from strenuous activity for at least 15 minutes prior to reading",
                         "Sit calmly for 1 minute before reading"
+                      ],
+                      buttonText: "Next",
+                      onBackButtonTap: {},
+                      onBottomButtonTap: {})
+        
+        MessageScreen(illustration: "GreetingScreen1",
+                      title: "Take a moment to measure your recovery",
+                      bulletsLabel: "For best HRV and recovery results:",
+                      bullets: [
+                        "Refrain from strenuous activity for at least 15 minutes prior to reading",
+                        "Sit calmly for 1 minute before reading",
+                        "If needed, take 6 deep and slow breaths before starting reading then breathe naturally during the reading"
                       ],
                       buttonText: "Next",
                       onBackButtonTap: {},

@@ -12,7 +12,7 @@ extension SprenUI {
     
     class ViewModel: ObservableObject {
         
-        let firstScreen: NavTag = UserDefaults.standard.bool(forKey: SprenUI.config.secondReadingKey) ? .fingerOnCameraScreen : .greetingScreen1
+        let firstScreen: NavTag = UserDefaults.standard.bool(forKey: SprenUI.config.secondReadingKey) ? .greetingScreen1b : .greetingScreen1a
         @Published var navTag: NavTag
         
         @Published var results: Results = .empty
@@ -63,7 +63,7 @@ extension SprenUI {
         }
         
         func handleFingerOnCameraScreenBackButtonTap() {
-            if firstScreen == .fingerOnCameraScreen {
+            if firstScreen == .greetingScreen1b {
                 SprenUI.config.onCancel()
             } else {
                 self.transition(to: firstScreen)

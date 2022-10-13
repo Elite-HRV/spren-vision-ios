@@ -18,7 +18,8 @@ public struct SprenUI: View {
         
     public var body: some View {
         switch viewModel.navTag {
-        case .greetingScreen1:      greetingScreen1
+        case .greetingScreen1a:      greetingScreen1a
+        case .greetingScreen1b:      greetingScreen1b
         case .greetingScreen2:      greetingScreen2
         case .noCameraScreen:       noCameraScreen
         case .fingerOnCameraScreen: fingerOnCameraScreen
@@ -32,7 +33,7 @@ public struct SprenUI: View {
 
 extension SprenUI {
     
-    var greetingScreen1: MessageScreen {
+    var greetingScreen1a: MessageScreen {
         MessageScreen(illustration: "GreetingScreen1",
                       title: "Measure your HRV and Recovery with your phone camera",
                       paragraph: "Simply do a quick resting scan to receive personalized stress and recovery insights.",
@@ -42,8 +43,22 @@ extension SprenUI {
                         "Sit calmly for 1 minute before reading"
                       ],
                       buttonText: "Next",
-                      onBackButtonTap: {},
-                      onBottomButtonTap: {})
+                      onBackButtonTap: SprenUI.config.onCancel,
+                      onBottomButtonTap: { viewModel.transition(to: .greetingScreen2) })
+    }
+    
+    var greetingScreen1b: MessageScreen {
+        MessageScreen(illustration: "GreetingScreen1",
+                      title: "Take a moment to measure your recovery",
+                      bulletsLabel: "For best HRV and recovery results:",
+                      bullets: [
+                        "Refrain from strenuous activity for at least 15 minutes prior to reading",
+                        "Sit calmly for 1 minute before reading",
+                        "If needed, take 6 deep and slow breaths before starting reading then breathe naturally during the reading"
+                      ],
+                      buttonText: "Next",
+                      onBackButtonTap: SprenUI.config.onCancel,
+                      onBottomButtonTap: { viewModel.transition(to: .fingerOnCameraScreen) })
     }
     
     var greetingScreen2: MessageScreen {

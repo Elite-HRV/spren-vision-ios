@@ -21,6 +21,9 @@ struct ResultsScreen: View {
         case hrvScoreInfo
         case hrInfo
         case respiratoryRateInfo
+        case faq1
+        case faq2
+        case faq3
     }
     
     @State var navTag: ResultsNavTag = .results
@@ -33,6 +36,9 @@ struct ResultsScreen: View {
         case .hrvScoreInfo: hrvScoreInfoScreen
         case .hrInfo: hrInfoScreen
         case .respiratoryRateInfo: respiratoryRateInfoScreen
+        case .faq1: faqScreen1
+        case .faq2: faqScreen2
+        case .faq3: faqScreen3
         }
     }
     
@@ -105,19 +111,32 @@ struct ResultsScreen: View {
                         Spacer()
                         Image(systemName: "chevron.right")
                     }
+                    .onTapGesture {
+                        transition(to: .faq1)
+                    }
+                    
                     Divider()
+                    
                     HStack {
-                        Text("What does my score mean?")
+                        Text("How do I get the best results?")
                             .font(.sprenParagraph)
                         Spacer()
                         Image(systemName: "chevron.right")
                     }
+                    .onTapGesture {
+                        transition(to: .faq2)
+                    }
+                    
                     Divider()
+                    
                     HStack {
                         Text("How often should I measure?")
                             .font(.sprenParagraph)
                         Spacer()
                         Image(systemName: "chevron.right")
+                    }
+                    .onTapGesture {
+                        transition(to: .faq3)
                     }
                 }
                 .sprenUIPadding()
@@ -143,7 +162,7 @@ extension ResultsScreen {
                    paragraph2: "",
                    type: .recovery,
                    results: results,
-                   onBackButtonTap: { navTag = .results })
+                   onBackButtonTap: { transition(to: .results) })
     }
     
     var ansBalanceInfoScreen: InfoScreen {
@@ -154,7 +173,7 @@ extension ResultsScreen {
                    paragraph2: "The ANS Balance indicates the relative balance between thethe SNS and PSNS, thus indicating the balance between recovery and physiological stress (both physical and mental).\n\nKnowing the relative balance of the ANS helps you better understand the current state of your body and determine the best course of action towards reaching your goals without working against yourself.",
                    type: .ansBalance,
                    results: results,
-                   onBackButtonTap: { navTag = .results })
+                   onBackButtonTap: { transition(to: .results) })
     }
     
     var hrvScoreInfoScreen: InfoScreen {
@@ -165,7 +184,7 @@ extension ResultsScreen {
                    paragraph2: "",
                    type: .hrvScore,
                    results: results,
-                   onBackButtonTap: { navTag = .results })
+                   onBackButtonTap: { transition(to: .results) })
     }
     
     var hrInfoScreen: InfoScreen {
@@ -176,7 +195,7 @@ extension ResultsScreen {
                    paragraph2: "",
                    type: .hr,
                    results: results,
-                   onBackButtonTap: { navTag = .results })
+                   onBackButtonTap: { transition(to: .results) })
     }
     
     var respiratoryRateInfoScreen: InfoScreen {
@@ -187,7 +206,81 @@ extension ResultsScreen {
                    paragraph2: "",
                    type: .breathingRate,
                    results: results,
-                   onBackButtonTap: { navTag = .results })
+                   onBackButtonTap: { transition(to: .results) })
+    }
+    
+    var faqScreen1: FAQScreen {
+        FAQScreen(content: [
+            "What is HRV?",
+            """
+            Heart rate variability (HRV) is the subtle variations between heartbeats that originate from your nervous system and indicates your stress levels, recovery status, and general well-being.
+            
+            HRV is considered the best, non-invasive measure of your Autonomic Nervous System (ANS), which controls almost all of the body’s “automatic” processes such as heart rate, blood pressure, temperature, digestion, sexual function, tissue repair, and more. The opposing branches of the ANS modulate your body’s “fight or flight” stress response and “rest and digest” recovery activities.
+            """,
+            "Why does it matter?",
+            """
+            A higher HRV Score generally indicates better health, a younger biological age, and better aerobic fitness. Tracking your HRV over time can show when you are improving or not.
+            
+            HRV is great at measuring baseline physiological stress. Regularly measuring HRV and related insights such as Recovery can reveal how your body responds to things like exercise, stress, nutrition, work, and more so you can start to learn what factors most affect you.
+            
+            Your Recovery score can help you understand when your body is ready to perform and when you need to focus on rest and recovery in order to prevent over-training or injury.
+            """,
+        ],
+        fonts: [
+            .sprenTitle,
+            .sprenParagraph,
+            .sprenTitle,
+            .sprenParagraph
+        ],
+        onBackButtonTap: { transition(to: .results) })
+    }
+    
+    var faqScreen2: FAQScreen {
+        FAQScreen(content: [
+            "How do I get the most accurate Recovery results?",
+            """
+            Consistency is key!
+            
+            When measured consistently, the Recovery Score (based on HRV) can provide a gauge for how your body is responding to (or recovering from) things like exercise, stress, nutrition, work and more.  Because HRV can be influenced by the day’s stressors and normal hormonal and circadian rhythms, consistency in measurement practice can reduce the effects of these confounding factors to provide better results and guidance.
+            """,
+            "For the best results:",
+            """
+            1. Do your measurements in the same position every time such as sitting or lying down
+            2. Try to do your measurements around the same time of day, ideally within 30 minutes of waking in the morning prior to exercise or caffeine consumption.
+            3. Try to do measurements at least 4 times per week so the algorithms can generate an accurate picture of your baseline.
+            
+            •  Refrain from strenuous activity for at least 15 minutes prior to your measurement
+            •  Sit calmly for at least one minute before your measurement
+            •  Take 6 deep and slow breaths before starting your reading to calm your nervous system and lower your heart rate to a rested state
+            •  Breath naturally during your measurement
+            """
+        ],
+        fonts: [
+            .sprenTitle,
+            .sprenParagraph,
+            .sprenParagraphBold,
+            .sprenParagraph,
+            .sprenParagraph
+        ],
+        onBackButtonTap: { transition(to: .results) })
+    }
+    
+    var faqScreen3: FAQScreen {
+        FAQScreen(content: [
+            "How often should I measure?",
+            """
+            For the most accurate Recovery results and personalized guidance, we recommend doing a measurement at least four (4) days per week. This allows us to adequately establish what “normal” looks like for you and better alert you when your HRV patterns show your body is under-recovered.
+            
+            Our algorithms need at least 2 days to start establishing your baseline patterns and will continue to build your baseline over a 2-week period. Then your baseline will continually update over time as your HRV, health, and fitness levels change.
+            
+            Consistency in how you do you measurement is important. Because HRV can be influenced by the day’s stressors and normal hormonal and circadian rhythms, consistency in measurement practice can reduce the effects of these confounding factors. Try to do your measurement in the same position every day (i.e. sitting or lying down) and try to do it around the same time of day, ideally within 30 minutes of waking in the morning prior to exercise or caffeine consumption.
+            """
+        ],
+        fonts: [
+            .sprenTitle,
+            .sprenParagraph,
+        ],
+        onBackButtonTap: { transition(to: .results) })
     }
     
 }

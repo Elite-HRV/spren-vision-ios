@@ -62,14 +62,6 @@ extension SprenUI {
             }
         }
         
-        func handleFingerOnCameraScreenBackButtonTap() {
-            if firstScreen == .greetingScreen1b {
-                SprenUI.config.onCancel()
-            } else {
-                self.transition(to: firstScreen)
-            }
-        }
-        
     }
     
 }

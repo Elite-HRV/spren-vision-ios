@@ -63,11 +63,11 @@ extension SprenUI {
     
     var greetingScreen2: MessageScreen {
         MessageScreen(illustration: Self.config.graphics[.greeting2] ?? "",
-                         title: "Place your fingertip on the rear-facing camera",
-                         paragraph: "For the most accurate reading, leave the flash on or make sure you're in a well lit area and can hold your hand steady.",
-                         buttonText: "Next",
+                      title: "Place your fingertip on the rear-facing camera",
+                      paragraph: "For the most accurate reading, leave the flash on or make sure you're in a well lit area and can hold your hand steady.",
+                      buttonText: "Next",
                       onBackButtonTap: { viewModel.transition(to: viewModel.firstScreen) },
-                         onBottomButtonTap: viewModel.handleVideoAuthorization)
+                      onBottomButtonTap: viewModel.handleVideoAuthorization)
     }
     
     var noCameraScreen: MessageScreen {
@@ -81,15 +81,15 @@ extension SprenUI {
     
     var fingerOnCameraScreen: MessageScreen {
         MessageScreen(illustration: Self.config.graphics[.fingerOnCamera] ?? "",
-                         title: "Place your fingertip fully over the camera lens",
-                         paragraph: "Hold your hand steady and apply light pressure with your finger.",
-                         buttonText: "Start measurement",
-                      onBackButtonTap: viewModel.handleFingerOnCameraScreenBackButtonTap,
-                         onBottomButtonTap: { viewModel.transition(to: .readingScreen) })
+                      title: "Place your fingertip fully over the camera lens",
+                      paragraph: "Hold your hand steady and apply light pressure with your finger.",
+                      buttonText: "Start measurement",
+                      onBackButtonTap: { viewModel.transition(to: viewModel.firstScreen) },
+                      onBottomButtonTap: { viewModel.transition(to: .readingScreen) })
     }
     
     var readingScreen: ReadingScreen {
-        ReadingScreen(viewModel: .init(onBackButtonTap: SprenUI.config.onCancel, onFinish: {
+        ReadingScreen(viewModel: .init(onBackButtonTap: { viewModel.transition(to: viewModel.firstScreen) }, onFinish: {
             viewModel.transition(to: .uploadScreen)
         }))
     }
@@ -107,11 +107,11 @@ extension SprenUI {
     
     var errorScreen: MessageScreen {
         MessageScreen(illustration: Self.config.graphics[.serverError] ?? "",
-                         title: "Sorry! There was an error calculating your results",
-                         paragraph: "Please take another measurement to view your HRV results.",
-                         buttonText: "Try again",
-                         onBackButtonTap: { viewModel.transition(to: viewModel.firstScreen) },
-                         onBottomButtonTap: { viewModel.transition(to: viewModel.firstScreen) })
+                      title: "Sorry! There was an error calculating your results",
+                      paragraph: "Please take another measurement to view your HRV results.",
+                      buttonText: "Try again",
+                      onBackButtonTap: { viewModel.transition(to: viewModel.firstScreen) },
+                      onBottomButtonTap: { viewModel.transition(to: viewModel.firstScreen) })
     }
     
     var resultsScreen: ResultsScreen {
@@ -122,7 +122,5 @@ extension SprenUI {
 struct SprenUI_Previews: PreviewProvider {
     static var previews: some View {
         SprenUI(config: .init(baseURL: "", apiKey: "", userID: "", onCancel: {}, onFinish: { _ in }))
-//            .preferredColorScheme(.light)
-//            .environment(\.colorScheme, .dark)
     }
 }

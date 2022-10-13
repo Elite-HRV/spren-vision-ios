@@ -33,12 +33,17 @@ public struct SprenUI: View {
 extension SprenUI {
     
     var greetingScreen1: MessageScreen {
-        MessageScreen(illustration: Self.config.graphics[.greeting1] ?? "",
-                         title: "Measure your HRV with your phone camera",
-                         paragraph: "Simply do a quick resting scan when you wake up to receive personalized stress and recovery insights.",
-                         buttonText: "Next",
-                      onBackButtonTap: SprenUI.config.onCancel,
-                      onBottomButtonTap: { viewModel.transition(to: .greetingScreen2) })
+        MessageScreen(illustration: "GreetingScreen1",
+                      title: "Measure your HRV and Recovery with your phone camera",
+                      paragraph: "Simply do a quick resting scan to receive personalized stress and recovery insights.",
+                      bulletsLabel: "For best HRV and recovery results:",
+                      bullets: [
+                        "Refrain from strenuous activity for at least 15 minutes prior to reading",
+                        "Sit calmly for 1 minute before reading"
+                      ],
+                      buttonText: "Next",
+                      onBackButtonTap: {},
+                      onBottomButtonTap: {})
     }
     
     var greetingScreen2: MessageScreen {

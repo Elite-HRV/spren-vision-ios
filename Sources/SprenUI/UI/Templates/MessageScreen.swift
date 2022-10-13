@@ -14,6 +14,8 @@ public struct MessageScreen: View {
     let illustration: String
     let title: String
     let paragraph: String
+    let bulletsLabel: String
+    let bullets: [String]
     let buttonText: String
     
     var textVStackAlignment: HorizontalAlignment = .leading
@@ -25,10 +27,22 @@ public struct MessageScreen: View {
     
     let illustrationSize = Autoscale.scaleFactor * 300
     
-    public init(illustration: String, title: String, paragraph: String, buttonText: String, textVStackAlignment: HorizontalAlignment = .leading, titleTextAlignment: TextAlignment = .leading, paragraphTextAlignment: TextAlignment = .leading, onBackButtonTap: (() -> Void)? = nil, onBottomButtonTap: @escaping () -> Void) {
+    public init(illustration: String,
+                title: String,
+                paragraph: String,
+                bulletsLabel: String = "",
+                bullets: [String] = [],
+                buttonText: String,
+                textVStackAlignment: HorizontalAlignment = .leading,
+                titleTextAlignment: TextAlignment = .leading,
+                paragraphTextAlignment: TextAlignment = .leading,
+                onBackButtonTap: (() -> Void)? = nil,
+                onBottomButtonTap: @escaping () -> Void) {
         self.illustration = illustration
         self.title = title
         self.paragraph = paragraph
+        self.bulletsLabel = bulletsLabel
+        self.bullets = bullets
         self.buttonText = buttonText
         self.textVStackAlignment = textVStackAlignment
         self.titleTextAlignment = titleTextAlignment
@@ -36,15 +50,6 @@ public struct MessageScreen: View {
         self.onBackButtonTap = onBackButtonTap
         self.onBottomButtonTap = onBottomButtonTap
     }
-    
-    private let numberFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        return formatter
-    }()
-    @State private var birthdate: Date?
-    var genders = ["none"]+SprenUI.Config.BiologicalSex.allCases.map { $0.rawValue }
-    @State private var gender: String = "none"
     
     public var body: some View {
         VStack {
@@ -83,6 +88,27 @@ public struct MessageScreen: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(paragraphTextAlignment)
                         .sprenUIPadding([.top, .leading, .trailing])
+                    
+                    if bullets.count > 0 {
+                        Text(bulletsLabel)
+                            .font(.sprenParagraph)
+                            .sprenUIPadding([.top], factor: 0.75)
+                            .sprenUIPadding([.bottom], factor: 0.25)
+                            .sprenUIPadding([.leading, .trailing])
+                        
+                        ForEach(bullets, id: \.self) { bullet in
+                            HStack {
+                                VStack {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(.sprenUIColor1)
+                                    Spacer()
+                                }
+                                Text(bullet)
+                                    .font(.sprenBullet)
+                            }
+                            .sprenUIPadding([.leading, .trailing])
+                        }
+                    }
                 }
             }
             
@@ -157,9 +183,14 @@ struct PrereadingScreen_Previews: PreviewProvider {
                       onBottomButtonTap: {})
     
         MessageScreen(illustration: "GreetingScreen1",
-                         title: "Measure your HRV with your phone camera",
-                         paragraph: "Simply do a quick resting scan when you wake up to receive personalized stress and recovery insights.",
-                         buttonText: "Next",
+                      title: "Measure your HRV and Recovery with your phone camera",
+                      paragraph: "Simply do a quick resting scan to receive personalized stress and recovery insights.",
+                      bulletsLabel: "For best HRV and recovery results:",
+                      bullets: [
+                        "Refrain from strenuous activity for at least 15 minutes prior to reading",
+                        "Sit calmly for 1 minute before reading"
+                      ],
+                      buttonText: "Next",
                       onBackButtonTap: {},
                       onBottomButtonTap: {})
     

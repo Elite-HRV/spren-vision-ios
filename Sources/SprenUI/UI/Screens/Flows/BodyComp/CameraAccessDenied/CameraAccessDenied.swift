@@ -20,11 +20,18 @@ struct CameraAccessDenied: View {
             VStack {
                 CloseButton(action: {self.rootPresentationMode.wrappedValue.dismiss()})
 
-                Image("CameraAccessDenied", bundle: .module)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .colorMultiply(Color.sprenUIColor1.opacity(0.75))
-                    .padding(.horizontal, Autoscale.convert(30))
+                if SprenUI.config.bundle == .module {
+                    Image(SprenUI.config.graphics[.cameraAccessDenied] ?? "", bundle: .module)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                        .padding(.horizontal, Autoscale.convert(30))
+                }else{
+                    Image(SprenUI.config.graphics[.cameraAccessDenied] ?? "", bundle: .module)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)                        
+                        .padding(.horizontal, Autoscale.convert(30))
+                }
 
                 title
 

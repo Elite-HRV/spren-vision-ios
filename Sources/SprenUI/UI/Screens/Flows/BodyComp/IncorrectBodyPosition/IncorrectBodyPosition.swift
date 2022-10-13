@@ -21,10 +21,16 @@ struct IncorrectBodyPosition: View {
             VStack {
                 CloseButton(action: {self.rootPresentationMode.wrappedValue.dismiss()})
                 
-                Image("IncorrectBodyPosition", bundle: .module).resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .colorMultiply(Color.sprenUIColor1.opacity(0.75))
-                    .frame(maxHeight: Autoscale.convert(280))
+                if (SprenUI.config.bundle == .module) {
+                    Image(SprenUI.config.graphics[.incorrectBodyPosition] ?? "", bundle: .module).resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                        .frame(maxHeight: Autoscale.convert(280))
+                } else {
+                    Image(SprenUI.config.graphics[.incorrectBodyPosition] ?? "", bundle: .module).resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxHeight: Autoscale.convert(280))
+                }
 
                 title
                 

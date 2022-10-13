@@ -36,9 +36,14 @@ struct SetupGuide: View {
                             self.presentationMode.wrappedValue.dismiss()  
                         }).padding(.horizontal, Autoscale.convert(16))
 
-                        Image("SetupGuide", bundle: .module).resizable()
+                    if SprenUI.config.bundle == .module {
+                        Image(SprenUI.config.graphics[.setupGuide] ?? "", bundle: .module).resizable()
                             .aspectRatio(contentMode: .fit)
                             .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                    } else {
+                        Image(SprenUI.config.graphics[.setupGuide] ?? "", bundle: .module).resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
                         
                         title
                             .padding(.horizontal, Autoscale.convert(16))

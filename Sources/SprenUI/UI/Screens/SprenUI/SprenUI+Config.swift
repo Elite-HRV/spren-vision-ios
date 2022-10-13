@@ -24,6 +24,17 @@ extension SprenUI {
         public let project: SprenProject
         public let color1: Color?
         public let color2: Color?
+        
+        public var bundle: Bundle = .module
+        public var graphics: [Graphic: String] = [
+            .greetings: "GreetingsImage",
+            .cameraAccessDenied: "CameraAccessDenied",
+            .incorrectBodyPosition: "IncorrectBodyPosition",
+            .privacy: "Privacy",
+            .serverError: "ServerError",
+            .setupGuide: "SetupGuide"
+        ]
+        
         public let onCancel: (() -> Void)
         public let onFinish: ((_ results: Results) -> Void)
         
@@ -32,6 +43,15 @@ extension SprenUI {
         
         // keys for UserDefaults
         public let secondReadingKey = "com.spren.ui.second-reading"
+        
+        public enum Graphic {
+            case greetings
+            case cameraAccessDenied
+            case incorrectBodyPosition
+            case privacy
+            case serverError
+            case setupGuide
+        }
         
         public enum BiologicalSex {
             case male
@@ -52,6 +72,7 @@ extension SprenUI {
                     project: SprenProject,
                     color1: Color? = nil,
                     color2: Color? = nil,
+                    graphics: [Graphic: String]? = nil,
                     onCancel: @escaping (() -> Void),
                     onFinish: @escaping ((Results) -> Void),
                     logger: Logger? = nil) {
@@ -65,6 +86,10 @@ extension SprenUI {
             self.project = project
             self.color1 = color1
             self.color2 = color2
+            if let graphics = graphics {
+                self.graphics = graphics
+                self.bundle = .main
+            }
             self.onCancel = onCancel
             self.onFinish = onFinish
             

@@ -17,11 +17,18 @@ struct GreetingScreen: View {
                 Color("AppBackground").edgesIgnoringSafeArea(.all)
                 
                 VStack {
-                    Image("GreetingsImage", bundle: .module).resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .colorMultiply(Color.sprenUIColor1.opacity(0.75))
-                        .padding(.top, Autoscale.convert(10))
-                        .padding(.bottom, Autoscale.convert(10))
+                    if SprenUI.config.bundle == .module {
+                        Image(SprenUI.config.graphics[.greetings] ?? "", bundle: .module).resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                            .padding(.top, Autoscale.convert(10))
+                            .padding(.bottom, Autoscale.convert(10))
+                    }else{
+                        Image(SprenUI.config.graphics[.greetings] ?? "", bundle: .module).resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding(.top, Autoscale.convert(10))
+                            .padding(.bottom, Autoscale.convert(10))
+                    }
                     
                     VStack {
                         title

@@ -54,11 +54,20 @@ public struct MessageScreen: View {
     public var body: some View {
         VStack {
             Header(backButtonColor: colorScheme == .light ? .black : .white, onBackButtonTap: onBackButtonTap)
-                        
+            
+            // demo app
             if illustration == "Home" && Autoscale.scale == 3 {
                 HomeAnimation()
                     .sprenUIPadding()
-            } else {
+            } else if illustration == "Home" {
+                Image("Home", bundle: .module)
+                    .resizable()
+                    .frame(width: illustrationSize,
+                           height: illustrationSize)
+            }
+            
+            // SprenUI
+            else {
                 if SprenUI.config.bundle == .module {
                     Image(illustration, bundle: SprenUI.config.bundle)
                         .resizable()

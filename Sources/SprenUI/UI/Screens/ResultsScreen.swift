@@ -84,16 +84,30 @@ struct ResultsScreen: View {
                 ANSBalanceResult(ansBalance: intANSBalance, onInfoButtonTap: { transition(to: .ansBalanceInfo) })
             }
             
-            // result cards
-            ResultCard(results: results,
-                      type: .hrvScore)
+            if results.readiness == nil {
+                ResultCard(results: results,
+                           type: .hrvScore)
                 .onTapGesture { transition(to: .hrvScoreInfo) }
-            ResultCard(results: results,
-                      type: .hr)
+                ResultCard(results: results,
+                           type: .hr)
                 .onTapGesture { transition(to: .hrInfo) }
-            ResultCard(results: results,
-                      type: .breathingRate)
+                ResultCard(results: results,
+                           type: .breathingRate)
                 .onTapGesture { transition(to: .respiratoryRateInfo) }
+            } else {
+                HStack(spacing: 20) {
+                    VStack(spacing: 20) {
+                        SimpleResultCard(title: "HRV Score", value: results.hrvScore, label: "", onTap: { transition(to: .hrvScoreInfo) })
+                        SimpleResultCard(title: "Heart Rate", value: results.hr, label: "bpm", onTap: { transition(to: .hrInfo) })
+                        Spacer()
+                    }
+                    VStack(spacing: 20) {
+                        SimpleResultCard(title: "Respiration", value: results.breathingRate, label: "rpm", onTap: { transition(to: .respiratoryRateInfo) })
+                        Spacer()
+                    }
+                }
+                .sprenUIPadding([.leading, .top, .trailing])
+            }
             
             // FAQ
             VStack {

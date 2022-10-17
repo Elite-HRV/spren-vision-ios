@@ -1,5 +1,5 @@
 //
-//  OldResultCard.swift
+//  SimpleResultCard.swift
 //  
 //
 //  Created by Keith Carolus on 9/23/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OldResultCard: View {
+struct SimpleResultCard: View {
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -46,12 +46,12 @@ struct OldResultCard_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
             VStack {
-                OldResultCard(title: "HRV Score", value: 58, label: "", onTap: {})
-                OldResultCard(title: "Heart Rate", value: 66, label: "bpm", onTap: {})
+                SimpleResultCard(title: "HRV Score", value: 58, label: "", onTap: {})
+                SimpleResultCard(title: "Heart Rate", value: 66, label: "bpm", onTap: {})
                 Spacer()
             }
             VStack {
-                OldResultCard(title: "Respiration", value: 17, label: "rpm", onTap: {})
+                SimpleResultCard(title: "Respiration", value: 17, label: "rpm", onTap: {})
                 Spacer()
             }
         }

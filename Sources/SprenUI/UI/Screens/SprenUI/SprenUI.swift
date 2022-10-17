@@ -34,7 +34,7 @@ public struct SprenUI: View {
 extension SprenUI {
     
     var greetingScreen1a: MessageScreen {
-        MessageScreen(illustration: "GreetingScreen1",
+        MessageScreen(illustration: Self.config.graphics[.greeting1] ?? "",
                       title: "Measure your HRV and Recovery with your phone camera",
                       paragraph: "Simply do a quick resting scan to receive personalized stress and recovery insights.",
                       bulletsLabel: "For best HRV and recovery results:",
@@ -48,7 +48,7 @@ extension SprenUI {
     }
     
     var greetingScreen1b: MessageScreen {
-        MessageScreen(illustration: "GreetingScreen1",
+        MessageScreen(illustration: Self.config.graphics[.greeting1] ?? "",
                       title: "Take a moment to measure your recovery",
                       bulletsLabel: "For best HRV and recovery results:",
                       bullets: [

@@ -46,6 +46,14 @@ extension SprenUI {
             case male
             case female
             case other
+            
+            static func getPlural(_ gender: Self) -> String {
+                switch gender {
+                case .male: return "men"
+                case .female: return "women"
+                case .other: return "people"
+                }
+            }
         }
         
         public enum Graphic {

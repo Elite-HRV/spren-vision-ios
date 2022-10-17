@@ -12,8 +12,8 @@ struct DemographicHRVCard: View {
     
     let value: Double
     
-    let age = SprenUI.config.userBirthdate?.age
-    let gender = SprenUI.config.userGender
+    let age: Int? = SprenUI.config.userBirthdate?.age
+    let gender: SprenUI.Config.BiologicalSex? = SprenUI.config.userGender
     
     var body: some View {
         let (classification, data, colorIndex) = Self.getDataDemographicHRVCard(value: value, age: age, gender: gender)
@@ -33,8 +33,14 @@ struct DemographicHRVCard: View {
                 }.padding(.bottom, Autoscale.scaleFactor * 12)
                 
                 HStack {
-                    Text("Your HRV Score of \(String(format: "%.0f", value)) is "+classification+(age != nil && gender != nil && gender?.rawValue ?? nil != "other" ? " for \(gender!) your age": age != nil && gender?.rawValue ?? nil == "other" ? " for people your age" : " compared to the population."))
-                        .font(.sprenLabel)
+                    if let _ = age, let gender = gender {
+                        Text("Your HRV Score of \(String(format: "%.0f", value)) is \(classification) for \(SprenUI.Config.BiologicalSex.getPlural(gender)) your age.")
+                            .font(.sprenLabel)
+                    } else {
+                        Text("Your HRV Score of \(String(format: "%.0f", value)) is \(classification) compared to the population.")
+                            .font(.sprenLabel)
+                    }
+                    
                     Spacer()
                 }.sprenUIPadding([.bottom])
                 

@@ -115,6 +115,7 @@ public struct MessageScreen: View {
                                     Spacer()
                                 }
                                 Text(bullet)
+                                    .fixedSize(horizontal: false, vertical: true)
                                     .font(.sprenBullet)
                             }
                             .sprenUIPadding([.leading, .trailing])

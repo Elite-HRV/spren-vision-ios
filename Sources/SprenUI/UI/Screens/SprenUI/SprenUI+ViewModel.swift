@@ -32,7 +32,7 @@ extension SprenUI {
         func handleVideoAuthorization() {
             switch AVCaptureDevice.authorizationStatus(for: .video) {
             case .authorized:
-                self.transition(to: .readingScreen)
+                self.transition(to: .fingerOnCameraScreen)
             case .notDetermined:
                AVCaptureDevice.requestAccess(for: .video) { granted in
                    if granted {

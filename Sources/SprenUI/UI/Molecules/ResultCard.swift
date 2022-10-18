@@ -65,7 +65,7 @@ struct ResultCard: View {
 }
 
 extension ResultCard {
-    func getResultCardData(type: Self.`Type`, results: Results, age: Int?, gender: SprenUI.Config.BiologicalSex?) -> (Color, String, String, String, String, String?) {
+    func getResultCardData(type: Self.`Type`, results: Results, age: Int?, gender: BiologicalSex?) -> (Color, String, String, String, String, String?) {
         switch type {
         case .hrvScore:
             let (_, _, index) = DemographicHRVCard.getDataDemographicHRVCard(value: results.hr, age: age, gender: gender)
@@ -101,12 +101,12 @@ extension ResultCard {
             var text = "Normal for your age and gender"
             var color: Color = Color("DemographicGreen", bundle: .module)
             
-            if(results.breathingRate < RespiratoryConstants.rangeMin){
+            if(results.breathingRate < RRConstants.rangeMin){
                 color = Color("DemographicOrange", bundle: .module)
                 text = "Abnormally low for healthy adults"
             }
             
-            if(results.breathingRate > RespiratoryConstants.rangeMax){
+            if(results.breathingRate > RRConstants.rangeMax){
                 color = Color("DemographicOrange", bundle: .module)
                 text = "Abnormally high for healthy adults"
             }

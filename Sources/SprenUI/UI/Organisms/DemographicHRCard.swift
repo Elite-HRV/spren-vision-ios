@@ -12,7 +12,7 @@ struct DemographicHRCard: View {
     
     let value: Double
     let age: Int? = SprenUI.config.userBirthdate?.age
-    let gender: SprenUI.Config.BiologicalSex? = SprenUI.config.userGender
+    let gender: BiologicalSex? = SprenUI.config.userGender
     
     var body: some View {
         let (classification, data, colorIndex) = Self.getDataDemographicHRCard(value: value, age: age, gender: gender)
@@ -33,7 +33,7 @@ struct DemographicHRCard: View {
                 
                 HStack {
                     if let _ = age, let gender = gender {
-                        Text("Your resting heart rate of \(String(format: "%.0f", value)) is \(classification) for \(SprenUI.Config.BiologicalSex.getPlural(gender)) your age.")
+                        Text("Your resting heart rate of \(String(format: "%.0f", value)) is \(classification) for \(BiologicalSex.getPlural(gender)) your age.")
                             .font(.sprenLabel)
                     } else {
                         Text("Your resting heart rate of \(String(format: "%.0f", value)) is \(classification) compared to the population.")
@@ -68,7 +68,7 @@ struct DemographicHRCard: View {
 
 extension DemographicHRCard {
     
-    static func getDataDemographicHRCard(value: Double, age: Int?, gender: SprenUI.Config.BiologicalSex?) -> (String, [String], Int) {
+    static func getDataDemographicHRCard(value: Double, age: Int?, gender: BiologicalSex?) -> (String, [String], Int) {
         let names = ["Excellent","Very Good","Better than Average","Average","Below Average","Poor"]
         var data:Array<Int> = [47,56,57,63,64,70,71,78,79,86,87,97]
         
@@ -90,7 +90,7 @@ extension DemographicHRCard {
             }
         }
         
-        if (age != nil && gender == SprenUI.Config.BiologicalSex.female){
+        if (age != nil && gender == .female){
             if(age! > 15 && age! < 20){
                 data = [50,61,62,68,69,76,77,84,85,93,94,102]
             }
@@ -108,7 +108,7 @@ extension DemographicHRCard {
             }
         }
         
-        if (age != nil && (gender == SprenUI.Config.BiologicalSex.male || gender == SprenUI.Config.BiologicalSex.other)){
+        if (age != nil && (gender == .male || gender == .other)){
             if(age! > 15 && age! < 20){
                 data = [46,55,56,60,61,68,69,77,78,86,87,94]
             }

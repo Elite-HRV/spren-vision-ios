@@ -97,7 +97,8 @@ public struct MessageScreen: View {
                             .font(.sprenParagraph)
                             .fixedSize(horizontal: false, vertical: true)
                             .multilineTextAlignment(paragraphTextAlignment)
-                            .sprenUIPadding([.top, .leading, .trailing])
+                            .sprenUIPadding(.top, factor: 0.75)
+                            .sprenUIPadding([.leading, .trailing])
                     }
                     
                     if bullets.count > 0 {
@@ -173,13 +174,17 @@ struct MessageScreen_Previews: PreviewProvider {
         
 //        ForEach(previewDevices, id: \.self) { device -> AnyView in
 //            AnyView(
-//                MessageScreen(illustration: "Home",
-//                                 title: "Unlock advanced HRV insights with your smartphone camera",
-//                                 paragraph: "•  Integrate via SDK and API\n•  Customizable look and feel\n•  Validated algorithms",
-//                                 buttonText: "Do an HRV reading",
-//                                 textVStackAlignment: .center,
-//                                 titleTextAlignment: .center,
-//                                 onBottomButtonTap: {})
+//                MessageScreen(illustration: "GreetingScreen1",
+//                              title: "Take a moment to measure your recovery",
+//                              bulletsLabel: "For best HRV and recovery results:",
+//                              bullets: [
+//                                "Refrain from strenuous activity for at least 15 minutes prior to reading",
+//                                "Sit calmly for 1 minute before reading",
+//                                "If needed, take 6 deep, slow breaths before starting reading then breathe naturally during the reading"
+//                              ],
+//                              buttonText: "Next",
+//                              onBackButtonTap: {},
+//                              onBottomButtonTap: {})
 //                    .previewDevice(PreviewDevice.init(rawValue: device))
 //            )
 //        }
@@ -195,7 +200,7 @@ struct MessageScreen_Previews: PreviewProvider {
                       onBottomButtonTap: {})
     
         MessageScreen(illustration: "GreetingScreen1",
-                      title: "Measure your HRV and Recovery with your phone camera",
+                      title: "Measure your HRV and Recovery with your camera",
                       paragraph: "Simply do a quick resting scan to receive personalized stress and recovery insights.",
                       bulletsLabel: "For best HRV and recovery results:",
                       bullets: [
@@ -212,7 +217,7 @@ struct MessageScreen_Previews: PreviewProvider {
                       bullets: [
                         "Refrain from strenuous activity for at least 15 minutes prior to reading",
                         "Sit calmly for 1 minute before reading",
-                        "If needed, take 6 deep and slow breaths before starting reading then breathe naturally during the reading"
+                        "If needed, take 6 deep, slow breaths before starting reading then breathe naturally during the reading"
                       ],
                       buttonText: "Next",
                       onBackButtonTap: {},

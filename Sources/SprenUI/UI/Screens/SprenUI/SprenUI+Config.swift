@@ -42,20 +42,6 @@ extension SprenUI {
         // keys for UserDefaults
         public let secondReadingKey = "com.spren.ui.second-reading"
         
-        public enum BiologicalSex: String, CaseIterable {
-            case male
-            case female
-            case other
-            
-            static func getPlural(_ gender: Self) -> String {
-                switch gender {
-                case .male: return "men"
-                case .female: return "women"
-                case .other: return "people"
-                }
-            }
-        }
-        
         public enum Graphic {
             case greeting1
             case greeting2

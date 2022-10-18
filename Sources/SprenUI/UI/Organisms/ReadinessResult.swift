@@ -81,6 +81,7 @@ struct ReadinessResult: View {
                             Spacer()
                         }
                         Text(blurb)
+                            .fixedSize(horizontal: false, vertical: true)
                             .font(.sprenParagraph)
                             .sprenUIPadding([.leading, .bottom, .trailing])
                     }

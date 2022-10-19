@@ -21,8 +21,8 @@ extension SprenUI {
         public var userBirthdate: Date?
         
         // UI config
-        public let color1: Color?
-        public let color2: Color?
+        public let primaryColor: Color?
+        public let secondaryColor: Color?
         
         public var bundle: Bundle = .module
         public var graphics: [Graphic: String] = [
@@ -55,8 +55,8 @@ extension SprenUI {
                     userID: String,
                     userGender: BiologicalSex? = nil,
                     userBirthdate: Date? = nil,
-                    color1: Color? = nil,
-                    color2: Color? = nil,
+                    primaryColor: Color? = nil,
+                    secondaryColor: Color? = nil,
                     graphics: [Graphic: String]? = nil,
                     onCancel: @escaping (() -> Void),
                     onFinish: @escaping ((Results) -> Void),
@@ -68,8 +68,8 @@ extension SprenUI {
             self.userGender = userGender
             self.userBirthdate = userBirthdate
             
-            self.color1 = color1
-            self.color2 = color2
+            self.primaryColor = primaryColor
+            self.secondaryColor = secondaryColor
             if let graphics = graphics {
                 self.graphics = graphics
                 self.bundle = .main

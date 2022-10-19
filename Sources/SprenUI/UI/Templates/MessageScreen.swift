@@ -73,7 +73,7 @@ public struct MessageScreen: View {
                         .resizable()
                         .frame(width: illustrationSize,
                                height: illustrationSize)
-                        .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                        .colorMultiply(Color.sprenUISecondaryColor.opacity(0.75))
                 } else {
                     Image(illustration, bundle: SprenUI.config.bundle)
                         .resizable()
@@ -112,7 +112,7 @@ public struct MessageScreen: View {
                             HStack {
                                 VStack {
                                     Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(.sprenUIColor1)
+                                        .foregroundColor(.sprenUISecondaryColor)
                                     Spacer()
                                 }
                                 Text(bullet)

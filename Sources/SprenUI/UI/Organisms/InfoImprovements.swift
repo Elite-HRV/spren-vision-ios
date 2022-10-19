@@ -99,7 +99,7 @@ struct InfoImprovementsButton: View {
             Button(action: action, label: {
                 Text("Show "+(showing ? "less" : "more"))
                     .font(.sprenLabelBold)
-                    .foregroundColor(.sprenUIColor1)
+                    .foregroundColor(.sprenUISecondaryColor)
                 Image(systemName: "chevron."+(showing ? "up" : "down"))
                     .resizable()
                     .scaledToFit()

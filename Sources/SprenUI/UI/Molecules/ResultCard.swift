@@ -29,15 +29,13 @@ struct ResultCard: View {
             VStack {
                 HStack {
                     ResultCircle(value: value, unit: unit, color: color)
-                    
-                    HStack {
-                        Text(title)
-                            .font(.sprenAlertTitle)
-                            .sprenUIPadding([.leading])
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                    }
-                }.sprenUIPadding([.bottom])
+                    Text(title)
+                        .font(.sprenAlertTitle)
+                        .sprenUIPadding([.leading])
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                }
+                .sprenUIPadding(.bottom)
                 
                 Text(text)
                     .font(.sprenLabel)
@@ -127,5 +125,23 @@ struct ResultCard_Previews: PreviewProvider {
                                  readiness: nil,
                                  ansBalance: nil,
                                  signalQuality: 2), type: .hrvScore)
+        
+        ResultCard(results: .init(guid: "",
+                                 hr: 58.9,
+                                 hrvScore: 63.1,
+                                 rmssd: 0.3,
+                                 breathingRate: 11,
+                                 readiness: nil,
+                                 ansBalance: nil,
+                                 signalQuality: 2), type: .hr)
+        
+        ResultCard(results: .init(guid: "",
+                                 hr: 58.9,
+                                 hrvScore: 63.1,
+                                 rmssd: 0.3,
+                                 breathingRate: 11,
+                                 readiness: nil,
+                                 ansBalance: nil,
+                                  signalQuality: 2), type: .breathingRate)
     }
 }

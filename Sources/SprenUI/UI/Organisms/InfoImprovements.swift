@@ -97,7 +97,9 @@ struct InfoImprovementsButton: View {
     var body: some View {
         HStack {
             Button(action: action, label: {
-                Text("Show "+(showing ? "less" : "more")).font(.sprenLabelBold).foregroundColor(.sprenPink)
+                Text("Show "+(showing ? "less" : "more"))
+                    .font(.sprenLabelBold)
+                    .foregroundColor(.sprenUIColor1)
                 Image(systemName: "chevron."+(showing ? "up" : "down"))
                     .resizable()
                     .scaledToFit()

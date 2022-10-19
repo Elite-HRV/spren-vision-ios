@@ -84,7 +84,7 @@ extension RRBar {
             return Color("Yellow", bundle: .module)
         }
         
-        return Color.green
+        return Color("DemographicGreen", bundle: .module)
     }
     
     func getBarStartColor() -> Color {
@@ -92,7 +92,7 @@ extension RRBar {
             return Color("LightYellow", bundle: .module)
         }
         
-        return Color.green
+        return Color("DemographicGreen", bundle: .module)
     }
     
     func getBarEndColor() -> Color {
@@ -100,7 +100,7 @@ extension RRBar {
             return Color("Yellow", bundle: .module)
         }
         
-        return Color.green
+        return Color("DemographicGreen", bundle: .module)
     }
 }
 

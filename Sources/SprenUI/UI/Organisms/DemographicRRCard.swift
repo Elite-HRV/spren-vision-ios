@@ -61,7 +61,7 @@ struct RRConstants {
             return Color("Yellow", bundle: .module)
         }
         if 12 <= value && value <= 20 {
-            return .green
+            return Color("DemographicGreen", bundle: .module)
         }
         return Color("Yellow", bundle: .module)
     }

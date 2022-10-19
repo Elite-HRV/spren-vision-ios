@@ -33,11 +33,11 @@ let config = SprenUI.Config(
 		// provide names for image sets in main bundle xcassets
 		// all 5 are required
 		graphics: [ 
-		    .greeting1: "GreetingScreen1",
-		    .greeting2: "GreetingScreen2",
-		    .fingerOnCamera: "FingerOnCamera",
-		    .noCamera: "NoCamera",
-		    .serverError: "Server"
+		    .greeting1:      "<image set name>", // greeting screen 1 
+		    .greeting2:      "<image set name>", // greeting screen 2
+		    .fingerOnCamera: "<image set name>", // finger on camera instruction screen
+		    .noCamera:       "<image set name>", // camera access authorization denied screen
+		    .serverError:    "<image set name>" // server or calculation error
 		],
 		onCancel: {
 				// user exited UI before completing a reading

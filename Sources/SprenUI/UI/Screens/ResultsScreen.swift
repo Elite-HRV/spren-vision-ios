@@ -85,13 +85,13 @@ struct ResultsScreen: View {
             }
             
             if results.readiness == nil {
-                ResultCard(results: results,
+                ResultCard(value: results.hrvScore,
                            type: .hrvScore)
                 .onTapGesture { transition(to: .hrvScoreInfo) }
-                ResultCard(results: results,
+                ResultCard(value: results.hr,
                            type: .hr)
                 .onTapGesture { transition(to: .hrInfo) }
-                ResultCard(results: results,
+                ResultCard(value: results.breathingRate,
                            type: .breathingRate)
                 .onTapGesture { transition(to: .respiratoryRateInfo) }
             } else {

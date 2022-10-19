@@ -47,7 +47,8 @@ struct UploadScreen: View {
                               to:   viewModel.circleArc)
                         .stroke(style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
                         .rotationEffect(Angle(degrees: 270+viewModel.circleRotation))
-                        .foregroundColor(Color.sprenUIColor1)
+
+                        .foregroundColor(Color.sprenUISecondaryColor)
                         .frame(width: circleSize, height: circleSize)
                 }
                 .sprenUIPadding()

@@ -17,12 +17,22 @@ extension SprenUI {
         
         // user config
         public let userID: String
-        public let userGender: BiologicalSex?
-        public let userBirthdate: Date?
+        public var userGender: BiologicalSex?
+        public var userBirthdate: Date?
         
         // UI config
-        public let color1: Color?
-        public let color2: Color?
+        public let primaryColor: Color?
+        public let secondaryColor: Color?
+        
+        public var bundle: Bundle = .module
+        public var graphics: [Graphic: String] = [
+            .greeting1: "GreetingScreen1",
+            .greeting2: "GreetingScreen2",
+            .fingerOnCamera: "FingerOnCamera",
+            .noCamera: "NoCamera",
+            .serverError: "Server"
+        ]
+        
         public let onCancel: (() -> Void)
         public let onFinish: ((_ results: Results) -> Void)
         
@@ -32,10 +42,12 @@ extension SprenUI {
         // keys for UserDefaults
         public let secondReadingKey = "com.spren.ui.second-reading"
         
-        public enum BiologicalSex {
-            case male
-            case female
-            case other
+        public enum Graphic {
+            case greeting1
+            case greeting2
+            case fingerOnCamera
+            case noCamera
+            case serverError
         }
         
         public init(baseURL: String,
@@ -43,8 +55,9 @@ extension SprenUI {
                     userID: String,
                     userGender: BiologicalSex? = nil,
                     userBirthdate: Date? = nil,
-                    color1: Color? = nil,
-                    color2: Color? = nil,
+                    primaryColor: Color? = nil,
+                    secondaryColor: Color? = nil,
+                    graphics: [Graphic: String]? = nil,
                     onCancel: @escaping (() -> Void),
                     onFinish: @escaping ((Results) -> Void),
                     logger: Logger? = nil) {
@@ -55,8 +68,13 @@ extension SprenUI {
             self.userGender = userGender
             self.userBirthdate = userBirthdate
             
-            self.color1 = color1
-            self.color2 = color2
+            self.primaryColor = primaryColor
+            self.secondaryColor = secondaryColor
+            if let graphics = graphics {
+                self.graphics = graphics
+                self.bundle = .main
+            }
+
             self.onCancel = onCancel
             self.onFinish = onFinish
             

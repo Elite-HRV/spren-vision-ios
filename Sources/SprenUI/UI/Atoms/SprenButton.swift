@@ -21,7 +21,7 @@ struct SprenButton: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: height)
                 .foregroundColor(.white)
-                .background(Color.sprenUIColor2)
+                .background(Color.sprenUIPrimaryColor)
                 .cornerRadius(cornerRadius)
         }
     }

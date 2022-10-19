@@ -27,8 +27,18 @@ let config = SprenUI.Config(
 		userBirthdate: <optional, Date>,
 		
 		// UI
-		color1: <optional, Color>, // used for graphics
-		color2: <optional, Color>, // used for buttons
+		primaryColor: <optional, Color>, // used for buttons
+		secondaryColor: <optional, Color>, // used for graphics
+		// optionally override default intro screen graphics
+		// provide names for image sets in main bundle xcassets
+		// all 5 are required
+		graphics: [ 
+		    .greeting1: "GreetingScreen1",
+		    .greeting2: "GreetingScreen2",
+		    .fingerOnCamera: "FingerOnCamera",
+		    .noCamera: "NoCamera",
+		    .serverError: "Server"
+		],
 		onCancel: {
 				// user exited UI before completing a reading
 				// dismiss SprenUI

@@ -26,13 +26,16 @@ extension Font {
     static let sprenProgress = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*20)
     static let sprenButton = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*18)
     static let sprenParagraph = Font.custom("Avenir Next Medium",   size: Autoscale.scaleFactor*16)
+    static let sprenBullet = Font.custom("Avenir Next Medium",   size: Autoscale.scaleFactor*14)
+    static let sprenParagraphBold = Font.custom("Avenir Next Demi Bold",   size: Autoscale.scaleFactor*16)
 
     static let sprenSubtitle = Font.custom("Avenir Next Medium", size: Autoscale.scaleFactor*20)
     static let disclaimer = Font.custom("Avenir Next",   size: Autoscale.scaleFactor*9)
     
     static let sprenLabel = Font.custom("Avenir Next Medium", size: Autoscale.scaleFactor*14)
     static let sprenLabelBold = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*14)
-    
+    static let sprenLabelSmallBold = Font.custom("Avenir Next Demi Bold", size: Autoscale.scaleFactor*12)
+    static let sprenLabelSmall = Font.custom("Avenir Next Medium", size: Autoscale.scaleFactor*12)
 }
 
 //public enum CustomFonts {

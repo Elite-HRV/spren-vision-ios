@@ -12,7 +12,7 @@ extension SprenUI {
     
     class ViewModel: ObservableObject {
         
-        let firstScreen: NavTag = UserDefaults.standard.bool(forKey: SprenUI.config.secondReadingKey) ? .fingerOnCameraScreen : .greetingScreen1
+        let firstScreen: NavTag = UserDefaults.standard.bool(forKey: SprenUI.config.secondReadingKey) ? .greetingScreen1b : .greetingScreen1a
         @Published var navTag: NavTag
         
         @Published var results: Results = .empty
@@ -32,7 +32,7 @@ extension SprenUI {
         func handleVideoAuthorization() {
             switch AVCaptureDevice.authorizationStatus(for: .video) {
             case .authorized:
-                self.transition(to: .readingScreen)
+                self.transition(to: .fingerOnCameraScreen)
             case .notDetermined:
                AVCaptureDevice.requestAccess(for: .video) { granted in
                    if granted {
@@ -59,14 +59,6 @@ extension SprenUI {
                         self.transition(to: .noCameraScreen)
                     }
                 })
-            }
-        }
-        
-        func handleFingerOnCameraScreenBackButtonTap() {
-            if firstScreen == .fingerOnCameraScreen {
-                SprenUI.config.onCancel()
-            } else {
-                self.transition(to: firstScreen)
             }
         }
         

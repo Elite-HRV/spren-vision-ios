@@ -13,7 +13,9 @@ public struct MessageScreen: View {
     
     let illustration: String
     let title: String
-    let paragraph: String
+    let paragraph: String?
+    let bulletsLabel: String
+    let bullets: [String]
     let buttonText: String
     
     var textVStackAlignment: HorizontalAlignment = .leading
@@ -25,10 +27,22 @@ public struct MessageScreen: View {
     
     let illustrationSize = Autoscale.scaleFactor * 300
     
-    public init(illustration: String, title: String, paragraph: String, buttonText: String, textVStackAlignment: HorizontalAlignment = .leading, titleTextAlignment: TextAlignment = .leading, paragraphTextAlignment: TextAlignment = .leading, onBackButtonTap: (() -> Void)? = nil, onBottomButtonTap: @escaping () -> Void) {
+    public init(illustration: String,
+                title: String,
+                paragraph: String? = nil,
+                bulletsLabel: String = "",
+                bullets: [String] = [],
+                buttonText: String,
+                textVStackAlignment: HorizontalAlignment = .leading,
+                titleTextAlignment: TextAlignment = .leading,
+                paragraphTextAlignment: TextAlignment = .leading,
+                onBackButtonTap: (() -> Void)? = nil,
+                onBottomButtonTap: @escaping () -> Void) {
         self.illustration = illustration
         self.title = title
         self.paragraph = paragraph
+        self.bulletsLabel = bulletsLabel
+        self.bullets = bullets
         self.buttonText = buttonText
         self.textVStackAlignment = textVStackAlignment
         self.titleTextAlignment = titleTextAlignment
@@ -40,16 +54,32 @@ public struct MessageScreen: View {
     public var body: some View {
         VStack {
             Header(backButtonColor: colorScheme == .light ? .black : .white, onBackButtonTap: onBackButtonTap)
-                        
+            
+            // demo app
             if illustration == "Home" && Autoscale.scale == 3 {
                 HomeAnimation()
                     .sprenUIPadding()
-            } else {
-                Image(illustration, bundle: .module)
+            } else if illustration == "Home" {
+                Image("Home", bundle: .module)
                     .resizable()
                     .frame(width: illustrationSize,
                            height: illustrationSize)
-                    .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+            }
+            
+            // SprenUI
+            else {
+                if SprenUI.config.bundle == .module {
+                    Image(illustration, bundle: SprenUI.config.bundle)
+                        .resizable()
+                        .frame(width: illustrationSize,
+                               height: illustrationSize)
+                        .colorMultiply(Color.sprenUISecondaryColor.opacity(0.75))
+                } else {
+                    Image(illustration, bundle: SprenUI.config.bundle)
+                        .resizable()
+                        .frame(width: illustrationSize,
+                               height: illustrationSize)
+                }
             }
             
             Spacer()
@@ -61,12 +91,37 @@ public struct MessageScreen: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .multilineTextAlignment(titleTextAlignment)
                         .sprenUIPadding([.leading, .trailing])
-
-                    Text(paragraph)
-                        .font(.sprenParagraph)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(paragraphTextAlignment)
-                        .sprenUIPadding([.top, .leading, .trailing])
+                    
+                    if let paragraph = paragraph {
+                        Text(paragraph)
+                            .font(.sprenParagraph)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(paragraphTextAlignment)
+                            .sprenUIPadding(.top, factor: 0.75)
+                            .sprenUIPadding([.leading, .trailing])
+                    }
+                    
+                    if bullets.count > 0 {
+                        Text(bulletsLabel)
+                            .font(.sprenParagraph)
+                            .sprenUIPadding([.top], factor: 0.75)
+                            .sprenUIPadding([.bottom], factor: 0.25)
+                            .sprenUIPadding([.leading, .trailing])
+                        
+                        ForEach(bullets, id: \.self) { bullet in
+                            HStack {
+                                VStack {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(.sprenUISecondaryColor)
+                                    Spacer()
+                                }
+                                Text(bullet)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .font(.sprenBullet)
+                            }
+                            .sprenUIPadding([.leading, .trailing])
+                        }
+                    }
                 }
             }
             
@@ -78,7 +133,8 @@ public struct MessageScreen: View {
     }
 }
 
-struct PrereadingScreen_Previews: PreviewProvider {
+
+struct MessageScreen_Previews: PreviewProvider {
     static var previews: some View {
         
 //        let previewDevices = [
@@ -118,13 +174,17 @@ struct PrereadingScreen_Previews: PreviewProvider {
         
 //        ForEach(previewDevices, id: \.self) { device -> AnyView in
 //            AnyView(
-//                MessageScreen(illustration: "Home",
-//                                 title: "Unlock advanced HRV insights with your smartphone camera",
-//                                 paragraph: "•  Integrate via SDK and API\n•  Customizable look and feel\n•  Validated algorithms",
-//                                 buttonText: "Do an HRV reading",
-//                                 textVStackAlignment: .center,
-//                                 titleTextAlignment: .center,
-//                                 onBottomButtonTap: {})
+//                MessageScreen(illustration: "GreetingScreen1",
+//                              title: "Take a moment to measure your recovery",
+//                              bulletsLabel: "For best HRV and recovery results:",
+//                              bullets: [
+//                                "Refrain from strenuous activity for at least 15 minutes prior to reading",
+//                                "Sit calmly for 1 minute before reading",
+//                                "If needed, take 6 deep, slow breaths before starting reading then breathe naturally during the reading"
+//                              ],
+//                              buttonText: "Next",
+//                              onBackButtonTap: {},
+//                              onBottomButtonTap: {})
 //                    .previewDevice(PreviewDevice.init(rawValue: device))
 //            )
 //        }
@@ -140,9 +200,26 @@ struct PrereadingScreen_Previews: PreviewProvider {
                       onBottomButtonTap: {})
     
         MessageScreen(illustration: "GreetingScreen1",
-                         title: "Measure your HRV with your phone camera",
-                         paragraph: "Simply do a quick resting scan when you wake up to receive personalized stress and recovery insights.",
-                         buttonText: "Next",
+                      title: "Measure your HRV and Recovery with your camera",
+                      paragraph: "Simply do a quick resting scan to receive personalized stress and recovery insights.",
+                      bulletsLabel: "For best HRV and recovery results:",
+                      bullets: [
+                        "Refrain from strenuous activity for at least 15 minutes prior to reading",
+                        "Sit calmly for 1 minute before reading"
+                      ],
+                      buttonText: "Next",
+                      onBackButtonTap: {},
+                      onBottomButtonTap: {})
+        
+        MessageScreen(illustration: "GreetingScreen1",
+                      title: "Take a moment to measure your recovery",
+                      bulletsLabel: "For best HRV and recovery results:",
+                      bullets: [
+                        "Refrain from strenuous activity for at least 15 minutes prior to reading",
+                        "Sit calmly for 1 minute before reading",
+                        "If needed, take 6 deep, slow breaths before starting reading then breathe naturally during the reading"
+                      ],
+                      buttonText: "Next",
                       onBackButtonTap: {},
                       onBottomButtonTap: {})
     

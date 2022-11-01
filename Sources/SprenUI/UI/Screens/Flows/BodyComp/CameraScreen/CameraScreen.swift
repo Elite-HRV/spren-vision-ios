@@ -184,12 +184,14 @@ struct CameraScreen: View {
         } label: {
             VStack {
                 Spacer().frame(height: Autoscale.convert(25))
-                Image(isTimerOpen ? "TimerRed" : "Timer", bundle: .module)
+                Image("Timer", bundle: .module).colorMultiply(isTimerOpen ? .sprenUIColor1 : .white)
                 
                 if let isTimerOn = model.isTimerOn {
                     Text(String(isTimerOn) + "s")
                         .font(.sprenParagraph)
-                        .foregroundColor(colorScheme == .light ? .white : .black)
+                        .foregroundColor(.white)
+                }else{
+                    Text(" ")
                 }
             }
         }
@@ -217,7 +219,7 @@ struct CameraScreen: View {
         } label: {
             VStack {
                 Spacer().frame(height: Autoscale.convert(25))
-                Image(model.isCameraFlipped ? "SwitchRed" : "Switch", bundle: .module)
+                Image("Switch", bundle: .module).colorMultiply(model.isCameraFlipped ? .sprenUIColor1 : .white)
                 Text(" ")
             }
         }

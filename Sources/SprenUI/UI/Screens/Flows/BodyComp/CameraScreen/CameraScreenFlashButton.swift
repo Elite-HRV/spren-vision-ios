@@ -17,11 +17,11 @@ struct CameraScreenFlashButton: View {
             ZStack {
                 Circle().fill(.white).frame(width: Autoscale.convert(44), height: Autoscale.convert(44))
                 if(model.isFlashOn) {
-                    Image(systemName: "bolt.fill")
+                    Image(systemName: "bolt.fill").colorMultiply(.black)
                 } else {
                     ZStack {
                         Circle().fill(.white).frame(width: Autoscale.convert(44), height: Autoscale.convert(44))
-                        Image(systemName: "bolt.slash.fill")
+                        Image(systemName: "bolt.slash.fill").colorMultiply(.black)
                     }
                 }
             }

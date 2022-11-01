@@ -34,7 +34,9 @@ struct CameraScreen: View {
                 CameraPreview(session: model.session)
                     .edgesIgnoringSafeArea(.all)
                     .onAppear {
-                        model.configure()
+                        if(model.imageReady == nil){
+                            model.configure()
+                        }
                     }
                     .animation(.easeInOut)
 

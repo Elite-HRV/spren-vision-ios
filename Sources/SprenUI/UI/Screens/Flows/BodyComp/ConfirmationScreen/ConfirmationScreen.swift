@@ -46,7 +46,7 @@ struct ConfirmationScreen: View {
                                 Spacer()
                                 
                                 CloseButton(sizeWidth: Autoscale.convert(12), sizeHeight: Autoscale.convert(12), action: {
-                                        self.presentationMode.wrappedValue.dismiss()
+                                    self.presentationMode.wrappedValue.dismiss()
                                 }, image: "CloseSmall", inline: true, padding: false)
                             }
                             
@@ -118,7 +118,7 @@ struct ConfirmationScreen: View {
             Spacer()
             
             retake
-        }.padding(.top, Autoscale.convert(20))
+        }.padding(.top, Autoscale.convert(20)).padding(.bottom, Autoscale.convert(30))
     }
     
     var secondMenu: some View {

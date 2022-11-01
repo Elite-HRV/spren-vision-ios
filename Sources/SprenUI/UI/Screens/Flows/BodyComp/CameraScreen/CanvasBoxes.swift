@@ -116,6 +116,7 @@ struct CanvasBoxes: View {
         GeometryReader { geometry in
             ZStack {
                 ZStack {
+                    //Top left
                     Path { path in
                         let p1 = CGPoint(x: 40, y: armsHeight)
                         let p2 = CGPoint(x: 16, y: armsHeight + 24)

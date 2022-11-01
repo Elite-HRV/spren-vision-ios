@@ -34,7 +34,7 @@ struct Box: View {
                     VStack(alignment: .leading, spacing: Autoscale.convert(22.5)) {
                         HStack {
                             Text(title)
-                                .foregroundColor(Color("AppBlack", bundle: .module))
+                                .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark))
                                 .font(.sprenSmallText)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.01)
@@ -45,7 +45,7 @@ struct Box: View {
                         HStack(alignment: .bottom) {
                             if let number = self.number {
                                 Text(String(format: "%.2f", number))
-                                    .foregroundColor(Color("AppBlack", bundle: .module))
+                                    .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark))
                                     .font(.sprenBoldNumber)
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.01)
@@ -53,7 +53,7 @@ struct Box: View {
                             
                             if let metric = self.metric {
                                 Text(metric)
-                                    .foregroundColor(Color("AppBlack", bundle: .module))
+                                    .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark))
                                     .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
                             }
                             
@@ -65,29 +65,30 @@ struct Box: View {
 
                     VStack {
                         Text(title)
-                            .foregroundColor(Color("AppBlack", bundle: .module))
+                            .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark))
                             .font(.sprenSmallText)
                             .lineLimit(1)
                             .minimumScaleFactor(0.01)
 
                         if let status = self.status {
                             Text("Status: \(status.rawValue)")
-                                .foregroundColor(Color("AppBlack", bundle: .module))
+                                .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark))
                                 .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
                         }
                         
                         if let errorDescription = self.errorDescription {
                             Text(errorDescription)
-                                .foregroundColor(Color("AppBlack", bundle: .module))
+                                .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark))
                                 .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
                         }
                     }
                 }
             } else {
-                Color("AppBackground", bundle: .module)
+                getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark)
             }
                 
-        }.frame(height: 140).cornerRadius(16).shadow(color: title != nil ? Color("Shaddow", bundle: .module) : Color("AppBackground", bundle: .module), radius: 7, x: 0, y: 10)
+        }.frame(height: 140).cornerRadius(16)
+            .shadow(color: title != nil ? getColor(colorScheme: colorScheme, light: .sprenBodyCompShaddowLight, dark: .sprenBodyCompShaddowDark) : getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark), radius: 7, x: 0, y: 10)
     }
 }
 

@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct BodyCompResults: View {
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
 
     let bodyCompResponse: GetBodyCompResponse
 
     var body: some View {
         ZStack {
-            Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.all)
+            getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark).edgesIgnoringSafeArea(.all)
 
             ScrollView {
                 VStack {
@@ -91,7 +92,7 @@ struct BodyCompResults: View {
             Image(systemName: "exclamationmark.circle")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(Color("AppGrey", bundle: .module))
+                .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompGrayLight, dark: .sprenBodyCompGrayDark))
                 .frame(width: Autoscale.convert(23), height: Autoscale.convert(23))
                 .rotationEffect(.degrees(-180))
         }.isDetailLink(false)
@@ -100,7 +101,7 @@ struct BodyCompResults: View {
     var text: some View {
         Text("Go deeper with resting metabolic rate and normative indicators as well as showing progress over time")
             .font(.sprenLargeText)
-            .foregroundColor(Color("AppBlack", bundle: .module))
+            .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark))
             .multilineTextAlignment(.center).padding(.top, Autoscale.convert(24))
     }    
 }

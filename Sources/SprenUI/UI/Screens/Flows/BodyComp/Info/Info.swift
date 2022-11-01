@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct Info: View {
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         ZStack {
-            Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.all)
+            getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark).edgesIgnoringSafeArea(.all)
             
             ScrollView {                
                 VStack(spacing: Autoscale.convert(20)) {

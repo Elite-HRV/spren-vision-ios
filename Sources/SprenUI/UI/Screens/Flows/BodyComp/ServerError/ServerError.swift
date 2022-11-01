@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ServerError: View {
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
 
     @State private var navigateTo: String?
@@ -15,7 +16,7 @@ struct ServerError: View {
     var body: some View {
         ZStack {
             NavigationLink(destination: SetupGuide(), tag: "SetupGuide", selection: $navigateTo) { EmptyView() }
-            Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.all)
+            getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark).edgesIgnoringSafeArea(.all)
             
             VStack {
                 CloseButton(action: {self.rootPresentationMode.wrappedValue.dismiss()})

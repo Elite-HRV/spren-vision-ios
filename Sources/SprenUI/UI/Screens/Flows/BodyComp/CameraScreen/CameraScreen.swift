@@ -45,7 +45,7 @@ struct CameraScreen: View {
                 
                 ZStack {
                     if(model.isTimerOn != nil && model.time != nil && model.time ?? 0 > 0) {
-                        Color("Black20", bundle: .module)
+                        getColor(colorScheme: colorScheme, light: .sprenBodyCompBlack20Light, dark: .sprenBodyCompBlack20Dark)
                     }
                     
                     ZStack {

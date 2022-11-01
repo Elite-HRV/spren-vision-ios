@@ -29,7 +29,7 @@ struct SetupGuide: View {
             
             ZStack {
                 
-                Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.top)
+                getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark).edgesIgnoringSafeArea(.top)
                 
                 VStack {
                         CloseButton(action: {

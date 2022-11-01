@@ -33,7 +33,7 @@ extension AnalyzingScreen {
         }
         .frame(width: UIScreen.screenWidth - Autoscale.convert(90))
         .padding(Autoscale.convert(15))
-        .background(Color("AppBlack", bundle: .module).opacity(0.52))
+        .background(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark).opacity(0.52))
         .cornerRadius(Autoscale.convert(15))
         .padding(EdgeInsets(top: 0, leading: 0, bottom: Autoscale.convert(60), trailing: 0))
     }

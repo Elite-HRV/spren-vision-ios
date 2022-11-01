@@ -8,14 +8,14 @@ import AVFoundation
 import SwiftUI
 
 struct CameraAccessDenied: View {
-
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         ZStack {
-            Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.all)
+            getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark).edgesIgnoringSafeArea(.all)
             
             VStack {
                 CloseButton(action: {self.rootPresentationMode.wrappedValue.dismiss()})

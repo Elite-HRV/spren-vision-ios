@@ -25,15 +25,15 @@ struct ConfirmationScreenParameters: View {
                 VStack(alignment: .leading, spacing: Autoscale.convert(8)) {
                     VStack(alignment: .leading, spacing: Autoscale.convert(4)) {
                         Text("Weight: ").font(.sprenLabel)
-                            .foregroundColor(Color("LightGrey", bundle: .module))
+                            .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompLightGray2Light, dark: .sprenBodyCompLightGray2Dark))
                         Text(String(weight) + " \(UserData.weightMetricLables[weightMetric])").font(.sprenParagraph)
                         
                         Text("Age: ").font(.sprenLabel)
-                            .foregroundColor(Color("LightGrey", bundle: .module))
+                            .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompLightGray2Light, dark: .sprenBodyCompLightGray2Dark))
                         Text("\(age)").font(.sprenParagraph)
                         
                         Text("Recent activity level: ").font(.sprenLabel)
-                            .foregroundColor(Color("LightGrey", bundle: .module))
+                            .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompLightGray2Light, dark: .sprenBodyCompLightGray2Dark))
                         Text("\(fitnessLevel) days per week").font(.sprenParagraph)
                     }
                 }
@@ -43,7 +43,7 @@ struct ConfirmationScreenParameters: View {
                 VStack(alignment: .leading, spacing: Autoscale.convert(8)) {
                     VStack(alignment: .leading, spacing: Autoscale.convert(4)) {
                         Text("Height: ").font(.sprenLabel)
-                            .foregroundColor(Color("LightGrey", bundle: .module))
+                            .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompLightGray2Light, dark: .sprenBodyCompLightGray2Dark))
                         
                         if(height.unit == HeightSize.Unit.ft_in) {
                             Text("\(height.feet) feet \(height.inches) inches").font(.sprenParagraph)
@@ -52,7 +52,7 @@ struct ConfirmationScreenParameters: View {
                         }
                         
                         Text("Gender: ").font(.sprenLabel)
-                            .foregroundColor(Color("LightGrey", bundle: .module))
+                            .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompLightGray2Light, dark: .sprenBodyCompLightGray2Dark))
                         Text(biologicalSex == 1 ? "Female" : biologicalSex == 2 ? "Other" : "Male").font(.sprenParagraph)
                     }
                 }

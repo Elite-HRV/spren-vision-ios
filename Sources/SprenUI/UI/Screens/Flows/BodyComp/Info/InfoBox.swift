@@ -20,7 +20,7 @@ struct InfoBox: View {
                     .font(.sprenProgress)
                     .lineLimit(1)
                     .minimumScaleFactor(0.01)
-                    .foregroundColor(Color("AppBlack", bundle: .module)).multilineTextAlignment(.leading)
+                    .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark)).multilineTextAlignment(.leading)
                 
                 Spacer()
             }
@@ -28,16 +28,16 @@ struct InfoBox: View {
             HStack {
                 Text(text)
                     .font(.sprenLabel)
-                    .foregroundColor(Color("AppBlack", bundle: .module)).multilineTextAlignment(.leading)
+                    .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark)).multilineTextAlignment(.leading)
                 
                 Spacer()
             }
         }
         .frame(width: .infinity)
         .padding(.horizontal, Autoscale.convert(15)).padding(.vertical, Autoscale.convert(20))
-        .background(colorScheme == .light ? Color.white : Color("AppGrey", bundle: .module))
+        .background(colorScheme == .light ? Color.white : .sprenBodyCompGrayLight)
         .cornerRadius(Autoscale.convert(16))
-        .shadow(color: Color("Shaddow", bundle: .module), radius: Autoscale.convert(7), x: 0, y: Autoscale.convert(10))
+        .shadow(color: getColor(colorScheme: colorScheme, light: .sprenBodyCompShaddowLight, dark: .sprenBodyCompShaddowDark), radius: Autoscale.convert(7), x: 0, y: Autoscale.convert(10))
     }
 }
 

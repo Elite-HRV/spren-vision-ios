@@ -57,7 +57,7 @@ struct AnalyzingScreen: View {
                 shouldApplyShadow: true
             ).padding([.top], Autoscale.convert(50)), alignment: .top
         )
-        .background(Color("AppLightGray", bundle: .module))
+        .background(getColor(colorScheme: colorScheme, light: .sprenBodyCompLightGrayLight, dark: .sprenBodyCompLightGrayDark))
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)

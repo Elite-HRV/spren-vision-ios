@@ -31,7 +31,7 @@ struct ConfirmationScreen: View {
             Color(colorScheme == .light ? .white : .black).edgesIgnoringSafeArea(.all)
             
             ZStack {
-                Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.top)
+                getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark).edgesIgnoringSafeArea(.top)
                 
                 ScrollView {
                     VStack {

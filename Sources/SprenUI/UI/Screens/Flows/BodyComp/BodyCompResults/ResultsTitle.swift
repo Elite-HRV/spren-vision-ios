@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct ResultsTitle: View {
+    @Environment(\.colorScheme) var colorScheme
     
     var text: String
     var lines: Int
     
     var body: some View {
         Text(text)
-        .foregroundColor(Color("AppBlack", bundle: .module))
+        .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark))
         .font(.sprenAlertTitle)
         .lineLimit(lines)        
         .minimumScaleFactor(0.01)

@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct Privacy: View {
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         ZStack {
-            Color("AppBackground", bundle: .module).edgesIgnoringSafeArea(.all)
+            getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark).edgesIgnoringSafeArea(.all)
             
             VStack {
                 CloseButton(action: {self.presentationMode.wrappedValue.dismiss()})

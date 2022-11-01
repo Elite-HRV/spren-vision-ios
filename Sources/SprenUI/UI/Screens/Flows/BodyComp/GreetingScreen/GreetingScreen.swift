@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct GreetingScreen: View {
+    @Environment(\.colorScheme) var colorScheme
     @State private var isActive : Bool = false
     
     var body: some View {
         NavigationView {
             ZStack {
                 
-                Color("AppBackground").edgesIgnoringSafeArea(.all)
+                getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark).edgesIgnoringSafeArea(.all)
                 
                 VStack {
                     if SprenUI.config.bundle == .module {

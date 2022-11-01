@@ -39,7 +39,7 @@ struct CameraScreen: View {
                     .animation(.easeInOut)
 
                 //display frame
-                if(testsEnabled == false) {
+                if(testsEnabled == true) {
                     ScreenCameraTests(currentFrame: currentFrame, leftWrist: leftWrist, rightWrist: rightWrist, leftAnkle: leftAnkle, rightAnkle: rightAnkle)
                 }
                 
@@ -102,40 +102,42 @@ struct CameraScreen: View {
                             currentFrame = model.updatedImage
                             points = model.points
                             
-                            if(currentFrame != nil){
-                                let proportion = UIScreen.main.bounds.height / currentFrame!.size.height
-                                let offset = (currentFrame!.size.width * proportion - UIScreen.main.bounds.width) / 2
+                            if let currentFrame = currentFrame {
+                                let proportion = UIScreen.main.bounds.height / currentFrame.size.height
+                                let offset = (currentFrame.size.width * proportion - UIScreen.main.bounds.width) / 2
                                 
-                                if(points!.count > 7){
-                                    let leftWristHeight = (points?[7].x ?? 0) * proportion
-                                    let leftWristWidth = (points?[7].y ?? 0) * proportion - offset
-                                    leftWrist = CGPoint(x: leftWristWidth, y: leftWristHeight)
-                                } else {
-                                    leftWrist = nil
-                                }
-                                
-                                if(points!.count > 6){
-                                    let rightWristHeight = (points?[6].x ?? 0) * proportion
-                                    let rightWristWidth = (points?[6].y ?? 0) * proportion - offset
-                                    rightWrist = CGPoint(x: rightWristWidth, y: rightWristHeight)
-                                } else {
-                                    rightWrist = nil
-                                }
-                                
-                                if(points!.count > 14){
-                                    let leftAnkleHeight = (points?[14].x ?? 0) * proportion
-                                    let leftAnkleWidth = (points?[14].y ?? 0) * proportion - offset
-                                    leftAnkle = CGPoint(x: leftAnkleWidth, y: leftAnkleHeight)
-                                } else {
-                                    leftAnkle = nil
-                                }
-                                
-                                if(points!.count > 13){
-                                    let rightAnkleHeight = (points?[13].x ?? 0) * proportion
-                                    let rightAnkleWidth = (points?[13].y ?? 0) * proportion - offset
-                                    rightAnkle = CGPoint(x: rightAnkleWidth, y: rightAnkleHeight)
-                                } else {
-                                    rightAnkle = nil
+                                if let points = points {
+                                    if(points.count > 7){
+                                        let leftWristHeight = points[7].x * proportion
+                                        let leftWristWidth = points[7].y * proportion - offset
+                                        leftWrist = CGPoint(x: leftWristWidth, y: leftWristHeight)
+                                    } else {
+                                        leftWrist = nil
+                                    }
+                                    
+                                    if(points.count > 6){
+                                        let rightWristHeight = points[6].x * proportion
+                                        let rightWristWidth = points[6].y * proportion - offset
+                                        rightWrist = CGPoint(x: rightWristWidth, y: rightWristHeight)
+                                    } else {
+                                        rightWrist = nil
+                                    }
+                                    
+                                    if(points.count > 14){
+                                        let leftAnkleHeight = points[14].x * proportion
+                                        let leftAnkleWidth = points[14].y * proportion - offset
+                                        leftAnkle = CGPoint(x: leftAnkleWidth, y: leftAnkleHeight)
+                                    } else {
+                                        leftAnkle = nil
+                                    }
+                                    
+                                    if(points.count > 13){
+                                        let rightAnkleHeight = points[13].x * proportion
+                                        let rightAnkleWidth = points[13].y * proportion - offset
+                                        rightAnkle = CGPoint(x: rightAnkleWidth, y: rightAnkleHeight)
+                                    } else {
+                                        rightAnkle = nil
+                                    }
                                 }
                             }
                         }
@@ -143,8 +145,9 @@ struct CameraScreen: View {
                         
                 }.edgesIgnoringSafeArea(.all)
                     
-                
-                NavigationLink(destination: ConfirmationScreen(image: $selectedImage.wrappedValue), tag: "ConfirmationScreen", selection: $navigateTo) { EmptyView() }
+                if let selectedImage = $selectedImage.wrappedValue {
+                    NavigationLink(destination: ConfirmationScreen(image: selectedImage), tag: "ConfirmationScreen", selection: $navigateTo) { EmptyView() }
+                }
             }.onAppear {
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
                     self.infoTimer -= 1
@@ -164,9 +167,13 @@ struct CameraScreen: View {
     }
     
     var timer: some View {
-        Text(String(model.time!))
-            .font(.sprenBigNumber)
-            .foregroundColor(colorScheme == .light ? .white : .black)
+        if let time = model.time {
+            return Text(String(time))
+                .font(.sprenBigNumber)
+                .foregroundColor(colorScheme == .light ? .white : .black)
+        } else {
+            return Text("")
+        }
     }
     
     var timerButton: some View {
@@ -176,9 +183,12 @@ struct CameraScreen: View {
             VStack {
                 Spacer().frame(height: Autoscale.convert(25))
                 Image(isTimerOpen ? "TimerRed" : "Timer", bundle: .module)
-                Text(model.isTimerOn != nil ? String(model.isTimerOn!) + "s" : " ")
-                    .font(.sprenParagraph)
-                    .foregroundColor(colorScheme == .light ? .white : .black)
+                
+                if let isTimerOn = model.isTimerOn {
+                    Text(String(isTimerOn) + "s")
+                        .font(.sprenParagraph)
+                        .foregroundColor(colorScheme == .light ? .white : .black)
+                }
             }
         }
     }

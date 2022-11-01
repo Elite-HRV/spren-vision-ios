@@ -73,7 +73,9 @@ struct PhotoAccessDenied: View {
     
     var button: some View {
         Button {
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url)
+            }
         } label: {
             PurpleButton(text: "Allow access")
                 .onChange(of: scenePhase) { newPhase in

@@ -66,7 +66,10 @@ struct SetupGuide: View {
                     NavigationLink(destination: CameraAccessDenied(), tag: "CameraAccessDenied", selection: $navigateTo) { EmptyView() }
                     NavigationLink(destination: PhotoAccessDenied(), tag: "PhotoAccessDenied", selection: $navigateTo) { EmptyView() }
                     NavigationLink(destination: CameraScreen(), tag: "CameraScreen", selection: $navigateTo) { EmptyView() }
-                    NavigationLink(destination: ConfirmationScreen(image: $selectedImage.wrappedValue), tag: "ConfirmationScreen", selection: $navigateTo) { EmptyView() }
+                    
+                    if let selectedImage = $selectedImage.wrappedValue {
+                        NavigationLink(destination: ConfirmationScreen(image: selectedImage), tag: "ConfirmationScreen", selection: $navigateTo) { EmptyView() }
+                    }
                 }
             }
         }.onAppear {

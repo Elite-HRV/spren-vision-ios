@@ -20,18 +20,19 @@ struct CanvasBoxes: View {
     let rightWidth = UIScreen.main.bounds.width / 2 + 75
     
     func isLeftWristIn() -> Bool {
-        if(leftWrist == nil) {
+        guard let leftWrist = leftWrist else {
             return false
         }
         
         var topPadding = 0.0
         
         if #available(iOS 13.0, *) {
-            let window = UIApplication.shared.windows.first
-            topPadding = window!.safeAreaInsets.top
+            if let window = UIApplication.shared.windows.first {
+                topPadding = window.safeAreaInsets.top
+            }
         }
         
-        if(leftWrist!.x > 15 && leftWrist!.x < 90 && leftWrist!.y > armsHeight + topPadding && leftWrist!.y < armsHeight + topPadding + 89){
+        if(leftWrist.x > 15 && leftWrist.x < 90 && leftWrist.y > armsHeight + topPadding && leftWrist.y < armsHeight + topPadding + 89){
             return true
         }
         
@@ -39,18 +40,19 @@ struct CanvasBoxes: View {
     }
     
     func isRightWristIn() -> Bool {
-        if(rightWrist == nil) {
+        guard let rightWrist = rightWrist else {
             return false
         }
         
         var topPadding = 0.0
         
         if #available(iOS 13.0, *) {
-            let window = UIApplication.shared.windows.first
-            topPadding = window!.safeAreaInsets.top
+            if let window = UIApplication.shared.windows.first {
+                topPadding = window.safeAreaInsets.top
+            }
         }
         
-        if(rightWrist!.x > armsRightWidth - 90 && rightWrist!.x < armsRightWidth - 16 && rightWrist!.y > armsHeight + topPadding && rightWrist!.y < armsHeight + topPadding + 89){
+        if(rightWrist.x > armsRightWidth - 90 && rightWrist.x < armsRightWidth - 16 && rightWrist.y > armsHeight + topPadding && rightWrist.y < armsHeight + topPadding + 89){
             return true
         }
         
@@ -58,7 +60,7 @@ struct CanvasBoxes: View {
     }
     
     func isLeftAnkleIn() -> Bool {
-        if(leftAnkle == nil) {
+        guard let leftAnkle = leftAnkle else {
             return false
         }
         
@@ -66,14 +68,15 @@ struct CanvasBoxes: View {
         var bottomPadding = 0.0
         
         if #available(iOS 13.0, *) {
-            let window = UIApplication.shared.windows.first
-            topPadding = window!.safeAreaInsets.top
-            bottomPadding = window!.safeAreaInsets.bottom
+            if let window = UIApplication.shared.windows.first {
+                topPadding = window.safeAreaInsets.top
+                bottomPadding = window.safeAreaInsets.bottom
+            }
         }
         
         let bottomHeight = UIScreen.main.bounds.height + topPadding - Autoscale.convert(bottomPadding + 180)
         
-        if(leftAnkle!.x > leftWidth - 49 && leftAnkle!.x < rightWidth - 27 && leftAnkle!.y > bottomHeight - 107 && leftAnkle!.y < bottomHeight - 6){
+        if(leftAnkle.x > leftWidth - 49 && leftAnkle.x < rightWidth - 27 && leftAnkle.y > bottomHeight - 107 && leftAnkle.y < bottomHeight - 6){
             return true
         }
         
@@ -81,7 +84,7 @@ struct CanvasBoxes: View {
     }
     
     func isRightAnkleIn() -> Bool {
-        if(rightAnkle == nil) {
+        guard let rightAnkle = rightAnkle else {
             return false
         }
         
@@ -89,14 +92,15 @@ struct CanvasBoxes: View {
         var bottomPadding = 0.0
         
         if #available(iOS 13.0, *) {
-            let window = UIApplication.shared.windows.first
-            topPadding = window!.safeAreaInsets.top
-            bottomPadding = window!.safeAreaInsets.bottom
+            if let window = UIApplication.shared.windows.first {
+                topPadding = window.safeAreaInsets.top
+                bottomPadding = window.safeAreaInsets.bottom
+            }
         }
         
         let bottomHeight = UIScreen.main.bounds.height + topPadding - Autoscale.convert(bottomPadding + 180)
         
-        if(rightAnkle!.x > leftWidth - 49 && rightAnkle!.x < rightWidth - 27 && rightAnkle!.y > bottomHeight - 107 && rightAnkle!.y < bottomHeight - 6){
+        if(rightAnkle.x > leftWidth - 49 && rightAnkle.x < rightWidth - 27 && rightAnkle.y > bottomHeight - 107 && rightAnkle.y < bottomHeight - 6){
             return true
         }
         

@@ -26,59 +26,67 @@ struct Box: View {
 
     var body: some View {
         ZStack {
-            if (title != nil && number != nil && self.status == StatusValue.Status.complete) {
-                Color(colorScheme == .light ? .white : .black)
-                
-                VStack(alignment: .leading, spacing: Autoscale.convert(22.5)) {
-                    HStack {
-                        Text(title!)
+            
+            if let title = self.title {
+                if(self.status == StatusValue.Status.complete){
+                    Color(colorScheme == .light ? .white : .black)
+                    
+                    VStack(alignment: .leading, spacing: Autoscale.convert(22.5)) {
+                        HStack {
+                            Text(title)
+                                .foregroundColor(Color("AppBlack", bundle: .module))
+                                .font(.sprenSmallText)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.01)
+
+                            Spacer()
+                        }.padding(.horizontal, Autoscale.convert(16))
+                        
+                        HStack(alignment: .bottom) {
+                            if let number = self.number {
+                                Text(String(format: "%.2f", number))
+                                    .foregroundColor(Color("AppBlack", bundle: .module))
+                                    .font(.sprenBoldNumber)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.01)
+                            }
+                            
+                            if let metric = self.metric {
+                                Text(metric)
+                                    .foregroundColor(Color("AppBlack", bundle: .module))
+                                    .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
+                            }
+                            
+                            Spacer()
+                        }.padding(.horizontal, Autoscale.convert(16))
+                    }
+                } else {
+                    Color(colorScheme == .light ? .white : .black)
+
+                    VStack {
+                        Text(title)
                             .foregroundColor(Color("AppBlack", bundle: .module))
                             .font(.sprenSmallText)
                             .lineLimit(1)
                             .minimumScaleFactor(0.01)
 
-                        Spacer()
-                    }.padding(.horizontal, Autoscale.convert(16))
-                    
-                    HStack(alignment: .bottom) {
-                        if (number != nil) {
-                            Text(String(format: "%.2f", number!))
+                        if let status = self.status {
+                            Text("Status: \(status.rawValue)")
                                 .foregroundColor(Color("AppBlack", bundle: .module))
-                                .font(.sprenBoldNumber)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.01)
+                                .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
                         }
-                        Text(metric!)
-                            .foregroundColor(Color("AppBlack", bundle: .module))
-                            .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
-
-                        Spacer()
-                    }.padding(.horizontal, Autoscale.convert(16))
-                }
-            } else if (title != nil && status != StatusValue.Status.complete) {
-                Color(colorScheme == .light ? .white : .black)
-
-                VStack {
-                    Text(title!)
-                        .foregroundColor(Color("AppBlack", bundle: .module))
-                        .font(.sprenSmallText)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.01)
-
-                    if (status != nil) {
-                        Text("Status: \(status!.rawValue)")
-                            .foregroundColor(Color("AppBlack", bundle: .module))
-                            .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
-                    }
-                    if (errorDescription != nil) {
-                        Text(errorDescription!)
-                            .foregroundColor(Color("AppBlack", bundle: .module))
-                            .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
+                        
+                        if let errorDescription = self.errorDescription {
+                            Text(errorDescription)
+                                .foregroundColor(Color("AppBlack", bundle: .module))
+                                .font(.sprenParagraph).padding(.bottom, Autoscale.convert(7))
+                        }
                     }
                 }
             } else {
-                Color("AppBackground")
+                Color("AppBackground", bundle: .module)
             }
+                
         }.frame(height: 140).cornerRadius(16).shadow(color: title != nil ? Color("Shaddow", bundle: .module) : Color("AppBackground", bundle: .module), radius: 7, x: 0, y: 10)
     }
 }

@@ -72,7 +72,9 @@ struct CameraAccessDenied: View {
     
     var button: some View {
         Button {
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url)
+            }
         } label: {
             PurpleButton(text: "Enable camera")
                 .onChange(of: scenePhase) { newPhase in

@@ -10,7 +10,7 @@ import SwiftUI
 struct BodyCompResults: View {
     @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
 
-    let bodyCompResponse: GetBodyCompResponse?
+    let bodyCompResponse: GetBodyCompResponse
 
     var body: some View {
         ZStack {
@@ -33,25 +33,23 @@ struct BodyCompResults: View {
 
                     VStack(spacing: Autoscale.convert(16)) {
                         HStack(spacing: Autoscale.convert(16)) {
-                            Box(title: "Body Fat", number: bodyCompResponse?.bodyFat.value, metric: "%", status: bodyCompResponse?.bodyFat.status, errorDescription: bodyCompResponse?.bodyFat.errorDescription)
+                            Box(title: "Body Fat", number: bodyCompResponse.bodyFat.value, metric: "%", status: bodyCompResponse.bodyFat.status, errorDescription: bodyCompResponse.bodyFat.errorDescription)
 
-                            Box(title: "Gynoid Fat", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse?.gynoidFat.value), metric: weightLabel, status: bodyCompResponse?.gynoidFat.status, errorDescription: bodyCompResponse?.gynoidFat.errorDescription)
+                            Box(title: "Gynoid Fat", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse.gynoidFat.value), metric: weightLabel, status: bodyCompResponse.gynoidFat.status, errorDescription: bodyCompResponse.gynoidFat.errorDescription)
                         }
 
                         HStack(spacing: Autoscale.convert(16)) {
-                            Box(title: "Fat Mass", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse?.fatMass.value), metric: weightLabel, status: bodyCompResponse?.fatMass.status, errorDescription: bodyCompResponse?.fatMass.errorDescription)
-
-//                            Box(title: "Weight", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse?.weight.value), metric: weightLabel, status: bodyCompResponse?.weight.status, errorDescription: bodyCompResponse?.weight.errorDescription)
+                            Box(title: "Fat Mass", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse.fatMass.value), metric: weightLabel, status: bodyCompResponse.fatMass.status, errorDescription: bodyCompResponse.fatMass.errorDescription)
                         }
 
                         HStack(spacing: Autoscale.convert(16)) {
-                            Box(title: "Android Fat", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse?.androidFat.value), metric: weightLabel, status: bodyCompResponse?.androidFat.status, errorDescription: bodyCompResponse?.androidFat.errorDescription)
+                            Box(title: "Android Fat", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse.androidFat.value), metric: weightLabel, status: bodyCompResponse.androidFat.status, errorDescription: bodyCompResponse.androidFat.errorDescription)
 
-                            Box(title: "Gynoid Fat", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse?.gynoidFat.value), metric: weightLabel, status: bodyCompResponse?.gynoidFat.status, errorDescription: bodyCompResponse?.gynoidFat.errorDescription)
+                            Box(title: "Gynoid Fat", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse.gynoidFat.value), metric: weightLabel, status: bodyCompResponse.gynoidFat.status, errorDescription: bodyCompResponse.gynoidFat.errorDescription)
                         }
 
                         HStack(spacing: Autoscale.convert(16)) {
-                            Box(title: "Android:Gynoid", number: bodyCompResponse?.androidByGynoid.value, metric: "", status: bodyCompResponse?.androidByGynoid.status, errorDescription: bodyCompResponse?.androidByGynoid.errorDescription)
+                            Box(title: "Android:Gynoid", number: bodyCompResponse.androidByGynoid.value, metric: "", status: bodyCompResponse.androidByGynoid.status, errorDescription: bodyCompResponse.androidByGynoid.errorDescription)
 
                             Box(title: nil, number: nil, metric: nil)
                         }

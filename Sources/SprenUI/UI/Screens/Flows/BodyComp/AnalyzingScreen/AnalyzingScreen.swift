@@ -28,7 +28,10 @@ struct AnalyzingScreen: View {
     let image: UIImage?
 
     var body: some View {
-        NavigationLink(destination: BodyCompResults(bodyCompResponse: $bodyCompResponse.wrappedValue), tag: "ResultsScreen", selection: $navigateTo) { EmptyView() }
+        if let bodyCompResponse = $bodyCompResponse.wrappedValue {
+            NavigationLink(destination: BodyCompResults(bodyCompResponse: bodyCompResponse), tag: "ResultsScreen", selection: $navigateTo) { EmptyView() }
+        }
+        
         NavigationLink(destination: ServerError(), tag: "ServerError", selection: $navigateTo) { EmptyView() }
         NavigationLink(destination: IncorrectBodyPosition(), tag: "IncorrectBodyPosition", selection: $navigateTo) { EmptyView() }
 

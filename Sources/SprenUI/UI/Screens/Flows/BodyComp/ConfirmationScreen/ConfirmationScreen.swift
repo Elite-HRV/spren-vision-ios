@@ -24,7 +24,7 @@ struct ConfirmationScreen: View {
     @State private var isPickerVisible = false
     @StateObject var viewModel = HeightScreen.ViewModel()
     
-    @State var image: UIImage?
+    @State var image: UIImage
     
     var body: some View {
         ZStack {
@@ -75,7 +75,7 @@ struct ConfirmationScreen: View {
                         button
                     }
                 }.onAppear(perform: {
-                    inputImage = image!
+                    inputImage = image
                     if #available(iOS 15.0, *) {
                         finalOutputImage = UserImageMasked.default.runVisionRequest(inputImage)
                     }
@@ -86,7 +86,7 @@ struct ConfirmationScreen: View {
             ImagePickerView(onChoose: { img in
                 image = img
                 
-                inputImage = image!
+                inputImage = image
                 if #available(iOS 15.0, *) {
                     finalOutputImage = UserImageMasked.default.runVisionRequest(inputImage)
                 }
@@ -250,6 +250,8 @@ struct ConfirmationScreen: View {
 
 struct Confirmation_Previews: PreviewProvider {
     static var previews: some View {
-        ConfirmationScreen(image: UIImage(named: "Women", in: .module, with: nil))
+        if let image = UIImage(named: "Women", in: .module, with: nil) {
+            ConfirmationScreen(image: image)
+        }
     }
 }

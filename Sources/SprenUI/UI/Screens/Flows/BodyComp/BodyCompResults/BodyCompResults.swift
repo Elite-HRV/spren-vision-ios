@@ -83,7 +83,7 @@ struct BodyCompResults: View {
         } label: {
             Text("Done")
                 .font(.sprenButton)
-                .foregroundColor(Color.sprenUIColor1)
+                .foregroundColor(.sprenUISecondaryColor)
         }
     }
 

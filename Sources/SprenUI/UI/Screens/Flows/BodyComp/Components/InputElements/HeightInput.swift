@@ -11,7 +11,7 @@ struct HeightInput: View {
 
     @Binding var isPickerVisible: Bool
     @Binding var selection: HeightSize
-    var strokeColor: Color = Color.sprenUIColor1
+    var strokeColor: Color = Color.sprenUISecondaryColor
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -25,7 +25,7 @@ struct HeightInput: View {
                 Spacer()
                 Text(textUnit)
                     .font(.sprenInput)
-                    .foregroundColor(Color.sprenUIColor1)
+                    .foregroundColor(Color.sprenUISecondaryColor)
             }
             .padding()
             .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(strokeColor, style: StrokeStyle(lineWidth: 1.0)))

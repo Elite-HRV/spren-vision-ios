@@ -35,9 +35,9 @@ struct InfoBox: View {
         }
         .frame(width: .infinity)
         .padding(.horizontal, Autoscale.convert(15)).padding(.vertical, Autoscale.convert(20))
-        .background(colorScheme == .light ? Color.white : .sprenBodyCompGrayLight)
+        .background(colorScheme == .light ? Color.white : .sprenBodyCompDarkGray)
         .cornerRadius(Autoscale.convert(16))
-        .shadow(color: getColor(colorScheme: colorScheme, light: .sprenBodyCompShaddowLight, dark: .sprenBodyCompShaddowDark), radius: Autoscale.convert(7), x: 0, y: Autoscale.convert(10))
+        .shadow(color: colorScheme == .light ? .sprenBodyCompShaddowLight : .sprenBodyCompBackgroundDark, radius: Autoscale.convert(7), x: 0, y: Autoscale.convert(10))
     }
 }
 

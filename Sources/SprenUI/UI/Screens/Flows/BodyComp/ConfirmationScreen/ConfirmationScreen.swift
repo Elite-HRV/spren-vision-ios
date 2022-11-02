@@ -131,7 +131,7 @@ struct ConfirmationScreen: View {
                 showModal.toggle()
             } label: {
                 Text("Edit").font(.sprenParagraph)
-                    .foregroundColor(Color.sprenUIColor1)
+                    .foregroundColor(Color.sprenUISecondaryColor)
             }
         }.padding(.top, Autoscale.convert(20))
     }
@@ -158,7 +158,7 @@ struct ConfirmationScreen: View {
             showingOptions = true
         } label: {
             Text("Retake").font(.sprenParagraph)
-                .foregroundColor(Color.sprenUIColor1)
+                .foregroundColor(Color.sprenUISecondaryColor)
         }
         .actionSheet(isPresented: $showingOptions) {
             ActionSheet(
@@ -191,7 +191,7 @@ struct ConfirmationScreen: View {
                         showModal.toggle()
                     } label: {
                         Text("Close").font(.sprenParagraphBold)
-                            .foregroundColor(Color.sprenUIColor1)
+                            .foregroundColor(Color.sprenUISecondaryColor)
                     }.padding(.trailing, Autoscale.convert(16))
                 }
             }.padding(.top, Autoscale.convert(20)).padding(.bottom, Autoscale.convert(4))

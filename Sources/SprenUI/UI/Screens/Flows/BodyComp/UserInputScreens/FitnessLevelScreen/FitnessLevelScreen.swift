@@ -20,7 +20,7 @@ struct FitnessLevelScreen: View {
                     Rectangle()
                         .frame(height:Autoscale.convert(4), alignment: .bottom)
                         .cornerRadius(Autoscale.convert(2))
-                        .foregroundColor(Color.sprenUIColor1)
+                        .foregroundColor(.sprenUISecondaryColor)
                 }
             }
             CloseButton(action : {

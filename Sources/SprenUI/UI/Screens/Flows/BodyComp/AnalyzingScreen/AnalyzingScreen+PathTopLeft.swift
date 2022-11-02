@@ -19,6 +19,6 @@ extension AnalyzingScreen {
             path.addArc(center: p3, radius: Autoscale.convert(25), startAngle: .degrees(180), endAngle: .degrees(270), clockwise: false)
             path.addLine(to: p4)
 
-        }.stroke(Color.sprenUIColor1, style: StrokeStyle(lineWidth: Autoscale.convert(4), lineCap: .round, lineJoin: .round))
+        }.stroke(Color.sprenUISecondaryColor, style: StrokeStyle(lineWidth: Autoscale.convert(4), lineCap: .round, lineJoin: .round))
     }
 }

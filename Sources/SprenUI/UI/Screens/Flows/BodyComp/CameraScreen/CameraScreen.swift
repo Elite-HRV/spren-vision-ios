@@ -47,7 +47,7 @@ struct CameraScreen: View {
                 
                 ZStack {
                     if(model.isTimerOn != nil && model.time != nil && model.time ?? 0 > 0) {
-                        getColor(colorScheme: colorScheme, light: .sprenBodyCompBlack20Light, dark: .sprenBodyCompBlack20Dark)
+                        Color.sprenBodyCompBlack20
                     }
                     
                     ZStack {
@@ -184,7 +184,7 @@ struct CameraScreen: View {
         } label: {
             VStack {
                 Spacer().frame(height: Autoscale.convert(25))
-                Image("Timer", bundle: .module).colorMultiply(isTimerOpen ? .sprenUIColor1 : .white)
+                Image("Timer", bundle: .module).colorMultiply(isTimerOpen ? .sprenUISecondaryColor : .white)
                 
                 if let isTimerOn = model.isTimerOn {
                     Text(String(isTimerOn) + "s")
@@ -219,7 +219,7 @@ struct CameraScreen: View {
         } label: {
             VStack {
                 Spacer().frame(height: Autoscale.convert(25))
-                Image("Switch", bundle: .module).colorMultiply(model.isCameraFlipped ? .sprenUIColor1 : .white)
+                Image("Switch", bundle: .module).colorMultiply(model.isCameraFlipped ? .sprenUISecondaryColor : .white)
                 Text(" ")
             }
         }

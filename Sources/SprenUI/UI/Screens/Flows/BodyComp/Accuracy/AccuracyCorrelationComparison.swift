@@ -28,7 +28,7 @@ struct AccuracyCorrelationComparison: View {
                     
                     Image("AccuracyCorrelationComparison", bundle: .module).resizable()
                         .aspectRatio(contentMode: .fit)
-                        .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                        .colorMultiply(.sprenUISecondaryColor.opacity(0.75))
                     
                     HStack {
                         Text("This chart shows a high degree of correlation between the body volume (BV) estimates of the Underwater weighing method (UWW) and our 2D image processing system (SPREN) for calculating body composition results.")

@@ -21,7 +21,7 @@ struct Privacy: View {
                 if SprenUI.config.bundle == .module {
                     Image(SprenUI.config.graphics[.privacy] ?? "", bundle: .module).resizable()
                         .aspectRatio(contentMode: .fit)
-                        .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                        .colorMultiply(Color.sprenUISecondaryColor.opacity(0.75))
                 } else {
                     Image(SprenUI.config.graphics[.privacy] ?? "", bundle: .module).resizable()
                         .aspectRatio(contentMode: .fit)

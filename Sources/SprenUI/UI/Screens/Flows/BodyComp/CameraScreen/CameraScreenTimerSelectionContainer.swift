@@ -23,7 +23,7 @@ struct CameraScreenTimerSelectionContainer: View {
                 } label: {
                     Text("timer off")
                         .font(.sprenParagraph)
-                        .foregroundColor(model.isTimerOn == nil ? Color.sprenUIColor1 : .white).padding()
+                        .foregroundColor(model.isTimerOn == nil ? Color.sprenUISecondaryColor : .white).padding()
                 }
 
                 Button {
@@ -32,7 +32,7 @@ struct CameraScreenTimerSelectionContainer: View {
                 } label: {
                     Text("5s")
                         .font(.sprenParagraph)
-                        .foregroundColor(model.isTimerOn == 5 ? Color.sprenUIColor1 : .white).padding()
+                        .foregroundColor(model.isTimerOn == 5 ? Color.sprenUISecondaryColor : .white).padding()
                 }
                 
                 Button {
@@ -41,7 +41,7 @@ struct CameraScreenTimerSelectionContainer: View {
                 } label: {
                     Text("10s")
                         .font(.sprenParagraph)
-                        .foregroundColor(model.isTimerOn == 10 ? Color.sprenUIColor1 : .white).padding()
+                        .foregroundColor(model.isTimerOn == 10 ? Color.sprenUISecondaryColor : .white).padding()
                 }
             }
         }.frame(height: Autoscale.convert(44)).cornerRadius(Autoscale.convert(44))

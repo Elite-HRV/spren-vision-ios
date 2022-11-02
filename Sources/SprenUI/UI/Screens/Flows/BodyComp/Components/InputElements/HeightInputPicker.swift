@@ -24,7 +24,7 @@ struct HeightInputPicker: View {
                     } label: {
                         Text("Done")
                             .font(.sprenParagraphBold).fontWeight(.bold)
-                            .foregroundColor(Color.sprenUIColor1)
+                            .foregroundColor(Color.sprenUISecondaryColor)
                     }
                 }
                 HStack {

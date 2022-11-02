@@ -39,7 +39,7 @@ struct SetupGuide: View {
                     if SprenUI.config.bundle == .module {
                         Image(SprenUI.config.graphics[.setupGuide] ?? "", bundle: .module).resizable()
                             .aspectRatio(contentMode: .fit)
-                            .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                            .colorMultiply(.sprenUISecondaryColor.opacity(0.75))
                     } else {
                         Image(SprenUI.config.graphics[.setupGuide] ?? "", bundle: .module).resizable()
                             .aspectRatio(contentMode: .fit)

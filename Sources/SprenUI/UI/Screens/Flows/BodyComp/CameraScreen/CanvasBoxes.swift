@@ -127,7 +127,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p4)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(180), clockwise: true)
                         path.addLine(to: p2)
-                    }.stroke(isLeftWristIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
                     Path { path in
                         let p1 = CGPoint(x: 66, y: armsHeight)
@@ -139,7 +139,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p4)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(0), clockwise: false)
                         path.addLine(to: p2)
-                    }.stroke(isLeftWristIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
                     Path { path in
                         let p1 = CGPoint(x: 16, y: armsHeight + 65)
@@ -151,7 +151,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p2)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(180), endAngle: .degrees(90), clockwise: true)
                         path.addLine(to: p4)
-                    }.stroke(isLeftWristIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
                     Path { path in
                         let p1 = CGPoint(x: 90, y: armsHeight + 65)
@@ -163,7 +163,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p2)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
                         path.addLine(to: p4)
-                    }.stroke(isLeftWristIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
                     CanvasCircles(x: 53, y: armsHeight + 44, size1: 50, size2: 32, size3: 10, action: isLeftWristIn)
                 }
@@ -180,7 +180,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p4)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(180), clockwise: true)
                         path.addLine(to: p2)
-                    }.stroke(isRightWristIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
                     Path { path in
                         let p1 = CGPoint(x: armsRightWidth - 40, y: armsHeight)
@@ -192,7 +192,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p4)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(0), clockwise: false)
                         path.addLine(to: p2)
-                    }.stroke(isRightWristIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
 
                     Path { path in
                         let p1 = CGPoint(x: armsRightWidth - 90, y: armsHeight + 65)
@@ -204,7 +204,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p2)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(180), endAngle: .degrees(90), clockwise: true)
                         path.addLine(to: p4)
-                    }.stroke(isRightWristIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
 
                     Path { path in
                         let p1 = CGPoint(x: armsRightWidth - 16, y: armsHeight + 65)
@@ -216,7 +216,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p2)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
                         path.addLine(to: p4)
-                    }.stroke(isRightWristIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
                     CanvasCircles(x: armsRightWidth - 53, y: armsHeight + 44, size1: 50, size2: 32, size3: 10, action: isRightWristIn)
                 }
@@ -235,7 +235,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p4)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(180), clockwise: true)
                         path.addLine(to: p2)
-                    }.stroke(isLeftRightAnkleIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isLeftRightAnkleIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
                     Path { path in
                         let p1 = CGPoint(x: rightWidth - 50, y: bottomHeight - 106)
@@ -247,7 +247,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p4)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(0), clockwise: false)
                         path.addLine(to: p2)
-                    }.stroke(isLeftRightAnkleIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isLeftRightAnkleIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
                     Path { path in
                         let p1 = CGPoint(x: leftWidth - 50, y: bottomHeight - 31)
@@ -259,7 +259,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p2)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(180), endAngle: .degrees(90), clockwise: true)
                         path.addLine(to: p4)
-                    }.stroke(isLeftRightAnkleIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isLeftRightAnkleIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                                         
                     Path { path in
                         let p1 = CGPoint(x: rightWidth - 26, y: bottomHeight - 31)
@@ -271,7 +271,7 @@ struct CanvasBoxes: View {
                         path.addLine(to: p2)
                         path.addArc(center: p3, radius: 8, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
                         path.addLine(to: p4)
-                    }.stroke(isLeftRightAnkleIn() ? Color.sprenUIColor1 : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                    }.stroke(isLeftRightAnkleIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
                     CanvasCircles(x: leftWidth - 17, y: bottomHeight - 56.5, size1: 30, size2: 19.2, size3: 6, action: isLeftAnkleIn)
                     
@@ -293,19 +293,19 @@ struct CanvasCircles: View {
     var body: some View {
         GeometryReader { geometry in
             Circle()
-                .foregroundColor(action() ? Color.sprenUIColor1 : .white)
+                .foregroundColor(action() ? Color.sprenUISecondaryColor : .white)
                 .opacity(0.5)
                 .frame(height: size1)
                 .position(x: x, y: y)
 
             Circle()
-                .foregroundColor(action() ? Color.sprenUIColor1 : .white)
+                .foregroundColor(action() ? Color.sprenUISecondaryColor : .white)
                 .opacity(0.5)
                 .frame(height: size2)
                 .position(x: x, y: y)
 
             Circle()
-                .foregroundColor(action() ? Color.sprenUIColor1 : .white)
+                .foregroundColor(action() ? Color.sprenUISecondaryColor : .white)
                 .frame(height: size3)
                 .position(x: x, y: y)
         }

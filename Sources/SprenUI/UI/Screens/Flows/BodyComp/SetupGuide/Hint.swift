@@ -13,7 +13,7 @@ struct Hint: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "checkmark.circle.fill").foregroundColor(Color.sprenUIColor1)
+            Image(systemName: "checkmark.circle.fill").foregroundColor(Color.sprenUISecondaryColor)
             Text(text)
                 .font(.sprenParagraph)
                 .lineLimit(1)

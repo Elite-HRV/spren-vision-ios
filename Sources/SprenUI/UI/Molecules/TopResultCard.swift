@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ResultCard: View {
+struct TopResultCard: View {
     
     @Environment(\.colorScheme) var colorScheme
 
@@ -75,7 +75,7 @@ struct ResultCard: View {
     }
 }
 
-extension ResultCard {
+extension TopResultCard {
     func getResultCardData(type: Self.`Type`, age: Int?, gender: BiologicalSex?) -> (Color, Color, String, String, String, String?) {
         switch type {
         case .hrvScore:
@@ -133,10 +133,10 @@ extension ResultCard {
 
 }
 
-struct ResultCard_Previews: PreviewProvider {
+struct TopResultCard_Previews: PreviewProvider {
     static var previews: some View {
-        ResultCard(value: 53, type: .hrvScore)
-        ResultCard(value: 58.9, type: .hr)
-        ResultCard(value: 11, type: .breathingRate)
+        TopResultCard(value: 53, type: .hrvScore)
+        TopResultCard(value: 58.9, type: .hr)
+        TopResultCard(value: 11, type: .breathingRate)
     }
 }

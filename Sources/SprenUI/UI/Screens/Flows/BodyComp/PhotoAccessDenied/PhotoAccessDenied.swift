@@ -25,7 +25,7 @@ struct PhotoAccessDenied: View {
                     Image(SprenUI.config.graphics[.cameraAccessDenied] ?? "", bundle: .module)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                        .colorMultiply(Color.sprenUISecondaryColor.opacity(0.75))
                         .padding(.horizontal, Autoscale.convert(30))
                 }else{
                     Image(SprenUI.config.graphics[.cameraAccessDenied] ?? "", bundle: .module)

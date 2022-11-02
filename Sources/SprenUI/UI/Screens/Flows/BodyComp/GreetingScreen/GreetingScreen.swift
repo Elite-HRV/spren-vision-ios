@@ -21,7 +21,7 @@ struct GreetingScreen: View {
                     if SprenUI.config.bundle == .module {
                         Image(SprenUI.config.graphics[.greetings] ?? "", bundle: .module).resizable()
                             .aspectRatio(contentMode: .fit)
-                            .colorMultiply(Color.sprenUIColor1.opacity(0.75))
+                            .colorMultiply(Color.sprenUISecondaryColor.opacity(0.75))
                             .padding(.top, Autoscale.convert(10))
                             .padding(.bottom, Autoscale.convert(10))
                     }else{
@@ -79,7 +79,7 @@ struct GreetingScreen: View {
                     Text("How accurate is this?")
                         .font(.sprenParagraphBold)
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(Color.sprenUIColor1)
+                        .foregroundColor(Color.sprenUISecondaryColor)
                     Spacer()
                 }
             }.padding(.top, Autoscale.convert(10))
@@ -89,7 +89,7 @@ struct GreetingScreen: View {
                     Text("Privacy and security")
                         .font(.sprenParagraphBold)
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(Color.sprenUIColor1)
+                        .foregroundColor(Color.sprenUISecondaryColor)
                     Spacer()
                 }
             }.padding(.top, Autoscale.convert(1)).padding(.bottom)

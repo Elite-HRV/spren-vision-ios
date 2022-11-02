@@ -13,7 +13,7 @@ struct IncorrectBodyPositionTip: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            Image(systemName: "checkmark.circle.fill").foregroundColor(Color.sprenUIColor1)
+            Image(systemName: "checkmark.circle.fill").foregroundColor(Color.sprenUISecondaryColor)
             Text(text)
                 .font(.sprenParagraph)
                 .lineLimit(2)

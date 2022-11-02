@@ -85,13 +85,13 @@ struct ResultsScreen: View {
             }
             
             if results.readiness == nil {
-                ResultCard(value: results.hrvScore,
+                TopResultCard(value: results.hrvScore,
                            type: .hrvScore)
                 .onTapGesture { transition(to: .hrvScoreInfo) }
-                ResultCard(value: results.hr,
+                TopResultCard(value: results.hr,
                            type: .hr)
                 .onTapGesture { transition(to: .hrInfo) }
-                ResultCard(value: results.breathingRate,
+                TopResultCard(value: results.breathingRate,
                            type: .breathingRate)
                 .onTapGesture { transition(to: .respiratoryRateInfo) }
             } else {
@@ -311,7 +311,6 @@ struct ResultsScreen_Previews: PreviewProvider {
 //            "iPhone SE (2nd generation)",
 //            "iPhone 11",
 //            "iPhone 13 mini",
-            
 //            "iPhone SE (1st generation)",
 //            "iPhone 6s",
 //            "iPhone 6s Plus",

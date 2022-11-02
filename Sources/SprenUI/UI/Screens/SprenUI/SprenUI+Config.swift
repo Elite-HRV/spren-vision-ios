@@ -21,6 +21,7 @@ extension SprenUI {
         public var userBirthdate: Date?
         
         // UI config
+        public let project: SprenProject
         public let primaryColor: Color?
         public let secondaryColor: Color?
         
@@ -30,7 +31,14 @@ extension SprenUI {
             .greeting2: "GreetingScreen2",
             .fingerOnCamera: "FingerOnCamera",
             .noCamera: "NoCamera",
-            .serverError: "Server"
+            .serverError: "Server",
+
+            .greetings: "GreetingsImage",
+            .cameraAccessDenied: "CameraAccessDenied",
+            .incorrectBodyPosition: "IncorrectBodyPosition",
+            .privacy: "Privacy",
+//            .serverError: "ServerError",
+            .setupGuide: "SetupGuide"
         ]
         
         public let onCancel: (() -> Void)
@@ -48,6 +56,18 @@ extension SprenUI {
             case fingerOnCamera
             case noCamera
             case serverError
+
+            case greetings
+            case cameraAccessDenied
+            case incorrectBodyPosition
+            case privacy
+//            case serverError
+            case setupGuide
+        }
+        
+        public enum SprenProject {
+            case fingerCamera
+            case bodyComp
         }
         
         public init(baseURL: String,
@@ -57,6 +77,7 @@ extension SprenUI {
                     userBirthdate: Date? = nil,
                     primaryColor: Color? = nil,
                     secondaryColor: Color? = nil,
+                    project: SprenProject,
                     graphics: [Graphic: String]? = nil,
                     onCancel: @escaping (() -> Void),
                     onFinish: @escaping ((Results) -> Void),
@@ -70,6 +91,7 @@ extension SprenUI {
             
             self.primaryColor = primaryColor
             self.secondaryColor = secondaryColor
+            self.project = project
             if let graphics = graphics {
                 self.graphics = graphics
                 self.bundle = .main

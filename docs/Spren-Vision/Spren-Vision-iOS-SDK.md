@@ -6,7 +6,6 @@
 
 2.  Add a camera usage description to your app's Info.plist or target info. For more information, [Requesting Authorization for Media Capture on iOS](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/requesting_authorization_for_media_capture_on_ios) and the [NSCameraUsageDescription](https://developer.apple.com/documentation/bundleresources/information_property_list/nscamerausagedescription) Apple docs.
 
-
 ## Spren UI
 
 ### Implementation Example
@@ -20,30 +19,31 @@ let config = SprenUI.Config(
 		// API
 		baseURL: "https://test.api.spren.com",
 		apiKey: "<API key>",
-		
+
 		// user
 		userID: "<user ID>",
 		userGender: <optional, male, female, or other>,
 		userBirthdate: <optional, Date>,
-		
+
 		// UI
 		primaryColor: <optional, Color>, // used for buttons
 		secondaryColor: <optional, Color>, // used for graphics
 		// optionally override default intro screen graphics
 		// provide names for image sets in main bundle xcassets
 		// all 5 are required
-		graphics: [ 
-		    .greeting1:      "<image set name>", // greeting screen 1 
+		graphics: [
+		    .greeting1:      "<image set name>", // greeting screen 1
 		    .greeting2:      "<image set name>", // greeting screen 2
 		    .fingerOnCamera: "<image set name>", // finger on camera instruction screen
 		    .noCamera:       "<image set name>", // camera access authorization denied screen
 		    .serverError:    "<image set name>" // server or calculation error
 		],
+
 		onCancel: {
 				// user exited UI before completing a reading
 				// dismiss SprenUI
 		},
-		onFinish: { results in 
+		onFinish: { results in
 				// user completed a reading!
 				print(results)
 				// dismiss SprenUI
@@ -93,18 +93,18 @@ Spren.setOnStateChange { (state, error) in
 	  case .started:
 			sprenCapture.lock()
 		    // handle reading started UI update
-	
+
 	  case .finished:
 		    // successful reading!
 		    let readingData = Spren.getReadingData()
-	
+
 		    // make POST request to the Spren API
 		    // with readingData to get insights!
-	    
+
 	  case .cancelled:
 			sprenCapture.unlock()
 		    // handle user cancelled UI update
-	
+
 	  case .error:
 			sprenCapture.unlock()
 		    // handle error UI update, may be non-compliance
@@ -187,7 +187,7 @@ Set a closure to be executed when progress updates. Progress ranges from 0 to 99
 
 `static func setOnStateChange(onStateChange: @escaping (_ state: SprenState, _ error: Error?) -> Void)`
 
-Set a closure to be executed when state changes occur, i.e., *started*, *finished*, *cancelled*, and *error*.
+Set a closure to be executed when state changes occur, i.e., _started_, _finished_, _cancelled_, and _error_.
 
 `static func startReading()`
 
@@ -229,11 +229,11 @@ Created from received media buffers, e.g.:
 
 Compliance checks are run at 1 second intervals as frames are provided, i.e., if internally to SprenCore the time when the frame is received is >1 second later than the last check. For `ComplianceCheck.name`:
 
-*   `.frameDrop`: frame drop must be less than 5% during one second and at least 60 frames must be received. During the initial setup of SprenCapture, frame drop may be high; **so, we suggest ignoring the first frame drop noncompliance** before any camera reconfiguration.
+- `.frameDrop`: frame drop must be less than 5% during one second and at least 60 frames must be received. During the initial setup of SprenCapture, frame drop may be high; **so, we suggest ignoring the first frame drop noncompliance** before any camera reconfiguration.
 
-*   `.brightness`: enough ambient light must be received, torch (flashlight) is recommended. Brightness checks also provide a `ComplianceCheck.action`, either `.increase` or `.decrease`.
+- `.brightness`: enough ambient light must be received, torch (flashlight) is recommended. Brightness checks also provide a `ComplianceCheck.action`, either `.increase` or `.decrease`.
 
-*   `.lensCoverage`: finger must cover lens with light pressure.
+- `.lensCoverage`: finger must cover lens with light pressure.
 
 #### `SprenComplianceError`
 
@@ -241,10 +241,10 @@ Compliance checks are run at 1 second intervals as frames are provided, i.e., if
 
 Readings error if noncompliance of any check occurs for 5 consecutive seconds. If this occurs, re-enable autostart to start the compliance check and reading process over again.
 
-*   `.frameDropHigh`
+- `.frameDropHigh`
 
-*   `.brightnessLow`
+- `.brightnessLow`
 
-*   `.brightnessHigh`
+- `.brightnessHigh`
 
-*   `.lensCoverage`
+- `.lensCoverage`

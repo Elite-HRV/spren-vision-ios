@@ -1,22 +1,24 @@
 # Spren Vision Android SDK
 
-The Android SDK is in Alpha. We're working quickly to expand our support in the heterogeneity of Android devices. 
+The Android SDK is in Alpha. We're working quickly to expand our support in the heterogeneity of Android devices.
 
 ## Device Support and Recommendations
 
 > A supported device function exposed by the SDK is coming soon!
 
 ## Tested Devices
-* Google Pixel 3XL
-* Google Pixel 4
-* Google Pixel 4a
-* Google Pixel 5
-* Xiaomi Redmi 9
-* Huawei Mate 20
-* Samsung Galaxy S10+
+
+- Google Pixel 3XL
+- Google Pixel 4
+- Google Pixel 4a
+- Google Pixel 5
+- Xiaomi Redmi 9
+- Huawei Mate 20
+- Samsung Galaxy S10+
 
 ## Currently Testing
-* Samsung Galaxy S9, S10 5G, S20 FE 5G, S21 Ultra, and S22+
+
+- Samsung Galaxy S9, S10 5G, S20 FE 5G, S21 Ultra, and S22+
 
 ## Recommendations
 
@@ -26,15 +28,14 @@ Currently, we allow users to only perform readings with flash on.
 
 ### Hardware
 
-1. We recommend using an Android device that is not a low RAM device, has at least 8 cores, and has 192MB or more RAM available to your app. 
-    ```kotlin
-    val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-    val isHighPerformingDevice = !activityManager.isLowRamDevice && 
-        Runtime.getRuntime().availableProcessors() >= 8 && 
-        activityManager.memoryClass >= 192
-    ```
+1. We recommend using an Android device that is not a low RAM device, has at least 8 cores, and has 192MB or more RAM available to your app.
+   ```kotlin
+   val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+   val isHighPerformingDevice = !activityManager.isLowRamDevice &&
+       Runtime.getRuntime().availableProcessors() >= 8 &&
+       activityManager.memoryClass >= 192
+   ```
 2. 30FPS is acceptable, but for best accuracy and UX, we recommend devices that support 60FPS in CameraX. Note that 60FPS or better may be listed in manufacturer's device specifications, thus, be supported in the native camera app, but be unavailable to CameraX.
-
 
 ## Installation
 
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
         // set user ID
         SprenUI.Config.userId = ...
-        
+
         // optionally set user biological sex
         SprenUI.Config.userGender = ...
 
@@ -87,13 +88,13 @@ class MainActivity : AppCompatActivity() {
               readiness,
               ansBalance,
               signalQuality ->
-            
+
               // handle completion of reading UI flow
             }
-        
+
 
         // user presses X
-        SprenUI.Config.onCancel = { 
+        SprenUI.Config.onCancel = {
           // handle user exit of UI flow without completing a reading
         }
     }
@@ -109,7 +110,7 @@ class MainActivity : AppCompatActivity() {
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:api_key="@string/api_key" 
+    app:api_key="@string/api_key"
     app:base_url="@string/base_url"
     tools:context=".MainActivity" />
 ```
@@ -119,14 +120,14 @@ class MainActivity : AppCompatActivity() {
 
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="AppTheme.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- button color --> 
-        <item name="colorPrimary">#6200EE</item> 
+        <!-- button color -->
+        <item name="colorPrimary">#6200EE</item>
 
         <!-- button text color -->
-        <item name="colorOnPrimary">@android:color/white</item> 
-        
+        <item name="colorOnPrimary">@android:color/white</item>
+
         <!-- graphics color -->
-        <item name="colorSecondary">#03DAC5</item> 
+        <item name="colorSecondary">#03DAC5</item>
     </style>
 </resources>
 ```
@@ -221,11 +222,13 @@ SprenEventManager.unsubscribe(SprenEvent.PROGRESS, ::progressListener)
 #### Breaking changes in 2.x
 
 ##### `SprenCapture`
+
 <s>`var autoStart = true`</s> (Replace with `SprenCapture reset` method)
 
 Enable or disable reading autostart. Autostart occurs after 3 seconds of conditions checks compliance.
 
 ##### `Spren`
+
 <s>`fun setTorchMode(torch: Boolean): Boolean`</s> (Replace with `fun turnFlashOn()`)
 
 Attempts to toggle the torch (flashlight) on as appropriate. Returns the resulting torch mode. Setting the flash off has been disabled.
@@ -237,7 +240,6 @@ This function has been deprecated and will be removed in the next releases.
 <s>`fun handleOverExposure()`</s> (no need to handle anymore)
 
 Attempts to reduce the exposure of the image by lowering the sensor exposure time. This may be called if exposure is non-compliant, i.e, at least 5 frames are over-exposed.
-
 
 ## SprenCapture Library
 
@@ -257,7 +259,7 @@ Stops the Preview and ImageAnalysis use cases
 
 Starts or restarts a reading.
 Reading will start after 3 seconds of conditions checks compliance.
-This function needs to be called after `fun start(): Boolean` method and after subscribing to Spren Events 
+This function needs to be called after `fun start(): Boolean` method and after subscribing to Spren Events
 
 `fun turnFlashOn()`
 
@@ -272,31 +274,42 @@ RGBAnalyzer is an `ImageAnalysis.Analyzer` and handles providing frames to **Spr
 The SprenCore library provides internal control over readings and allows you to gain information on what's going on internally in the SDK so your UI can be updated accordingly. Here you'll be able to set reading durations, handle progress updates, start and stop readings, and more. Use this library in conjunction with **SprenCapture** to utilize the full capabilities of Spren SDK.
 
 #### `SprenEventManager` subscribe
+
 `SprenEventManager.subscribe(SprenEvent.STATE, ::stateListener)`
 
-Subscribes to events when state changes occur, i.e., *started*, *finished*, *cancelled*, and *error*.
->`fun stateListener(values: HashMap<String, Any>)`
->> HashMap  **key**: value
->> * **state**:  SprenState
+Subscribes to events when state changes occur, i.e., _started_, _finished_, _cancelled_, and _error_.
+
+> `fun stateListener(values: HashMap<String, Any>)`
+>
+> > HashMap **key**: value
+> >
+> > - **state**: SprenState
 
 `SprenEventManager.subscribe(SprenEvent.COMPLIANCE, ::complianceListener)`
 
 Subscribes to events when a compliance check is performed. Compliance checks for lens coverage, and exposure are performed once per second.
->`fun complianceListener(values: HashMap<String, Any>)`
->> HashMap  **key**: value
->> * **name**:  ComplianceCheck.Name
->> * **isCompliant**:  Boolean
 
+> `fun complianceListener(values: HashMap<String, Any>)`
+>
+> > HashMap **key**: value
+> >
+> > - **name**: ComplianceCheck.Name
+> > - **isCompliant**: Boolean
 
 `SprenEventManager.subscribe(SprenEvent.PROGRESS, ::progressListener)`
 
 Subscribes to events when progress updates. Progress ranges from 0 to 99 in integer increments. State change to finished occurs in lieu of progress update at 100.
->`fun progressListener(values: HashMap<String, Any>)`
->> HashMap  **key**: value
->> * **progress**:  Int
+
+> `fun progressListener(values: HashMap<String, Any>)`
+>
+> > HashMap **key**: value
+> >
+> > - **progress**: Int
 
 #### `SprenEventManager` unsubscribe
+
 Unsubscribing events before leaving the flow
+
 ```
 SprenEventManager.unsubscribe(SprenEvent.STATE, ::stateListener)
 SprenEventManager.unsubscribe(SprenEvent.COMPLIANCE, ::complianceListener)
@@ -325,7 +338,6 @@ Reading duration ≥ 90 seconds or ≤ 240 seconds.
 
 Set the reading duration. A duration in the range ≥ 90 seconds or ≤ 240 seconds must be provided or the call returns.
 
-
 #### If not using SprenCapture
 
 If you'd like to use your own library or code to handle camera configurations and initialization, make sure to reference this section and the **RGBAnalyzer** section to get more context and see what functions need to be implemented.
@@ -350,7 +362,6 @@ The ImageProxy format will be PixelFormat.RGBA_8888, which has only one image pl
 
 Compliance checks are run at 1 second intervals as frames are provided, i.e., if internally to SprenCore the time when the frame is received is >1 second later than the last check. For `ComplianceCheck.Name`:
 
-*   `LENS_COVERAGE`: finger must cover lens with light pressure.
+- `LENS_COVERAGE`: finger must cover lens with light pressure.
 
-*   `EXPOSURE`: less than 30 frames must have overexposure. A frame is over-exposed when it appears brighter than it should.
-
+- `EXPOSURE`: less than 30 frames must have overexposure. A frame is over-exposed when it appears brighter than it should.

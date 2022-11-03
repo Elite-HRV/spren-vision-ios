@@ -34,7 +34,7 @@ extension SprenUI {
             .serverError: "Server",
 
             .greetings: "GreetingsImage",
-            .cameraAccessDenied: "CameraAccessDenied",
+            .cameraAccessDenied: "cameraAccessDenied",
             .incorrectBodyPosition: "IncorrectBodyPosition",
             .privacy: "Privacy",
 //            .serverError: "ServerError",

@@ -28,7 +28,7 @@ struct HeightSize {
         return Unit.allCases[index]
     }
     
-    static func getIndexBy(unit: Unit) -> Int {
-        return unit.index!
+    static func getIndexBy(unit: Unit) -> Int? {
+        return unit.index
     }
 }

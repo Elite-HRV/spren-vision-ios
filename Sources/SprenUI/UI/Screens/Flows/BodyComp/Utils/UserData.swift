@@ -68,9 +68,18 @@ class UserData: NSObject {
         if (!isKeyPresentInUserDefaults(key: userWeightKey)) {
             return (DEFAULT_WEIGHT, 0)
         }
-        let weightParams = UserDefaults.standard.dictionary(forKey: userWeightKey)!
 
-        return (weightParams["weight"] as! Double, weightParams["weightMetric"] as! Int)
+        guard let weightParams = UserDefaults.standard.dictionary(forKey: userWeightKey) else {
+            fatalError("no weight key defined in UserDefaults \(userWeightKey)")
+        }
+        guard let weight = weightParams["weight"] as? Double else {
+            fatalError("weight cannot be cast to Double")
+        }
+        guard let weightMetric = weightParams["weightMetric"] as? Int else {
+            fatalError("weightMetric cannot be cast to Int")
+        }
+
+        return (weight, weightMetric)
     }
 
     func saveHeight(_ heightSize: HeightSize) {
@@ -79,11 +88,15 @@ class UserData: NSObject {
         let heightCentimeters = heightSize.centimeters
         let heightMetric = heightSize.unit
 
+        guard let metricIndex = HeightSize.getIndexBy(unit: heightMetric) else {
+            fatalError("no metric index defined by unit \(heightMetric)")
+        }
+
         let heightParams = [
             "feet": heightFeet,
             "inches": heightInches,
             "centimeters": heightCentimeters,
-            "metric": HeightSize.getIndexBy(unit: heightMetric)
+            "metric": metricIndex
         ]
         UserDefaults.standard.set(heightParams, forKey: userHeightKey)
         self.height = heightSize
@@ -98,12 +111,27 @@ class UserData: NSObject {
                 centimeters: DEFAULT_HEIGHT_CENTIMETERS
             )
         }
-        let heightFeet = UserDefaults.standard.dictionary(forKey: userHeightKey)!
+        guard let heightFeet = UserDefaults.standard.dictionary(forKey: userHeightKey) else {
+            fatalError("no height key defined in UserDefaults \(userHeightKey)")
+        }
+        guard let feet = heightFeet["feet"] as? Int else {
+            fatalError("feet cannot be cast to Int")
+        }
+        guard let inches = heightFeet["inches"] as? Int else {
+            fatalError("inches cannot be cast to Int")
+        }
+        guard let metric = heightFeet["metric"] as? Int else {
+            fatalError("metric cannot be cast to Int")
+        }
+        guard let centimeters = heightFeet["centimeters"] as? Int else {
+            fatalError("centimeters cannot be cast to Int")
+        }
+
         let heighSize = HeightSize(
-            feet: heightFeet["feet"] as! Int,
-            inches: heightFeet["inches"] as! Int,
-            unit: HeightSize.getUnitBy(index: heightFeet["metric"] as! Int),
-            centimeters: heightFeet["centimeters"] as! Int
+            feet: feet,
+            inches: inches,
+            unit: HeightSize.getUnitBy(index: metric),
+            centimeters: centimeters
         )
 
         return heighSize
@@ -199,11 +227,12 @@ class UserData: NSObject {
         if (isMetricSettingsUsed()) {
             return lbsOrKg
         }
-        if (lbsOrKg == nil) {
+
+        guard let weight = lbsOrKg else {
             return nil
         }
 
-        return UserData.kgToLbs(kg: lbsOrKg!)
+        return UserData.kgToLbs(kg: weight)
     }
 
     func getWeightLabel() -> String {

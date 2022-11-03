@@ -25,7 +25,7 @@ struct AnalyzingScreen: View {
         getEndpoint: "/results/bodyComp",
         decodable: GetBodyCompResponse.self
     )
-    let image: UIImage?
+    let image: UIImage
 
     var body: some View {
         if let bodyCompResponse = $bodyCompResponse.wrappedValue {
@@ -62,7 +62,7 @@ struct AnalyzingScreen: View {
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
         .onAppear(perform: {
-            inputImage = image!
+            inputImage = image
             if #available(iOS 15.0, *) {
                 finalOutputImage = UserImageMasked.default.runVisionRequest(inputImage)
             }
@@ -80,7 +80,7 @@ struct AnalyzingScreen: View {
                         rootPresentationMode.wrappedValue.dismiss()
                     }
                     let retryAction = UIAlertAction(title: "Try again", style: .default) { (action: UIAlertAction) in
-                        upload(image: image!)
+                        upload(image: image)
                     }
                     alertVC.addAction(retryAction)
                     alertVC.addAction(closeAction)
@@ -108,7 +108,7 @@ struct AnalyzingScreen: View {
                     navigateTo = "ResultsScreen"
                 }
             }
-            upload(image: image!)
+            upload(image: image)
         })
     }
 

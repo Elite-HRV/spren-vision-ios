@@ -131,12 +131,11 @@ public class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelega
         do {
             var defaultVideoDevice: AVCaptureDevice?
             
-            if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
+            if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
+                defaultVideoDevice = frontCameraDevice
+            } else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
                 // If a rear dual camera is not available, default to the rear wide angle camera.
                 defaultVideoDevice = backCameraDevice
-            } else if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
-                // If the rear wide angle camera isn't available, default to the front wide angle camera.
-                defaultVideoDevice = frontCameraDevice
             }
             
             guard let videoDevice = defaultVideoDevice else {
@@ -227,7 +226,7 @@ public class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelega
     }
     
     public func isCameraFlipped() -> Bool {
-        return self.videoDeviceInput.device.position == .back
+        return self.videoDeviceInput.device.position == .front
     }
     
     public func changeCamera() {
@@ -253,7 +252,7 @@ public class CameraService: NSObject, AVCaptureVideoDataOutputSampleBufferDelega
                 
             @unknown default:
                 print("Unknown capture position. Defaulting to back, dual-camera.")
-                preferredPosition = .back
+                preferredPosition = .front
                 preferredDeviceType = .builtInWideAngleCamera
             }
             let devices = self.videoDeviceDiscoverySession.devices

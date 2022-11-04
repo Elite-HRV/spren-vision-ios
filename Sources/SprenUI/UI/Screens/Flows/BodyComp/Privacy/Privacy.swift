@@ -15,24 +15,26 @@ struct Privacy: View {
         ZStack {
             getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark).edgesIgnoringSafeArea(.all)
             
-            VStack {
-                CloseButton(action: {self.presentationMode.wrappedValue.dismiss()})
-                
-                if SprenUI.config.bundle == .module {
-                    Image(SprenUI.config.graphics[.privacy] ?? "", bundle: .module).resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .colorMultiply(Color.sprenUISecondaryColor.opacity(0.75))
-                } else {
-                    Image(SprenUI.config.graphics[.privacy] ?? "", bundle: .module).resizable()
-                        .aspectRatio(contentMode: .fit)
-                }
-                
-                title
-                
-                text
-                
-                Spacer()
-            }.padding(.horizontal, Autoscale.convert(16))
+            ScrollView {
+                VStack {
+                    CloseButton(action: {self.presentationMode.wrappedValue.dismiss()})
+                    
+                    if SprenUI.config.bundle == .module {
+                        Image(SprenUI.config.graphics[.privacy] ?? "", bundle: .module).resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .colorMultiply(Color.sprenUISecondaryColor.opacity(0.75))
+                    } else {
+                        Image(SprenUI.config.graphics[.privacy] ?? "", bundle: .module).resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
+                    
+                    title
+                    
+                    text
+                    
+                    Spacer()
+                }.padding(.horizontal, Autoscale.convert(16))
+            }
         }.navigationBarHidden(true)
     }
     

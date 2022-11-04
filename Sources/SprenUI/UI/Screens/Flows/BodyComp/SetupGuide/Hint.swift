@@ -12,12 +12,10 @@ struct Hint: View {
     var text: String
     
     var body: some View {
-        HStack {
+        HStack(alignment: .top) {
             Image(systemName: "checkmark.circle.fill").foregroundColor(Color.sprenUISecondaryColor)
             Text(text)
                 .font(.sprenParagraph)
-                .lineLimit(1)
-                .minimumScaleFactor(0.01)
                 .multilineTextAlignment(.leading)
 
             Spacer()

@@ -31,24 +31,26 @@ struct SetupGuide: View {
                 
                 getColor(colorScheme: colorScheme, light: .sprenBodyCompBackgroundLight, dark: .sprenBodyCompBackgroundDark).edgesIgnoringSafeArea(.top)
                 
+                
                 VStack {
+                    ScrollView {
                         CloseButton(action: {
-                            self.presentationMode.wrappedValue.dismiss()  
+                            self.presentationMode.wrappedValue.dismiss()
                         }).padding(.horizontal, Autoscale.convert(16))
-
-                    if SprenUI.config.bundle == .module {
-                        Image(SprenUI.config.graphics[.setupGuide] ?? "", bundle: .module).resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .colorMultiply(.sprenUISecondaryColor.opacity(0.75))
-                    } else {
-                        Image(SprenUI.config.graphics[.setupGuide] ?? "", bundle: .module).resizable()
-                            .aspectRatio(contentMode: .fit)
-                    }
+                        
+                        if SprenUI.config.bundle == .module {
+                            Image(SprenUI.config.graphics[.setupGuide] ?? "", bundle: .module).resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .colorMultiply(.sprenUISecondaryColor.opacity(0.75))
+                        } else {
+                            Image(SprenUI.config.graphics[.setupGuide] ?? "", bundle: .module).resizable()
+                                .aspectRatio(contentMode: .fit)
+                        }
                         
                         title
                             .padding(.horizontal, Autoscale.convert(16))
                             .padding(.bottom, Autoscale.convert(16))
-
+                        
                         VStack(spacing: 8) {
                             Hint(text: "Find a well-lit location")
                             Hint(text: "Avoid background objects and furniture")
@@ -57,9 +59,9 @@ struct SetupGuide: View {
                             Hint(text: "Wear athletic, tightly fitting clothes")
                             Hint(text: "Take off your shoes")
                             Hint(text: "Pull your hair back and take off your hat")
-                        }.frame(height: Autoscale.convert(190))
-                        .padding(.horizontal, Autoscale.convert(16))
-
+                        }.padding(.horizontal, Autoscale.convert(16))
+                    }
+                    
                     Spacer()
                     button
 

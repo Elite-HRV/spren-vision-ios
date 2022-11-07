@@ -31,7 +31,7 @@ extension AnalyzingScreen {
                 height: height, // cm
                 weight: weight, // kg
                 vigorousDays: vigorousDays,
-                pushUps: 0,
+//                pushUps: 0,
                 image: imageBase64Encoded
             )
         )

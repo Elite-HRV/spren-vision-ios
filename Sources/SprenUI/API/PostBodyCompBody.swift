@@ -14,7 +14,7 @@ struct BodyCompData: Encodable {
     let height: Double
     let weight: Double
     let vigorousDays: Int
-    let pushUps: Int
+//    let pushUps: Int
     let image: String
 }
 

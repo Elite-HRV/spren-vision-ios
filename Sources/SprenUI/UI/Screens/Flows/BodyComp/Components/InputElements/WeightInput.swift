@@ -20,10 +20,21 @@ struct WeightInput: View {
     var strokeColor: Color = .sprenUISecondaryColor
     
     var body: some View {
+        
+        let binding = Binding<Double?>(get: {
+            return self.weight
+        }, set: {
+            if let weight = $0 {
+                self.weight = weight
+            }else{
+                self.weight = 0
+            }
+        })
+        
         VStack(alignment: .leading, spacing: 0) {
             let textUnit = weightMetric == 0 ? "lbs" : "kg"
             HStack {
-                TextField("Enter your weight", value: $weight, formatter: numberFormatter)
+                TextField("Enter your weight", value: binding, formatter: numberFormatter)
                     .font(.sprenInput)
                     .keyboardType(.decimalPad)
                 Spacer()

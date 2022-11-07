@@ -48,11 +48,16 @@ struct AgeScreen: View {
             }
 
             Spacer()
-            NavigationLink(destination: GenderScreen()) {
+            
+            if(age == 0){
                 PurpleButton(text: "Next")
-            }.simultaneousGesture(TapGesture().onEnded {
-                UserData.default.saveAge(self.$age.wrappedValue)
-            })
+            }else{
+                NavigationLink(destination: GenderScreen()) {
+                    PurpleButton(text: "Next")
+                }.simultaneousGesture(TapGesture().onEnded {
+                    UserData.default.saveAge(self.$age.wrappedValue)
+                })
+            }
         }
         .navigationBarHidden(true)
         .padding(.all, Autoscale.convert(15))

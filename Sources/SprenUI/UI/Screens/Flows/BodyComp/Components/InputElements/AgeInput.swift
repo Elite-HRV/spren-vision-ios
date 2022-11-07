@@ -19,7 +19,17 @@ struct AgeInput: View {
     var strokeColor: Color = .sprenUISecondaryColor
     
     var body: some View {
-        TextField("Enter your age", value: $age, formatter: numberFormatter)
+        let binding = Binding<Int?>(get: {
+            return self.age
+        }, set: {
+            if let age = $0 {
+                self.age = age
+            }else{
+                self.age = 0
+            }
+        })
+        
+        TextField("Enter your age", value: binding, formatter: numberFormatter)
             .font(.sprenInput)
             .keyboardType(.numberPad)
             .padding()

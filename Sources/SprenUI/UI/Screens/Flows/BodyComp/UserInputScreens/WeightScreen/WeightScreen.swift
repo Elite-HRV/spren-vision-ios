@@ -46,11 +46,16 @@ struct WeightScreen: View {
             .pickerStyle(.segmented)
             WeightInput(weight: $weight, weightMetric: weightMetric)
             Spacer()
-            NavigationLink(destination: HeightScreen()) {
+            
+            if(weight == 0){
                 PurpleButton(text: "Next")
-            }.simultaneousGesture(TapGesture().onEnded{
-                UserData.default.saveWeight(self.$weight.wrappedValue, self.$weightMetric.wrappedValue)
-            })
+            }else{
+                NavigationLink(destination: HeightScreen()) {
+                    PurpleButton(text: "Next")
+                }.simultaneousGesture(TapGesture().onEnded{
+                    UserData.default.saveWeight(self.$weight.wrappedValue, self.$weightMetric.wrappedValue)
+                })
+            }
         }
         .navigationBarHidden(true)
         .padding(.all, Autoscale.convert(15))

@@ -16,7 +16,7 @@ struct CameraScreenTimerSelectionContainer: View {
         ZStack {
             VisualEffectView(effect: UIBlurEffect(style: .dark)).edgesIgnoringSafeArea(.bottom)
             
-            VStack(spacing: Autoscale.convert(35)) {
+            VStack {
                 Button {
                     model.setTimer(nil)
                     buttonCallBack()
@@ -24,6 +24,7 @@ struct CameraScreenTimerSelectionContainer: View {
                     Text("timer off")
                         .font(.sprenParagraph)
                         .foregroundColor(model.isTimerOn == nil ? Color.sprenUISecondaryColor : .white)
+                        .padding(.bottom, Autoscale.convert(10))
                 }
 
                 Button {
@@ -33,6 +34,8 @@ struct CameraScreenTimerSelectionContainer: View {
                     Text("5s")
                         .font(.sprenParagraph)
                         .foregroundColor(model.isTimerOn == 5 ? Color.sprenUISecondaryColor : .white)
+                        .padding(.top, Autoscale.convert(22))
+                        .padding(.bottom, Autoscale.convert(22))
                 }
                 
                 Button {
@@ -42,6 +45,7 @@ struct CameraScreenTimerSelectionContainer: View {
                     Text("10s")
                         .font(.sprenParagraph)
                         .foregroundColor(model.isTimerOn == 10 ? Color.sprenUISecondaryColor : .white)
+                        .padding(.top, Autoscale.convert(10))
                 }
             }.padding(.vertical, Autoscale.convert(20))
         }.fixedSize(horizontal: false, vertical: true)

@@ -16,14 +16,14 @@ struct CameraScreenTimerSelectionContainer: View {
         ZStack {
             VisualEffectView(effect: UIBlurEffect(style: .dark)).edgesIgnoringSafeArea(.bottom)
             
-            HStack(spacing: Autoscale.convert(10)) {
+            VStack(spacing: Autoscale.convert(35)) {
                 Button {
                     model.setTimer(nil)
                     buttonCallBack()
                 } label: {
                     Text("timer off")
                         .font(.sprenParagraph)
-                        .foregroundColor(model.isTimerOn == nil ? Color.sprenUISecondaryColor : .white).padding()
+                        .foregroundColor(model.isTimerOn == nil ? Color.sprenUISecondaryColor : .white)
                 }
 
                 Button {
@@ -32,7 +32,7 @@ struct CameraScreenTimerSelectionContainer: View {
                 } label: {
                     Text("5s")
                         .font(.sprenParagraph)
-                        .foregroundColor(model.isTimerOn == 5 ? Color.sprenUISecondaryColor : .white).padding()
+                        .foregroundColor(model.isTimerOn == 5 ? Color.sprenUISecondaryColor : .white)
                 }
                 
                 Button {
@@ -41,11 +41,12 @@ struct CameraScreenTimerSelectionContainer: View {
                 } label: {
                     Text("10s")
                         .font(.sprenParagraph)
-                        .foregroundColor(model.isTimerOn == 10 ? Color.sprenUISecondaryColor : .white).padding()
+                        .foregroundColor(model.isTimerOn == 10 ? Color.sprenUISecondaryColor : .white)
                 }
-            }
-        }.frame(height: Autoscale.convert(44)).cornerRadius(Autoscale.convert(44))
-            .padding()
+            }.padding(.vertical, Autoscale.convert(20))
+        }.fixedSize(horizontal: false, vertical: true)
+            .frame(width: Autoscale.convert(44))
+            .cornerRadius(Autoscale.convert(44))
             .animation(.easeInOut)
     }
 }

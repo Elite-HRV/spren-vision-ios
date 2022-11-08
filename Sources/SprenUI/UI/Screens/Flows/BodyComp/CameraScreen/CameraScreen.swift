@@ -74,13 +74,13 @@ struct CameraScreen: View {
                             Spacer()
                             
                             HStack {
+                                Spacer()
+                                
                                 if(isTimerOpen) {
                                     CameraScreenTimerSelectionContainer(model: model, buttonCallBack: {
                                         isTimerOpen = !isTimerOpen
                                     })
                                 }
-                                
-                                Spacer()
                                 
                                 ZStack {
                                     VisualEffectView(effect: UIBlurEffect(style: .dark)).edgesIgnoringSafeArea(.bottom)
@@ -191,7 +191,7 @@ struct CameraScreen: View {
                             .foregroundColor(.white)
                             .padding(.top, Autoscale.convert(10))
                     }else{
-                        Text(" ")
+                        Text(" ").padding(.top, Autoscale.convert(45))
                     }
                     Spacer()
                 }

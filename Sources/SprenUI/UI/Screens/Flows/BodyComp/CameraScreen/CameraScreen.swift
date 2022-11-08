@@ -73,31 +73,32 @@ struct CameraScreen: View {
                             
                             Spacer()
                             
-                            if(isTimerOpen) {
-                                CameraScreenTimerSelectionContainer(model: model, buttonCallBack: {
-                                    isTimerOpen = !isTimerOpen
-                                })
+                            HStack {
+                                if(isTimerOpen) {
+                                    CameraScreenTimerSelectionContainer(model: model, buttonCallBack: {
+                                        isTimerOpen = !isTimerOpen
+                                    })
+                                }
+                                
+                                Spacer()
+                                
+                                ZStack {
+                                    VisualEffectView(effect: UIBlurEffect(style: .dark)).edgesIgnoringSafeArea(.bottom)
+
+                                    VStack {
+                                        timerButton
+
+                                        cameraButton
+
+                                        switchButton
+                                    }.padding(.horizontal, Autoscale.convert(10))
+                                }.fixedSize(horizontal: true, vertical: true).cornerRadius(Autoscale.convert(30), corners: [.topLeft, .bottomLeft])
                             }
                             
-                            ZStack {
-                                VisualEffectView(effect: UIBlurEffect(style: .dark)).edgesIgnoringSafeArea(.bottom)
-
-                                HStack {
-                                    Spacer().frame(width: Autoscale.convert(35))
-
-                                    timerButton
-
-                                    Spacer()
-
-                                    cameraButton
-
-                                    Spacer()
-
-                                    switchButton
-
-                                    Spacer().frame(width: Autoscale.convert(35))
-                                }
-                            }.frame(height: Autoscale.convert(158))
+                            if(geometry.safeAreaInsets.bottom == 0){
+                                Spacer().frame(height: Autoscale.convert(10))
+                            }
+                            
                         }.onReceive(model.imageUpdated) {
                             goAnalyzingScreen()
                         }.onReceive(model.pointsUpdated) {
@@ -182,16 +183,23 @@ struct CameraScreen: View {
         Button {
             isTimerOpen = !isTimerOpen
         } label: {
-            VStack {
-                Spacer().frame(height: Autoscale.convert(25))
-                Image("Timer", bundle: .module).colorMultiply(isTimerOpen ? .sprenUISecondaryColor : .white)
+            ZStack(alignment: .top) {
+                HStack {
+                    if let isTimerOn = model.isTimerOn {
+                        Text(String(isTimerOn) + "s")
+                            .font(.sprenParagraph)
+                            .foregroundColor(.white)
+                            .padding(.top, Autoscale.convert(10))
+                    }else{
+                        Text(" ")
+                    }
+                    Spacer()
+                }
                 
-                if let isTimerOn = model.isTimerOn {
-                    Text(String(isTimerOn) + "s")
-                        .font(.sprenParagraph)
-                        .foregroundColor(.white)
-                }else{
-                    Text(" ")
+                VStack {
+                    Spacer().frame(height: Autoscale.convert(25))
+                    Image("Timer", bundle: .module).colorMultiply(isTimerOpen ? .sprenUISecondaryColor : .white)
+                    Spacer().frame(height: Autoscale.convert(10))
                 }
             }
         }
@@ -206,11 +214,12 @@ struct CameraScreen: View {
             }
         } label: {
             if(model.time ?? 0 > 0) {
-                Image("Stop", bundle: .module)
+                Image("Stop", bundle: .module).resizable().frame(width: Autoscale.convert(50), height: Autoscale.convert(50))
             } else {
-                Image("Camera", bundle: .module)
+                Image("Camera", bundle: .module).resizable()
+                    .frame(width: Autoscale.convert(50), height: Autoscale.convert(50))
             }
-        }
+        }.padding(.bottom, Autoscale.convert(5))
     }
     
     var switchButton: some View {
@@ -218,9 +227,9 @@ struct CameraScreen: View {
             model.flipCamera()
         } label: {
             VStack {
-                Spacer().frame(height: Autoscale.convert(25))
+                Spacer().frame(height: Autoscale.convert(10))
                 Image("Switch", bundle: .module).colorMultiply(model.isCameraFlipped ? .sprenUISecondaryColor : .white)
-                Text(" ")
+                Spacer().frame(height: Autoscale.convert(25))
             }
         }
     }

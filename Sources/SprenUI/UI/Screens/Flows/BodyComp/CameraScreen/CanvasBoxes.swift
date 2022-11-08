@@ -14,7 +14,7 @@ struct CanvasBoxes: View {
     let leftAnkle: CGPoint?
     let rightAnkle: CGPoint?
     
-    let armsHeight = UIScreen.main.bounds.height/4
+    let armsHeight = UIScreen.main.bounds.height/2.5
     let armsRightWidth = UIScreen.main.bounds.width
     let leftWidth = UIScreen.main.bounds.width / 2
     let rightWidth = UIScreen.main.bounds.width / 2 + 75
@@ -74,7 +74,7 @@ struct CanvasBoxes: View {
             }
         }
         
-        let bottomHeight = UIScreen.main.bounds.height + topPadding - Autoscale.convert(bottomPadding + 180)
+        let bottomHeight = UIScreen.main.bounds.height + topPadding - Autoscale.convert(bottomPadding + 40)
         
         if(leftAnkle.x > leftWidth - 49 && leftAnkle.x < rightWidth - 27 && leftAnkle.y > bottomHeight - 107 && leftAnkle.y < bottomHeight - 6){
             return true
@@ -98,7 +98,7 @@ struct CanvasBoxes: View {
             }
         }
         
-        let bottomHeight = UIScreen.main.bounds.height + topPadding - Autoscale.convert(bottomPadding + 180)
+        let bottomHeight = UIScreen.main.bounds.height + topPadding - Autoscale.convert(bottomPadding + 40)
         
         if(rightAnkle.x > leftWidth - 49 && rightAnkle.x < rightWidth - 27 && rightAnkle.y > bottomHeight - 107 && rightAnkle.y < bottomHeight - 6){
             return true
@@ -115,6 +115,7 @@ struct CanvasBoxes: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
+//                Color(.black)
                 ZStack {
                     //Top left
                     Path { path in
@@ -223,7 +224,7 @@ struct CanvasBoxes: View {
                 
                 ZStack {
                     //Bottom
-                    let bottomHeight = UIScreen.main.bounds.height - (geometry.safeAreaInsets.top + geometry.safeAreaInsets.bottom + Autoscale.convert(160))
+                    let bottomHeight = UIScreen.main.bounds.height - (geometry.safeAreaInsets.top + geometry.safeAreaInsets.bottom + Autoscale.convert(20))
                     
                     Path { path in
                         let p1 = CGPoint(x: leftWidth - 34, y: bottomHeight - 106)

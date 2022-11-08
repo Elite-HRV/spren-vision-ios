@@ -55,7 +55,7 @@ struct CameraScreenInfoCard: View {
                         .foregroundColor(.white)
                     Spacer()
                 }
-            }.padding(Autoscale.convert(24)).padding(.horizontal, Autoscale.convert(20))
+            }.padding(Autoscale.convert(24))
         }.fixedSize(horizontal: false, vertical: true).cornerRadius(Autoscale.convert(15)).padding()
     }
 }

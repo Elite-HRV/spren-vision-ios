@@ -16,7 +16,7 @@ struct CameraScreenTimerSelectionContainer: View {
         ZStack {
             VisualEffectView(effect: UIBlurEffect(style: .dark)).edgesIgnoringSafeArea(.bottom)
             
-            HStack(spacing: Autoscale.convert(30)) {
+            HStack(spacing: Autoscale.convert(10)) {
                 Button {
                     model.setTimer(nil)
                     buttonCallBack()

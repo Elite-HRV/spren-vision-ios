@@ -14,22 +14,49 @@ struct CameraScreenInfoCard: View {
         ZStack {
             VisualEffectView(effect: UIBlurEffect(style: .dark)).edgesIgnoringSafeArea(.bottom)
         
-            HStack(alignment: .top) {
-                Image(systemName: "exclamationmark.circle.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .foregroundColor(.white)
-                    .frame(width: 25, height: 25)
+            VStack(spacing:Autoscale.convert(10)) {
+                
+                if SprenUI.config.bundle == .module {
+                    Image(SprenUI.config.graphics[.bodyPosition] ?? "", bundle: .module).resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxHeight: Autoscale.convert(88))
+                        .padding(.top, Autoscale.convert(10))
+                        .padding(.bottom, Autoscale.convert(10))
 
-                Text("Please stand with your feet together and your arms out at 45 degrees.   Make sure your whole body is in the picture.  Match the guide. The indicators will turn green when you are in the correct position.")
-                    .font(.sprenLabel)
-                    .lineLimit(10)
-                    .minimumScaleFactor(0.01)
-                    .foregroundColor(.white)
-                    .padding(.leading, Autoscale.convert(15))
+                }else{
+                    Image(SprenUI.config.graphics[.bodyPosition] ?? "", bundle: .module).resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxHeight: Autoscale.convert(88))
+                        .padding(.top, Autoscale.convert(10))
+                        .padding(.bottom, Autoscale.convert(10))
 
-            }.padding(Autoscale.convert(24))
-        }.frame(height: Autoscale.convert(170)).cornerRadius(Autoscale.convert(15)).padding()
+                }
+
+                HStack {
+                    Text("• Center your whole body in frame")
+                        .multilineTextAlignment(.leading)
+                        .font(.sprenParagraph)
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+
+                HStack {
+                    Text("• Stand with your feet together")
+                        .multilineTextAlignment(.leading)
+                        .font(.sprenParagraph)
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+
+                HStack {
+                    Text("• Put your arms out at 45 degrees")
+                        .multilineTextAlignment(.leading)
+                        .font(.sprenParagraph)
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+            }.padding(Autoscale.convert(24)).padding(.horizontal, Autoscale.convert(20))
+        }.fixedSize(horizontal: false, vertical: true).cornerRadius(Autoscale.convert(15)).padding()
     }
 }
 

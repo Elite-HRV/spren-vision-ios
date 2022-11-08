@@ -37,6 +37,7 @@ extension SprenUI {
             .cameraAccessDenied: "cameraAccessDenied",
             .incorrectBodyPosition: "IncorrectBodyPosition",
             .privacy: "Privacy",
+            .bodyPosition: "Position",
 //            .serverError: "ServerError",
             .setupGuide: "SetupGuide"
         ]
@@ -61,6 +62,7 @@ extension SprenUI {
             case cameraAccessDenied
             case incorrectBodyPosition
             case privacy
+            case bodyPosition
 //            case serverError
             case setupGuide
         }

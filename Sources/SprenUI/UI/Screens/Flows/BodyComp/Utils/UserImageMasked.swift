@@ -70,28 +70,28 @@ struct UserImageMasked {
     }
 
     func getFinalImage(inputImage: UIImage, finalOutputImage: UIImage, size: CGSize, shouldApplyShadow: Bool) -> some View {
-        if #available(iOS 15.0, *) {
-            let image = Image(uiImage: finalOutputImage)
-                .resizable()
-                .rotationEffect(inputImage.getRotationAngle())
-                .scaledToFill()
-                .frame(width: size.width, height: size.height)
-
-            if (shouldApplyShadow) {
-                return AnyView(
-                    image
-                        .shadow(color: Color(red: 190 / 255, green: 190 / 255, blue: 190 / 255).opacity(0.5), radius: 10, x: -40, y: 5)
-                )
-            }
-            return AnyView(image)
-        } else {
+//        if #available(iOS 15.0, *) {
+//            let image = Image(uiImage: finalOutputImage)
+//                .resizable()
+//                .rotationEffect(inputImage.getRotationAngle())
+//                .scaledToFill()
+//                .frame(width: size.width, height: size.height)
+//
+//            if (shouldApplyShadow) {
+//                return AnyView(
+//                    image
+//                        .shadow(color: Color(red: 190 / 255, green: 190 / 255, blue: 190 / 255).opacity(0.5), radius: 10, x: -40, y: 5)
+//                )
+//            }
+//            return AnyView(image)
+//        } else {
             return AnyView(Image(uiImage: inputImage)
                 .resizable()
 //                .rotationEffect(inputImage.getRotationAngle())
                 .scaledToFill()
                 .frame(width: size.width, height: size.height)
             )
-        }
+//        }
     }
 
     func getMesh() -> some View {

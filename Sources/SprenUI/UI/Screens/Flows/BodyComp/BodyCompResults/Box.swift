@@ -44,7 +44,7 @@ struct Box: View {
                         
                         HStack(alignment: .bottom) {
                             if let number = self.number {
-                                Text(String(format: "%.2f", number))
+                                Text(String(format: "%.1f", number))
                                     .foregroundColor(getColor(colorScheme: colorScheme, light: .sprenBodyCompBlackLight, dark: .sprenBodyCompBlackDark))
                                     .font(.sprenBoldNumber)
                                     .lineLimit(1)

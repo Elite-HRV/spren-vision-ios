@@ -35,17 +35,19 @@ struct BodyCompResults: View {
                     VStack(spacing: Autoscale.convert(16)) {
                         HStack(spacing: Autoscale.convert(16)) {
                             Box(title: "Body Fat", number: bodyCompResponse.bodyFat.value, metric: "%", status: bodyCompResponse.bodyFat.status, errorDescription: bodyCompResponse.bodyFat.errorDescription)
-
-                            Box(title: "Gynoid Fat", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse.gynoidFat.value), metric: weightLabel, status: bodyCompResponse.gynoidFat.status, errorDescription: bodyCompResponse.gynoidFat.errorDescription)
+                            
+                            Box(title: "Lean Mass", number: UserData.default.convertToMetricIfNeeded(lbsOrKg:bodyCompResponse.leanMass.value), metric: weightLabel, status: bodyCompResponse.leanMass.status, errorDescription: bodyCompResponse.leanMass.errorDescription)
                         }
 
                         HStack(spacing: Autoscale.convert(16)) {
                             Box(title: "Fat Mass", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse.fatMass.value), metric: weightLabel, status: bodyCompResponse.fatMass.status, errorDescription: bodyCompResponse.fatMass.errorDescription)
+                            
+                            Box(title: "Weight", number: UserData.default.weight, metric: weightLabel, status: StatusValue.Status.complete, errorDescription: nil)
                         }
 
                         HStack(spacing: Autoscale.convert(16)) {
                             Box(title: "Android Fat", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse.androidFat.value), metric: weightLabel, status: bodyCompResponse.androidFat.status, errorDescription: bodyCompResponse.androidFat.errorDescription)
-
+                            
                             Box(title: "Gynoid Fat", number: UserData.default.convertToMetricIfNeeded(lbsOrKg: bodyCompResponse.gynoidFat.value), metric: weightLabel, status: bodyCompResponse.gynoidFat.status, errorDescription: bodyCompResponse.gynoidFat.errorDescription)
                         }
 
@@ -58,15 +60,15 @@ struct BodyCompResults: View {
                     
                     Spacer().frame(height: Autoscale.convert(50))
 
-                    ResultsTitle(text: "Additional metrics available to your users when demographic information is provided", lines: 3)
-                    
-                    text
-                                        
-                    HStack(spacing: Autoscale.convert(16)) {
-                        Box(title: "Metabolic Rate", number: 1.168, metric: "kCal", status: StatusValue.Status.complete)
-                        
-                        Box(title: "Body Fat", number: 25, metric: "%", status: StatusValue.Status.complete)
-                    }.padding(.top, Autoscale.convert(24))
+//                    ResultsTitle(text: "Additional metrics available to your users when demographic information is provided", lines: 3)
+//
+//                    text
+//
+//                    HStack(spacing: Autoscale.convert(16)) {
+//                        Box(title: "Metabolic Rate", number: 1.168, metric: "kCal", status: StatusValue.Status.complete)
+//
+//                        Box(title: "Body Fat", number: 25, metric: "%", status: StatusValue.Status.complete)
+//                    }.padding(.top, Autoscale.convert(24))
                     
                     Spacer().frame(height: Autoscale.convert(80))
                     

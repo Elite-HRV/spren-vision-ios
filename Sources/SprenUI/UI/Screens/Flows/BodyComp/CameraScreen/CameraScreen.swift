@@ -16,7 +16,7 @@ struct CameraScreen: View {
     @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
     
     @State private var isTimerOpen = false
-    @State private var infoTimer = 3
+    @State private var infoTimer = 5
     @State private var navigateTo: String?
     @State private var selectedImage: UIImage?
     @State private var currentFrame: UIImage?

@@ -21,7 +21,7 @@ struct CameraScreenTimerSelectionContainer: View {
                     model.setTimer(nil)
                     buttonCallBack()
                 } label: {
-                    Text("timer off")
+                    Text("timer\noff")
                         .font(.sprenParagraph)
                         .foregroundColor(model.isTimerOn == nil ? Color.sprenUISecondaryColor : .white)
                         .padding(.bottom, Autoscale.convert(10))

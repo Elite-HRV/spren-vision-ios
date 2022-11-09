@@ -19,45 +19,45 @@ struct CanvasBoxes: View {
     let leftWidth = UIScreen.main.bounds.width / 2
     let rightWidth = UIScreen.main.bounds.width / 2 + 75
     
-    func isLeftWristIn() -> Bool {
-        guard let leftWrist = leftWrist else {
-            return false
-        }
-        
-        var topPadding = 0.0
-        
-        if #available(iOS 13.0, *) {
-            if let window = UIApplication.shared.windows.first {
-                topPadding = window.safeAreaInsets.top
-            }
-        }
-        
-        if(leftWrist.x > 15 && leftWrist.x < 90 && leftWrist.y > armsHeight + topPadding && leftWrist.y < armsHeight + topPadding + 89){
-            return true
-        }
-        
-        return false
-    }
+//    func isLeftWristIn() -> Bool {
+//        guard let leftWrist = leftWrist else {
+//            return false
+//        }
+//
+//        var topPadding = 0.0
+//
+//        if #available(iOS 13.0, *) {
+//            if let window = UIApplication.shared.windows.first {
+//                topPadding = window.safeAreaInsets.top
+//            }
+//        }
+//
+//        if(leftWrist.x > 15 && leftWrist.x < 90 && leftWrist.y > armsHeight + topPadding && leftWrist.y < armsHeight + topPadding + 89){
+//            return true
+//        }
+//
+//        return false
+//    }
     
-    func isRightWristIn() -> Bool {
-        guard let rightWrist = rightWrist else {
-            return false
-        }
-        
-        var topPadding = 0.0
-        
-        if #available(iOS 13.0, *) {
-            if let window = UIApplication.shared.windows.first {
-                topPadding = window.safeAreaInsets.top
-            }
-        }
-        
-        if(rightWrist.x > armsRightWidth - 90 && rightWrist.x < armsRightWidth - 16 && rightWrist.y > armsHeight + topPadding && rightWrist.y < armsHeight + topPadding + 89){
-            return true
-        }
-        
-        return false
-    }
+//    func isRightWristIn() -> Bool {
+//        guard let rightWrist = rightWrist else {
+//            return false
+//        }
+//
+//        var topPadding = 0.0
+//
+//        if #available(iOS 13.0, *) {
+//            if let window = UIApplication.shared.windows.first {
+//                topPadding = window.safeAreaInsets.top
+//            }
+//        }
+//
+//        if(rightWrist.x > armsRightWidth - 90 && rightWrist.x < armsRightWidth - 16 && rightWrist.y > armsHeight + topPadding && rightWrist.y < armsHeight + topPadding + 89){
+//            return true
+//        }
+//
+//        return false
+//    }
     
     func isLeftAnkleIn() -> Bool {
         guard let leftAnkle = leftAnkle else {
@@ -116,111 +116,111 @@ struct CanvasBoxes: View {
         GeometryReader { geometry in
             ZStack {
 //                Color(.black)
-                ZStack {
-                    //Top left
-                    Path { path in
-                        let p1 = CGPoint(x: 40, y: armsHeight)
-                        let p2 = CGPoint(x: 16, y: armsHeight + 24)
-                        let p3 = CGPoint(x: 24, y: armsHeight + 8)
-                        let p4 = CGPoint(x: 40, y: armsHeight)
-
-                        path.move(to: p1)
-                        path.addLine(to: p4)
-                        path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(180), clockwise: true)
-                        path.addLine(to: p2)
-                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+//                ZStack {
+//                    //Top left
+//                    Path { path in
+//                        let p1 = CGPoint(x: 40, y: armsHeight)
+//                        let p2 = CGPoint(x: 16, y: armsHeight + 24)
+//                        let p3 = CGPoint(x: 24, y: armsHeight + 8)
+//                        let p4 = CGPoint(x: 40, y: armsHeight)
+//
+//                        path.move(to: p1)
+//                        path.addLine(to: p4)
+//                        path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(180), clockwise: true)
+//                        path.addLine(to: p2)
+//                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
-                    Path { path in
-                        let p1 = CGPoint(x: 66, y: armsHeight)
-                        let p2 = CGPoint(x: 90, y: armsHeight + 24)
-                        let p3 = CGPoint(x: 82, y: armsHeight + 8)
-                        let p4 = CGPoint(x: 82, y: armsHeight)
-
-                        path.move(to: p1)
-                        path.addLine(to: p4)
-                        path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(0), clockwise: false)
-                        path.addLine(to: p2)
-                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+//                    Path { path in
+//                        let p1 = CGPoint(x: 66, y: armsHeight)
+//                        let p2 = CGPoint(x: 90, y: armsHeight + 24)
+//                        let p3 = CGPoint(x: 82, y: armsHeight + 8)
+//                        let p4 = CGPoint(x: 82, y: armsHeight)
+//
+//                        path.move(to: p1)
+//                        path.addLine(to: p4)
+//                        path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(0), clockwise: false)
+//                        path.addLine(to: p2)
+//                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
-                    Path { path in
-                        let p1 = CGPoint(x: 16, y: armsHeight + 65)
-                        let p2 = CGPoint(x: 16, y: armsHeight + 80)
-                        let p3 = CGPoint(x: 24, y: armsHeight + 80)
-                        let p4 = CGPoint(x: 40, y: armsHeight + 88)
-
-                        path.move(to: p1)
-                        path.addLine(to: p2)
-                        path.addArc(center: p3, radius: 8, startAngle: .degrees(180), endAngle: .degrees(90), clockwise: true)
-                        path.addLine(to: p4)
-                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+//                    Path { path in
+//                        let p1 = CGPoint(x: 16, y: armsHeight + 65)
+//                        let p2 = CGPoint(x: 16, y: armsHeight + 80)
+//                        let p3 = CGPoint(x: 24, y: armsHeight + 80)
+//                        let p4 = CGPoint(x: 40, y: armsHeight + 88)
+//
+//                        path.move(to: p1)
+//                        path.addLine(to: p2)
+//                        path.addArc(center: p3, radius: 8, startAngle: .degrees(180), endAngle: .degrees(90), clockwise: true)
+//                        path.addLine(to: p4)
+//                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
                     
-                    Path { path in
-                        let p1 = CGPoint(x: 90, y: armsHeight + 65)
-                        let p2 = CGPoint(x: 90, y: armsHeight + 80)
-                        let p3 = CGPoint(x: 82, y: armsHeight + 80)
-                        let p4 = CGPoint(x: 66, y: armsHeight + 88)
-
-                        path.move(to: p1)
-                        path.addLine(to: p2)
-                        path.addArc(center: p3, radius: 8, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
-                        path.addLine(to: p4)
-                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-                    
-                    CanvasCircles(x: 53, y: armsHeight + 44, size1: 50, size2: 32, size3: 10, action: isLeftWristIn)
-                }
+//                    Path { path in
+//                        let p1 = CGPoint(x: 90, y: armsHeight + 65)
+//                        let p2 = CGPoint(x: 90, y: armsHeight + 80)
+//                        let p3 = CGPoint(x: 82, y: armsHeight + 80)
+//                        let p4 = CGPoint(x: 66, y: armsHeight + 88)
+//
+//                        path.move(to: p1)
+//                        path.addLine(to: p2)
+//                        path.addArc(center: p3, radius: 8, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
+//                        path.addLine(to: p4)
+//                    }.stroke(isLeftWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+//
+//                    CanvasCircles(x: 53, y: armsHeight + 44, size1: 50, size2: 32, size3: 10, action: isLeftWristIn)
+//                }
                 
-                ZStack {
-                    //Top right
-                    Path { path in
-                        let p1 = CGPoint(x: armsRightWidth - 66, y: armsHeight)
-                        let p2 = CGPoint(x: armsRightWidth - 90, y: armsHeight + 24)
-                        let p3 = CGPoint(x: armsRightWidth - 82, y: armsHeight + 8)
-                        let p4 = CGPoint(x: armsRightWidth - 66, y: armsHeight)
+//                ZStack {
+//                    //Top right
+//                    Path { path in
+//                        let p1 = CGPoint(x: armsRightWidth - 66, y: armsHeight)
+//                        let p2 = CGPoint(x: armsRightWidth - 90, y: armsHeight + 24)
+//                        let p3 = CGPoint(x: armsRightWidth - 82, y: armsHeight + 8)
+//                        let p4 = CGPoint(x: armsRightWidth - 66, y: armsHeight)
+//
+//                        path.move(to: p1)
+//                        path.addLine(to: p4)
+//                        path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(180), clockwise: true)
+//                        path.addLine(to: p2)
+//                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+//
+//                    Path { path in
+//                        let p1 = CGPoint(x: armsRightWidth - 40, y: armsHeight)
+//                        let p2 = CGPoint(x: armsRightWidth - 16, y: armsHeight + 24)
+//                        let p3 = CGPoint(x: armsRightWidth - 24, y: armsHeight + 8)
+//                        let p4 = CGPoint(x: armsRightWidth - 24, y: armsHeight)
+//
+//                        path.move(to: p1)
+//                        path.addLine(to: p4)
+//                        path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(0), clockwise: false)
+//                        path.addLine(to: p2)
+//                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
 
-                        path.move(to: p1)
-                        path.addLine(to: p4)
-                        path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(180), clockwise: true)
-                        path.addLine(to: p2)
-                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-                    
-                    Path { path in
-                        let p1 = CGPoint(x: armsRightWidth - 40, y: armsHeight)
-                        let p2 = CGPoint(x: armsRightWidth - 16, y: armsHeight + 24)
-                        let p3 = CGPoint(x: armsRightWidth - 24, y: armsHeight + 8)
-                        let p4 = CGPoint(x: armsRightWidth - 24, y: armsHeight)
-
-                        path.move(to: p1)
-                        path.addLine(to: p4)
-                        path.addArc(center: p3, radius: 8, startAngle: .degrees(270), endAngle: .degrees(0), clockwise: false)
-                        path.addLine(to: p2)
-                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-
-                    Path { path in
-                        let p1 = CGPoint(x: armsRightWidth - 90, y: armsHeight + 65)
-                        let p2 = CGPoint(x: armsRightWidth - 90, y: armsHeight + 80)
-                        let p3 = CGPoint(x: armsRightWidth - 82, y: armsHeight + 80)
-                        let p4 = CGPoint(x: armsRightWidth - 66, y: armsHeight + 88)
-
-                        path.move(to: p1)
-                        path.addLine(to: p2)
-                        path.addArc(center: p3, radius: 8, startAngle: .degrees(180), endAngle: .degrees(90), clockwise: true)
-                        path.addLine(to: p4)
-                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-
-                    Path { path in
-                        let p1 = CGPoint(x: armsRightWidth - 16, y: armsHeight + 65)
-                        let p2 = CGPoint(x: armsRightWidth - 16, y: armsHeight + 80)
-                        let p3 = CGPoint(x: armsRightWidth - 24, y: armsHeight + 80)
-                        let p4 = CGPoint(x: armsRightWidth - 40, y: armsHeight + 88)
-
-                        path.move(to: p1)
-                        path.addLine(to: p2)
-                        path.addArc(center: p3, radius: 8, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
-                        path.addLine(to: p4)
-                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-                    
-                    CanvasCircles(x: armsRightWidth - 53, y: armsHeight + 44, size1: 50, size2: 32, size3: 10, action: isRightWristIn)
-                }
+//                    Path { path in
+//                        let p1 = CGPoint(x: armsRightWidth - 90, y: armsHeight + 65)
+//                        let p2 = CGPoint(x: armsRightWidth - 90, y: armsHeight + 80)
+//                        let p3 = CGPoint(x: armsRightWidth - 82, y: armsHeight + 80)
+//                        let p4 = CGPoint(x: armsRightWidth - 66, y: armsHeight + 88)
+//
+//                        path.move(to: p1)
+//                        path.addLine(to: p2)
+//                        path.addArc(center: p3, radius: 8, startAngle: .degrees(180), endAngle: .degrees(90), clockwise: true)
+//                        path.addLine(to: p4)
+//                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+//
+//                    Path { path in
+//                        let p1 = CGPoint(x: armsRightWidth - 16, y: armsHeight + 65)
+//                        let p2 = CGPoint(x: armsRightWidth - 16, y: armsHeight + 80)
+//                        let p3 = CGPoint(x: armsRightWidth - 24, y: armsHeight + 80)
+//                        let p4 = CGPoint(x: armsRightWidth - 40, y: armsHeight + 88)
+//
+//                        path.move(to: p1)
+//                        path.addLine(to: p2)
+//                        path.addArc(center: p3, radius: 8, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
+//                        path.addLine(to: p4)
+//                    }.stroke(isRightWristIn() ? Color.sprenUISecondaryColor : .white, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+//
+//                    CanvasCircles(x: armsRightWidth - 53, y: armsHeight + 44, size1: 50, size2: 32, size3: 10, action: isRightWristIn)
+//                }
                 
                 ZStack {
                     //Bottom

@@ -184,22 +184,10 @@ struct CameraScreen: View {
             isTimerOpen = !isTimerOpen
         } label: {
             ZStack(alignment: .top) {
-                HStack {
-                    if let isTimerOn = model.isTimerOn {
-                        Text(String(isTimerOn) + "s")
-                            .font(.sprenParagraph)
-                            .foregroundColor(.white)
-                            .padding(.top, Autoscale.convert(10))
-                    }else{
-                        Text(" ").padding(.top, Autoscale.convert(45))
-                    }
-                    Spacer()
-                }
-                
                 VStack {
-                    Spacer().frame(height: Autoscale.convert(25))
-                    Image("Timer", bundle: .module).colorMultiply(isTimerOpen ? .sprenUISecondaryColor : .white)
-                    Spacer().frame(height: Autoscale.convert(10))
+                    Spacer().frame(height: Autoscale.convert(21))
+                    Image("Timer", bundle: .module).colorMultiply(isTimerOpen || (model.isTimerOn != nil) ? .sprenUISecondaryColor : .white)
+                    Spacer().frame(height: Autoscale.convert(21))
                 }
             }
         }
@@ -227,9 +215,9 @@ struct CameraScreen: View {
             model.flipCamera()
         } label: {
             VStack {
-                Spacer().frame(height: Autoscale.convert(10))
+                Spacer().frame(height: Autoscale.convert(16))
                 Image("Switch", bundle: .module).colorMultiply(model.isCameraFlipped ? .sprenUISecondaryColor : .white)
-                Spacer().frame(height: Autoscale.convert(25))
+                Spacer().frame(height: Autoscale.convert(21))
             }
         }
     }

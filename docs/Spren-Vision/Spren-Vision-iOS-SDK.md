@@ -33,7 +33,7 @@ let config = SprenUI.Config(
 
 		// optionally override default intro screen graphics
 		// provide names for image sets in main bundle xcassets
-		// all 5 are required
+		// *all are required for each project if overriding
 		graphics: [
 				// for a `.fingerCamera` project
 		    .greeting1:      "<image set name>", // greeting screen 1

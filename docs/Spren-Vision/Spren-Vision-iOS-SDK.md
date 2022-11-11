@@ -16,38 +16,51 @@ import SprenUI
 
 // create SprenUI configuration
 let config = SprenUI.Config(
-		// API
-		baseURL: "https://test.api.spren.com",
-		apiKey: "<API key>",
+    // API
+    baseURL: "https://test.api.spren.com",
+    apiKey: "<API key>",
 
-		// user
-		userID: "<user ID>",
-		userGender: <optional, male, female, or other>,
-		userBirthdate: <optional, Date>,
+    // user
+    userID: "<user ID>",
+    userGender: <optional, male, female, or other>,
+    userBirthdate: <optional, Date>,
 
-		// UI
-		primaryColor: <optional, Color>, // used for buttons
-		secondaryColor: <optional, Color>, // used for graphics
-		// optionally override default intro screen graphics
-		// provide names for image sets in main bundle xcassets
-		// all 5 are required
-		graphics: [
-		    .greeting1:      "<image set name>", // greeting screen 1
-		    .greeting2:      "<image set name>", // greeting screen 2
-		    .fingerOnCamera: "<image set name>", // finger on camera instruction screen
-		    .noCamera:       "<image set name>", // camera access authorization denied screen
-		    .serverError:    "<image set name>" // server or calculation error
-		],
+    // UI
+    primaryColor:   <optional, Color>, // used for buttons
+    secondaryColor: <optional, Color>, // used for graphics
 
-		onCancel: {
-				// user exited UI before completing a reading
-				// dismiss SprenUI
-		},
-		onFinish: { results in
-				// user completed a reading!
-				print(results)
-				// dismiss SprenUI
-		}
+    project: .fingerCamera, // or `.bodyComp`
+
+    // optionally override default intro screen graphics
+    // provide names for image sets in main bundle xcassets
+    // *all are required for each project if overriding
+    graphics: [
+        // for a `.fingerCamera` project
+        .greeting1:      "<image set name>", // greeting screen 1
+        .greeting2:      "<image set name>", // greeting screen 2
+        .fingerOnCamera: "<image set name>", // finger on camera instruction screen
+        .noCamera:       "<image set name>", // camera access authorization denied screen
+        .serverError:    "<image set name>"  // server or calculation error
+
+        // for a `.bodyComp` project
+        .setupGuide:            "<image set name>",
+        .serverError:           "<image set name>",
+        .privacy:               "<image set name>",
+        .cameraAccessDenied:    "<image set name>",
+        .incorrectBodyPosition: "<image set name>",
+        .greetings:             "<image set name>",
+        .bodyPosition:          "<image set name>"
+    ],
+
+    onCancel: {
+        // user exited UI before completing a reading
+        // dismiss SprenUI
+    },
+    onFinish: { results in
+        // user completed a reading!
+        print(results)
+        // dismiss SprenUI
+    }
 )
 
 // init SprenUI view

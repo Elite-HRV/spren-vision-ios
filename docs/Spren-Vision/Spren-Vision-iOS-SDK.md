@@ -36,11 +36,11 @@ let config = SprenUI.Config(
 		// *all are required for each project if overriding
 		graphics: [
 				// for a `.fingerCamera` project
-		    .greeting1:      "<image set name>", // greeting screen 1
-		    .greeting2:      "<image set name>", // greeting screen 2
-		    .fingerOnCamera: "<image set name>", // finger on camera instruction screen
-		    .noCamera:       "<image set name>", // camera access authorization denied screen
-		    .serverError:    "<image set name>"  // server or calculation error
+				.greeting1:      "<image set name>", // greeting screen 1
+				.greeting2:      "<image set name>", // greeting screen 2
+				.fingerOnCamera: "<image set name>", // finger on camera instruction screen
+				.noCamera:       "<image set name>", // camera access authorization denied screen
+				.serverError:    "<image set name>"  // server or calculation error
 
 				// for a `.bodyComp` project
 				.setupGuide:            "<image set name>",

@@ -26,17 +26,30 @@ let config = SprenUI.Config(
 		userBirthdate: <optional, Date>,
 
 		// UI
-		primaryColor: <optional, Color>, // used for buttons
+		primaryColor:   <optional, Color>, // used for buttons
 		secondaryColor: <optional, Color>, // used for graphics
+
+		project: .fingerCamera, // or `.bodyComp`
+
 		// optionally override default intro screen graphics
 		// provide names for image sets in main bundle xcassets
 		// all 5 are required
 		graphics: [
+				// for a `.fingerCamera` project
 		    .greeting1:      "<image set name>", // greeting screen 1
 		    .greeting2:      "<image set name>", // greeting screen 2
 		    .fingerOnCamera: "<image set name>", // finger on camera instruction screen
 		    .noCamera:       "<image set name>", // camera access authorization denied screen
-		    .serverError:    "<image set name>" // server or calculation error
+		    .serverError:    "<image set name>"  // server or calculation error
+
+				// for a `.bodyComp` project
+				.setupGuide:            "<image set name>",
+				.serverError:           "<image set name>",
+				.privacy:               "<image set name>",
+				.cameraAccessDenied:    "<image set name>",
+				.incorrectBodyPosition: "<image set name>",
+				.greetings:             "<image set name>",
+				.bodyPosition:          "<image set name>"
 		],
 
 		onCancel: {

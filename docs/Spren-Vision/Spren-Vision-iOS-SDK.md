@@ -8,7 +8,7 @@
 
 ## Spren UI
 
-### Finger Camera Implementation Example
+### Finger Camera Example
 
 ```swift
 import SwiftUI
@@ -58,7 +58,7 @@ SprenUI(config: config)
 
 ```
 
-### Body Composition Implementation Example
+### Body Composition Example
 
 ```swift
 import SwiftUI

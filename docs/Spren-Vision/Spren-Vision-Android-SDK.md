@@ -87,14 +87,7 @@ class MainActivity : AppCompatActivity() {
 
         // after dismissing results screen
         SprenUI.Config.onFinish =
-            { guid,
-              hr,
-              hrvScore,
-              rmssd,
-              breathingRate,
-              readiness,
-              ansBalance,
-              signalQuality ->
+            { results, _ ->
 
               // handle completion of reading UI flow
             }
@@ -159,7 +152,7 @@ class MainActivity : AppCompatActivity() {
 
         // after dismissing results screen
         SprenUI.Config.onFinish =
-            { results ->
+            { _, results ->
                 // user completed a scan!
                 print(results)
                 // dismiss SprenUI

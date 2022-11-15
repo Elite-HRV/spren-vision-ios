@@ -114,7 +114,7 @@ extension TopResultCard {
             
             return (color1, color2, "Heart rate", "Resting heart rate can reflect your current and future health. A lower heart rate indicates better cardiovascular fitness and increased longevity.", text, "bpm")
         case .breathingRate:
-            var text = "Normal for your age and gender"
+            var text = "Normal for healthy adults"
             var color: Color = Color("DemographicGreen", bundle: .module)
             
             if (value < RRConstants.rangeMin) {

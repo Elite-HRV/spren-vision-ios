@@ -4,21 +4,24 @@ The Android SDK is in Alpha. We're working quickly to expand our support in the 
 
 ## Device Support and Recommendations
 
-> A supported device function exposed by the SDK is coming soon!
+### Compatible Devices (Tested)
+>
+> There may be other compatible, but untested Android devices that are not contained in this list.
+>
 
-## Tested Devices
-
-- Google Pixel 3XL
-- Google Pixel 4
-- Google Pixel 4a
-- Google Pixel 5
-- Xiaomi Redmi 9
+- Google Pixel 3XL, 4, 4a, 5, 6\*, 6a\*, 6 Pro\*, 7\*, 7 Pro\*
+- Xiaomi Redmi 9, Note 10 Pro
 - Huawei Mate 20
-- Samsung Galaxy S10+
+- Samsung Galaxy Note 9, A51, S9, S10, S10+, S20 FE, S21 Ultra, S22+\*, S22 Ultra
+- Motorola Moto G 5G Plus (2020 model)
+- LG Velvet
+- OnePlus 7 Pro, 9 5G
 
-## Currently Testing
+\*Devices with an asterisk are ones that use the wide angle camera for readings. All other devices use the default camera. **Note** that for Samsung Galaxy S22, only model number *SM-S901B* uses the wide angle camera. Other models use the default camera.
 
-- Samsung Galaxy S9, S10 5G, S20 FE 5G, S21 Ultra, and S22+
+### Incompatible Devices (Tested)
+- Huawei P20 Lite
+- Redmi Note 11
 
 ## Recommendations
 
@@ -36,6 +39,11 @@ Currently, we allow users to only perform readings with flash on.
        activityManager.memoryClass >= 192
    ```
 2. 30FPS is acceptable, but for best accuracy and UX, we recommend devices that support 60FPS in CameraX. Note that 60FPS or better may be listed in manufacturer's device specifications, thus, be supported in the native camera app, but be unavailable to CameraX.
+
+### End User
+1. Rub fingertips and hands to warm up
+2. Ensure adequate room lighting
+3. Wait a few seconds for reading to initialize
 
 ## Installation
 

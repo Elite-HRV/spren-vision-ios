@@ -19,7 +19,7 @@ class AsyncAPIService<E: Encodable, D: Decodable & CompletableErrorable> {
     private var cancelled = false
 
     private let retryAfterPostDelay: Double = 4
-    private let retryGetTimeout: Double = 30
+    private let retryGetTimeout: Double = 60
     private let retryGetDelay: Double = 2
 
     private var guid: String? = nil

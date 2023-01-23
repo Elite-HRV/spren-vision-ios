@@ -30,8 +30,6 @@ struct Info: View {
                     
                     InfoBox(title: "Android:Gynoid Ratio", text: "The ratio for android fat storage to gynoid fat storage is correlated with metabolic insulin resistance, matabolic disregulation, and risk of cardiovasular disease. A higher value of Android:Gynoid fat ratio indicates an increased risk for metabolic and cardiovascular diseases due to increased visceral fat storage. It is ideal to have a Android: Gynoid Fat ratio less than 1.0.")
                     
-                    InfoBox(title: "Resting Metabolic Rate", text: "Resting metabolic rate is the total number of calories burned when your body is completely at rest. This information could be helpful for a person who is trying to manage their weight.")
-                    
                     Spacer()
                     
                     Image("PoweredBySpren", bundle: .module)

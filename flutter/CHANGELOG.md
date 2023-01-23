@@ -1,3 +1,9 @@
+## 2.2.0
+
+Android: Improving default camera lens for numerous phone models.
+
+https://docs.spren.com/spren-vision/spren-vision-android-sdk
+
 ## 2.1.2
 
 iOS: Fixed frame drop issue

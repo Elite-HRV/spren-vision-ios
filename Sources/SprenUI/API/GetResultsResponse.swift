@@ -107,17 +107,17 @@ struct GetResultsResponse: Decodable {
 }
 
 public struct Results {
-    let guid: String
-    let hr: Double
-    let hrvScore: Double
-    let rmssd: Double
-    let breathingRate: Double
+    public let guid: String
+    public let hr: Double
+    public let hrvScore: Double
+    public let rmssd: Double
+    public let breathingRate: Double
     
     // require 2 readings on 2 separate days within 10 days or value will be null
-    let readiness: Double?
-    let ansBalance: Double?
+    public let readiness: Double?
+    public let ansBalance: Double?
     
-    let signalQuality: Double
+    public let signalQuality: Double
     
     static let empty = Results(guid: "", hr: 0, hrvScore: 0, rmssd: 0, breathingRate: 0, readiness: 0, ansBalance: 0, signalQuality: 0)
 }

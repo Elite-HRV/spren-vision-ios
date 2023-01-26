@@ -9,7 +9,7 @@ The Android SDK is in Alpha. We're working quickly to expand our support in the 
 > There may be other compatible, but untested Android devices that are not contained in this list.
 >
 
-- Google Pixel 3XL, 4, 4a, 5, 6\*, 6a\*, 6 Pro\*, 7\*, 7 Pro\*
+- Google Pixel 3XL, 4, 4a, 5, 6\*, 6 Pro\*, 7\*, 7 Pro\*
 - Xiaomi Redmi 9, Note 10 Pro
 - Huawei Mate 20
 - Samsung Galaxy Note 9, A51, S9, S10, S10+, S20 FE, S21 Ultra, S22+\*, S22 Ultra

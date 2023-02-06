@@ -1,3 +1,7 @@
+## 2.2.1
+
+Android: Samsung Galaxy S22 - adding support 
+
 ## 2.2.0
 
 Android: Improving default camera lens for numerous phone models.

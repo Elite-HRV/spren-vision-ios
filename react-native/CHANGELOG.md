@@ -1,3 +1,7 @@
+## 2.0.1
+
+Android: Samsung Galaxy S22 - adding support
+
 ## 2.0.0
 
 ###Android Breaking changes in 2.x

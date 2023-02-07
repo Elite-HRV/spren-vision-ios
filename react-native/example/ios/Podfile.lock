@@ -1,7 +1,7 @@
 PODS:
   - boost (1.76.0)
   - CocoaAsyncSocket (7.6.5)
-  - DeviceKit (4.6.0)
+  - DeviceKit (4.9.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.67.2)
   - FBReactNativeSpec (0.67.2):
@@ -282,7 +282,7 @@ PODS:
     - React-Core
   - react-native-keep-awake (4.0.0):
     - React
-  - react-native-spren (2.0.0):
+  - react-native-spren (2.0.1):
     - React-Core
     - SprenVision (~> 1.2.0)
   - React-perflogger (0.67.2)
@@ -400,7 +400,7 @@ PODS:
   - Sentry (7.11.0):
     - Sentry/Core (= 7.11.0)
   - Sentry/Core (7.11.0)
-  - SprenVision (1.2.0):
+  - SprenVision (1.2.1):
     - DeviceKit (~> 4.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -578,7 +578,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   boost: a7c83b31436843459a1961bfd74b96033dc77234
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  DeviceKit: 834dd8aa1be53cd85364d8f49aa5d98bfac397c4
+  DeviceKit: 847709bf70b78fd9ab765bd571fb9f5f815c3fc1
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
   FBLazyVector: 244195e30d63d7f564c55da4410b9a24e8fbceaa
   FBReactNativeSpec: c94002c1d93da3658f4d5119c6994d19961e3d52
@@ -611,7 +611,7 @@ SPEC CHECKSUMS:
   React-logger: 23de8ea0f44fa00ee77e96060273225607fd4d78
   react-native-config: 6502b1879f97ed5ac570a029961fc35ea606cd14
   react-native-keep-awake: afad8a51dfef9fe9655a6344771be32c8596d774
-  react-native-spren: 9c9932f35b976b747165708c76a816ae8aea485a
+  react-native-spren: 8a96f90393376ef89cbe443eeaf76e8daf106e25
   React-perflogger: 3c9bb7372493e49036f07a82c44c8cf65cbe88db
   React-RCTActionSheet: 052606483045a408693aa7e864410b4a052f541a
   React-RCTAnimation: 08d4cac13222bb1348c687a0158dfd3b577cdb63
@@ -631,7 +631,7 @@ SPEC CHECKSUMS:
   RNSentry: fbbdcd7213058e3de5fbaa452b25a06a16b4b382
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   Sentry: 0c5cd63d714187b4a39c331c1f0eb04ba7868341
-  SprenVision: 7e193808aa798037b6fced4271afde9f271ab941
+  SprenVision: b86636e06526f1cb5bca5238fc0e72f7cc80ff38
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

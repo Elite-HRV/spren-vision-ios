@@ -12,16 +12,17 @@ The Android SDK is in Alpha. We're working quickly to expand our support in the 
 - Google Pixel 3XL, 4, 4a, 5, 6\*, 6 Pro\*, 7\*, 7 Pro\*
 - Xiaomi Redmi 9, Note 10 Pro
 - Huawei Mate 20
-- Samsung Galaxy Note 9, A51, S9, S10, S10+, S20 FE, S21 Ultra, S22+\*, S22 Ultra
+- Samsung Galaxy Note 9, A51, S9, S10, S10+, S20 FE, S21 Ultra, S22, S22+, S22 Ultra
 - Motorola Moto G 5G Plus (2020 model)
 - LG Velvet
 - OnePlus 7 Pro, 9 5G
 
-\*Devices with an asterisk are ones that use the wide angle camera for readings. All other devices use the default camera. **Note** that for Samsung Galaxy S22, only model number *SM-S901B* uses the wide angle camera. Other models use the default camera.
+\*Devices with an asterisk are ones that use the wide angle camera for readings. All other devices use the default camera.
 
 ### Incompatible Devices (Tested)
 - Huawei P20 Lite
 - Redmi Note 11
+- Google Pixel 6a
 
 ## Recommendations
 

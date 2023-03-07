@@ -5,7 +5,7 @@ PODS:
   - Flutter (1.0.0)
   - permission_handler_apple (9.0.4):
     - Flutter
-  - spren_flutter (2.2.1):
+  - spren_flutter (2.2.2):
     - Flutter
     - SprenVision (~> 1.2.1)
   - SprenVision (1.2.1):
@@ -42,7 +42,7 @@ SPEC CHECKSUMS:
   DeviceKit: 847709bf70b78fd9ab765bd571fb9f5f815c3fc1
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
-  spren_flutter: 13e5e5e575d2952ad48709a922700692dff5418b
+  spren_flutter: 910bb1aaa6d5d47c3a69c1062bf1d502fb06476a
   SprenVision: b86636e06526f1cb5bca5238fc0e72f7cc80ff38
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
 

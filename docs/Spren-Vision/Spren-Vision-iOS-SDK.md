@@ -8,7 +8,7 @@
 
 ## Spren UI
 
-### Finger Camera Example
+### Implementation Example
 
 ```swift
 import SwiftUI
@@ -48,58 +48,6 @@ let config = SprenUI.Config(
     },
     onFinish: { results in
         // user completed a reading!
-        print(results)
-        // dismiss SprenUI
-    }
-)
-
-// init SprenUI view
-SprenUI(config: config)
-
-```
-
-### Body Composition Example
-
-```swift
-import SwiftUI
-import SprenUI
-
-// create SprenUI configuration
-let config = SprenUI.Config(
-    // API
-    baseURL: "https://test.api.spren.com",
-    apiKey: "<API key>",
-
-    // user
-    userID: "<user ID>",
-    userGender: <optional, male, female, or other>,
-    userBirthdate: <optional, Date>,
-
-    // UI
-    primaryColor:   <optional, Color>, // used for buttons
-    secondaryColor: <optional, Color>, // used for graphics
-
-    project: .bodyComp,
-
-    // optionally override graphics
-    // provide names for image sets in main bundle xcassets
-    // *all are required for each project if overriding
-    graphics: [
-        .setupGuide:            "<image set name>",
-        .serverError:           "<image set name>",
-        .privacy:               "<image set name>",
-        .cameraAccessDenied:    "<image set name>",
-        .incorrectBodyPosition: "<image set name>",
-        .greetings:             "<image set name>",
-        .bodyPosition:          "<image set name>"
-    ],
-
-    onCancel: {
-        // user exited UI before completing a scan
-        // dismiss SprenUI
-    },
-    onFinish: { results in
-        // user completed a scan!
         print(results)
         // dismiss SprenUI
     }

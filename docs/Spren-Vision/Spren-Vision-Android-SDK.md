@@ -56,7 +56,7 @@ The open source code is available in the [Spren Vision Android SDK GitHub Reposi
 
 ## Spren UI
 
-### Finger Camera Example
+### Implementation Example
 
 ```kotlin
 // MainActivity.kt
@@ -121,73 +121,6 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-### Body Composition Example
-
-```kotlin
-// MainActivity.kt
-
-import com.spren.sprenui.SprenUI
-
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var hardwareAlert: HardwareAlert
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // optionally set custom theme
-        // theme inherits from "Theme.MaterialComponents.DayNight.NoActionBar"
-        // see themes.xml example below
-        setTheme(R.style.Theme_SprenUI)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // optionally check if hardware is compatible
-        hardwareAlert = HardwareAlert(this)
-        if (!HardwareCheck.isHighPerformingDevice(this)) {
-            hardwareAlert.show()
-        }
-
-        // set user ID
-        SprenUI.Config.userId = ...
-
-        // optionally set user biological sex
-        SprenUI.Config.userGender = ...
-
-        // optionally set user birthdate
-        SprenUI.Config.userBirthdate = ...
-
-        // after dismissing results screen
-        SprenUI.Config.onFinish =
-            { _, results ->
-                // user completed a scan!
-                print(results)
-                // dismiss SprenUI
-            }
-
-
-        SprenUI.Config.onCancel = {
-          // handle user exit of UI flow without completing a scan
-        }
-
-        // optionally override default intro screen graphics
-        // provide drawable ids for image sets in project
-        // *all are required for each project if overriding
-        SprenUI.Config.graphics = mapOf(
-            SprenUI.Graphic.GREETINGS to <image set drawable id>,
-            SprenUI.Graphic.PRIVACY to <image set drawable id>,
-            SprenUI.Graphic.CAMERA_ACCESS_DENIED <image set drawable id>,
-            SprenUI.Graphic.PHOTOS_ACCESS_DENIED to <image set drawable id>,
-            SprenUI.Graphic.SETUP_GUIDE to <image set drawable id>,
-            SprenUI.Graphic.SERVER_ERROR to <image set drawable id>,
-            SprenUI.Graphic.INCORRECT_BODY_POSITION to <image set drawable id>
-        )
-    }
-}
-```
-
 ### Layout and Theme
 
 ```xml
@@ -201,7 +134,7 @@ class MainActivity : AppCompatActivity() {
     android:layout_height="match_parent"
     app:api_key="@string/api_key"
     app:base_url="@string/base_url"
-    app:project="FINGER_CAMERA" or "BODY_COMPOSITION"
+    app:project="FINGER_CAMERA"
     tools:context=".MainActivity" />
 ```
 

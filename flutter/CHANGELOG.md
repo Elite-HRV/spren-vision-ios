@@ -1,3 +1,7 @@
+## 2.2.2
+
+Android: Fixed concurrency exception, fixed null-pointer exception
+
 ## 2.2.1
 
 Android: Samsung Galaxy S22 - adding support 

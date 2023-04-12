@@ -42,7 +42,7 @@ extension SprenUI {
             .setupGuide: "SetupGuide"
         ]
         
-        public let onCancel: (() -> Void)
+        public let onCancel: (() -> Void)?
         public let onFinish: ((_ results: Results) -> Void)
         
         // only relevant to demo app
@@ -81,7 +81,7 @@ extension SprenUI {
                     secondaryColor: Color? = nil,
                     project: SprenProject,
                     graphics: [Graphic: String]? = nil,
-                    onCancel: @escaping (() -> Void),
+                    onCancel: (() -> Void)? = nil,
                     onFinish: @escaping ((Results) -> Void),
                     logger: Logger? = nil) {
             self.baseURL = baseURL

@@ -6,8 +6,17 @@
         "repositoryURL": "https://github.com/devicekit/DeviceKit.git",
         "state": {
           "branch": null,
-          "revision": "cc49d42dafd69c96abbf695cedbefab6441f1afa",
-          "version": "4.6.0"
+          "revision": "691fe8112cca20ebf0020a1709d4e0205400311c",
+          "version": "5.0.0"
+        }
+      },
+      {
+        "package": "swift-log",
+        "repositoryURL": "https://github.com/apple/swift-log.git",
+        "state": {
+          "branch": null,
+          "revision": "532d8b529501fb73a2455b179e0bbb6d49b652ed",
+          "version": "1.5.3"
         }
       }
     ]

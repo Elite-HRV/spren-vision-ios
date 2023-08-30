@@ -1,5 +1,6 @@
 package com.spren.spren_flutter;
 
+import android.app.Activity;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,14 +12,14 @@ import io.flutter.plugin.platform.PlatformView;
 import io.flutter.plugin.platform.PlatformViewFactory;
 
 public class CameraNativeViewFactory extends PlatformViewFactory {
-    FlutterActivity flutterActivity;
+    Activity flutterActivity;
     BinaryMessenger binaryMessenger;
 
     CameraNativeViewFactory() {
         super(StandardMessageCodec.INSTANCE);
     }
 
-    CameraNativeViewFactory(FlutterActivity flutterActivity, BinaryMessenger binaryMessenger) {
+    CameraNativeViewFactory(Activity flutterActivity, BinaryMessenger binaryMessenger) {
         this();
         this.flutterActivity = flutterActivity;
         this.binaryMessenger = binaryMessenger;

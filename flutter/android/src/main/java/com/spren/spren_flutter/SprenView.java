@@ -1,5 +1,5 @@
 package com.spren.spren_flutter;
-
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +27,7 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 public class SprenView extends FrameLayout implements MethodChannel.MethodCallHandler {
-    private FlutterActivity flutterActivity;
+    private Activity flutterActivity;
     private SprenCapture sprenCapture;
     private Context context;
     private CoordinatorLayout container;
@@ -35,7 +35,7 @@ public class SprenView extends FrameLayout implements MethodChannel.MethodCallHa
     private MethodChannel methodChannel;
     private SprenViewCommands sprenViewCommands;
 
-    public SprenView(@NonNull Context context, BinaryMessenger binaryMessenger, FlutterActivity flutterActivity) {
+    public SprenView(@NonNull Context context, BinaryMessenger binaryMessenger, Activity flutterActivity) {
         super(context);
         this.context = context;
         this.flutterActivity = flutterActivity;

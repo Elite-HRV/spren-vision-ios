@@ -1,5 +1,5 @@
 package com.spren.spren_flutter;
-
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import androidx.annotation.NonNull;
@@ -12,7 +12,7 @@ import java.util.Map;
 public class CameraNativeView implements PlatformView {
     private SprenView sprenView;
 
-    CameraNativeView(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams, BinaryMessenger binaryMessenger, FlutterActivity flutterActivity) {
+    CameraNativeView(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams, BinaryMessenger binaryMessenger, Activity flutterActivity) {
         sprenView = new SprenView(context, binaryMessenger, flutterActivity);
     }
 

@@ -1,5 +1,5 @@
 package com.spren.spren_flutter;
-
+import android.app.Activity;
 import androidx.annotation.NonNull;
 import com.spren.spren_flutter.stream.PreReadingComplianceCheckHandler;
 import com.spren.spren_flutter.stream.ProgressUpdateHandler;
@@ -30,7 +30,7 @@ public class SprenFlutterPlugin implements FlutterPlugin, ActivityAware {
 
     @Override
     public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
-        FlutterActivity flutterActivity = (FlutterActivity) binding.getActivity();
+        Activity flutterActivity = (Activity) binding.getActivity();
         CameraNativeViewFactory cameraNativeViewFactory = new CameraNativeViewFactory(flutterActivity, binaryMessenger);
         platformViewRegistry.registerViewFactory(SprenChannel.SPREN_CAMERA_VIEW.toString(), cameraNativeViewFactory);
     }

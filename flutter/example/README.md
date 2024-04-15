@@ -1,4 +1,4 @@
-# Spren React Native Demo
+# Spren Flutter Demo
 
 > Demonstrates how to use the spren_flutter plugin in iOS/Android environments
 

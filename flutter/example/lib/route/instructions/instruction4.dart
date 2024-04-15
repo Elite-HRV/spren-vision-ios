@@ -51,7 +51,7 @@ class RouteInstruction4 extends HookWidget {
             width: double.infinity,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.deepPurple,
+                backgroundColor: Colors.deepPurple,
                 padding: const EdgeInsets.all(15),
                 textStyle: TextStyle(
                     fontWeight: FontWeight.bold,

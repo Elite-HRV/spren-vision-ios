@@ -1,3 +1,7 @@
+## 2.2.3
+
+Android: Updated Gradle wrapper and Android plugin, compile version, and dependencies (CameraX, sprencore, sprencapture).
+
 ## 2.2.2
 
 Android: Fixed concurrency exception, fixed null-pointer exception

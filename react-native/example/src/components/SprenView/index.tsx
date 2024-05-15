@@ -3,13 +3,15 @@ import {
     SprenProps,
     SprenView as SprenViewBridge,
 } from '@spren/react-native';
-import {findNodeHandle} from 'react-native';
+import { findNodeHandle, requireNativeComponent } from 'react-native';
 import { callNativeMethod, isIOS, isAndroid } from '../../utils';
 
 interface IProps extends SprenProps {
     children: any;
     ref?: RefObject<SprenView>;
 }
+
+const SprenViewForReal = requireNativeComponent<SprenProps>('SprenView');
 
 export class SprenView extends React.Component<IProps, {}> {
     /**
@@ -149,9 +151,9 @@ export class SprenView extends React.Component<IProps, {}> {
         const {style, children, ...rest} = this.props;
 
         return (
-            <SprenViewBridge style={[style]} {...rest}>
+            <SprenViewForReal style={[style]} {...rest}>
                 {children}
-            </SprenViewBridge>
+            </SprenViewForReal>
         );
     }
 }

@@ -33,7 +33,12 @@ public class SprenView extends FrameLayout {
         this.context = context;
 
         PreviewView previewView = setupViews();
-        sprenCapture = new SprenCapture(Objects.requireNonNull(context.getReactApplicationContext().getCurrentActivity()), previewView.getSurfaceProvider());
+        sprenCapture = new SprenCapture(
+            Objects.requireNonNull(
+                context.getCurrentActivity()
+            ),
+            previewView.getSurfaceProvider()
+        );
         sprenViewCommands = new SprenViewCommands(sprenCapture, this);
         setSprenCallbacks();
         startSpren(previewView);
@@ -102,7 +107,7 @@ public class SprenView extends FrameLayout {
 
     /**
      * Start Spren camera
-     * @param camera preview view
+     * @param previewView preview view
      */
     private void startSpren(PreviewView previewView) {
         sprenCapture.start();

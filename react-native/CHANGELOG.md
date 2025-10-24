@@ -1,3 +1,7 @@
+## 2.0.2
+
+Android: Updated Gradle wrapper and Android plugin, compile version, and dependencies (CameraX, sprencore, sprencapture).
+
 ## 2.0.1
 
 Android: Samsung Galaxy S22 - adding support

@@ -26,6 +26,7 @@ android {
     namespace "com.spren.spren_flutter_example"
 
     compileSdkVersion flutter.compileSdkVersion
+    ndkVersion "25.1.8937393"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

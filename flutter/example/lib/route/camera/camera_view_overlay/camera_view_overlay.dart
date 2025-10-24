@@ -256,7 +256,7 @@ class CameraViewOverlay extends HookWidget {
       flash.value = mode;
     }
 
-    return WillPopScope(
+    return PopScope(
         child: Positioned(
             top: 0,
             left: 0,
@@ -295,9 +295,8 @@ class CameraViewOverlay extends HookWidget {
                         ],
                       ),
                     )))),
-        onWillPop: () async {
+        onPopInvoked: (_) async {
           await cancelReading();
-          return true;
         });
   }
 }

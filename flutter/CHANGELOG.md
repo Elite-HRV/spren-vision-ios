@@ -1,10 +1,14 @@
+## 2.2.3
+
+Android: Updated Gradle, Kotlin, AGP, Android API levels, and dependencies to support 16kb page sizes.
+
 ## 2.2.2
 
 Android: Fixed concurrency exception, fixed null-pointer exception
 
 ## 2.2.1
 
-Android: Samsung Galaxy S22 - adding support 
+Android: Samsung Galaxy S22 - adding support
 
 ## 2.2.0
 
@@ -26,7 +30,7 @@ Android: Improved exposure change in a way that camera doesn't need to restart.
 
 ## 2.0.4
 
-Android: Fixed bug hang issue with Samsung S8 
+Android: Fixed bug hang issue with Samsung S8
 
 ## 2.0.3
 
@@ -52,15 +56,14 @@ Updated LICENSE file
 
 <s>`SprenFlutter.handleOverExposure()`</s> (no need to handle anymore)
 
-
 ###iOS Breaking changes in 2.x
 
 None
 
 ####All the breaking changes are handled in example app (check it for more details)
 
+---
 
-------
 Android: Add SprenCapture reset method
 
 Android: Add SprenCapture turnFlashOn method
@@ -71,7 +74,7 @@ Example App: Add unsupportiveness notice for Android 8 or lower devices
 
 Example App: Cancel reading when device enter background mode
 
-Example App: Result screen when pressing back button or user swipes back -> navigates to home screen 
+Example App: Result screen when pressing back button or user swipes back -> navigates to home screen
 
 Add new license (see LICENSE.pdf)
 
@@ -82,8 +85,8 @@ https://docs.spren.com/spren-vision/spren-vision-android-sdk
 
 ## 1.2.3
 
-Android: - Add ability to call Spren methods asynchronously using `await` 
-Android: - Set `Measurement complete` text in the end of the reading 
+Android: - Add ability to call Spren methods asynchronously using `await`
+Android: - Set `Measurement complete` text in the end of the reading
 
 ## 1.2.2
 

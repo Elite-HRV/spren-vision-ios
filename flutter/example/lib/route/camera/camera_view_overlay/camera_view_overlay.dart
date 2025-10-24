@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -219,7 +218,6 @@ class CameraViewOverlay extends HookWidget {
 
     // EXPOSURE
     useEffect(() {
-
       return null;
     }, [exposure.value]);
 
@@ -288,9 +286,11 @@ class CameraViewOverlay extends HookWidget {
                               CameraProgress(progress: progress.value),
                             ],
                           ),
-                          if (flash.value == 1 && defaultTargetPlatform == TargetPlatform.iOS)
+                          if (flash.value == 1 &&
+                              defaultTargetPlatform == TargetPlatform.iOS)
                             FlashEnableButton(notifyParent: changeTorchMode),
-                          if (flash.value == 0 && defaultTargetPlatform == TargetPlatform.iOS)
+                          if (flash.value == 0 &&
+                              defaultTargetPlatform == TargetPlatform.iOS)
                             FlashDisableButton(notifyParent: changeTorchMode),
                         ],
                       ),

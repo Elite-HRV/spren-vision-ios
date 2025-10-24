@@ -82,10 +82,12 @@ class RouteResult extends HookWidget {
                   ),
                 ]),
           Padding(
-              padding: const EdgeInsets.only(bottom: 50,),
+              padding: const EdgeInsets.only(
+                bottom: 50,
+              ),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.deepPurple,
+                  backgroundColor: Colors.deepPurple,
                   padding: const EdgeInsets.all(15),
                   textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -93,7 +95,8 @@ class RouteResult extends HookWidget {
                           .getadaptiveTextSize(context, 13)),
                 ),
                 onPressed: () {
-                  Navigator.popUntil(context, (Route<dynamic> route) => route.isFirst);
+                  Navigator.popUntil(
+                      context, (Route<dynamic> route) => route.isFirst);
                 },
                 child: const Text('Restart'),
               )),

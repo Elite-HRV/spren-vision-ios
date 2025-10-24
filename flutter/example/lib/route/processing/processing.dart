@@ -7,7 +7,7 @@ import 'package:spren_flutter_example/route/result/result.dart';
 import 'package:spren_flutter_example/utils/adaptive_text_size.dart';
 import 'package:spren_flutter_example/widgets/close_button.dart';
 import 'package:spren_flutter_example/widgets/powered_by.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -20,16 +20,16 @@ class RouteProcessing extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final progress = useState(30);
-    String SPREN_API_URL = dotenv.env['SPREN_API_URL']!;
-    String X_API_KEY = dotenv.env['X_API_KEY']!;
+    String sprenApiUrl = dotenv.env['SPREN_API_URL']!;
+    String xApiKey = dotenv.env['X_API_KEY']!;
     Map<String, String>? headers = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
-      'X-API-KEY': X_API_KEY,
+      'X-API-KEY': xApiKey,
     };
 
     Future<http.Response> post() {
       return http.post(
-        Uri.parse(SPREN_API_URL + '/submit/sdkData'),
+        Uri.parse(sprenApiUrl + '/submit/sdkData'),
         headers: headers,
         body: jsonEncode(<String, String>{
           'user': 'd159d47f-7441-44fa-af41-50d7496b201c',
@@ -40,27 +40,28 @@ class RouteProcessing extends HookWidget {
 
     Future<http.Response> get(String guid) {
       return http.get(
-        Uri.parse(SPREN_API_URL + '/results/' + guid),
+        Uri.parse(sprenApiUrl + '/results/' + guid),
         headers: headers,
       );
     }
 
     void errorNavigate() {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => RouteResult(true, 0, 0))
-      );
+          MaterialPageRoute(builder: (context) => RouteResult(true, 0, 0)));
     }
 
     void successNavigate(double hr, double hrvScore) {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => RouteResult(false, hr, hrvScore)),
+        MaterialPageRoute(
+            builder: (context) => RouteResult(false, hr, hrvScore)),
       );
     }
 
     Future<void> process(String guid) async {
       try {
         http.Response response = await get(guid);
-        Map decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+        Map decodedResponse =
+            jsonDecode(utf8.decode(response.bodyBytes)) as Map;
         String status = decodedResponse['biomarkers']['hr']['status'];
         if (status == 'complete') {
           progress.value = 100;
@@ -78,7 +79,6 @@ class RouteProcessing extends HookWidget {
           throw 'biomarkers hr status no reponse';
         }
       } catch (e) {
-        print(e);
         errorNavigate();
       }
     }
@@ -95,16 +95,15 @@ class RouteProcessing extends HookWidget {
         }
         process(guid);
       } catch (e) {
-        print(e);
         errorNavigate();
       }
     }
 
     useEffect(() {
-      Wakelock.enable();
+      WakelockPlus.enable();
       onInit();
       return () {
-        Wakelock.disable();
+        WakelockPlus.disable();
       };
     }, []);
 
@@ -120,7 +119,8 @@ class RouteProcessing extends HookWidget {
                 child: CloseBtn(
                     color: Colors.black,
                     onPressed: () {
-                      Navigator.popUntil(context, (Route<dynamic> route) => route.isFirst);
+                      Navigator.popUntil(
+                          context, (Route<dynamic> route) => route.isFirst);
                     })),
             Column(children: [
               const SizedBox(height: 15),

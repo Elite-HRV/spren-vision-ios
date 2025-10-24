@@ -1,22 +1,30 @@
-buildscript {
-    ext.kotlin_version = '1.6.10'
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
 allprojects {
     repositories {
         google()
         mavenCentral()
     }
 }
+
+// CUSTOM-CODE BEGIN
+// Setting namespace for all libraries (requirement for newer AGP)
+subprojects { p ->
+    afterEvaluate {
+        if (p.plugins.hasPlugin("com.android.library")) {
+            def androidExt = p.extensions.findByName("android")
+            if (androidExt != null && (!androidExt.hasProperty("namespace") || androidExt.namespace == null)) {
+                def manifestFile = file("${p.projectDir}/src/main/AndroidManifest.xml")
+                if (manifestFile.exists()) {
+                    def m = (manifestFile.getText('UTF-8') =~ /package="([^"]+)"/)
+                    if (m.find()) {
+                        androidExt.namespace = m.group(1)
+                        println("Set namespace for ${p.path} -> ${androidExt.namespace}")
+                    }
+                }
+            }
+        }
+    }
+}
+// CUSTOM-CODE END
 
 rootProject.buildDir = '../build'
 subprojects {
@@ -26,6 +34,6 @@ subprojects {
     project.evaluationDependsOn(':app')
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register("clean", Delete) {
+    delete rootProject.layout.buildDirectory
 }

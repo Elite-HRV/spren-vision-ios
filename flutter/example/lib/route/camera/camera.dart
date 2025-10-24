@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:spren_flutter_example/route/camera/camera_view_android.dart';
 import 'package:spren_flutter_example/route/camera/camera_view_ios.dart';
 import 'package:spren_flutter_example/route/camera/camera_view_overlay/camera_view_overlay.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 class RouteCamera extends StatefulWidget {
   const RouteCamera({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class RouteCamera extends StatefulWidget {
 class CameraState extends State<RouteCamera> {
   @override
   void dispose() {
-    Wakelock.disable();
+    WakelockPlus.disable();
     super.dispose();
   }
 
@@ -24,7 +24,7 @@ class CameraState extends State<RouteCamera> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    Wakelock.enable();
+    WakelockPlus.enable();
 
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
